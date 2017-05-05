@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/2002/xmlspec/dtd/2.10/xmlspec.dtd">
+<validation xmlns="http://www.springmodules.org/validation/bean"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springmodules.org/validation/bean/validation.xsd">
+    <class name="cn.edu.ncut.istc.model.TbUserObj">
+        <property name="loginname">
+            <not-blank message="登录名不能为空"/>
+        </property>
+        <property name="loginpassword">
+            <not-blank message="密码不能为空"/>
+        </property>
+
+    </class>
+</validation>

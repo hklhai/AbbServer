@@ -1,0 +1,126 @@
+.gridTable {
+    width:100%;
+    margin:0px 0px 0px 0px;
+    padding: 0;
+    font-size: 12px;
+}
+
+/** grid body */
+.gridBody {
+    /*border-right: 1px solid #b2d4ed;*/
+    border-right: 1px solid #cccccc;
+    border-top: 1px solid #cccccc;
+    color:#333333;
+}
+.gridBody th {
+    border-right: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc; 
+    vertical-align: middle;
+    /*font-size: 15;*/
+    /*background:url(../../images/table_top.png);*/
+    height:26px;
+    background:url(../../images/table_th.png) repeat-x;
+    /*padding:0 10px 0 0;*/
+}
+.gridBody td {
+    color: #black;
+    text-align:center;
+    height:25px;
+    /*font-size: 15;*/
+}
+
+/** grid header sort */
+.gridBody th.sort {
+}
+.gridBody th.sort.desc {
+    background:url(images/sort_desc.gif) center right no-repeat
+}
+.gridBody th.sort.asc {
+    background:url(images/sort_asc.gif) center right no-repeat
+}
+
+/** mouse hove over sort header */
+.gridBody .tableHeaderSortHover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/** gridBody row colors */
+/*.gridBody .odd {*/
+/*background-color: #FFFFFF;*/
+/*}*/
+/*.gridBody .even {*/
+/*background-color: #e8e8e8;*/
+/*}*/
+.gridBody .highlight {
+    background-color: #fdeccf !important;
+}
+
+/** grid toolbar */
+.gridToolbar {
+    margin-top:0px;
+    border-bottom:1px solid #cccccc;
+}
+
+.gridToolbar .leftControls {
+    padding-left:5px;
+}
+.gridToolbar .paginationControls .buttonLabel{
+    margin:0 0 0 12px
+}
+.gridToolbar .box div {
+    display:inline;
+    float:left;
+}
+.gridToolbar .box .paginationControls {
+    float:right;
+}
+.gridToolbar td{
+    background:url(../../images/table_top3.png) repeat-x;
+    height: 32px;
+}
+
+
+/** grid toolbarx */
+.gridToolbarx {
+    margin-top:0px;
+    border:0px solid ;
+}
+
+.gridToolbarx .leftControls {
+    padding-left:5px;
+}
+.gridToolbarx .paginationControls .buttonLabel{
+    margin:0 0 0 12px
+}
+.gridToolbarx .box div {
+    display:inline;
+    float:left;
+}
+.gridToolbarx .box .paginationControls {
+    float:right;
+}
+.gridToolbarx td{
+    height: 32px;
+}
+
+
+.gridBody .odd a, .even a {
+    font-size: 12px;
+    color: 005C9C !important;
+}
+
+.queryPanel fieldset{
+    border: 1px solid #cccccc;
+    margin:5px 5px 0px 5px;
+    width:100%;
+}
+
+body {
+    width: 100%;
+    height:100%;
+    padding:0px;
+    font-size:12px;
+    overflow-y:auto;
+}
+

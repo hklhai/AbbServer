@@ -1,0 +1,30 @@
+#layer{
+	background-color:#fff;
+	width:96%;
+	height:800px;
+	padding:2%;
+}
+#search-show{
+	width:100%;
+	border-collapse:collapse; 
+}
+#search-show th{
+	height:25px;
+	font-size:14px;
+	font-weight:bold;
+	text-align:center;
+}
+#search-show tr{
+	text-align:center;
+}
+#search-show tr td{
+	font-size:14px;
+	text-align:center;
+    height:25px;
+}
+#search-show tr td:nth-child(1),#search-show tr td:nth-child(2){
+	 width:40%;
+}
+#search-show tr td:nth-child(3){
+	 width:15%;
+}

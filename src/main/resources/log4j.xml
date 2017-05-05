@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+	<appender name="ConsoleAppender" class="org.apache.log4j.ConsoleAppender">
+		<!--<layout class="org.apache.log4j.SimpleLayout"/> -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%p %d{yyyy-MM-dd HH:mm:ss.SSS} (%c:%L)- %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="rootFileAppender" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="../isbn/root.log" />
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="10MB" />
+		<param name="MaxBackupIndex" value="20" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%p %d{yyyy-MM-dd HH:mm:ss.SSS} (%c:%L)- %m%n" />
+		</layout>
+	</appender>
+
+
+	<logger name="org.springframework.data.mongodb.core.convert.CustomConversions">
+		<level value="ERROR" />
+	</logger>
+	<logger name="org.hibernate.type.descriptor.sql.BasicBinder">
+		<level value="TRACE" />
+	</logger>
+	<logger name="org.springframework">
+		<level value="WARN" />
+	</logger>
+	<logger name="org.hibernate">
+		<level value="WARN" />
+	</logger>
+	<logger name="org.hibernate.hql.internal.ast">
+		<level value="WARN" />
+	</logger>
+	<logger name="org.apache.cxf">
+		<level value="WARN" />
+	</logger>
+	<logger name="org.mongodb.driver.cluster">
+		<level value="WARN" />
+	</logger>
+	<logger name="org.jboss.logging">
+		<level value="WARN" />
+	</logger>
+	<logger name="org.mongodb.driver.connection">
+		<level value="WARN" />
+	</logger>
+	<logger name="org.eclipse.jetty">
+		<level value="WARN" />
+	</logger>
+
+
+	<root>
+		<priority value="DEBUG" />
+		<!--<priority value="DEBUG"/> &lt;!&ndash;调试模式，显示SQL语句&ndash;&gt; ERROR -->
+		<appender-ref ref="ConsoleAppender" />
+	</root>
+</log4j:configuration>

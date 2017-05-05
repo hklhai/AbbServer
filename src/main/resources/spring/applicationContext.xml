@@ -1,0 +1,139 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xmlns:cache="http://www.springframework.org/schema/cache" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.2.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+        http://www.springframework.org/schema/data/mongo
+        http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
+       http://www.springframework.org/schema/cache
+       http://www.springframework.org/schema/cache/spring-cache-4.2.xsd">
+
+    <!-- 引入properties文件 -->
+    <context:property-placeholder location="classpath:config.properties"/>
+
+
+    <!-- 引入jdbc配置文件 -->
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath*:config.properties</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <!-- XML 手动注解方式（注：注意set方法需要手动写明） <bean name="weixinMsgController" id="weixinMsgController"
+        class="hxqh.eam.abb.istc.controller.weixin.WeixinMsgController"> <property
+        name="queryService"> <ref bean="queryService"></ref> </property> </bean>
+        <bean name="queryService" id="queryService" class="hxqh.eam.abb.istc.service.mobile.QueryServiceImpl">
+        <property name="productDao"> <ref bean="productDao"></ref> </property> </bean>
+        <bean name="productDao" id="productDao" class="hxqh.eam.abb.istc.dao.ProductDaoImpl">
+        </bean> -->
+
+
+    <!--使用spring管理MongoDB -->
+    <!-- 	<mongo:db-factory id="mongoDbFactory" host="${mongo_host}"
+            port="${mongo_port}" dbname="${mongo_dbname}" username="${mongo_username}"
+            password="${mongo_password}" />
+        <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+            <constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
+        </bean>
+     -->
+
+    <!-- DataSource -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="com.ibm.db2.jcc.DB2Driver"/>
+        <property name="url"
+                  value="jdbc:db2://${jdbc.host}:${jdbc.port}/${jdbc.database}"/>
+        <property name="username" value="${jdbc.user}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="130"/>
+        <property name="maxWait" value="3000"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="180"/>
+    </bean>
+
+
+    <!--
+    MySQL
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"-->
+          <!--destroy-method="close">-->
+        <!--<property name="driverClassName" value="com.mysql.jdbc.Driver"/>-->
+        <!--<property name="url"-->
+                  <!--value="jdbc:mysql://${jdbc.host}:${jdbc.port}/${jdbc.database}"/>-->
+        <!--<property name="username" value="${jdbc.user}"/>-->
+        <!--<property name="password" value="${jdbc.password}"/>-->
+        <!--<property name="maxActive" value="130"/>-->
+        <!--<property name="maxWait" value="3000"/>-->
+        <!--<property name="removeAbandoned" value="true"/>-->
+        <!--<property name="removeAbandonedTimeout" value="180"/>-->
+    <!--</bean>-->
+
+    <!-- 配置国际化资源文件 -->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>messages</value>
+            </list>
+        </property>
+    </bean>
+
+    <context:component-scan
+            base-package="com.hxqh.abb.common.basedao,com.hxqh.abb.dao,com.hxqh.abb.common.util"/>
+
+
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${jdbc.hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="javax.persistence.validation.mode">none</prop>
+            </props>
+        </property>
+        <property name="packagesToScan" value="com.hxqh.**.model.**"/>
+    </bean>
+
+
+    <bean id="txManager"
+          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+
+    <!--使用基于注解方式配置事务 -->
+    <tx:annotation-driven transaction-manager="txManager"></tx:annotation-driven>
+
+
+    <!-- component-scan自动搜索@Component , @Controller , @Service , @Repository等标注的类 -->
+    <context:component-scan base-package="com.hxqh.abb.**.service"/>
+
+    <context:component-scan base-package="com.hxqh.abb.**.webservice.**"/>
+
+    <!--配置com.spring.service包下所有类或接口的所有方法 -->
+    <aop:config>
+        <aop:aspect id="actionAspectId" ref="actionAspect">
+            <aop:pointcut id="webServiceMethods"
+                          expression="execution(* com.hxqh.abb.webservice.*WebService.*(..)) "/>
+            <aop:around pointcut-ref="webServiceMethods" method="doAround"/>
+        </aop:aspect>
+    </aop:config>
+
+    <import resource="classpath*:META-INF/cxf/cxf.xml"/>
+    <import resource="classpath*:META-INF/cxf/cxf-servlet.xml"/>
+    <import resource="classpath:spring/spring-cxf.xml"/>
+</beans>
