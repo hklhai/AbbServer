@@ -17,7 +17,6 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
     <!-- 配置直接转发页面 跳过handler -->
 	<mvc:view-controller path="/query" view-name="query/toquery" />
 	<mvc:view-controller path="/information" view-name="information/webContent" />
-	<mvc:view-controller path="/index" view-name="index" />
 	<mvc:view-controller path="/synopsis" view-name="/index/istcoutline" />
 	<mvc:view-controller path="/intro" view-name="/index/introduction" />
 	<mvc:view-controller path="/law" view-name="/index/laws" />
