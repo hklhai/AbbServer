@@ -27,19 +27,18 @@ public class SystemTest {
         Assert.assertEquals(27, locationList.size());
     }
 
-    @Test
+    //@Test
     public void testAsset() {
         long assetCount = systemService.getAssetCount();
         Assert.assertEquals(257L, assetCount);
     }
 
-    @Test
+    //@Test
     public void testLocationName() {
         List<Location> locationList = systemService.getLocationList();
         for (Location l:locationList) {
             System.out.println(l);
             System.out.println("=======================");
-
         }
     }
 
