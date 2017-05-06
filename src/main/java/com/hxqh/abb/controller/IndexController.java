@@ -1,5 +1,6 @@
 package com.hxqh.abb.controller;
 
+import com.hxqh.abb.common.util.FastJsonTools;
 import com.hxqh.abb.model.Location;
 import com.hxqh.abb.model.Wfassignment;
 import com.hxqh.abb.service.SystemService;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,10 +39,12 @@ public class IndexController {
      * @return
      */
     @RequestMapping(value = "/message", method = RequestMethod.GET)
-    public ModelAndView systemMessage() {
+    public ModelAndView systemMessage(HttpServletResponse httpServletResponse) {
         Map<String, Object> result = new HashMap<String, Object>();
         List<Wfassignment> systemMessageList = systemService.getSystemMessage();
         result.put("message",systemMessageList);
+        FastJsonTools.writeJson(systemMessageList,httpServletResponse);
+
         return new ModelAndView("/success",result);
     }
 
