@@ -48,7 +48,7 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
         orderby.put("duedate", "ASC");
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("description", BigDecimal.ZERO);
-        List<Wfassignment> wfassignmentList= wfassignmentDao.findAll(0,5,"description = :description", params, "duedate ASC");
+        List<Wfassignment> wfassignmentList= wfassignmentDao.findAll(0,5,null, params,null);
         return wfassignmentList;
     }
 
