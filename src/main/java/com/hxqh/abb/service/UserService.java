@@ -6,7 +6,7 @@ import com.hxqh.abb.service.base.BaseService;
 import java.util.List;
 
 /**
- * Created by lenovo on 2017/4/14.
+ * Created by lh on 2017/4/14.
  */
 public interface UserService extends BaseService {
 

@@ -1,7 +1,8 @@
 package com.hxqh.abb.service;
 
-import com.hxqh.abb.dao.UserDao;
-import com.hxqh.abb.model.User;
+import com.hxqh.abb.dao.AssetDao;
+import com.hxqh.abb.dao.LocationDao;
+import com.hxqh.abb.model.Location;
 import com.hxqh.abb.service.base.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,14 +14,9 @@ import java.util.List;
  * Created by lh on 2017/4/14.
  */
 @Transactional
-@Service("userService")
-public class UserServiceImpl extends BaseServiceImpl<Object> implements UserService{
-    @Autowired
-    private UserDao userDao;
+@Service("locationService")
+public class LocationServiceImpl extends BaseServiceImpl<Object> implements LocationService{
 
-    public List<User> getUserList(){
-        return userDao.findAll();
-    }
 
 
 }
