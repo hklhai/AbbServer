@@ -29,6 +29,13 @@ public class IndexController {
         return "/success";
     }
 
+    @RequestMapping(value = "/message", method = RequestMethod.GET)
+    public String systemMessage() {
+        Map<String, Object> result = new HashMap<String, Object>();
+        List<Location> locationList = systemService.getLocationList();
+        result.put("locationList", locationList);
+        return "/success";
+    }
 
 
 }
