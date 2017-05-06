@@ -419,38 +419,10 @@
       <artifactId>xom</artifactId>
       <version>1.0d21</version>
     </dependency>
-
     <dependency>
       <groupId>com.thoughtworks.xstream</groupId>
       <artifactId>xstream</artifactId>
       <version>1.4.9</version>
-    </dependency>
-
-    <dependency>
-      <groupId>jfinal.weixin</groupId>
-      <artifactId>jfinal-weixin</artifactId>
-      <version>0.0.1</version>
-    </dependency>
-    <dependency>
-      <groupId>joone.editor</groupId>
-      <artifactId>joone-editor</artifactId>
-      <version>0.0.1</version>
-    </dependency>
-    <dependency>
-      <groupId>joone.engine</groupId>
-      <artifactId>joone-engine</artifactId>
-      <version>0.0.1</version>
-    </dependency>
-    <dependency>
-      <groupId>com.oracle</groupId>
-      <artifactId>oracle-jdbc</artifactId>
-      <version>0.0.1</version>
-    </dependency>
-
-    <dependency>
-      <groupId>rapid.framework</groupId>
-      <artifactId>rapid-framework</artifactId>
-      <version>0.0.1</version>
     </dependency>
     <dependency>
       <groupId>org.apache.poi</groupId>
