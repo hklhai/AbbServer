@@ -31,7 +31,7 @@ public class UserController {
     @RequestMapping(value = "/showRegionMap", method = RequestMethod.GET)
     public String showRegionMap() {
         Map<String, Object> result = new HashMap<String, Object>();
-        return "/success";
+        return "/login";
     }
 
 
