@@ -9,11 +9,11 @@ import com.hxqh.abb.model.dto.Message;
 import com.hxqh.abb.service.SystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
@@ -57,9 +57,12 @@ public class IndexController {
      *
      * @return
      */
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView login(@RequestBody LoginDto loginDto,HttpServletResponse httpServletResponse) {
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public ModelAndView login(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         Map<String, Object> result = new HashMap<String, Object>();
+        String loginid = httpServletRequest.getParameter("loginid");
+        String userid = httpServletRequest.getParameter("userid");
+        LoginDto loginDto = new LoginDto(loginid,userid);
 
         List<Maxuser> loginUserList = systemService.getLoginUserList(loginDto);
         Message message=doLogin(loginUserList);
