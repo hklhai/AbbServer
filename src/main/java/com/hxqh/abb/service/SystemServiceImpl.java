@@ -1,11 +1,10 @@
 package com.hxqh.abb.service;
 
-import com.hxqh.abb.dao.AssetDao;
-import com.hxqh.abb.dao.LocationDao;
-import com.hxqh.abb.dao.WfassignmentDao;
-import com.hxqh.abb.dao.WorkorderDao;
+import com.hxqh.abb.dao.*;
 import com.hxqh.abb.model.Location;
+import com.hxqh.abb.model.Maxuser;
 import com.hxqh.abb.model.Wfassignment;
+import com.hxqh.abb.model.dto.LoginDto;
 import com.hxqh.abb.service.base.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +30,8 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
     private WfassignmentDao wfassignmentDao;
     @Autowired
     private WorkorderDao workorderDao;
-
+    @Autowired
+    private MaxuserDao maxuserDao;
 
     public List<Location> getLocationList() {
         return locationDao.findAll();
@@ -40,6 +40,17 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
     @Override
     public long getAssetCount() {
         return assetDao.getCount();
+    }
+
+    @Override
+    public List<Maxuser> getLoginUserList(LoginDto loginDto) {
+
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("loginid", loginDto.getLoginid());
+        params.put("userid",  loginDto.getUserid());
+        String where = "loginid=:loginid and userid=:userid";
+        List<Maxuser> maxuserList = maxuserDao.findAll(where, params, null);
+        return maxuserList;
     }
 
     @Override
