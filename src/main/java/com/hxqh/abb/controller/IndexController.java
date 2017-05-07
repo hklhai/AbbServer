@@ -2,10 +2,14 @@ package com.hxqh.abb.controller;
 
 import com.hxqh.abb.common.util.FastJsonTools;
 import com.hxqh.abb.model.Location;
+import com.hxqh.abb.model.Maxuser;
 import com.hxqh.abb.model.Wfassignment;
+import com.hxqh.abb.model.dto.LoginDto;
+import com.hxqh.abb.model.dto.Message;
 import com.hxqh.abb.service.SystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,16 +43,41 @@ public class IndexController {
      * @return
      */
     @RequestMapping(value = "/message", method = RequestMethod.GET)
-    public ModelAndView systemMessage(HttpServletResponse httpServletResponse) {
+    public ModelAndView systemMessage() {
         Map<String, Object> result = new HashMap<String, Object>();
         List<Wfassignment> systemMessageList = systemService.getSystemMessage();
-        result.put("message",systemMessageList);
-        FastJsonTools.writeJson(systemMessageList,httpServletResponse);
-
+        String json = FastJsonTools.getJson(systemMessageList);
+        result.put("message",json);
         return new ModelAndView("/success",result);
     }
 
 
+    /**
+     * login  使用maxuser object
+     *
+     * @return
+     */
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public ModelAndView login(@RequestBody LoginDto loginDto,HttpServletResponse httpServletResponse) {
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        List<Maxuser> loginUserList = systemService.getLoginUserList(loginDto);
+        Message message=doLogin(loginUserList);
+        FastJsonTools.writeJson(message,httpServletResponse);
+        return new ModelAndView("/success",result);
+
+    }
+
+    private Message doLogin(List<Maxuser> loginUserList) {
+        Message message = new Message(0,"");
+        if(loginUserList.size()>0)
+        {
+            message.setCode(1);
+        }else {
+            message.setMessage("用户名或密码错误");
+        }
+        return  message;
+    }
 
 
 }
