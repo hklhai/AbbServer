@@ -1,6 +1,8 @@
 package com.hxqh.abb.test;
 
 import com.hxqh.abb.model.Location;
+import com.hxqh.abb.model.Maxuser;
+import com.hxqh.abb.model.dto.LoginDto;
 import com.hxqh.abb.service.SystemService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -42,6 +45,16 @@ public class SystemTest {
         }
     }
 
+    @Test
+    public void testGetLoginUserList() {
+        LoginDto loginDtoSu = new LoginDto("maxadmin","MAXADMIN");
+        LoginDto loginDtoFail = new LoginDto("maxadmin","xxx");
 
+        List<Maxuser> loginUserList = systemService.getLoginUserList(loginDtoSu);
+        Assert.assertEquals(1, loginUserList.size());
+
+        List<Maxuser> loginUserList2 = systemService.getLoginUserList(loginDtoFail);
+        Assert.assertEquals(0, loginUserList2.size());
+    }
 
 }
