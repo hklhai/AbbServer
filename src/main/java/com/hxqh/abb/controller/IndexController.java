@@ -63,7 +63,6 @@ public class IndexController {
         String loginid = httpServletRequest.getParameter("loginid");
         String userid = httpServletRequest.getParameter("userid");
         LoginDto loginDto = new LoginDto(loginid,userid);
-
         List<Maxuser> loginUserList = systemService.getLoginUserList(loginDto);
         Message message=doLogin(loginUserList);
         FastJsonTools.writeJson(message,httpServletResponse);
@@ -72,12 +71,15 @@ public class IndexController {
     }
 
     private Message doLogin(List<Maxuser> loginUserList) {
-        Message message = new Message(0,"");
+        Message message = new Message(0,"",false);
+        Message success = new Message(1,"LoginSuccess",true);
+
         if(loginUserList.size()>0)
         {
-            message.setCode(1);
+            return success;
         }else {
             message.setMessage("用户名或密码错误");
+            message.setSuccess(true);
         }
         return  message;
     }
