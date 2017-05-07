@@ -1,7 +1,9 @@
 package com.hxqh.abb.service;
 
 import com.hxqh.abb.model.Location;
+import com.hxqh.abb.model.Maxuser;
 import com.hxqh.abb.model.Wfassignment;
+import com.hxqh.abb.model.dto.LoginDto;
 import com.hxqh.abb.service.base.BaseService;
 
 import java.util.List;
@@ -16,9 +18,10 @@ public interface SystemService extends BaseService {
 
     public abstract long getAssetCount();
 
-    
 
     /*============================测试结束==========================*/
+
+    public abstract List<Maxuser> getLoginUserList(LoginDto loginDto);
 
 
 
