@@ -21,7 +21,7 @@ public interface SystemService extends BaseService {
 
     /*============================测试结束==========================*/
 
-    public abstract List<Maxuser> getLoginUserList(LoginDto loginDto);
+    public abstract List<Maxuser> getLoginUserList(LoginDto loginDto) ;
 
 
 

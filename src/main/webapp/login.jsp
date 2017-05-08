@@ -26,7 +26,7 @@
                     user: {
                         required: true
                     },
-                    pwd:{
+                    password:{
                         required: true
                     }
                 }
@@ -35,13 +35,13 @@
         $.validator.setDefaults({
             submitHandler:function(){
                 var username = $("#userName").val();
-                var pwd = $("#pwd").val();
+                var password = $("#password").val();
                 $.ajax({
                     url: "${ctx}/index/login",
                     method: "post",
                     data: {
                         loginid : username,
-                        userid  : pwd
+                        password  : password
                     },
                     dataType: "json",
                     success: function(data){
@@ -61,12 +61,12 @@
         <form action="#" class="login-form" id="login-form" method="post">
             <div class="login-header"></div>
             <div class="login-item user-item">
-                <label for="user">用户名：</label>
+                <label for="userName">用户名：</label>
                 <input type="text" id="userName" class="txt-input input-blue" name="user" />
             </div>
-            <div class="login-item pwd-item">
-                <label for="pwd">密码：</label>
-                <input type="text" id="pwd" class="txt-input input-grey" name="pwd" />
+            <div class="login-item password-item">
+                <label for="password">密码：</label>
+                <input type="password" id="password" class="txt-input input-grey" name="password" />
             </div>
             <div class="check-item">
                 <input type="checkbox" value="自动登录">
