@@ -84,6 +84,10 @@ public class IndexController {
                 if(loginUserList.get(0).getPassword().toUpperCase().equals(password))
                 {
                     return success;
+                }else
+                {
+                    message.setMessage("密码不正确");
+                    message.setSuccess(true);
                 }
             } catch (MXException e) {
                 e.printStackTrace();

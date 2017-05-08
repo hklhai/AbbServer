@@ -493,7 +493,7 @@
     <dependency>
       <groupId>com.businessobjects</groupId>
       <artifactId>businessobjects</artifactId>
-      <version>7.6</version>
+      <version>7.6-abb</version>
     </dependency>
 
   </dependencies>
