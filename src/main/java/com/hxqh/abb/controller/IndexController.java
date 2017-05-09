@@ -4,7 +4,7 @@ import com.hxqh.abb.common.util.FastJsonTools;
 import com.hxqh.abb.common.util.MXCipherXUtils;
 import com.hxqh.abb.model.Location;
 import com.hxqh.abb.model.Maxuser;
-import com.hxqh.abb.model.Wfassignment;
+import com.hxqh.abb.model.dto.IndexDto;
 import com.hxqh.abb.model.dto.LoginDto;
 import com.hxqh.abb.model.dto.Message;
 import com.hxqh.abb.service.SystemService;
@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import psdi.util.MXException;
 
@@ -41,16 +42,15 @@ public class IndexController {
     }
 
     /**
-     * 获取系统通知
+     * 返回页面4部分显示List
+     * @Author lh
      * @return
      */
     @RequestMapping(value = "/message", method = RequestMethod.GET)
-    public ModelAndView systemMessage() {
-        Map<String, Object> result = new HashMap<String, Object>();
-        List<Wfassignment> systemMessageList = systemService.getSystemMessage();
-        String json = FastJsonTools.getJson(systemMessageList);
-        result.put("message",json);
-        return new ModelAndView("/success",result);
+    @ResponseBody
+    public IndexDto systemMessage() {
+        IndexDto indexDto = systemService.getSystemMessage();
+        return indexDto;
     }
 
 
@@ -101,5 +101,14 @@ public class IndexController {
         return  message;
     }
 
+
+    /**
+     * 登录成功后跳转至index
+     * @return
+     */
+    @RequestMapping(value = "/toIndex", method = RequestMethod.GET)
+    public String goToIndex() {
+        return "index/index";
+    }
 
 }
