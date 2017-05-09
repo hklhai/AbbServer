@@ -20,56 +20,49 @@
     <link rel="stylesheet" href="${ctx}/css/index.css">
     <link rel="stylesheet" href="${ctx}/css/header.css">
     <script type="text/javascript">
-        var index-data = new Vue({
-            el: "#index-data",
-            data: {
-               assetList: [], 
-               calendarList: [],
-               systemList: [],
-               workTaskList: [],
-               test: "测试一下vue"
-            },
-            method:{
-                init: function(){
-                            $.ajax({
-                            url: "${ctx}/index/message",
-                            method: "get",
-                            dataType: "json",
-                            success: function(data){
-                                
-                            },
-                            error: function(){
+        $(function(){
+            var indexData = new Vue({
+                el: "#index-data",
+                data: {
+                    assetList: [],
+                    calendarList: [],
+                    systemList: [],
+                    workTaskList: [],
+                },
+                method:{
 
-                            }
-                        })
-                    }
-            },
-            beforeCreat: function(){
-                this.init();
-            }
+                },
+                created: function(){
+                    var self = this;
+                    $.ajax({
+                        url: "${ctx}/index/message",
+                        method: "get",
+                        dataType: "json",
+                        success: function(data){
+                            self.assetList = data.assetList;
+                            self.calendarList = data.calendarList;
+                            self.systemList = data.systemList;
+                            self.workTaskList = data.workTaskList;
+                        },
+                        error: function(){
+
+                        }
+                    });
+                }
+            });
         });
+        
     </script>
 </head>
 <body>
-<div class="header">
-    <div class="header-layout">
-        <div class="logo"></div>
-        <ul>
-            <li class="li-item"><a href="#" class="index-a"><i class="icon-index"></i>{{test}}</a></li>
-            <li class="li-item"><a href="#" class="index-a"><i class="icon-equip"></i>设备管理</a></li>
-            <li class="li-item"><a href="#" class="index-a"><i class="icon-stock"></i>库存管理</a></li>
-            <li class="li-item"><a href="#" class="index-a"><i class="icon-tool"></i>工具管理</a></li>
-            <li class="li-last"><a href="#" class="index-a-last">登录</a></li>
-        </ul>
-    </div>
-</div>
+<%@ include file="../commons/header.jsp"%>
 <div class="index-content">
     <div class="index-layout" id="index-data">
         <div class="index-content-tit">首页</div>
         <div class="calendar index-div1"></div>
         <div class="work-task index-div2">
             <div class="index-div2-layout">
-                <p>{{test}}</p>
+                <p>工作任务</p>
                 <table>
                     <thead>
                     <tr>
@@ -85,7 +78,7 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td style="padding-left:2%;">1066</td>
+                        <td style="padding-left:2%;"></td>
                         <td>测试数据001</td>
                         <td></td>
                         <td>金鹏宇</td>
@@ -129,10 +122,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td></td>
-                        <td>馈线柜</td>
-                        <td>南京AD史密斯热水器有限公司</td>
+                    <tr v-for="asset in assetList">
+                        <td>{{asset.state}}</td>
+                        <td>{{asset.description}}</td>
+                        <td>{{asset.location}}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -152,18 +145,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td style="padding-left:10px;">申请未审批，请重新审核资料</td>
-                        <td>2014-4-19 1:28:00</td>
-                        <td>2014-4-19 1:28:00</td>
-                        <td></td>
-                        <td><a href="" class="apply"></a></td>
-                    </tr>
-                    <tr>
-                        <td style="padding-left:10px;">申请未审批，请重新审核资料</td>
-                        <td>2014-4-19 1:28:00</td>
-                        <td>2014-4-19 1:28:00</td>
-                        <td></td>
+                    <tr v-for="sys in systemList">
+                        <td style="padding-left:2%">{{sys.description}}</td>
+                        <td>{{sys.startdate}}</td>
+                        <td>{{sys.duedate}}</td>
+                        <td>{{sys.priority}}</td>
                         <td><a href="" class="apply"></a></td>
                     </tr>
                     </tbody>

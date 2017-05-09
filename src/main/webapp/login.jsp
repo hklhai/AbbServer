@@ -47,13 +47,13 @@
                     dataType: "json",
                     success: function(data){
                         if(data.success){
-                            window.location.href = "${ctx}/index/toIndex";
-                            /*if(data.code == "0"){
+                            if(data.code == "0"){
                                 var message = data.message;
+                                alert(message);
                             }
                             if(data.code == "1"){
-                                window.location.href = "";
-                            }*/
+                                window.location.href = "${ctx}/index/toIndex";
+                            }
                         }
                     },
                     error: function(){
