@@ -34,7 +34,7 @@ public class Asset extends BaseModel implements Serializable {
 
 	private String assettype;
 
-	private int autowogen;
+	private Integer autowogen;
 
 	private String binnum;
 
@@ -46,7 +46,7 @@ public class Asset extends BaseModel implements Serializable {
 
 	private Timestamp changedate;
 
-	private int children;
+	private Integer children;
 
 	private String classstructureid;
 
@@ -60,7 +60,7 @@ public class Asset extends BaseModel implements Serializable {
 
 	private String direction;
 
-	private int disabled;
+	private Integer disabled;
 
 	private String enddescription;
 
@@ -102,18 +102,18 @@ public class Asset extends BaseModel implements Serializable {
 
 	private String groupname;
 
-	private int hasld;
+	private Integer hasld;
 
 	@Temporal(TemporalType.DATE)
 	private Date installdate;
 
 	private BigDecimal invcost;
 
-	private int iscalibration;
+	private Integer iscalibration;
 
-	private int islinear;
+	private Integer islinear;
 
-	private int isrunning;
+	private Integer isrunning;
 
 	private String itemnum;
 
@@ -128,11 +128,11 @@ public class Asset extends BaseModel implements Serializable {
 
 	private String lrm;
 
-	private int mainthierchy;
+	//private Integer maIntegerhierchy;
 
 	private String manufacturer;
 
-	private int moved;
+	private Integer moved;
 
 	private String orgid;
 
@@ -149,11 +149,11 @@ public class Asset extends BaseModel implements Serializable {
 
 	private String plusciscondesc;
 
-	private int plusciscontam;
+	private Integer plusciscontam;
 
-	private int pluscisinhousecal;
+	private Integer pluscisinhousecal;
 
-	private int pluscismte;
+	private Integer pluscismte;
 
 	private String pluscismteclass;
 
@@ -171,9 +171,9 @@ public class Asset extends BaseModel implements Serializable {
 
 	private String pluscphyloc;
 
-	private int pluscpmextdate;
+	private Integer pluscpmextdate;
 
-	private int pluscsolution;
+	private Integer pluscsolution;
 
 	private String pluscsumdir;
 
@@ -188,13 +188,13 @@ public class Asset extends BaseModel implements Serializable {
 	private String pluscvendor;
 
 	@Column(name="\"PRIORITY\"")
-	private int priority;
+	private Integer priority;
 
 	private BigDecimal purchaseprice;
 
 	private BigDecimal replacecost;
 
-	private int returnedtovendor;
+	private Integer returnedtovendor;
 
 	private String rotsuspacct;
 
@@ -228,7 +228,7 @@ public class Asset extends BaseModel implements Serializable {
 
 	private String tloamhash;
 
-	private int tloampartition;
+	private Integer tloampartition;
 
 	private String toolcontrolaccount;
 
@@ -246,7 +246,7 @@ public class Asset extends BaseModel implements Serializable {
 
 	private String udmodel;
 
-	private int udserialnumivd4;
+	private Integer udserialnumivd4;
 
 	private BigDecimal unchargedcost;
 
@@ -311,11 +311,11 @@ public class Asset extends BaseModel implements Serializable {
 		this.assettype = assettype;
 	}
 
-	public int getAutowogen() {
+	public Integer getAutowogen() {
 		return this.autowogen;
 	}
 
-	public void setAutowogen(int autowogen) {
+	public void setAutowogen(Integer autowogen) {
 		this.autowogen = autowogen;
 	}
 
@@ -359,11 +359,11 @@ public class Asset extends BaseModel implements Serializable {
 		this.changedate = changedate;
 	}
 
-	public int getChildren() {
+	public Integer getChildren() {
 		return this.children;
 	}
 
-	public void setChildren(int children) {
+	public void setChildren(Integer children) {
 		this.children = children;
 	}
 
@@ -415,11 +415,11 @@ public class Asset extends BaseModel implements Serializable {
 		this.direction = direction;
 	}
 
-	public int getDisabled() {
+	public Integer getDisabled() {
 		return this.disabled;
 	}
 
-	public void setDisabled(int disabled) {
+	public void setDisabled(Integer disabled) {
 		this.disabled = disabled;
 	}
 
@@ -583,11 +583,11 @@ public class Asset extends BaseModel implements Serializable {
 		this.groupname = groupname;
 	}
 
-	public int getHasld() {
+	public Integer getHasld() {
 		return this.hasld;
 	}
 
-	public void setHasld(int hasld) {
+	public void setHasld(Integer hasld) {
 		this.hasld = hasld;
 	}
 
@@ -607,27 +607,27 @@ public class Asset extends BaseModel implements Serializable {
 		this.invcost = invcost;
 	}
 
-	public int getIscalibration() {
+	public Integer getIscalibration() {
 		return this.iscalibration;
 	}
 
-	public void setIscalibration(int iscalibration) {
+	public void setIscalibration(Integer iscalibration) {
 		this.iscalibration = iscalibration;
 	}
 
-	public int getIslinear() {
+	public Integer getIslinear() {
 		return this.islinear;
 	}
 
-	public void setIslinear(int islinear) {
+	public void setIslinear(Integer islinear) {
 		this.islinear = islinear;
 	}
 
-	public int getIsrunning() {
+	public Integer getIsrunning() {
 		return this.isrunning;
 	}
 
-	public void setIsrunning(int isrunning) {
+	public void setIsrunning(Integer isrunning) {
 		this.isrunning = isrunning;
 	}
 
@@ -679,13 +679,13 @@ public class Asset extends BaseModel implements Serializable {
 		this.lrm = lrm;
 	}
 
-	public int getMainthierchy() {
-		return this.mainthierchy;
-	}
-
-	public void setMainthierchy(int mainthierchy) {
-		this.mainthierchy = mainthierchy;
-	}
+//	public Integer getMaIntegerhierchy() {
+//		return this.maIntegerhierchy;
+//	}
+//
+//	public void setMaIntegerhierchy(Integer maIntegerhierchy) {
+//		this.maIntegerhierchy = maIntegerhierchy;
+//	}
 
 	public String getManufacturer() {
 		return this.manufacturer;
@@ -695,11 +695,11 @@ public class Asset extends BaseModel implements Serializable {
 		this.manufacturer = manufacturer;
 	}
 
-	public int getMoved() {
+	public Integer getMoved() {
 		return this.moved;
 	}
 
-	public void setMoved(int moved) {
+	public void setMoved(Integer moved) {
 		this.moved = moved;
 	}
 
@@ -759,27 +759,27 @@ public class Asset extends BaseModel implements Serializable {
 		this.plusciscondesc = plusciscondesc;
 	}
 
-	public int getPlusciscontam() {
+	public Integer getPlusciscontam() {
 		return this.plusciscontam;
 	}
 
-	public void setPlusciscontam(int plusciscontam) {
+	public void setPlusciscontam(Integer plusciscontam) {
 		this.plusciscontam = plusciscontam;
 	}
 
-	public int getPluscisinhousecal() {
+	public Integer getPluscisinhousecal() {
 		return this.pluscisinhousecal;
 	}
 
-	public void setPluscisinhousecal(int pluscisinhousecal) {
+	public void setPluscisinhousecal(Integer pluscisinhousecal) {
 		this.pluscisinhousecal = pluscisinhousecal;
 	}
 
-	public int getPluscismte() {
+	public Integer getPluscismte() {
 		return this.pluscismte;
 	}
 
-	public void setPluscismte(int pluscismte) {
+	public void setPluscismte(Integer pluscismte) {
 		this.pluscismte = pluscismte;
 	}
 
@@ -847,19 +847,19 @@ public class Asset extends BaseModel implements Serializable {
 		this.pluscphyloc = pluscphyloc;
 	}
 
-	public int getPluscpmextdate() {
+	public Integer getPluscpmextdate() {
 		return this.pluscpmextdate;
 	}
 
-	public void setPluscpmextdate(int pluscpmextdate) {
+	public void setPluscpmextdate(Integer pluscpmextdate) {
 		this.pluscpmextdate = pluscpmextdate;
 	}
 
-	public int getPluscsolution() {
+	public Integer getPluscsolution() {
 		return this.pluscsolution;
 	}
 
-	public void setPluscsolution(int pluscsolution) {
+	public void setPluscsolution(Integer pluscsolution) {
 		this.pluscsolution = pluscsolution;
 	}
 
@@ -911,11 +911,11 @@ public class Asset extends BaseModel implements Serializable {
 		this.pluscvendor = pluscvendor;
 	}
 
-	public int getPriority() {
+	public Integer getPriority() {
 		return this.priority;
 	}
 
-	public void setPriority(int priority) {
+	public void setPriority(Integer priority) {
 		this.priority = priority;
 	}
 
@@ -935,11 +935,11 @@ public class Asset extends BaseModel implements Serializable {
 		this.replacecost = replacecost;
 	}
 
-	public int getReturnedtovendor() {
+	public Integer getReturnedtovendor() {
 		return this.returnedtovendor;
 	}
 
-	public void setReturnedtovendor(int returnedtovendor) {
+	public void setReturnedtovendor(Integer returnedtovendor) {
 		this.returnedtovendor = returnedtovendor;
 	}
 
@@ -1063,11 +1063,11 @@ public class Asset extends BaseModel implements Serializable {
 		this.tloamhash = tloamhash;
 	}
 
-	public int getTloampartition() {
+	public Integer getTloampartition() {
 		return this.tloampartition;
 	}
 
-	public void setTloampartition(int tloampartition) {
+	public void setTloampartition(Integer tloampartition) {
 		this.tloampartition = tloampartition;
 	}
 
@@ -1135,11 +1135,11 @@ public class Asset extends BaseModel implements Serializable {
 		this.udmodel = udmodel;
 	}
 
-	public int getUdserialnumivd4() {
+	public Integer getUdserialnumivd4() {
 		return this.udserialnumivd4;
 	}
 
-	public void setUdserialnumivd4(int udserialnumivd4) {
+	public void setUdserialnumivd4(Integer udserialnumivd4) {
 		this.udserialnumivd4 = udserialnumivd4;
 	}
 

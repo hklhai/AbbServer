@@ -41,7 +41,7 @@ public class Maxuser implements Serializable {
 	private String memo;
 
 	@Column(name="\"PASSWORD\"")
-	private byte[] password;
+	private String password;
 
 	private String personid;
 
@@ -171,11 +171,11 @@ public class Maxuser implements Serializable {
 		this.memo = memo;
 	}
 
-	public byte[] getPassword() {
+	public String getPassword() {
 		return this.password;
 	}
 
-	public void setPassword(byte[] password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 

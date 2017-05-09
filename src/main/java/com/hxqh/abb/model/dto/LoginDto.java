@@ -8,14 +8,15 @@ import java.math.BigDecimal;
 public class LoginDto {
 
     private String loginid;
-    private String userid;
+    
+    private String password;
 
     public LoginDto() {
     }
 
-    public LoginDto(String loginid, String userid) {
+    public LoginDto(String loginid, String password) {
         this.loginid = loginid;
-        this.userid = userid;
+        this.password = password;
     }
 
     public String getLoginid() {
@@ -26,11 +27,11 @@ public class LoginDto {
         this.loginid = loginid;
     }
 
-    public String getUserid() {
-        return userid;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
