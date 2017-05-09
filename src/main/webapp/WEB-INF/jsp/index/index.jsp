@@ -14,17 +14,48 @@
     <title>登录页面</title>
     <meta name="keywords" content="">
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+    <script src="${ctx}/scripts/vue.js"></script>
     <script src="${ctx}/js/index.js"></script>
     <link rel="stylesheet" href="${ctx}/css/reset.css">
     <link rel="stylesheet" href="${ctx}/css/index.css">
     <link rel="stylesheet" href="${ctx}/css/header.css">
+    <script type="text/javascript">
+        var index-data = new Vue({
+            el: "#index-data",
+            data: {
+               assetList: [], 
+               calendarList: [],
+               systemList: [],
+               workTaskList: [],
+               test: "测试一下vue"
+            },
+            method:{
+                init: function(){
+                            $.ajax({
+                            url: "${ctx}/index/message",
+                            method: "get",
+                            dataType: "json",
+                            success: function(data){
+                                
+                            },
+                            error: function(){
+
+                            }
+                        })
+                    }
+            },
+            beforeCreat: function(){
+                this.init();
+            }
+        });
+    </script>
 </head>
 <body>
 <div class="header">
     <div class="header-layout">
         <div class="logo"></div>
         <ul>
-            <li class="li-item"><a href="#" class="index-a"><i class="icon-index"></i>首页</a></li>
+            <li class="li-item"><a href="#" class="index-a"><i class="icon-index"></i>{{test}}</a></li>
             <li class="li-item"><a href="#" class="index-a"><i class="icon-equip"></i>设备管理</a></li>
             <li class="li-item"><a href="#" class="index-a"><i class="icon-stock"></i>库存管理</a></li>
             <li class="li-item"><a href="#" class="index-a"><i class="icon-tool"></i>工具管理</a></li>
@@ -33,12 +64,12 @@
     </div>
 </div>
 <div class="index-content">
-    <div class="index-layout">
+    <div class="index-layout" id="index-data">
         <div class="index-content-tit">首页</div>
         <div class="calendar index-div1"></div>
         <div class="work-task index-div2">
             <div class="index-div2-layout">
-                <p>工作任务</p>
+                <p>{{test}}</p>
                 <table>
                     <thead>
                     <tr>

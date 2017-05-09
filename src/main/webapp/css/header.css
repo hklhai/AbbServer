@@ -15,7 +15,7 @@
 	width:207px; 
 	height: 100%;
 	float: left;
-	background: url('../images/logo.gif') no-repeat;
+	background: url('../img/header/logo.gif') no-repeat;
 }
 ul li.li-item{
     float: left;
@@ -49,28 +49,28 @@ ul li.li-item:hover a{
 	width: 24px;
 	height: 19px;
 	margin-right: 13px;
-	background:url(../images/index.gif) no-repeat; 
+	background:url(../img/header/index.gif) no-repeat;
 }
 .icon-equip{
 	display: inline-block;
 	width: 24px;
 	height: 21px;
 	margin-right: 13px;
-	background:url(../images/equip-icon.gif) no-repeat; 
+	background:url(../img/header/equip-icon.gif) no-repeat;
 }
 .icon-stock{
 	display: inline-block;
 	width: 24px;
 	height: 23px;
 	margin-right: 13px;
-	background:url(../images/store-icon.gif) no-repeat; 	
+	background:url(../img/header/store-icon.gif) no-repeat;
 }
 .icon-tool{
 	display: inline-block;
 	width: 24px;
 	height: 22px;
 	margin-right: 13px;
-	background:url(../images/tool.gif) no-repeat; 
+	background:url(../img/header/tool.gif) no-repeat;
 }
 ul li a.index-a-last{
 	height: 49px;
