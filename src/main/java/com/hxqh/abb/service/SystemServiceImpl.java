@@ -2,9 +2,8 @@ package com.hxqh.abb.service;
 
 import com.hxqh.abb.common.util.MXCipherXUtils;
 import com.hxqh.abb.dao.*;
-import com.hxqh.abb.model.Location;
-import com.hxqh.abb.model.Maxuser;
-import com.hxqh.abb.model.Wfassignment;
+import com.hxqh.abb.model.*;
+import com.hxqh.abb.model.dto.IndexDto;
 import com.hxqh.abb.model.dto.LoginDto;
 import com.hxqh.abb.service.base.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,14 +52,24 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
         return maxuserList;
     }
 
+    /**
+     * 获取主页显示内容
+     *
+     * @return
+     */
     @Override
-    public List<Wfassignment> getSystemMessage() {
-        LinkedHashMap<String, String> orderby = new LinkedHashMap<String, String>();
-        orderby.put("duedate", "ASC");
+    public IndexDto getSystemMessage() {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("description", BigDecimal.ZERO);
-        List<Wfassignment> wfassignmentList = wfassignmentDao.findAll(0, 5, null, params, null);
-        return wfassignmentList;
+        List<Workorder> calendarList = workorderDao.findAll(0, 5, null, params, "order by workorderid desc");
+
+        List<Asset> assetList = assetDao.findAll(0, 5, null, params, "order by assetuid desc");
+
+        List<Workorder> workTaskList = workorderDao.findAll(0, 5, null, params, "order by workorderid desc");
+
+        List<Wfassignment> wfassignmentList = wfassignmentDao.findAll(0, 5, null, params, "order by wfassignmentid desc");
+        IndexDto indexDto = new IndexDto(calendarList, assetList, workTaskList, wfassignmentList);
+        return indexDto;
     }
 
 

@@ -1,10 +1,8 @@
 package com.hxqh.abb.common.util;
 
-//import com.hxqh.test.DBUtil;
 
 import psdi.util.MXCipherX;
 import psdi.util.MXException;
-import psdi.util.MXSession;
 
 public class MXCipherXUtils {
     private static MXCipherX mxcipherx;
@@ -34,6 +32,9 @@ public class MXCipherXUtils {
         mxcipherx = mxcipherx;
     }
 
+    /**
+     * 16进制加密
+     * */
     public static String encodePwd(String password)
             throws MXException {
         String encryptedPassword = "";
@@ -45,20 +46,6 @@ public class MXCipherXUtils {
             hex = hex.length() < 2 ? "0" + hex : hex;
             encryptedPassword = encryptedPassword + hex;
         }
-        return encryptedPassword;
-    }
-
-    public static String encodePwdV2(String password) throws Exception {
-        String encryptedPassword = "x'";
-        byte[] bytes = mxcipherx.encData(password);
-        for (int i = 0; i < bytes.length; i++) {
-            int b = bytes[i];
-            String hex = Integer.toHexString(b).toUpperCase();
-            hex = hex.replaceAll("FFFFFF", "");
-            hex = (hex.length() < 2) ? "0" + hex : hex;
-            encryptedPassword += hex;
-        }
-        encryptedPassword +="'";
         return encryptedPassword;
     }
 
