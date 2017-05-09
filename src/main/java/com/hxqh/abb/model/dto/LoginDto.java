@@ -1,7 +1,5 @@
 package com.hxqh.abb.model.dto;
 
-import java.math.BigDecimal;
-
 /**
  * Created by Ocean Lin on 2017/5/7.
  */

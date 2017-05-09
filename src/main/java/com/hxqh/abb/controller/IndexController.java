@@ -59,17 +59,11 @@ public class IndexController {
      *
      * @return
      */
+    @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView login(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
-        Map<String, Object> result = new HashMap<String, Object>();
-        String loginid = httpServletRequest.getParameter("loginid");
-        String password = httpServletRequest.getParameter("password");
-        LoginDto loginDto = new LoginDto(loginid,password);
+    public Message login(LoginDto loginDto) {
         List<Maxuser> loginUserList =  systemService.getLoginUserList(loginDto);
-
-        Message message=doLogin(loginUserList,loginDto);
-        FastJsonTools.writeJson(message,httpServletResponse);
-        return new ModelAndView("/success",result);
+        return doLogin(loginUserList,loginDto);
     }
 
     private Message doLogin(List<Maxuser> loginUserList,LoginDto loginDto) {
