@@ -1,12 +1,10 @@
 package com.hxqh.abb.test;
 
 import com.hxqh.abb.common.util.MXCipherXUtils;
-import com.hxqh.abb.dao.AssetDao;
-import com.hxqh.abb.dao.MaxuserDao;
-import com.hxqh.abb.dao.WfassignmentDao;
-import com.hxqh.abb.dao.WorkorderDao;
+import com.hxqh.abb.dao.*;
 import com.hxqh.abb.model.Location;
-import com.hxqh.abb.model.Maxuser;
+import com.hxqh.abb.model.Organization;
+import com.hxqh.abb.model.Site;
 import com.hxqh.abb.model.dto.LoginDto;
 import com.hxqh.abb.service.SystemService;
 import org.junit.Assert;
@@ -17,7 +15,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import psdi.util.MXException;
 
 import javax.annotation.Resource;
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -39,7 +36,9 @@ public class SystemTest {
     private WfassignmentDao wfassignmentDao;
 
     @Resource
-    private MaxuserDao maxuserDao;
+    private OrganizationDao organizationDao;
+    @Resource
+    private SiteDao siteDao;
 
     @Test
     public void testGetLocation() {
@@ -70,12 +69,10 @@ public class SystemTest {
         LoginDto loginDtoSu = new LoginDto("maxadmin", "maxadmin");
         LoginDto loginDtoFail = new LoginDto("maxadmin", "xxx");
 
-        List<Maxuser> loginUserList = systemService.getLoginUserList(loginDtoSu);
-        Assert.assertEquals(1, loginUserList.size());
-        List<Maxuser> loginUserList2 = systemService.getLoginUserList(loginDtoFail);
-        Assert.assertEquals(0, loginUserList2.size());
-
-
+//        List<Maxuser> loginUserList = systemService.getLoginUserList(loginDtoSu);
+//        Assert.assertEquals(1, loginUserList.size());
+//        List<Maxuser> loginUserList2 = systemService.getLoginUserList(loginDtoFail);
+//        Assert.assertEquals(0, loginUserList2.size());
     }
 
     public static String toHexString(String s) {
@@ -116,6 +113,18 @@ public class SystemTest {
         Assert.assertEquals("10FE6F4650B2ACB49A2121D7E6133E64", pwd);
     }
 
+
+    /**
+     * 测试 org site
+     */
+    @Test
+    public void testOrgAndSite() {
+        List<Organization> all = organizationDao.findAll();
+        Assert.assertEquals(4, all.size());
+        List<Site> all1 = siteDao.findAll();
+        Assert.assertEquals(11, all1.size());
+
+    }
 
 
 }
