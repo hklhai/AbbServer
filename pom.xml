@@ -491,9 +491,9 @@
       <version>1.0</version>
     </dependency>
     <dependency>
-      <groupId>com.businessobjects</groupId>
+      <groupId>com.ibm.businessobjects</groupId>
       <artifactId>businessobjects</artifactId>
-      <version>7.6-abb</version>
+      <version>7.6</version>
     </dependency>
 
   </dependencies>
