@@ -19,6 +19,49 @@
     <script src="${ctx}/js/index.js"></script>
     <link rel="stylesheet" href="${ctx}/css/reset.css">
     <link rel="stylesheet" href="${ctx}/css/login.css">
+    <script>
+        $(function(){
+            $("#login-form").validate({
+                debug: true,
+                rules: {
+                    user: {
+                        required: true
+                    },
+                    pwd:{
+                        required: true
+                    }
+                }
+            })
+        });
+        $.validator.setDefaults({
+            submitHandler:function(){
+                var username = $("#userName").val();
+                var pwd = $("#pwd").val();
+                $.ajax({
+                    url: "${ctx}/index/login",
+                    method: "post",
+                    data: {
+                        loginid : username,
+                        password  : pwd
+                    },
+                    dataType: "json",
+                    success: function(data){
+                        if(data.success){
+                            if(data.code == "0"){
+                                var message = data.message;
+                            }
+                            if(data.code == "1"){
+                                window.location.href = "";
+                            }
+                        }
+                    },
+                    error: function(){
+
+                    }
+                })
+            }
+        });
+    </script>
 </head>
 <body>
 <div  class="login-layout">
