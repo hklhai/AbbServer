@@ -9,2234 +9,2044 @@ import java.util.Date;
 
 /**
  * The persistent class for the WORKORDER database table.
- * 
  */
 @Entity
-@Table(name="Workorder")
+@Table(name = "Workorder")
 public class Workorder implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final Long serialVersionUID = 1L;
 
-	@Id
-	@SequenceGenerator(name="WORKORDER_WORKORDERID_GENERATOR", sequenceName="$TBALE_ID")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="WORKORDER_WORKORDERID_GENERATOR")
-	private long workorderid;
+    @Id
+    @SequenceGenerator(name = "WORKORDER_WORKORDERID_GENERATOR", sequenceName = "$TBALE_ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WORKORDER_WORKORDERID_GENERATOR")
+    private Long workorderid;
 
-	private Timestamp actfinish;
+    private Timestamp actfinish;
 
-	private BigDecimal actintlabcost;
+    //private BigDecimal actIntegerlabcost;
 
-	private double actintlabhrs;
+    //private double actIntegerlabhrs;
 
-	private BigDecimal actlabcost;
+    private BigDecimal actlabcost;
 
-	private double actlabhrs;
+    private double actlabhrs;
 
-	private BigDecimal actmatcost;
+    private BigDecimal actmatcost;
 
-	private BigDecimal actoutlabcost;
+    private BigDecimal actoutlabcost;
 
-	private double actoutlabhrs;
+    private double actoutlabhrs;
 
-	private BigDecimal actservcost;
+    private BigDecimal actservcost;
 
-	private Timestamp actstart;
+    private Timestamp actstart;
 
-	private BigDecimal acttoolcost;
+    private BigDecimal acttoolcost;
 
-	private String amcrew;
+    private String amcrew;
 
-	private int ams;
+    private Integer ams;
 
-	private int aos;
+    private Integer aos;
 
-	private int apptrequired;
+    private Integer apptrequired;
 
-	private int assetlocpriority;
+    private Integer assetlocpriority;
 
-	private String assetnum;
+    private String assetnum;
 
-	private String assignedownergroup;
+    private String assignedownergroup;
 
-	private Timestamp availstatusdate;
+    private Timestamp availstatusdate;
 
-	private String backoutplan;
+    private String backoutplan;
 
-	private String calccalendar;
+    private String calccalendar;
 
-	private String calcorgid;
+    private String calcorgid;
 
-	private int calcpriority;
+    private Integer calcpriority;
 
-	private String calcshift;
+    private String calcshift;
 
-	private String calendar;
+    private String calendar;
 
-	private String changeby;
+    private String changeby;
 
-	private Timestamp changedate;
+    private Timestamp changedate;
 
-	private int chargestore;
+    private Integer chargestore;
 
-	private String cinum;
+    private String cinum;
 
-	private String classstructureid;
+    private String classstructureid;
 
-	private String commodity;
+    private String commodity;
 
-	private String commoditygroup;
+    private String commoditygroup;
 
-	private String contract;
+    private String contract;
 
-	private String crewid;
+    private String crewid;
 
-	private String crewworkgroup;
+    private String crewworkgroup;
 
-	private String description;
+    private String description;
 
-	private String dirissuemtlstatus;
+    private String dirissuemtlstatus;
 
-	private int disabled;
+    private Integer disabled;
 
-	private int downtime;
+    private Integer downtime;
 
-	@Column(name="\"ENVIRONMENT\"")
-	private String environment;
+    @Column(name = "\"ENVIRONMENT\"")
+    private String environment;
 
-	private BigDecimal estatapprintlabcost;
+    //private BigDecimal estatapprIntegerlabcost;
 
-	private double estatapprintlabhrs;
+    //private double estatapprIntegerlabhrs;
 
-	private BigDecimal estatapprlabcost;
+    //private BigDecimal estatapprlabcost;
 
-	private double estatapprlabhrs;
+    private double estatapprlabhrs;
 
-	private BigDecimal estatapprmatcost;
+//	private BigDecimal estatapprmatcost;
+//
+//	private BigDecimal estatapproutlabcost;
 
-	private BigDecimal estatapproutlabcost;
+    private double estatapproutlabhrs;
 
-	private double estatapproutlabhrs;
+//	private BigDecimal estatapprservcost;
+//
+//	private BigDecimal estatapprtoolcost;
 
-	private BigDecimal estatapprservcost;
+    private double estdur;
 
-	private BigDecimal estatapprtoolcost;
+    //private Double estIntegerlabcost;
 
-	private double estdur;
+    //private double estIntegerlabhrs;
 
-	private BigDecimal estintlabcost;
+    private BigDecimal estlabcost;
 
-	private double estintlabhrs;
+//	private double estlabhrs;
 
-	private BigDecimal estlabcost;
+    private BigDecimal estmatcost;
 
-	private double estlabhrs;
+    private BigDecimal estoutlabcost;
 
-	private BigDecimal estmatcost;
+    private double estoutlabhrs;
 
-	private BigDecimal estoutlabcost;
+    private BigDecimal estservcost;
 
-	private double estoutlabhrs;
+    private BigDecimal esttoolcost;
 
-	private BigDecimal estservcost;
+    private String externalrefid;
 
-	private BigDecimal esttoolcost;
+    private Timestamp faildate;
 
-	private String externalrefid;
+    private String failurecode;
 
-	private Timestamp faildate;
+    private String fincntrlid;
 
-	private String failurecode;
+    private String firstapprstatus;
 
-	private String fincntrlid;
+    private String flowaction;
 
-	private String firstapprstatus;
+    private Integer flowactionassist;
 
-	private String flowaction;
+    private Integer flowcontrolled;
 
-	private int flowactionassist;
+    //private Timestamp fnlconstraInteger;
 
-	private int flowcontrolled;
+    private String generatedforpo;
 
-	private Timestamp fnlconstraint;
+    //private Long genforpolineid;
 
-	private String generatedforpo;
+    private Integer genforporevision;
 
-	private long genforpolineid;
+    private String glaccount;
 
-	private int genforporevision;
+    private Integer haschildren;
 
-	private String glaccount;
+    private Integer hasfollowupwork;
 
-	private int haschildren;
+    private Integer hasld;
 
-	private int hasfollowupwork;
+    private Integer historyflag;
 
-	private int hasld;
+    private Integer ignorediavail;
 
-	private int historyflag;
+    private Integer ignoresrmavail;
 
-	private int ignorediavail;
+    private Integer inctasksinsched;
 
-	private int ignoresrmavail;
+    private String inspector;
 
-	private int inctasksinsched;
+    //private Integer Integererruptible;
 
-	private String inspector;
+    private Integer istask;
 
-	private int interruptible;
+    private Long jobtaskid;
 
-	private int istask;
+    private String jpnum;
 
-	private long jobtaskid;
+    private String justifypriority;
 
-	private String jpnum;
+    private String langcode;
 
-	private String justifypriority;
+    //private Timestamp lastcopylinkdate;
 
-	private String langcode;
+    private String launchentryname;
 
-	private Timestamp lastcopylinkdate;
+    private String lead;
 
-	private String launchentryname;
+    private Integer lms;
 
-	private String lead;
+    @Column(name = "\"LOCATION\"")
+    private String location;
 
-	private int lms;
+    private Integer los;
 
-	@Column(name="\"LOCATION\"")
-	private String location;
+    //private Timestamp measuredate;
 
-	private int los;
+    private BigDecimal measurementvalue;
 
-	private Timestamp measuredate;
+    private Integer nestedjpinprocess;
 
-	private BigDecimal measurementvalue;
+    private String newchildclass;
 
-	private int nestedjpinprocess;
+    private String observation;
 
-	private String newchildclass;
+    private String onbehalfof;
 
-	private String observation;
+    private String orgid;
 
-	private String onbehalfof;
+    private String origrecordclass;
 
-	private String orgid;
+    private String origrecordid;
 
-	private String origrecordclass;
+    private BigDecimal outlabcost;
 
-	private String origrecordid;
+    private BigDecimal outmatcost;
 
-	private BigDecimal outlabcost;
+    private BigDecimal outtoolcost;
 
-	private BigDecimal outmatcost;
+    private String owner;
 
-	private BigDecimal outtoolcost;
+    private String ownergroup;
 
-	private String owner;
+    private String ownersysid;
 
-	private String ownergroup;
+    @Column(name = "\"PARENT\"")
+    private String parent;
 
-	private String ownersysid;
+    private Integer parentchgsstatus;
 
-	@Column(name="\"PARENT\"")
-	private String parent;
+    private String percoding;
 
-	private int parentchgsstatus;
+    private String persongroup;
 
-	private String percoding;
+    private String phone;
 
-	private String persongroup;
+    private Integer pluscfrequency;
 
-	private String phone;
+    private String pluscfrequnit;
 
-	private int pluscfrequency;
+    private Integer pluscismobile;
 
-	private String pluscfrequnit;
+    private Integer pluscjprevnum;
 
-	private int pluscismobile;
+    private Integer pluscloop;
 
-	private int pluscjprevnum;
+    //private Timestamp pluscnextdate;
 
-	private int pluscloop;
+    //private Timestamp pluscoverduedate;
 
-	private Timestamp pluscnextdate;
+    private String pluscphyloc;
 
-	private Timestamp pluscoverduedate;
+    @Temporal(TemporalType.DATE)
+    private Date pmduedate;
 
-	private String pluscphyloc;
+    @Temporal(TemporalType.DATE)
+    private Date pmextdate;
 
-	@Temporal(TemporalType.DATE)
-	private Date pmduedate;
+    @Temporal(TemporalType.DATE)
+    private Date pmnextduedate;
 
-	@Temporal(TemporalType.DATE)
-	private Date pmextdate;
+    private String pmnum;
 
-	@Temporal(TemporalType.DATE)
-	private Date pmnextduedate;
+    //private String poIntegernum;
 
-	private String pmnum;
+    private String problemcode;
 
-	private String pointnum;
+    private String reasonforchange;
 
-	private String problemcode;
+    //private double remdur;
 
-	private String reasonforchange;
+    private String repairfacility;
 
-	private double remdur;
+    private String repfacsiteid;
 
-	private String repairfacility;
+    //private Timestamp reportdate;
 
-	private String repfacsiteid;
+    private String reportedby;
 
-	private Timestamp reportdate;
+    private Integer reqasstdwntime;
 
-	private String reportedby;
+    //private Timestamp respondby;
 
-	private int reqasstdwntime;
+    private String risk;
 
-	private Timestamp respondby;
+    private String route;
 
-	private String risk;
+    private Long routestopid;
 
-	private String route;
+    private Long rowstamp;
 
-	private long routestopid;
+    //private Timestamp schedfinish;
 
-	private long rowstamp;
+    //private Timestamp schedstart;
 
-	private Timestamp schedfinish;
+    private String sctnum;
 
-	private Timestamp schedstart;
+    private String sendersysid;
 
-	private String sctnum;
+    private String siteid;
 
-	private String sendersysid;
+    //private Timestamp sneconstraInteger;
 
-	private String siteid;
+    private String sourcesysid;
 
-	private Timestamp sneconstraint;
+    @Column(name = "\"STATUS\"")
+    private String status;
 
-	private String sourcesysid;
+    //private Timestamp statusdate;
 
-	@Column(name="\"STATUS\"")
-	private String status;
+    private String storeroommtlstatus;
 
-	private Timestamp statusdate;
+    private String supervisor;
 
-	private String storeroommtlstatus;
+    private Integer suspendflow;
 
-	private String supervisor;
+    //private Timestamp targcompdate;
 
-	private int suspendflow;
+    private String targetdesc;
 
-	private Timestamp targcompdate;
+    //private Timestamp targstartdate;
 
-	private String targetdesc;
+    private Integer taskid;
 
-	private Timestamp targstartdate;
+    private String udcoding;
 
-	private int taskid;
+    private String uddlgnum;
 
-	private String udcoding;
+    private Integer udlinenum;
 
-	private String uddlgnum;
+    private String udpmsnum;
 
-	private int udlinenum;
+    private String udpronum;
 
-	private String udpmsnum;
+    private String udworktype;
 
-	private String udpronum;
+    private String vendor;
 
-	private String udworktype;
+    private String verification;
 
-	private String vendor;
+    private String whomischangefor;
 
-	private String verification;
+    private Integer woacceptscharges;
 
-	private String whomischangefor;
+    private String woclass;
 
-	private int woacceptscharges;
+    private String woeq1;
 
-	private String woclass;
+    private String woeq10;
 
-	private String woeq1;
+    private String woeq11;
 
-	private String woeq10;
+    private BigDecimal woeq12;
 
-	private String woeq11;
+    //private Timestamp woeq13;
 
-	private BigDecimal woeq12;
+    private BigDecimal woeq14;
 
-	private Timestamp woeq13;
+    private String woeq2;
 
-	private BigDecimal woeq14;
+    private String woeq3;
 
-	private String woeq2;
+    private String woeq4;
 
-	private String woeq3;
+    private BigDecimal woeq5;
 
-	private String woeq4;
+    //private Timestamp woeq6;
 
-	private BigDecimal woeq5;
+    private BigDecimal woeq7;
 
-	private Timestamp woeq6;
+    private String woeq8;
 
-	private BigDecimal woeq7;
+    private String woeq9;
 
-	private String woeq8;
+    private String wogroup;
 
-	private String woeq9;
+    private Integer woisswap;
 
-	private String wogroup;
+    private String wojo1;
 
-	private int woisswap;
+    private String wojo2;
 
-	private String wojo1;
+    private String wojo3;
 
-	private String wojo2;
+    private BigDecimal wojo4;
 
-	private String wojo3;
+    private String wojo5;
 
-	private BigDecimal wojo4;
+    private String wojo6;
 
-	private String wojo5;
+    private String wojo7;
 
-	private String wojo6;
+    private String wojo8;
 
-	private String wojo7;
+    private String wojp1;
 
-	private String wojo8;
+    private String wojp2;
 
-	private String wojp1;
+    private String wojp3;
 
-	private String wojp2;
+    private BigDecimal wojp4;
 
-	private String wojp3;
+    private Timestamp wojp5;
 
-	private BigDecimal wojp4;
+    private String wol1;
 
-	private Timestamp wojp5;
+    private String wol2;
 
-	private String wol1;
+    private BigDecimal wol3;
 
-	private String wol2;
+    private Timestamp wol4;
 
-	private BigDecimal wol3;
+    private String wolablnk;
 
-	private Timestamp wol4;
+    private String wolo1;
 
-	private String wolablnk;
+    private Integer wolo10;
 
-	private String wolo1;
+    private String wolo2;
 
-	private int wolo10;
+    private String wolo3;
 
-	private String wolo2;
+    private String wolo4;
 
-	private String wolo3;
+    private String wolo5;
 
-	private String wolo4;
+    private BigDecimal wolo6;
 
-	private String wolo5;
+    private Timestamp wolo7;
 
-	private BigDecimal wolo6;
+    private BigDecimal wolo8;
 
-	private Timestamp wolo7;
+    private String wolo9;
 
-	private BigDecimal wolo8;
+    private String wonum;
 
-	private String wolo9;
+    private Integer wopriority;
 
-	private String wonum;
+    private String worklocation;
 
-	private int wopriority;
+    private String workpackmtlstatus;
 
-	private String worklocation;
+    private String worktype;
 
-	private String workpackmtlstatus;
+    private String worts1;
 
-	private String worktype;
+    private String worts2;
 
-	private String worts1;
+    private String worts3;
 
-	private String worts2;
+    //private Timestamp worts4;
 
-	private String worts3;
+    private BigDecimal worts5;
 
-	private Timestamp worts4;
+    private Integer wosequence;
 
-	private BigDecimal worts5;
+    public Workorder() {
+    }
 
-	private int wosequence;
+    public Long getWorkorderid() {
+        return this.workorderid;
+    }
 
-	public Workorder() {
-	}
+    public void setWorkorderid(Long workorderid) {
+        this.workorderid = workorderid;
+    }
 
-	public long getWorkorderid() {
-		return this.workorderid;
-	}
+    public Timestamp getActfinish() {
+        return this.actfinish;
+    }
 
-	public void setWorkorderid(long workorderid) {
-		this.workorderid = workorderid;
-	}
+    public void setActfinish(Timestamp actfinish) {
+        this.actfinish = actfinish;
+    }
 
-	public Timestamp getActfinish() {
-		return this.actfinish;
-	}
+//	public BigDecimal getActIntegerlabcost() {
+//		return this.actIntegerlabcost;
+//	}
+//
+//	public void setActIntegerlabcost(BigDecimal actIntegerlabcost) {
+//		this.actIntegerlabcost = actIntegerlabcost;
+//	}
 
-	public void setActfinish(Timestamp actfinish) {
-		this.actfinish = actfinish;
-	}
+//	public double getActIntegerlabhrs() {
+//		return this.actIntegerlabhrs;
+//	}
+//
+//	public void setActIntegerlabhrs(double actIntegerlabhrs) {
+//		this.actIntegerlabhrs = actIntegerlabhrs;
+//	}
 
-	public BigDecimal getActintlabcost() {
-		return this.actintlabcost;
-	}
+    public BigDecimal getActlabcost() {
+        return this.actlabcost;
+    }
 
-	public void setActintlabcost(BigDecimal actintlabcost) {
-		this.actintlabcost = actintlabcost;
-	}
+    public void setActlabcost(BigDecimal actlabcost) {
+        this.actlabcost = actlabcost;
+    }
 
-	public double getActintlabhrs() {
-		return this.actintlabhrs;
-	}
+    public double getActlabhrs() {
+        return this.actlabhrs;
+    }
 
-	public void setActintlabhrs(double actintlabhrs) {
-		this.actintlabhrs = actintlabhrs;
-	}
+    public void setActlabhrs(double actlabhrs) {
+        this.actlabhrs = actlabhrs;
+    }
 
-	public BigDecimal getActlabcost() {
-		return this.actlabcost;
-	}
+    public BigDecimal getActmatcost() {
+        return this.actmatcost;
+    }
 
-	public void setActlabcost(BigDecimal actlabcost) {
-		this.actlabcost = actlabcost;
-	}
+    public void setActmatcost(BigDecimal actmatcost) {
+        this.actmatcost = actmatcost;
+    }
 
-	public double getActlabhrs() {
-		return this.actlabhrs;
-	}
+    public BigDecimal getActoutlabcost() {
+        return this.actoutlabcost;
+    }
 
-	public void setActlabhrs(double actlabhrs) {
-		this.actlabhrs = actlabhrs;
-	}
+    public void setActoutlabcost(BigDecimal actoutlabcost) {
+        this.actoutlabcost = actoutlabcost;
+    }
 
-	public BigDecimal getActmatcost() {
-		return this.actmatcost;
-	}
+    public double getActoutlabhrs() {
+        return this.actoutlabhrs;
+    }
 
-	public void setActmatcost(BigDecimal actmatcost) {
-		this.actmatcost = actmatcost;
-	}
+    public void setActoutlabhrs(double actoutlabhrs) {
+        this.actoutlabhrs = actoutlabhrs;
+    }
 
-	public BigDecimal getActoutlabcost() {
-		return this.actoutlabcost;
-	}
+    public BigDecimal getActservcost() {
+        return this.actservcost;
+    }
 
-	public void setActoutlabcost(BigDecimal actoutlabcost) {
-		this.actoutlabcost = actoutlabcost;
-	}
+    public void setActservcost(BigDecimal actservcost) {
+        this.actservcost = actservcost;
+    }
 
-	public double getActoutlabhrs() {
-		return this.actoutlabhrs;
-	}
+    public Timestamp getActstart() {
+        return this.actstart;
+    }
 
-	public void setActoutlabhrs(double actoutlabhrs) {
-		this.actoutlabhrs = actoutlabhrs;
-	}
+    public void setActstart(Timestamp actstart) {
+        this.actstart = actstart;
+    }
 
-	public BigDecimal getActservcost() {
-		return this.actservcost;
-	}
+    public BigDecimal getActtoolcost() {
+        return this.acttoolcost;
+    }
 
-	public void setActservcost(BigDecimal actservcost) {
-		this.actservcost = actservcost;
-	}
+    public void setActtoolcost(BigDecimal acttoolcost) {
+        this.acttoolcost = acttoolcost;
+    }
 
-	public Timestamp getActstart() {
-		return this.actstart;
-	}
+    public String getAmcrew() {
+        return this.amcrew;
+    }
 
-	public void setActstart(Timestamp actstart) {
-		this.actstart = actstart;
-	}
+    public void setAmcrew(String amcrew) {
+        this.amcrew = amcrew;
+    }
 
-	public BigDecimal getActtoolcost() {
-		return this.acttoolcost;
-	}
+    public Integer getAms() {
+        return this.ams;
+    }
 
-	public void setActtoolcost(BigDecimal acttoolcost) {
-		this.acttoolcost = acttoolcost;
-	}
+    public void setAms(Integer ams) {
+        this.ams = ams;
+    }
 
-	public String getAmcrew() {
-		return this.amcrew;
-	}
+    public Integer getAos() {
+        return this.aos;
+    }
 
-	public void setAmcrew(String amcrew) {
-		this.amcrew = amcrew;
-	}
+    public void setAos(Integer aos) {
+        this.aos = aos;
+    }
 
-	public int getAms() {
-		return this.ams;
-	}
+    public Integer getApptrequired() {
+        return this.apptrequired;
+    }
 
-	public void setAms(int ams) {
-		this.ams = ams;
-	}
+    public void setApptrequired(Integer apptrequired) {
+        this.apptrequired = apptrequired;
+    }
 
-	public int getAos() {
-		return this.aos;
-	}
+    public Integer getAssetlocpriority() {
+        return this.assetlocpriority;
+    }
 
-	public void setAos(int aos) {
-		this.aos = aos;
-	}
+    public void setAssetlocpriority(Integer assetlocpriority) {
+        this.assetlocpriority = assetlocpriority;
+    }
 
-	public int getApptrequired() {
-		return this.apptrequired;
-	}
+    public String getAssetnum() {
+        return this.assetnum;
+    }
 
-	public void setApptrequired(int apptrequired) {
-		this.apptrequired = apptrequired;
-	}
+    public void setAssetnum(String assetnum) {
+        this.assetnum = assetnum;
+    }
 
-	public int getAssetlocpriority() {
-		return this.assetlocpriority;
-	}
+    public String getAssignedownergroup() {
+        return this.assignedownergroup;
+    }
 
-	public void setAssetlocpriority(int assetlocpriority) {
-		this.assetlocpriority = assetlocpriority;
-	}
+    public void setAssignedownergroup(String assignedownergroup) {
+        this.assignedownergroup = assignedownergroup;
+    }
 
-	public String getAssetnum() {
-		return this.assetnum;
-	}
+    public Timestamp getAvailstatusdate() {
+        return this.availstatusdate;
+    }
 
-	public void setAssetnum(String assetnum) {
-		this.assetnum = assetnum;
-	}
+    public void setAvailstatusdate(Timestamp availstatusdate) {
+        this.availstatusdate = availstatusdate;
+    }
 
-	public String getAssignedownergroup() {
-		return this.assignedownergroup;
-	}
+    public String getBackoutplan() {
+        return this.backoutplan;
+    }
 
-	public void setAssignedownergroup(String assignedownergroup) {
-		this.assignedownergroup = assignedownergroup;
-	}
+    public void setBackoutplan(String backoutplan) {
+        this.backoutplan = backoutplan;
+    }
 
-	public Timestamp getAvailstatusdate() {
-		return this.availstatusdate;
-	}
+    public String getCalccalendar() {
+        return this.calccalendar;
+    }
 
-	public void setAvailstatusdate(Timestamp availstatusdate) {
-		this.availstatusdate = availstatusdate;
-	}
+    public void setCalccalendar(String calccalendar) {
+        this.calccalendar = calccalendar;
+    }
 
-	public String getBackoutplan() {
-		return this.backoutplan;
-	}
+    public String getCalcorgid() {
+        return this.calcorgid;
+    }
 
-	public void setBackoutplan(String backoutplan) {
-		this.backoutplan = backoutplan;
-	}
+    public void setCalcorgid(String calcorgid) {
+        this.calcorgid = calcorgid;
+    }
 
-	public String getCalccalendar() {
-		return this.calccalendar;
-	}
+    public Integer getCalcpriority() {
+        return this.calcpriority;
+    }
 
-	public void setCalccalendar(String calccalendar) {
-		this.calccalendar = calccalendar;
-	}
+    public void setCalcpriority(Integer calcpriority) {
+        this.calcpriority = calcpriority;
+    }
 
-	public String getCalcorgid() {
-		return this.calcorgid;
-	}
+    public String getCalcshift() {
+        return this.calcshift;
+    }
 
-	public void setCalcorgid(String calcorgid) {
-		this.calcorgid = calcorgid;
-	}
+    public void setCalcshift(String calcshift) {
+        this.calcshift = calcshift;
+    }
 
-	public int getCalcpriority() {
-		return this.calcpriority;
-	}
+    public String getCalendar() {
+        return this.calendar;
+    }
 
-	public void setCalcpriority(int calcpriority) {
-		this.calcpriority = calcpriority;
-	}
+    public void setCalendar(String calendar) {
+        this.calendar = calendar;
+    }
 
-	public String getCalcshift() {
-		return this.calcshift;
-	}
+    public String getChangeby() {
+        return this.changeby;
+    }
 
-	public void setCalcshift(String calcshift) {
-		this.calcshift = calcshift;
-	}
+    public void setChangeby(String changeby) {
+        this.changeby = changeby;
+    }
 
-	public String getCalendar() {
-		return this.calendar;
-	}
+    public Timestamp getChangedate() {
+        return this.changedate;
+    }
 
-	public void setCalendar(String calendar) {
-		this.calendar = calendar;
-	}
+    public void setChangedate(Timestamp changedate) {
+        this.changedate = changedate;
+    }
 
-	public String getChangeby() {
-		return this.changeby;
-	}
+    public Integer getChargestore() {
+        return this.chargestore;
+    }
 
-	public void setChangeby(String changeby) {
-		this.changeby = changeby;
-	}
+    public void setChargestore(Integer chargestore) {
+        this.chargestore = chargestore;
+    }
 
-	public Timestamp getChangedate() {
-		return this.changedate;
-	}
+    public String getCinum() {
+        return this.cinum;
+    }
 
-	public void setChangedate(Timestamp changedate) {
-		this.changedate = changedate;
-	}
+    public void setCinum(String cinum) {
+        this.cinum = cinum;
+    }
 
-	public int getChargestore() {
-		return this.chargestore;
-	}
+    public String getClassstructureid() {
+        return this.classstructureid;
+    }
 
-	public void setChargestore(int chargestore) {
-		this.chargestore = chargestore;
-	}
+    public void setClassstructureid(String classstructureid) {
+        this.classstructureid = classstructureid;
+    }
 
-	public String getCinum() {
-		return this.cinum;
-	}
+    public String getCommodity() {
+        return this.commodity;
+    }
 
-	public void setCinum(String cinum) {
-		this.cinum = cinum;
-	}
+    public void setCommodity(String commodity) {
+        this.commodity = commodity;
+    }
 
-	public String getClassstructureid() {
-		return this.classstructureid;
-	}
+    public String getCommoditygroup() {
+        return this.commoditygroup;
+    }
 
-	public void setClassstructureid(String classstructureid) {
-		this.classstructureid = classstructureid;
-	}
+    public void setCommoditygroup(String commoditygroup) {
+        this.commoditygroup = commoditygroup;
+    }
 
-	public String getCommodity() {
-		return this.commodity;
-	}
+    public String getContract() {
+        return this.contract;
+    }
 
-	public void setCommodity(String commodity) {
-		this.commodity = commodity;
-	}
+    public void setContract(String contract) {
+        this.contract = contract;
+    }
 
-	public String getCommoditygroup() {
-		return this.commoditygroup;
-	}
+    public String getCrewid() {
+        return this.crewid;
+    }
 
-	public void setCommoditygroup(String commoditygroup) {
-		this.commoditygroup = commoditygroup;
-	}
+    public void setCrewid(String crewid) {
+        this.crewid = crewid;
+    }
 
-	public String getContract() {
-		return this.contract;
-	}
+    public String getCrewworkgroup() {
+        return this.crewworkgroup;
+    }
 
-	public void setContract(String contract) {
-		this.contract = contract;
-	}
+    public void setCrewworkgroup(String crewworkgroup) {
+        this.crewworkgroup = crewworkgroup;
+    }
 
-	public String getCrewid() {
-		return this.crewid;
-	}
+    public String getDescription() {
+        return this.description;
+    }
 
-	public void setCrewid(String crewid) {
-		this.crewid = crewid;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public String getCrewworkgroup() {
-		return this.crewworkgroup;
-	}
+    public String getDirissuemtlstatus() {
+        return this.dirissuemtlstatus;
+    }
 
-	public void setCrewworkgroup(String crewworkgroup) {
-		this.crewworkgroup = crewworkgroup;
-	}
+    public void setDirissuemtlstatus(String dirissuemtlstatus) {
+        this.dirissuemtlstatus = dirissuemtlstatus;
+    }
 
-	public String getDescription() {
-		return this.description;
-	}
+    public Integer getDisabled() {
+        return this.disabled;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setDisabled(Integer disabled) {
+        this.disabled = disabled;
+    }
 
-	public String getDirissuemtlstatus() {
-		return this.dirissuemtlstatus;
-	}
+    public Integer getDowntime() {
+        return this.downtime;
+    }
 
-	public void setDirissuemtlstatus(String dirissuemtlstatus) {
-		this.dirissuemtlstatus = dirissuemtlstatus;
-	}
+    public void setDowntime(Integer downtime) {
+        this.downtime = downtime;
+    }
 
-	public int getDisabled() {
-		return this.disabled;
-	}
+    public String getEnvironment() {
+        return this.environment;
+    }
 
-	public void setDisabled(int disabled) {
-		this.disabled = disabled;
-	}
+    public void setEnvironment(String environment) {
+        this.environment = environment;
+    }
 
-	public int getDowntime() {
-		return this.downtime;
-	}
 
-	public void setDowntime(int downtime) {
-		this.downtime = downtime;
-	}
+//	public double getEstatapprIntegerlabhrs() {
+//		return this.estatapprIntegerlabhrs;
+//	}
+//
+//	public void setEstatapprIntegerlabhrs(double estatapprIntegerlabhrs) {
+//		this.estatapprIntegerlabhrs = estatapprIntegerlabhrs;
+//	}
 
-	public String getEnvironment() {
-		return this.environment;
-	}
 
-	public void setEnvironment(String environment) {
-		this.environment = environment;
-	}
+    public double getEstatapprlabhrs() {
+        return this.estatapprlabhrs;
+    }
 
-	public BigDecimal getEstatapprintlabcost() {
-		return this.estatapprintlabcost;
-	}
+    public void setEstatapprlabhrs(double estatapprlabhrs) {
+        this.estatapprlabhrs = estatapprlabhrs;
+    }
 
-	public void setEstatapprintlabcost(BigDecimal estatapprintlabcost) {
-		this.estatapprintlabcost = estatapprintlabcost;
-	}
 
-	public double getEstatapprintlabhrs() {
-		return this.estatapprintlabhrs;
-	}
+    public double getEstatapproutlabhrs() {
+        return this.estatapproutlabhrs;
+    }
 
-	public void setEstatapprintlabhrs(double estatapprintlabhrs) {
-		this.estatapprintlabhrs = estatapprintlabhrs;
-	}
+    public void setEstatapproutlabhrs(double estatapproutlabhrs) {
+        this.estatapproutlabhrs = estatapproutlabhrs;
+    }
 
-	public BigDecimal getEstatapprlabcost() {
-		return this.estatapprlabcost;
-	}
 
-	public void setEstatapprlabcost(BigDecimal estatapprlabcost) {
-		this.estatapprlabcost = estatapprlabcost;
-	}
+    public double getEstdur() {
+        return this.estdur;
+    }
 
-	public double getEstatapprlabhrs() {
-		return this.estatapprlabhrs;
-	}
+    public void setEstdur(double estdur) {
+        this.estdur = estdur;
+    }
 
-	public void setEstatapprlabhrs(double estatapprlabhrs) {
-		this.estatapprlabhrs = estatapprlabhrs;
-	}
+//	public Double getEstIntegerlabcost() {
+//		return this.estIntegerlabcost;
+//	}
+//
+//	public void setEstIntegerlabcost(Double estIntegerlabcost) {
+//		this.estIntegerlabcost = estIntegerlabcost;
+//	}
 
-	public BigDecimal getEstatapprmatcost() {
-		return this.estatapprmatcost;
-	}
+//	public double getEstIntegerlabhrs() {
+//		return this.estIntegerlabhrs;
+//	}
+//
+//	public void setEstIntegerlabhrs(double estIntegerlabhrs) {
+//		this.estIntegerlabhrs = estIntegerlabhrs;
+//	}
 
-	public void setEstatapprmatcost(BigDecimal estatapprmatcost) {
-		this.estatapprmatcost = estatapprmatcost;
-	}
+    public BigDecimal getEstlabcost() {
+        return this.estlabcost;
+    }
 
-	public BigDecimal getEstatapproutlabcost() {
-		return this.estatapproutlabcost;
-	}
+    public void setEstlabcost(BigDecimal estlabcost) {
+        this.estlabcost = estlabcost;
+    }
 
-	public void setEstatapproutlabcost(BigDecimal estatapproutlabcost) {
-		this.estatapproutlabcost = estatapproutlabcost;
-	}
+    public BigDecimal getEstmatcost() {
+        return this.estmatcost;
+    }
 
-	public double getEstatapproutlabhrs() {
-		return this.estatapproutlabhrs;
-	}
+    public void setEstmatcost(BigDecimal estmatcost) {
+        this.estmatcost = estmatcost;
+    }
 
-	public void setEstatapproutlabhrs(double estatapproutlabhrs) {
-		this.estatapproutlabhrs = estatapproutlabhrs;
-	}
+    public BigDecimal getEstoutlabcost() {
+        return this.estoutlabcost;
+    }
 
-	public BigDecimal getEstatapprservcost() {
-		return this.estatapprservcost;
-	}
+    public void setEstoutlabcost(BigDecimal estoutlabcost) {
+        this.estoutlabcost = estoutlabcost;
+    }
 
-	public void setEstatapprservcost(BigDecimal estatapprservcost) {
-		this.estatapprservcost = estatapprservcost;
-	}
+    public double getEstoutlabhrs() {
+        return this.estoutlabhrs;
+    }
 
-	public BigDecimal getEstatapprtoolcost() {
-		return this.estatapprtoolcost;
-	}
+    public void setEstoutlabhrs(double estoutlabhrs) {
+        this.estoutlabhrs = estoutlabhrs;
+    }
 
-	public void setEstatapprtoolcost(BigDecimal estatapprtoolcost) {
-		this.estatapprtoolcost = estatapprtoolcost;
-	}
+    public BigDecimal getEstservcost() {
+        return this.estservcost;
+    }
 
-	public double getEstdur() {
-		return this.estdur;
-	}
+    public void setEstservcost(BigDecimal estservcost) {
+        this.estservcost = estservcost;
+    }
 
-	public void setEstdur(double estdur) {
-		this.estdur = estdur;
-	}
+    public BigDecimal getEsttoolcost() {
+        return this.esttoolcost;
+    }
 
-	public BigDecimal getEstintlabcost() {
-		return this.estintlabcost;
-	}
+    public void setEsttoolcost(BigDecimal esttoolcost) {
+        this.esttoolcost = esttoolcost;
+    }
 
-	public void setEstintlabcost(BigDecimal estintlabcost) {
-		this.estintlabcost = estintlabcost;
-	}
+    public String getExternalrefid() {
+        return this.externalrefid;
+    }
 
-	public double getEstintlabhrs() {
-		return this.estintlabhrs;
-	}
+    public void setExternalrefid(String externalrefid) {
+        this.externalrefid = externalrefid;
+    }
 
-	public void setEstintlabhrs(double estintlabhrs) {
-		this.estintlabhrs = estintlabhrs;
-	}
+    public Timestamp getFaildate() {
+        return this.faildate;
+    }
 
-	public BigDecimal getEstlabcost() {
-		return this.estlabcost;
-	}
+    public void setFaildate(Timestamp faildate) {
+        this.faildate = faildate;
+    }
 
-	public void setEstlabcost(BigDecimal estlabcost) {
-		this.estlabcost = estlabcost;
-	}
+    public String getFailurecode() {
+        return this.failurecode;
+    }
 
-	public double getEstlabhrs() {
-		return this.estlabhrs;
-	}
+    public void setFailurecode(String failurecode) {
+        this.failurecode = failurecode;
+    }
 
-	public void setEstlabhrs(double estlabhrs) {
-		this.estlabhrs = estlabhrs;
-	}
+    public String getFincntrlid() {
+        return this.fincntrlid;
+    }
 
-	public BigDecimal getEstmatcost() {
-		return this.estmatcost;
-	}
+    public void setFincntrlid(String fincntrlid) {
+        this.fincntrlid = fincntrlid;
+    }
 
-	public void setEstmatcost(BigDecimal estmatcost) {
-		this.estmatcost = estmatcost;
-	}
+    public String getFirstapprstatus() {
+        return this.firstapprstatus;
+    }
 
-	public BigDecimal getEstoutlabcost() {
-		return this.estoutlabcost;
-	}
+    public void setFirstapprstatus(String firstapprstatus) {
+        this.firstapprstatus = firstapprstatus;
+    }
 
-	public void setEstoutlabcost(BigDecimal estoutlabcost) {
-		this.estoutlabcost = estoutlabcost;
-	}
+    public String getFlowaction() {
+        return this.flowaction;
+    }
 
-	public double getEstoutlabhrs() {
-		return this.estoutlabhrs;
-	}
+    public void setFlowaction(String flowaction) {
+        this.flowaction = flowaction;
+    }
 
-	public void setEstoutlabhrs(double estoutlabhrs) {
-		this.estoutlabhrs = estoutlabhrs;
-	}
+    public Integer getFlowactionassist() {
+        return this.flowactionassist;
+    }
 
-	public BigDecimal getEstservcost() {
-		return this.estservcost;
-	}
+    public void setFlowactionassist(Integer flowactionassist) {
+        this.flowactionassist = flowactionassist;
+    }
 
-	public void setEstservcost(BigDecimal estservcost) {
-		this.estservcost = estservcost;
-	}
+    public Integer getFlowcontrolled() {
+        return this.flowcontrolled;
+    }
 
-	public BigDecimal getEsttoolcost() {
-		return this.esttoolcost;
-	}
+    public void setFlowcontrolled(Integer flowcontrolled) {
+        this.flowcontrolled = flowcontrolled;
+    }
 
-	public void setEsttoolcost(BigDecimal esttoolcost) {
-		this.esttoolcost = esttoolcost;
-	}
+    public String getGeneratedforpo() {
+        return this.generatedforpo;
+    }
 
-	public String getExternalrefid() {
-		return this.externalrefid;
-	}
+    public void setGeneratedforpo(String generatedforpo) {
+        this.generatedforpo = generatedforpo;
+    }
 
-	public void setExternalrefid(String externalrefid) {
-		this.externalrefid = externalrefid;
-	}
 
-	public Timestamp getFaildate() {
-		return this.faildate;
-	}
+    public Integer getGenforporevision() {
+        return this.genforporevision;
+    }
 
-	public void setFaildate(Timestamp faildate) {
-		this.faildate = faildate;
-	}
+    public void setGenforporevision(Integer genforporevision) {
+        this.genforporevision = genforporevision;
+    }
 
-	public String getFailurecode() {
-		return this.failurecode;
-	}
+    public String getGlaccount() {
+        return this.glaccount;
+    }
 
-	public void setFailurecode(String failurecode) {
-		this.failurecode = failurecode;
-	}
+    public void setGlaccount(String glaccount) {
+        this.glaccount = glaccount;
+    }
 
-	public String getFincntrlid() {
-		return this.fincntrlid;
-	}
+    public Integer getHaschildren() {
+        return this.haschildren;
+    }
 
-	public void setFincntrlid(String fincntrlid) {
-		this.fincntrlid = fincntrlid;
-	}
+    public void setHaschildren(Integer haschildren) {
+        this.haschildren = haschildren;
+    }
 
-	public String getFirstapprstatus() {
-		return this.firstapprstatus;
-	}
+    public Integer getHasfollowupwork() {
+        return this.hasfollowupwork;
+    }
 
-	public void setFirstapprstatus(String firstapprstatus) {
-		this.firstapprstatus = firstapprstatus;
-	}
+    public void setHasfollowupwork(Integer hasfollowupwork) {
+        this.hasfollowupwork = hasfollowupwork;
+    }
 
-	public String getFlowaction() {
-		return this.flowaction;
-	}
+    public Integer getHasld() {
+        return this.hasld;
+    }
 
-	public void setFlowaction(String flowaction) {
-		this.flowaction = flowaction;
-	}
+    public void setHasld(Integer hasld) {
+        this.hasld = hasld;
+    }
 
-	public int getFlowactionassist() {
-		return this.flowactionassist;
-	}
+    public Integer getHistoryflag() {
+        return this.historyflag;
+    }
 
-	public void setFlowactionassist(int flowactionassist) {
-		this.flowactionassist = flowactionassist;
-	}
+    public void setHistoryflag(Integer historyflag) {
+        this.historyflag = historyflag;
+    }
 
-	public int getFlowcontrolled() {
-		return this.flowcontrolled;
-	}
+    public Integer getIgnorediavail() {
+        return this.ignorediavail;
+    }
 
-	public void setFlowcontrolled(int flowcontrolled) {
-		this.flowcontrolled = flowcontrolled;
-	}
+    public void setIgnorediavail(Integer ignorediavail) {
+        this.ignorediavail = ignorediavail;
+    }
 
-	public Timestamp getFnlconstraint() {
-		return this.fnlconstraint;
-	}
+    public Integer getIgnoresrmavail() {
+        return this.ignoresrmavail;
+    }
 
-	public void setFnlconstraint(Timestamp fnlconstraint) {
-		this.fnlconstraint = fnlconstraint;
-	}
+    public void setIgnoresrmavail(Integer ignoresrmavail) {
+        this.ignoresrmavail = ignoresrmavail;
+    }
 
-	public String getGeneratedforpo() {
-		return this.generatedforpo;
-	}
+    public Integer getInctasksinsched() {
+        return this.inctasksinsched;
+    }
 
-	public void setGeneratedforpo(String generatedforpo) {
-		this.generatedforpo = generatedforpo;
-	}
+    public void setInctasksinsched(Integer inctasksinsched) {
+        this.inctasksinsched = inctasksinsched;
+    }
 
-	public long getGenforpolineid() {
-		return this.genforpolineid;
-	}
+    public String getInspector() {
+        return this.inspector;
+    }
 
-	public void setGenforpolineid(long genforpolineid) {
-		this.genforpolineid = genforpolineid;
-	}
+    public void setInspector(String inspector) {
+        this.inspector = inspector;
+    }
 
-	public int getGenforporevision() {
-		return this.genforporevision;
-	}
+//	public Integer getIntegererruptible() {
+//		return this.Integererruptible;
+//	}
+//
+//	public void setIntegererruptible(Integer Integererruptible) {
+//		this.Integererruptible = Integererruptible;
+//	}
 
-	public void setGenforporevision(int genforporevision) {
-		this.genforporevision = genforporevision;
-	}
+    public Integer getIstask() {
+        return this.istask;
+    }
 
-	public String getGlaccount() {
-		return this.glaccount;
-	}
+    public void setIstask(Integer istask) {
+        this.istask = istask;
+    }
 
-	public void setGlaccount(String glaccount) {
-		this.glaccount = glaccount;
-	}
+    public Long getJobtaskid() {
+        return this.jobtaskid;
+    }
 
-	public int getHaschildren() {
-		return this.haschildren;
-	}
+    public void setJobtaskid(Long jobtaskid) {
+        this.jobtaskid = jobtaskid;
+    }
 
-	public void setHaschildren(int haschildren) {
-		this.haschildren = haschildren;
-	}
+    public String getJpnum() {
+        return this.jpnum;
+    }
 
-	public int getHasfollowupwork() {
-		return this.hasfollowupwork;
-	}
+    public void setJpnum(String jpnum) {
+        this.jpnum = jpnum;
+    }
 
-	public void setHasfollowupwork(int hasfollowupwork) {
-		this.hasfollowupwork = hasfollowupwork;
-	}
+    public String getJustifypriority() {
+        return this.justifypriority;
+    }
 
-	public int getHasld() {
-		return this.hasld;
-	}
+    public void setJustifypriority(String justifypriority) {
+        this.justifypriority = justifypriority;
+    }
 
-	public void setHasld(int hasld) {
-		this.hasld = hasld;
-	}
+    public String getLangcode() {
+        return this.langcode;
+    }
 
-	public int getHistoryflag() {
-		return this.historyflag;
-	}
+    public void setLangcode(String langcode) {
+        this.langcode = langcode;
+    }
 
-	public void setHistoryflag(int historyflag) {
-		this.historyflag = historyflag;
-	}
 
-	public int getIgnorediavail() {
-		return this.ignorediavail;
-	}
+    public String getLaunchentryname() {
+        return this.launchentryname;
+    }
 
-	public void setIgnorediavail(int ignorediavail) {
-		this.ignorediavail = ignorediavail;
-	}
+    public void setLaunchentryname(String launchentryname) {
+        this.launchentryname = launchentryname;
+    }
 
-	public int getIgnoresrmavail() {
-		return this.ignoresrmavail;
-	}
+    public String getLead() {
+        return this.lead;
+    }
 
-	public void setIgnoresrmavail(int ignoresrmavail) {
-		this.ignoresrmavail = ignoresrmavail;
-	}
+    public void setLead(String lead) {
+        this.lead = lead;
+    }
 
-	public int getInctasksinsched() {
-		return this.inctasksinsched;
-	}
+    public Integer getLms() {
+        return this.lms;
+    }
 
-	public void setInctasksinsched(int inctasksinsched) {
-		this.inctasksinsched = inctasksinsched;
-	}
+    public void setLms(Integer lms) {
+        this.lms = lms;
+    }
 
-	public String getInspector() {
-		return this.inspector;
-	}
+    public String getLocation() {
+        return this.location;
+    }
 
-	public void setInspector(String inspector) {
-		this.inspector = inspector;
-	}
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-	public int getInterruptible() {
-		return this.interruptible;
-	}
+    public Integer getLos() {
+        return this.los;
+    }
 
-	public void setInterruptible(int interruptible) {
-		this.interruptible = interruptible;
-	}
+    public void setLos(Integer los) {
+        this.los = los;
+    }
 
-	public int getIstask() {
-		return this.istask;
-	}
 
-	public void setIstask(int istask) {
-		this.istask = istask;
-	}
+    public BigDecimal getMeasurementvalue() {
+        return this.measurementvalue;
+    }
 
-	public long getJobtaskid() {
-		return this.jobtaskid;
-	}
+    public void setMeasurementvalue(BigDecimal measurementvalue) {
+        this.measurementvalue = measurementvalue;
+    }
 
-	public void setJobtaskid(long jobtaskid) {
-		this.jobtaskid = jobtaskid;
-	}
+    public Integer getNestedjpinprocess() {
+        return this.nestedjpinprocess;
+    }
 
-	public String getJpnum() {
-		return this.jpnum;
-	}
+    public void setNestedjpinprocess(Integer nestedjpinprocess) {
+        this.nestedjpinprocess = nestedjpinprocess;
+    }
 
-	public void setJpnum(String jpnum) {
-		this.jpnum = jpnum;
-	}
+    public String getNewchildclass() {
+        return this.newchildclass;
+    }
 
-	public String getJustifypriority() {
-		return this.justifypriority;
-	}
+    public void setNewchildclass(String newchildclass) {
+        this.newchildclass = newchildclass;
+    }
 
-	public void setJustifypriority(String justifypriority) {
-		this.justifypriority = justifypriority;
-	}
+    public String getObservation() {
+        return this.observation;
+    }
 
-	public String getLangcode() {
-		return this.langcode;
-	}
+    public void setObservation(String observation) {
+        this.observation = observation;
+    }
 
-	public void setLangcode(String langcode) {
-		this.langcode = langcode;
-	}
+    public String getOnbehalfof() {
+        return this.onbehalfof;
+    }
 
-	public Timestamp getLastcopylinkdate() {
-		return this.lastcopylinkdate;
-	}
+    public void setOnbehalfof(String onbehalfof) {
+        this.onbehalfof = onbehalfof;
+    }
 
-	public void setLastcopylinkdate(Timestamp lastcopylinkdate) {
-		this.lastcopylinkdate = lastcopylinkdate;
-	}
+    public String getOrgid() {
+        return this.orgid;
+    }
 
-	public String getLaunchentryname() {
-		return this.launchentryname;
-	}
+    public void setOrgid(String orgid) {
+        this.orgid = orgid;
+    }
 
-	public void setLaunchentryname(String launchentryname) {
-		this.launchentryname = launchentryname;
-	}
+    public String getOrigrecordclass() {
+        return this.origrecordclass;
+    }
 
-	public String getLead() {
-		return this.lead;
-	}
+    public void setOrigrecordclass(String origrecordclass) {
+        this.origrecordclass = origrecordclass;
+    }
 
-	public void setLead(String lead) {
-		this.lead = lead;
-	}
+    public String getOrigrecordid() {
+        return this.origrecordid;
+    }
 
-	public int getLms() {
-		return this.lms;
-	}
+    public void setOrigrecordid(String origrecordid) {
+        this.origrecordid = origrecordid;
+    }
 
-	public void setLms(int lms) {
-		this.lms = lms;
-	}
+    public BigDecimal getOutlabcost() {
+        return this.outlabcost;
+    }
 
-	public String getLocation() {
-		return this.location;
-	}
+    public void setOutlabcost(BigDecimal outlabcost) {
+        this.outlabcost = outlabcost;
+    }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    public BigDecimal getOutmatcost() {
+        return this.outmatcost;
+    }
 
-	public int getLos() {
-		return this.los;
-	}
+    public void setOutmatcost(BigDecimal outmatcost) {
+        this.outmatcost = outmatcost;
+    }
 
-	public void setLos(int los) {
-		this.los = los;
-	}
+    public BigDecimal getOuttoolcost() {
+        return this.outtoolcost;
+    }
 
-	public Timestamp getMeasuredate() {
-		return this.measuredate;
-	}
+    public void setOuttoolcost(BigDecimal outtoolcost) {
+        this.outtoolcost = outtoolcost;
+    }
 
-	public void setMeasuredate(Timestamp measuredate) {
-		this.measuredate = measuredate;
-	}
+    public String getOwner() {
+        return this.owner;
+    }
 
-	public BigDecimal getMeasurementvalue() {
-		return this.measurementvalue;
-	}
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
 
-	public void setMeasurementvalue(BigDecimal measurementvalue) {
-		this.measurementvalue = measurementvalue;
-	}
+    public String getOwnergroup() {
+        return this.ownergroup;
+    }
 
-	public int getNestedjpinprocess() {
-		return this.nestedjpinprocess;
-	}
+    public void setOwnergroup(String ownergroup) {
+        this.ownergroup = ownergroup;
+    }
 
-	public void setNestedjpinprocess(int nestedjpinprocess) {
-		this.nestedjpinprocess = nestedjpinprocess;
-	}
+    public String getOwnersysid() {
+        return this.ownersysid;
+    }
 
-	public String getNewchildclass() {
-		return this.newchildclass;
-	}
+    public void setOwnersysid(String ownersysid) {
+        this.ownersysid = ownersysid;
+    }
 
-	public void setNewchildclass(String newchildclass) {
-		this.newchildclass = newchildclass;
-	}
+    public String getParent() {
+        return this.parent;
+    }
 
-	public String getObservation() {
-		return this.observation;
-	}
+    public void setParent(String parent) {
+        this.parent = parent;
+    }
 
-	public void setObservation(String observation) {
-		this.observation = observation;
-	}
+    public Integer getParentchgsstatus() {
+        return this.parentchgsstatus;
+    }
 
-	public String getOnbehalfof() {
-		return this.onbehalfof;
-	}
+    public void setParentchgsstatus(Integer parentchgsstatus) {
+        this.parentchgsstatus = parentchgsstatus;
+    }
 
-	public void setOnbehalfof(String onbehalfof) {
-		this.onbehalfof = onbehalfof;
-	}
+    public String getPercoding() {
+        return this.percoding;
+    }
 
-	public String getOrgid() {
-		return this.orgid;
-	}
+    public void setPercoding(String percoding) {
+        this.percoding = percoding;
+    }
 
-	public void setOrgid(String orgid) {
-		this.orgid = orgid;
-	}
+    public String getPersongroup() {
+        return this.persongroup;
+    }
 
-	public String getOrigrecordclass() {
-		return this.origrecordclass;
-	}
+    public void setPersongroup(String persongroup) {
+        this.persongroup = persongroup;
+    }
 
-	public void setOrigrecordclass(String origrecordclass) {
-		this.origrecordclass = origrecordclass;
-	}
+    public String getPhone() {
+        return this.phone;
+    }
 
-	public String getOrigrecordid() {
-		return this.origrecordid;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public void setOrigrecordid(String origrecordid) {
-		this.origrecordid = origrecordid;
-	}
+    public Integer getPluscfrequency() {
+        return this.pluscfrequency;
+    }
 
-	public BigDecimal getOutlabcost() {
-		return this.outlabcost;
-	}
+    public void setPluscfrequency(Integer pluscfrequency) {
+        this.pluscfrequency = pluscfrequency;
+    }
 
-	public void setOutlabcost(BigDecimal outlabcost) {
-		this.outlabcost = outlabcost;
-	}
+    public String getPluscfrequnit() {
+        return this.pluscfrequnit;
+    }
 
-	public BigDecimal getOutmatcost() {
-		return this.outmatcost;
-	}
+    public void setPluscfrequnit(String pluscfrequnit) {
+        this.pluscfrequnit = pluscfrequnit;
+    }
 
-	public void setOutmatcost(BigDecimal outmatcost) {
-		this.outmatcost = outmatcost;
-	}
+    public Integer getPluscismobile() {
+        return this.pluscismobile;
+    }
 
-	public BigDecimal getOuttoolcost() {
-		return this.outtoolcost;
-	}
+    public void setPluscismobile(Integer pluscismobile) {
+        this.pluscismobile = pluscismobile;
+    }
 
-	public void setOuttoolcost(BigDecimal outtoolcost) {
-		this.outtoolcost = outtoolcost;
-	}
+    public Integer getPluscjprevnum() {
+        return this.pluscjprevnum;
+    }
 
-	public String getOwner() {
-		return this.owner;
-	}
+    public void setPluscjprevnum(Integer pluscjprevnum) {
+        this.pluscjprevnum = pluscjprevnum;
+    }
 
-	public void setOwner(String owner) {
-		this.owner = owner;
-	}
+    public Integer getPluscloop() {
+        return this.pluscloop;
+    }
 
-	public String getOwnergroup() {
-		return this.ownergroup;
-	}
+    public void setPluscloop(Integer pluscloop) {
+        this.pluscloop = pluscloop;
+    }
 
-	public void setOwnergroup(String ownergroup) {
-		this.ownergroup = ownergroup;
-	}
 
-	public String getOwnersysid() {
-		return this.ownersysid;
-	}
+    public String getPluscphyloc() {
+        return this.pluscphyloc;
+    }
 
-	public void setOwnersysid(String ownersysid) {
-		this.ownersysid = ownersysid;
-	}
+    public void setPluscphyloc(String pluscphyloc) {
+        this.pluscphyloc = pluscphyloc;
+    }
 
-	public String getParent() {
-		return this.parent;
-	}
+    public Date getPmduedate() {
+        return this.pmduedate;
+    }
 
-	public void setParent(String parent) {
-		this.parent = parent;
-	}
+    public void setPmduedate(Date pmduedate) {
+        this.pmduedate = pmduedate;
+    }
 
-	public int getParentchgsstatus() {
-		return this.parentchgsstatus;
-	}
+    public Date getPmextdate() {
+        return this.pmextdate;
+    }
 
-	public void setParentchgsstatus(int parentchgsstatus) {
-		this.parentchgsstatus = parentchgsstatus;
-	}
+    public void setPmextdate(Date pmextdate) {
+        this.pmextdate = pmextdate;
+    }
 
-	public String getPercoding() {
-		return this.percoding;
-	}
+    public Date getPmnextduedate() {
+        return this.pmnextduedate;
+    }
 
-	public void setPercoding(String percoding) {
-		this.percoding = percoding;
-	}
+    public void setPmnextduedate(Date pmnextduedate) {
+        this.pmnextduedate = pmnextduedate;
+    }
 
-	public String getPersongroup() {
-		return this.persongroup;
-	}
+    public String getPmnum() {
+        return this.pmnum;
+    }
 
-	public void setPersongroup(String persongroup) {
-		this.persongroup = persongroup;
-	}
+    public void setPmnum(String pmnum) {
+        this.pmnum = pmnum;
+    }
 
-	public String getPhone() {
-		return this.phone;
-	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public String getProblemcode() {
+        return this.problemcode;
+    }
 
-	public int getPluscfrequency() {
-		return this.pluscfrequency;
-	}
+    public void setProblemcode(String problemcode) {
+        this.problemcode = problemcode;
+    }
 
-	public void setPluscfrequency(int pluscfrequency) {
-		this.pluscfrequency = pluscfrequency;
-	}
+    public String getReasonforchange() {
+        return this.reasonforchange;
+    }
 
-	public String getPluscfrequnit() {
-		return this.pluscfrequnit;
-	}
+    public void setReasonforchange(String reasonforchange) {
+        this.reasonforchange = reasonforchange;
+    }
 
-	public void setPluscfrequnit(String pluscfrequnit) {
-		this.pluscfrequnit = pluscfrequnit;
-	}
 
-	public int getPluscismobile() {
-		return this.pluscismobile;
-	}
+    public String getRepairfacility() {
+        return this.repairfacility;
+    }
 
-	public void setPluscismobile(int pluscismobile) {
-		this.pluscismobile = pluscismobile;
-	}
+    public void setRepairfacility(String repairfacility) {
+        this.repairfacility = repairfacility;
+    }
 
-	public int getPluscjprevnum() {
-		return this.pluscjprevnum;
-	}
+    public String getRepfacsiteid() {
+        return this.repfacsiteid;
+    }
 
-	public void setPluscjprevnum(int pluscjprevnum) {
-		this.pluscjprevnum = pluscjprevnum;
-	}
+    public void setRepfacsiteid(String repfacsiteid) {
+        this.repfacsiteid = repfacsiteid;
+    }
 
-	public int getPluscloop() {
-		return this.pluscloop;
-	}
 
-	public void setPluscloop(int pluscloop) {
-		this.pluscloop = pluscloop;
-	}
+    public String getReportedby() {
+        return this.reportedby;
+    }
 
-	public Timestamp getPluscnextdate() {
-		return this.pluscnextdate;
-	}
+    public void setReportedby(String reportedby) {
+        this.reportedby = reportedby;
+    }
 
-	public void setPluscnextdate(Timestamp pluscnextdate) {
-		this.pluscnextdate = pluscnextdate;
-	}
+    public Integer getReqasstdwntime() {
+        return this.reqasstdwntime;
+    }
 
-	public Timestamp getPluscoverduedate() {
-		return this.pluscoverduedate;
-	}
+    public void setReqasstdwntime(Integer reqasstdwntime) {
+        this.reqasstdwntime = reqasstdwntime;
+    }
 
-	public void setPluscoverduedate(Timestamp pluscoverduedate) {
-		this.pluscoverduedate = pluscoverduedate;
-	}
 
-	public String getPluscphyloc() {
-		return this.pluscphyloc;
-	}
+    public String getRisk() {
+        return this.risk;
+    }
 
-	public void setPluscphyloc(String pluscphyloc) {
-		this.pluscphyloc = pluscphyloc;
-	}
+    public void setRisk(String risk) {
+        this.risk = risk;
+    }
 
-	public Date getPmduedate() {
-		return this.pmduedate;
-	}
+    public String getRoute() {
+        return this.route;
+    }
 
-	public void setPmduedate(Date pmduedate) {
-		this.pmduedate = pmduedate;
-	}
+    public void setRoute(String route) {
+        this.route = route;
+    }
 
-	public Date getPmextdate() {
-		return this.pmextdate;
-	}
+    public Long getRoutestopid() {
+        return this.routestopid;
+    }
 
-	public void setPmextdate(Date pmextdate) {
-		this.pmextdate = pmextdate;
-	}
+    public void setRoutestopid(Long routestopid) {
+        this.routestopid = routestopid;
+    }
 
-	public Date getPmnextduedate() {
-		return this.pmnextduedate;
-	}
+    public Long getRowstamp() {
+        return this.rowstamp;
+    }
 
-	public void setPmnextduedate(Date pmnextduedate) {
-		this.pmnextduedate = pmnextduedate;
-	}
+    public void setRowstamp(Long rowstamp) {
+        this.rowstamp = rowstamp;
+    }
 
-	public String getPmnum() {
-		return this.pmnum;
-	}
 
-	public void setPmnum(String pmnum) {
-		this.pmnum = pmnum;
-	}
+    public String getSctnum() {
+        return this.sctnum;
+    }
 
-	public String getPointnum() {
-		return this.pointnum;
-	}
+    public void setSctnum(String sctnum) {
+        this.sctnum = sctnum;
+    }
 
-	public void setPointnum(String pointnum) {
-		this.pointnum = pointnum;
-	}
+    public String getSendersysid() {
+        return this.sendersysid;
+    }
 
-	public String getProblemcode() {
-		return this.problemcode;
-	}
+    public void setSendersysid(String sendersysid) {
+        this.sendersysid = sendersysid;
+    }
 
-	public void setProblemcode(String problemcode) {
-		this.problemcode = problemcode;
-	}
+    public String getSiteid() {
+        return this.siteid;
+    }
 
-	public String getReasonforchange() {
-		return this.reasonforchange;
-	}
+    public void setSiteid(String siteid) {
+        this.siteid = siteid;
+    }
 
-	public void setReasonforchange(String reasonforchange) {
-		this.reasonforchange = reasonforchange;
-	}
 
-	public double getRemdur() {
-		return this.remdur;
-	}
+    public String getSourcesysid() {
+        return this.sourcesysid;
+    }
 
-	public void setRemdur(double remdur) {
-		this.remdur = remdur;
-	}
+    public void setSourcesysid(String sourcesysid) {
+        this.sourcesysid = sourcesysid;
+    }
 
-	public String getRepairfacility() {
-		return this.repairfacility;
-	}
+    public String getStatus() {
+        return this.status;
+    }
 
-	public void setRepairfacility(String repairfacility) {
-		this.repairfacility = repairfacility;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public String getRepfacsiteid() {
-		return this.repfacsiteid;
-	}
 
-	public void setRepfacsiteid(String repfacsiteid) {
-		this.repfacsiteid = repfacsiteid;
-	}
+    public String getStoreroommtlstatus() {
+        return this.storeroommtlstatus;
+    }
 
-	public Timestamp getReportdate() {
-		return this.reportdate;
-	}
+    public void setStoreroommtlstatus(String storeroommtlstatus) {
+        this.storeroommtlstatus = storeroommtlstatus;
+    }
 
-	public void setReportdate(Timestamp reportdate) {
-		this.reportdate = reportdate;
-	}
+    public String getSupervisor() {
+        return this.supervisor;
+    }
 
-	public String getReportedby() {
-		return this.reportedby;
-	}
+    public void setSupervisor(String supervisor) {
+        this.supervisor = supervisor;
+    }
 
-	public void setReportedby(String reportedby) {
-		this.reportedby = reportedby;
-	}
+    public Integer getSuspendflow() {
+        return this.suspendflow;
+    }
 
-	public int getReqasstdwntime() {
-		return this.reqasstdwntime;
-	}
+    public void setSuspendflow(Integer suspendflow) {
+        this.suspendflow = suspendflow;
+    }
 
-	public void setReqasstdwntime(int reqasstdwntime) {
-		this.reqasstdwntime = reqasstdwntime;
-	}
 
-	public Timestamp getRespondby() {
-		return this.respondby;
-	}
+    public String getTargetdesc() {
+        return this.targetdesc;
+    }
 
-	public void setRespondby(Timestamp respondby) {
-		this.respondby = respondby;
-	}
+    public void setTargetdesc(String targetdesc) {
+        this.targetdesc = targetdesc;
+    }
 
-	public String getRisk() {
-		return this.risk;
-	}
 
-	public void setRisk(String risk) {
-		this.risk = risk;
-	}
+    public Integer getTaskid() {
+        return this.taskid;
+    }
 
-	public String getRoute() {
-		return this.route;
-	}
+    public void setTaskid(Integer taskid) {
+        this.taskid = taskid;
+    }
 
-	public void setRoute(String route) {
-		this.route = route;
-	}
+    public String getUdcoding() {
+        return this.udcoding;
+    }
 
-	public long getRoutestopid() {
-		return this.routestopid;
-	}
+    public void setUdcoding(String udcoding) {
+        this.udcoding = udcoding;
+    }
 
-	public void setRoutestopid(long routestopid) {
-		this.routestopid = routestopid;
-	}
+    public String getUddlgnum() {
+        return this.uddlgnum;
+    }
 
-	public long getRowstamp() {
-		return this.rowstamp;
-	}
+    public void setUddlgnum(String uddlgnum) {
+        this.uddlgnum = uddlgnum;
+    }
 
-	public void setRowstamp(long rowstamp) {
-		this.rowstamp = rowstamp;
-	}
+    public Integer getUdlinenum() {
+        return this.udlinenum;
+    }
 
-	public Timestamp getSchedfinish() {
-		return this.schedfinish;
-	}
+    public void setUdlinenum(Integer udlinenum) {
+        this.udlinenum = udlinenum;
+    }
 
-	public void setSchedfinish(Timestamp schedfinish) {
-		this.schedfinish = schedfinish;
-	}
+    public String getUdpmsnum() {
+        return this.udpmsnum;
+    }
 
-	public Timestamp getSchedstart() {
-		return this.schedstart;
-	}
+    public void setUdpmsnum(String udpmsnum) {
+        this.udpmsnum = udpmsnum;
+    }
 
-	public void setSchedstart(Timestamp schedstart) {
-		this.schedstart = schedstart;
-	}
+    public String getUdpronum() {
+        return this.udpronum;
+    }
 
-	public String getSctnum() {
-		return this.sctnum;
-	}
+    public void setUdpronum(String udpronum) {
+        this.udpronum = udpronum;
+    }
 
-	public void setSctnum(String sctnum) {
-		this.sctnum = sctnum;
-	}
+    public String getUdworktype() {
+        return this.udworktype;
+    }
 
-	public String getSendersysid() {
-		return this.sendersysid;
-	}
+    public void setUdworktype(String udworktype) {
+        this.udworktype = udworktype;
+    }
 
-	public void setSendersysid(String sendersysid) {
-		this.sendersysid = sendersysid;
-	}
+    public String getVendor() {
+        return this.vendor;
+    }
 
-	public String getSiteid() {
-		return this.siteid;
-	}
+    public void setVendor(String vendor) {
+        this.vendor = vendor;
+    }
 
-	public void setSiteid(String siteid) {
-		this.siteid = siteid;
-	}
+    public String getVerification() {
+        return this.verification;
+    }
 
-	public Timestamp getSneconstraint() {
-		return this.sneconstraint;
-	}
+    public void setVerification(String verification) {
+        this.verification = verification;
+    }
 
-	public void setSneconstraint(Timestamp sneconstraint) {
-		this.sneconstraint = sneconstraint;
-	}
+    public String getWhomischangefor() {
+        return this.whomischangefor;
+    }
 
-	public String getSourcesysid() {
-		return this.sourcesysid;
-	}
+    public void setWhomischangefor(String whomischangefor) {
+        this.whomischangefor = whomischangefor;
+    }
 
-	public void setSourcesysid(String sourcesysid) {
-		this.sourcesysid = sourcesysid;
-	}
+    public Integer getWoacceptscharges() {
+        return this.woacceptscharges;
+    }
 
-	public String getStatus() {
-		return this.status;
-	}
+    public void setWoacceptscharges(Integer woacceptscharges) {
+        this.woacceptscharges = woacceptscharges;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public String getWoclass() {
+        return this.woclass;
+    }
 
-	public Timestamp getStatusdate() {
-		return this.statusdate;
-	}
+    public void setWoclass(String woclass) {
+        this.woclass = woclass;
+    }
 
-	public void setStatusdate(Timestamp statusdate) {
-		this.statusdate = statusdate;
-	}
+    public String getWoeq1() {
+        return this.woeq1;
+    }
 
-	public String getStoreroommtlstatus() {
-		return this.storeroommtlstatus;
-	}
+    public void setWoeq1(String woeq1) {
+        this.woeq1 = woeq1;
+    }
 
-	public void setStoreroommtlstatus(String storeroommtlstatus) {
-		this.storeroommtlstatus = storeroommtlstatus;
-	}
+    public String getWoeq10() {
+        return this.woeq10;
+    }
 
-	public String getSupervisor() {
-		return this.supervisor;
-	}
+    public void setWoeq10(String woeq10) {
+        this.woeq10 = woeq10;
+    }
 
-	public void setSupervisor(String supervisor) {
-		this.supervisor = supervisor;
-	}
+    public String getWoeq11() {
+        return this.woeq11;
+    }
 
-	public int getSuspendflow() {
-		return this.suspendflow;
-	}
+    public void setWoeq11(String woeq11) {
+        this.woeq11 = woeq11;
+    }
 
-	public void setSuspendflow(int suspendflow) {
-		this.suspendflow = suspendflow;
-	}
+    public BigDecimal getWoeq12() {
+        return this.woeq12;
+    }
 
-	public Timestamp getTargcompdate() {
-		return this.targcompdate;
-	}
+    public void setWoeq12(BigDecimal woeq12) {
+        this.woeq12 = woeq12;
+    }
 
-	public void setTargcompdate(Timestamp targcompdate) {
-		this.targcompdate = targcompdate;
-	}
 
-	public String getTargetdesc() {
-		return this.targetdesc;
-	}
+    public BigDecimal getWoeq14() {
+        return this.woeq14;
+    }
 
-	public void setTargetdesc(String targetdesc) {
-		this.targetdesc = targetdesc;
-	}
+    public void setWoeq14(BigDecimal woeq14) {
+        this.woeq14 = woeq14;
+    }
 
-	public Timestamp getTargstartdate() {
-		return this.targstartdate;
-	}
+    public String getWoeq2() {
+        return this.woeq2;
+    }
 
-	public void setTargstartdate(Timestamp targstartdate) {
-		this.targstartdate = targstartdate;
-	}
+    public void setWoeq2(String woeq2) {
+        this.woeq2 = woeq2;
+    }
 
-	public int getTaskid() {
-		return this.taskid;
-	}
+    public String getWoeq3() {
+        return this.woeq3;
+    }
 
-	public void setTaskid(int taskid) {
-		this.taskid = taskid;
-	}
+    public void setWoeq3(String woeq3) {
+        this.woeq3 = woeq3;
+    }
 
-	public String getUdcoding() {
-		return this.udcoding;
-	}
+    public String getWoeq4() {
+        return this.woeq4;
+    }
 
-	public void setUdcoding(String udcoding) {
-		this.udcoding = udcoding;
-	}
+    public void setWoeq4(String woeq4) {
+        this.woeq4 = woeq4;
+    }
 
-	public String getUddlgnum() {
-		return this.uddlgnum;
-	}
+    public BigDecimal getWoeq5() {
+        return this.woeq5;
+    }
 
-	public void setUddlgnum(String uddlgnum) {
-		this.uddlgnum = uddlgnum;
-	}
+    public void setWoeq5(BigDecimal woeq5) {
+        this.woeq5 = woeq5;
+    }
 
-	public int getUdlinenum() {
-		return this.udlinenum;
-	}
+    public BigDecimal getWoeq7() {
+        return this.woeq7;
+    }
 
-	public void setUdlinenum(int udlinenum) {
-		this.udlinenum = udlinenum;
-	}
+    public void setWoeq7(BigDecimal woeq7) {
+        this.woeq7 = woeq7;
+    }
 
-	public String getUdpmsnum() {
-		return this.udpmsnum;
-	}
+    public String getWoeq8() {
+        return this.woeq8;
+    }
 
-	public void setUdpmsnum(String udpmsnum) {
-		this.udpmsnum = udpmsnum;
-	}
+    public void setWoeq8(String woeq8) {
+        this.woeq8 = woeq8;
+    }
 
-	public String getUdpronum() {
-		return this.udpronum;
-	}
+    public String getWoeq9() {
+        return this.woeq9;
+    }
 
-	public void setUdpronum(String udpronum) {
-		this.udpronum = udpronum;
-	}
+    public void setWoeq9(String woeq9) {
+        this.woeq9 = woeq9;
+    }
 
-	public String getUdworktype() {
-		return this.udworktype;
-	}
+    public String getWogroup() {
+        return this.wogroup;
+    }
 
-	public void setUdworktype(String udworktype) {
-		this.udworktype = udworktype;
-	}
+    public void setWogroup(String wogroup) {
+        this.wogroup = wogroup;
+    }
 
-	public String getVendor() {
-		return this.vendor;
-	}
+    public Integer getWoisswap() {
+        return this.woisswap;
+    }
 
-	public void setVendor(String vendor) {
-		this.vendor = vendor;
-	}
+    public void setWoisswap(Integer woisswap) {
+        this.woisswap = woisswap;
+    }
 
-	public String getVerification() {
-		return this.verification;
-	}
+    public String getWojo1() {
+        return this.wojo1;
+    }
 
-	public void setVerification(String verification) {
-		this.verification = verification;
-	}
+    public void setWojo1(String wojo1) {
+        this.wojo1 = wojo1;
+    }
 
-	public String getWhomischangefor() {
-		return this.whomischangefor;
-	}
+    public String getWojo2() {
+        return this.wojo2;
+    }
 
-	public void setWhomischangefor(String whomischangefor) {
-		this.whomischangefor = whomischangefor;
-	}
+    public void setWojo2(String wojo2) {
+        this.wojo2 = wojo2;
+    }
 
-	public int getWoacceptscharges() {
-		return this.woacceptscharges;
-	}
+    public String getWojo3() {
+        return this.wojo3;
+    }
 
-	public void setWoacceptscharges(int woacceptscharges) {
-		this.woacceptscharges = woacceptscharges;
-	}
+    public void setWojo3(String wojo3) {
+        this.wojo3 = wojo3;
+    }
 
-	public String getWoclass() {
-		return this.woclass;
-	}
+    public BigDecimal getWojo4() {
+        return this.wojo4;
+    }
 
-	public void setWoclass(String woclass) {
-		this.woclass = woclass;
-	}
+    public void setWojo4(BigDecimal wojo4) {
+        this.wojo4 = wojo4;
+    }
 
-	public String getWoeq1() {
-		return this.woeq1;
-	}
+    public String getWojo5() {
+        return this.wojo5;
+    }
 
-	public void setWoeq1(String woeq1) {
-		this.woeq1 = woeq1;
-	}
+    public void setWojo5(String wojo5) {
+        this.wojo5 = wojo5;
+    }
 
-	public String getWoeq10() {
-		return this.woeq10;
-	}
+    public String getWojo6() {
+        return this.wojo6;
+    }
 
-	public void setWoeq10(String woeq10) {
-		this.woeq10 = woeq10;
-	}
+    public void setWojo6(String wojo6) {
+        this.wojo6 = wojo6;
+    }
 
-	public String getWoeq11() {
-		return this.woeq11;
-	}
+    public String getWojo7() {
+        return this.wojo7;
+    }
 
-	public void setWoeq11(String woeq11) {
-		this.woeq11 = woeq11;
-	}
+    public void setWojo7(String wojo7) {
+        this.wojo7 = wojo7;
+    }
 
-	public BigDecimal getWoeq12() {
-		return this.woeq12;
-	}
+    public String getWojo8() {
+        return this.wojo8;
+    }
 
-	public void setWoeq12(BigDecimal woeq12) {
-		this.woeq12 = woeq12;
-	}
+    public void setWojo8(String wojo8) {
+        this.wojo8 = wojo8;
+    }
 
-	public Timestamp getWoeq13() {
-		return this.woeq13;
-	}
+    public String getWojp1() {
+        return this.wojp1;
+    }
 
-	public void setWoeq13(Timestamp woeq13) {
-		this.woeq13 = woeq13;
-	}
+    public void setWojp1(String wojp1) {
+        this.wojp1 = wojp1;
+    }
 
-	public BigDecimal getWoeq14() {
-		return this.woeq14;
-	}
+    public String getWojp2() {
+        return this.wojp2;
+    }
 
-	public void setWoeq14(BigDecimal woeq14) {
-		this.woeq14 = woeq14;
-	}
+    public void setWojp2(String wojp2) {
+        this.wojp2 = wojp2;
+    }
 
-	public String getWoeq2() {
-		return this.woeq2;
-	}
+    public String getWojp3() {
+        return this.wojp3;
+    }
 
-	public void setWoeq2(String woeq2) {
-		this.woeq2 = woeq2;
-	}
+    public void setWojp3(String wojp3) {
+        this.wojp3 = wojp3;
+    }
 
-	public String getWoeq3() {
-		return this.woeq3;
-	}
+    public BigDecimal getWojp4() {
+        return this.wojp4;
+    }
 
-	public void setWoeq3(String woeq3) {
-		this.woeq3 = woeq3;
-	}
+    public void setWojp4(BigDecimal wojp4) {
+        this.wojp4 = wojp4;
+    }
 
-	public String getWoeq4() {
-		return this.woeq4;
-	}
+    public Timestamp getWojp5() {
+        return this.wojp5;
+    }
 
-	public void setWoeq4(String woeq4) {
-		this.woeq4 = woeq4;
-	}
+    public void setWojp5(Timestamp wojp5) {
+        this.wojp5 = wojp5;
+    }
 
-	public BigDecimal getWoeq5() {
-		return this.woeq5;
-	}
+    public String getWol1() {
+        return this.wol1;
+    }
 
-	public void setWoeq5(BigDecimal woeq5) {
-		this.woeq5 = woeq5;
-	}
+    public void setWol1(String wol1) {
+        this.wol1 = wol1;
+    }
 
-	public Timestamp getWoeq6() {
-		return this.woeq6;
-	}
+    public String getWol2() {
+        return this.wol2;
+    }
 
-	public void setWoeq6(Timestamp woeq6) {
-		this.woeq6 = woeq6;
-	}
+    public void setWol2(String wol2) {
+        this.wol2 = wol2;
+    }
 
-	public BigDecimal getWoeq7() {
-		return this.woeq7;
-	}
+    public BigDecimal getWol3() {
+        return this.wol3;
+    }
 
-	public void setWoeq7(BigDecimal woeq7) {
-		this.woeq7 = woeq7;
-	}
+    public void setWol3(BigDecimal wol3) {
+        this.wol3 = wol3;
+    }
 
-	public String getWoeq8() {
-		return this.woeq8;
-	}
+    public Timestamp getWol4() {
+        return this.wol4;
+    }
 
-	public void setWoeq8(String woeq8) {
-		this.woeq8 = woeq8;
-	}
+    public void setWol4(Timestamp wol4) {
+        this.wol4 = wol4;
+    }
 
-	public String getWoeq9() {
-		return this.woeq9;
-	}
+    public String getWolablnk() {
+        return this.wolablnk;
+    }
 
-	public void setWoeq9(String woeq9) {
-		this.woeq9 = woeq9;
-	}
+    public void setWolablnk(String wolablnk) {
+        this.wolablnk = wolablnk;
+    }
 
-	public String getWogroup() {
-		return this.wogroup;
-	}
+    public String getWolo1() {
+        return this.wolo1;
+    }
 
-	public void setWogroup(String wogroup) {
-		this.wogroup = wogroup;
-	}
+    public void setWolo1(String wolo1) {
+        this.wolo1 = wolo1;
+    }
 
-	public int getWoisswap() {
-		return this.woisswap;
-	}
+    public Integer getWolo10() {
+        return this.wolo10;
+    }
 
-	public void setWoisswap(int woisswap) {
-		this.woisswap = woisswap;
-	}
+    public void setWolo10(Integer wolo10) {
+        this.wolo10 = wolo10;
+    }
 
-	public String getWojo1() {
-		return this.wojo1;
-	}
+    public String getWolo2() {
+        return this.wolo2;
+    }
 
-	public void setWojo1(String wojo1) {
-		this.wojo1 = wojo1;
-	}
+    public void setWolo2(String wolo2) {
+        this.wolo2 = wolo2;
+    }
 
-	public String getWojo2() {
-		return this.wojo2;
-	}
+    public String getWolo3() {
+        return this.wolo3;
+    }
 
-	public void setWojo2(String wojo2) {
-		this.wojo2 = wojo2;
-	}
+    public void setWolo3(String wolo3) {
+        this.wolo3 = wolo3;
+    }
 
-	public String getWojo3() {
-		return this.wojo3;
-	}
+    public String getWolo4() {
+        return this.wolo4;
+    }
 
-	public void setWojo3(String wojo3) {
-		this.wojo3 = wojo3;
-	}
+    public void setWolo4(String wolo4) {
+        this.wolo4 = wolo4;
+    }
 
-	public BigDecimal getWojo4() {
-		return this.wojo4;
-	}
+    public String getWolo5() {
+        return this.wolo5;
+    }
 
-	public void setWojo4(BigDecimal wojo4) {
-		this.wojo4 = wojo4;
-	}
+    public void setWolo5(String wolo5) {
+        this.wolo5 = wolo5;
+    }
 
-	public String getWojo5() {
-		return this.wojo5;
-	}
+    public BigDecimal getWolo6() {
+        return this.wolo6;
+    }
 
-	public void setWojo5(String wojo5) {
-		this.wojo5 = wojo5;
-	}
+    public void setWolo6(BigDecimal wolo6) {
+        this.wolo6 = wolo6;
+    }
 
-	public String getWojo6() {
-		return this.wojo6;
-	}
+    public Timestamp getWolo7() {
+        return this.wolo7;
+    }
 
-	public void setWojo6(String wojo6) {
-		this.wojo6 = wojo6;
-	}
+    public void setWolo7(Timestamp wolo7) {
+        this.wolo7 = wolo7;
+    }
 
-	public String getWojo7() {
-		return this.wojo7;
-	}
+    public BigDecimal getWolo8() {
+        return this.wolo8;
+    }
 
-	public void setWojo7(String wojo7) {
-		this.wojo7 = wojo7;
-	}
+    public void setWolo8(BigDecimal wolo8) {
+        this.wolo8 = wolo8;
+    }
 
-	public String getWojo8() {
-		return this.wojo8;
-	}
+    public String getWolo9() {
+        return this.wolo9;
+    }
 
-	public void setWojo8(String wojo8) {
-		this.wojo8 = wojo8;
-	}
+    public void setWolo9(String wolo9) {
+        this.wolo9 = wolo9;
+    }
 
-	public String getWojp1() {
-		return this.wojp1;
-	}
+    public String getWonum() {
+        return this.wonum;
+    }
 
-	public void setWojp1(String wojp1) {
-		this.wojp1 = wojp1;
-	}
+    public void setWonum(String wonum) {
+        this.wonum = wonum;
+    }
 
-	public String getWojp2() {
-		return this.wojp2;
-	}
+    public Integer getWopriority() {
+        return this.wopriority;
+    }
 
-	public void setWojp2(String wojp2) {
-		this.wojp2 = wojp2;
-	}
+    public void setWopriority(Integer wopriority) {
+        this.wopriority = wopriority;
+    }
 
-	public String getWojp3() {
-		return this.wojp3;
-	}
+    public String getWorklocation() {
+        return this.worklocation;
+    }
 
-	public void setWojp3(String wojp3) {
-		this.wojp3 = wojp3;
-	}
+    public void setWorklocation(String worklocation) {
+        this.worklocation = worklocation;
+    }
 
-	public BigDecimal getWojp4() {
-		return this.wojp4;
-	}
+    public String getWorkpackmtlstatus() {
+        return this.workpackmtlstatus;
+    }
 
-	public void setWojp4(BigDecimal wojp4) {
-		this.wojp4 = wojp4;
-	}
+    public void setWorkpackmtlstatus(String workpackmtlstatus) {
+        this.workpackmtlstatus = workpackmtlstatus;
+    }
 
-	public Timestamp getWojp5() {
-		return this.wojp5;
-	}
+    public String getWorktype() {
+        return this.worktype;
+    }
 
-	public void setWojp5(Timestamp wojp5) {
-		this.wojp5 = wojp5;
-	}
+    public void setWorktype(String worktype) {
+        this.worktype = worktype;
+    }
 
-	public String getWol1() {
-		return this.wol1;
-	}
+    public String getWorts1() {
+        return this.worts1;
+    }
 
-	public void setWol1(String wol1) {
-		this.wol1 = wol1;
-	}
+    public void setWorts1(String worts1) {
+        this.worts1 = worts1;
+    }
 
-	public String getWol2() {
-		return this.wol2;
-	}
+    public String getWorts2() {
+        return this.worts2;
+    }
 
-	public void setWol2(String wol2) {
-		this.wol2 = wol2;
-	}
+    public void setWorts2(String worts2) {
+        this.worts2 = worts2;
+    }
 
-	public BigDecimal getWol3() {
-		return this.wol3;
-	}
+    public String getWorts3() {
+        return this.worts3;
+    }
 
-	public void setWol3(BigDecimal wol3) {
-		this.wol3 = wol3;
-	}
+    public void setWorts3(String worts3) {
+        this.worts3 = worts3;
+    }
 
-	public Timestamp getWol4() {
-		return this.wol4;
-	}
 
-	public void setWol4(Timestamp wol4) {
-		this.wol4 = wol4;
-	}
+    public BigDecimal getWorts5() {
+        return this.worts5;
+    }
 
-	public String getWolablnk() {
-		return this.wolablnk;
-	}
+    public void setWorts5(BigDecimal worts5) {
+        this.worts5 = worts5;
+    }
 
-	public void setWolablnk(String wolablnk) {
-		this.wolablnk = wolablnk;
-	}
+    public Integer getWosequence() {
+        return this.wosequence;
+    }
 
-	public String getWolo1() {
-		return this.wolo1;
-	}
-
-	public void setWolo1(String wolo1) {
-		this.wolo1 = wolo1;
-	}
-
-	public int getWolo10() {
-		return this.wolo10;
-	}
-
-	public void setWolo10(int wolo10) {
-		this.wolo10 = wolo10;
-	}
-
-	public String getWolo2() {
-		return this.wolo2;
-	}
-
-	public void setWolo2(String wolo2) {
-		this.wolo2 = wolo2;
-	}
-
-	public String getWolo3() {
-		return this.wolo3;
-	}
-
-	public void setWolo3(String wolo3) {
-		this.wolo3 = wolo3;
-	}
-
-	public String getWolo4() {
-		return this.wolo4;
-	}
-
-	public void setWolo4(String wolo4) {
-		this.wolo4 = wolo4;
-	}
-
-	public String getWolo5() {
-		return this.wolo5;
-	}
-
-	public void setWolo5(String wolo5) {
-		this.wolo5 = wolo5;
-	}
-
-	public BigDecimal getWolo6() {
-		return this.wolo6;
-	}
-
-	public void setWolo6(BigDecimal wolo6) {
-		this.wolo6 = wolo6;
-	}
-
-	public Timestamp getWolo7() {
-		return this.wolo7;
-	}
-
-	public void setWolo7(Timestamp wolo7) {
-		this.wolo7 = wolo7;
-	}
-
-	public BigDecimal getWolo8() {
-		return this.wolo8;
-	}
-
-	public void setWolo8(BigDecimal wolo8) {
-		this.wolo8 = wolo8;
-	}
-
-	public String getWolo9() {
-		return this.wolo9;
-	}
-
-	public void setWolo9(String wolo9) {
-		this.wolo9 = wolo9;
-	}
-
-	public String getWonum() {
-		return this.wonum;
-	}
-
-	public void setWonum(String wonum) {
-		this.wonum = wonum;
-	}
-
-	public int getWopriority() {
-		return this.wopriority;
-	}
-
-	public void setWopriority(int wopriority) {
-		this.wopriority = wopriority;
-	}
-
-	public String getWorklocation() {
-		return this.worklocation;
-	}
-
-	public void setWorklocation(String worklocation) {
-		this.worklocation = worklocation;
-	}
-
-	public String getWorkpackmtlstatus() {
-		return this.workpackmtlstatus;
-	}
-
-	public void setWorkpackmtlstatus(String workpackmtlstatus) {
-		this.workpackmtlstatus = workpackmtlstatus;
-	}
-
-	public String getWorktype() {
-		return this.worktype;
-	}
-
-	public void setWorktype(String worktype) {
-		this.worktype = worktype;
-	}
-
-	public String getWorts1() {
-		return this.worts1;
-	}
-
-	public void setWorts1(String worts1) {
-		this.worts1 = worts1;
-	}
-
-	public String getWorts2() {
-		return this.worts2;
-	}
-
-	public void setWorts2(String worts2) {
-		this.worts2 = worts2;
-	}
-
-	public String getWorts3() {
-		return this.worts3;
-	}
-
-	public void setWorts3(String worts3) {
-		this.worts3 = worts3;
-	}
-
-	public Timestamp getWorts4() {
-		return this.worts4;
-	}
-
-	public void setWorts4(Timestamp worts4) {
-		this.worts4 = worts4;
-	}
-
-	public BigDecimal getWorts5() {
-		return this.worts5;
-	}
-
-	public void setWorts5(BigDecimal worts5) {
-		this.worts5 = worts5;
-	}
-
-	public int getWosequence() {
-		return this.wosequence;
-	}
-
-	public void setWosequence(int wosequence) {
-		this.wosequence = wosequence;
-	}
+    public void setWosequence(Integer wosequence) {
+        this.wosequence = wosequence;
+    }
 
 }

@@ -490,6 +490,12 @@
       <artifactId>db2jcclicensecu</artifactId>
       <version>1.0</version>
     </dependency>
+    <dependency>
+      <groupId>com.businessobjects</groupId>
+      <artifactId>businessobjects</artifactId>
+      <version>7.6-abb</version>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>AbbServer</finalName>

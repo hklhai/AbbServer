@@ -1,5 +1,6 @@
 package com.hxqh.abb.service;
 
+import com.hxqh.abb.common.util.MXCipherXUtils;
 import com.hxqh.abb.dao.*;
 import com.hxqh.abb.model.Location;
 import com.hxqh.abb.model.Maxuser;
@@ -47,8 +48,7 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
 
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("loginid", loginDto.getLoginid());
-        params.put("userid",  loginDto.getUserid());
-        String where = "loginid=:loginid and userid=:userid";
+        String where = "loginid=:loginid ";
         List<Maxuser> maxuserList = maxuserDao.findAll(where, params, null);
         return maxuserList;
     }
@@ -59,7 +59,7 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
         orderby.put("duedate", "ASC");
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("description", BigDecimal.ZERO);
-        List<Wfassignment> wfassignmentList= wfassignmentDao.findAll(0,5,null, params,null);
+        List<Wfassignment> wfassignmentList = wfassignmentDao.findAll(0, 5, null, params, null);
         return wfassignmentList;
     }
 
