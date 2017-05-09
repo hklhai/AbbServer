@@ -65,15 +65,9 @@
                 <label for="userName">用户名：</label>
                 <input type="text" id="userName" class="txt-input input-blue" name="user" />
             </div>
-<<<<<<< HEAD
             <div class="login-item pwd-item">
                 <label for="pwd">密码：</label>
                 <input type="password" id="pwd" class="txt-input input-grey" name="pwd" />
-=======
-            <div class="login-item password-item">
-                <label for="password">密码：</label>
-                <input type="password" id="password" class="txt-input input-grey" name="password" />
->>>>>>> da23b9686b8edef2f8267ca8bee534e05931fa0f
             </div>
             <div class="check-item">
               <%--  <input type="checkbox" value="自动登录">
