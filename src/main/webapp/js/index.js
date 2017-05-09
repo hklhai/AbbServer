@@ -20,7 +20,7 @@ $.validator.setDefaults({
             method: "post",
             data: {
                 loginid : username,
-                userid  : pwd
+                password  : pwd
             },
             dataType: "json",
             success: function(data){
