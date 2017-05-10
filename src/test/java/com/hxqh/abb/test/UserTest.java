@@ -9,6 +9,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -35,7 +38,23 @@ public class UserTest {
         str = sb.toString();
 
         System.out.println(str);
+    }
 
+    @Test
+    public void convert() {
+        Timestamp ts = new Timestamp(System.currentTimeMillis());
+        String tsStr = "";
+        DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        try {
+            //方法一
+            tsStr = sdf.format(ts);
+            System.out.println(tsStr);
+//            //方法二
+//            tsStr = ts.toString();
+//            System.out.println(tsStr);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

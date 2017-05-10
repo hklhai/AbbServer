@@ -49,7 +49,12 @@ public class IndexController {
     @RequestMapping(value = "/message", method = RequestMethod.GET)
     @ResponseBody
     public IndexDto systemMessage() {
-        IndexDto indexDto = systemService.getSystemMessage();
+        IndexDto indexDto = null;
+        try {
+            indexDto = systemService.getSystemMessage();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return indexDto;
     }
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
 http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 http://www.springframework.org/schema/context
@@ -11,68 +11,83 @@ http://www.springframework.org/schema/mvc
 http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
 
 
-	<!--扫描注解方式的controller -->
-	<context:component-scan base-package="com.hxqh.abb.controller" />
+    <!--扫描注解方式的controller -->
+    <context:component-scan base-package="com.hxqh.abb.controller"/>
 
     <!-- 配置直接转发页面 跳过handler -->
-	<mvc:view-controller path="/query" view-name="query/toquery" />
-	<mvc:view-controller path="/information" view-name="information/webContent" />
-	<mvc:view-controller path="/synopsis" view-name="/index/istcoutline" />
-	<mvc:view-controller path="/intro" view-name="/index/introduction" />
-	<mvc:view-controller path="/law" view-name="/index/laws" />
-	<mvc:view-controller path="/contact" view-name="/index/contactus" />
-	<mvc:view-controller path="/fore" view-name="/query/forecast" />
-	
-	<mvc:default-servlet-handler/>
-	
-	<!-- 优化注解 -->
-	<mvc:annotation-driven>
-		<mvc:message-converters>
-			<bean
-				class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
-				<!--解决空值无法显示字段问题 -->
-				<property name="features">
-					<array value-type="com.alibaba.fastjson.serializer.SerializerFeature">
-						<value>WriteMapNullValue</value>
-					</array>
-				</property>
-			</bean>
-		</mvc:message-converters>
-	</mvc:annotation-driven>
+    <mvc:view-controller path="/query" view-name="query/toquery"/>
+    <mvc:view-controller path="/information" view-name="information/webContent"/>
+    <mvc:view-controller path="/synopsis" view-name="/index/istcoutline"/>
+    <mvc:view-controller path="/intro" view-name="/index/introduction"/>
+    <mvc:view-controller path="/law" view-name="/index/laws"/>
+    <mvc:view-controller path="/contact" view-name="/index/contactus"/>
+    <mvc:view-controller path="/fore" view-name="/query/forecast"/>
 
-	<!-- configure the InternalResourceViewResolver 逻辑视图转换为物理视图 -->
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/jsp/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
+    <mvc:default-servlet-handler/>
 
-	<!-- 使用自定义视图 -->
-	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.BeanNameViewResolver">
-		<property name="order" value="100"></property>
-	</bean>
+    <!-- 优化注解 -->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean
+                    class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <!--解决空值无法显示字段问题 -->
+                <property name="features">
+                    <array value-type="com.alibaba.fastjson.serializer.SerializerFeature">
+                        <value>WriteMapNullValue</value>
+                    </array>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!-- configure the InternalResourceViewResolver 逻辑视图转换为物理视图 -->
+    <bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 使用自定义视图 -->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.BeanNameViewResolver">
+        <property name="order" value="100"></property>
+    </bean>
+
+    <mvc:annotation-driven>
+        <!-- 处理responseBody 里面日期类型 -->
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="objectMapper">
+                    <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                        <property name="dateFormat">
+                            <bean class="java.text.SimpleDateFormat">
+                                <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss" />
+                            </bean>
+                        </property>
+                    </bean>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!-- 异常处理解析器 -->
+    <!-- 	<bean id="exceptionResolver"
+            class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+            <property name="exceptionMappings">
+                <props>
+                    <prop key="java.lang.Exception">error/error</prop>
+                    <prop key="IOException">error/io</prop>
+                    <prop key="java.sql.SQLException">error/sql</prop>
+                </props>
+            </property>
+        </bean> -->
 
 
-	<!-- 异常处理解析器 -->
-<!-- 	<bean id="exceptionResolver"
-		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		<property name="exceptionMappings">
-			<props>
-				<prop key="java.lang.Exception">error/error</prop>
-				<prop key="IOException">error/io</prop>
-				<prop key="java.sql.SQLException">error/sql</prop>
-			</props>
-		</property>
-	</bean> -->
-
-
-
-	<!--=================================== Bean Validator ===================================== -->
-	<!-- <bean id="beanValidator" class="org.springmodules.validation.bean.BeanValidator"> 
-		<property name="configurationLoader"> <bean class="org.springmodules.validation.bean.conf.loader.xml.DefaultXmlBeanValidationConfigurationLoader"> 
-		<property name="resources" value="/WEB-INF/validation/*.xml"/> </bean> </property> 
-		</bean> -->
+    <!--=================================== Bean Validator ===================================== -->
+    <!-- <bean id="beanValidator" class="org.springmodules.validation.bean.BeanValidator">
+        <property name="configurationLoader"> <bean class="org.springmodules.validation.bean.conf.loader.xml.DefaultXmlBeanValidationConfigurationLoader">
+        <property name="resources" value="/WEB-INF/validation/*.xml"/> </bean> </property>
+        </bean> -->
 
 
 </beans>

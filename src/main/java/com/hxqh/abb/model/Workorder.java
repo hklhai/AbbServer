@@ -2,7 +2,6 @@ package com.hxqh.abb.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -20,7 +19,7 @@ public class Workorder implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WORKORDER_WORKORDERID_GENERATOR")
     private Long workorderid;
 
-    private Timestamp actfinish;
+    private Date actfinish;
 
     //private BigDecimal actIntegerlabcost;
 
@@ -38,7 +37,7 @@ public class Workorder implements Serializable {
 
     private BigDecimal actservcost;
 
-    private Timestamp actstart;
+    private Date actstart;
 
     private BigDecimal acttoolcost;
 
@@ -56,7 +55,7 @@ public class Workorder implements Serializable {
 
     private String assignedownergroup;
 
-    private Timestamp availstatusdate;
+    private Date availstatusdate;
 
     private String backoutplan;
 
@@ -72,7 +71,7 @@ public class Workorder implements Serializable {
 
     private String changeby;
 
-    private Timestamp changedate;
+    private Date changedate;
 
     private Integer chargestore;
 
@@ -141,7 +140,7 @@ public class Workorder implements Serializable {
 
     private String externalrefid;
 
-    private Timestamp faildate;
+    private Date faildate;
 
     private String failurecode;
 
@@ -155,7 +154,7 @@ public class Workorder implements Serializable {
 
     private Integer flowcontrolled;
 
-    //private Timestamp fnlconstraInteger;
+    //private Date fnlconstraInteger;
 
     private String generatedforpo;
 
@@ -193,7 +192,7 @@ public class Workorder implements Serializable {
 
     private String langcode;
 
-    //private Timestamp lastcopylinkdate;
+    //private Date lastcopylinkdate;
 
     private String launchentryname;
 
@@ -206,7 +205,7 @@ public class Workorder implements Serializable {
 
     private Integer los;
 
-    //private Timestamp measuredate;
+    //private Date measuredate;
 
     private BigDecimal measurementvalue;
 
@@ -257,9 +256,9 @@ public class Workorder implements Serializable {
 
     private Integer pluscloop;
 
-    //private Timestamp pluscnextdate;
+    //private Date pluscnextdate;
 
-    //private Timestamp pluscoverduedate;
+    //private Date pluscoverduedate;
 
     private String pluscphyloc;
 
@@ -286,13 +285,13 @@ public class Workorder implements Serializable {
 
     private String repfacsiteid;
 
-    //private Timestamp reportdate;
+    //private Date reportdate;
 
     private String reportedby;
 
     private Integer reqasstdwntime;
 
-    //private Timestamp respondby;
+    //private Date respondby;
 
     private String risk;
 
@@ -302,9 +301,9 @@ public class Workorder implements Serializable {
 
     private Long rowstamp;
 
-    //private Timestamp schedfinish;
+    //private Date schedfinish;
 
-    //private Timestamp schedstart;
+    //private Date schedstart;
 
     private String sctnum;
 
@@ -312,14 +311,14 @@ public class Workorder implements Serializable {
 
     private String siteid;
 
-    //private Timestamp sneconstraInteger;
+    //private Date sneconstraInteger;
 
     private String sourcesysid;
 
     @Column(name = "\"STATUS\"")
     private String status;
 
-    //private Timestamp statusdate;
+    //private Date statusdate;
 
     private String storeroommtlstatus;
 
@@ -327,11 +326,11 @@ public class Workorder implements Serializable {
 
     private Integer suspendflow;
 
-    //private Timestamp targcompdate;
+    //private Date targcompdate;
 
     private String targetdesc;
 
-    //private Timestamp targstartdate;
+    //private Date targstartdate;
 
     private Integer taskid;
 
@@ -365,7 +364,7 @@ public class Workorder implements Serializable {
 
     private BigDecimal woeq12;
 
-    //private Timestamp woeq13;
+    //private Date woeq13;
 
     private BigDecimal woeq14;
 
@@ -377,7 +376,7 @@ public class Workorder implements Serializable {
 
     private BigDecimal woeq5;
 
-    //private Timestamp woeq6;
+    //private Date woeq6;
 
     private BigDecimal woeq7;
 
@@ -413,7 +412,7 @@ public class Workorder implements Serializable {
 
     private BigDecimal wojp4;
 
-    private Timestamp wojp5;
+    private Date wojp5;
 
     private String wol1;
 
@@ -421,7 +420,7 @@ public class Workorder implements Serializable {
 
     private BigDecimal wol3;
 
-    private Timestamp wol4;
+    private Date wol4;
 
     private String wolablnk;
 
@@ -439,7 +438,7 @@ public class Workorder implements Serializable {
 
     private BigDecimal wolo6;
 
-    private Timestamp wolo7;
+    private Date wolo7;
 
     private BigDecimal wolo8;
 
@@ -461,7 +460,7 @@ public class Workorder implements Serializable {
 
     private String worts3;
 
-    //private Timestamp worts4;
+    //private Date worts4;
 
     private BigDecimal worts5;
 
@@ -478,11 +477,11 @@ public class Workorder implements Serializable {
         this.workorderid = workorderid;
     }
 
-    public Timestamp getActfinish() {
+    public Date getActfinish() {
         return this.actfinish;
     }
 
-    public void setActfinish(Timestamp actfinish) {
+    public void setActfinish(Date actfinish) {
         this.actfinish = actfinish;
     }
 
@@ -550,11 +549,11 @@ public class Workorder implements Serializable {
         this.actservcost = actservcost;
     }
 
-    public Timestamp getActstart() {
+    public Date getActstart() {
         return this.actstart;
     }
 
-    public void setActstart(Timestamp actstart) {
+    public void setActstart(Date actstart) {
         this.actstart = actstart;
     }
 
@@ -622,11 +621,11 @@ public class Workorder implements Serializable {
         this.assignedownergroup = assignedownergroup;
     }
 
-    public Timestamp getAvailstatusdate() {
+    public Date getAvailstatusdate() {
         return this.availstatusdate;
     }
 
-    public void setAvailstatusdate(Timestamp availstatusdate) {
+    public void setAvailstatusdate(Date availstatusdate) {
         this.availstatusdate = availstatusdate;
     }
 
@@ -686,11 +685,11 @@ public class Workorder implements Serializable {
         this.changeby = changeby;
     }
 
-    public Timestamp getChangedate() {
+    public Date getChangedate() {
         return this.changedate;
     }
 
-    public void setChangedate(Timestamp changedate) {
+    public void setChangedate(Date changedate) {
         this.changedate = changedate;
     }
 
@@ -906,11 +905,11 @@ public class Workorder implements Serializable {
         this.externalrefid = externalrefid;
     }
 
-    public Timestamp getFaildate() {
+    public Date getFaildate() {
         return this.faildate;
     }
 
-    public void setFaildate(Timestamp faildate) {
+    public void setFaildate(Date faildate) {
         this.faildate = faildate;
     }
 
@@ -1840,11 +1839,11 @@ public class Workorder implements Serializable {
         this.wojp4 = wojp4;
     }
 
-    public Timestamp getWojp5() {
+    public Date getWojp5() {
         return this.wojp5;
     }
 
-    public void setWojp5(Timestamp wojp5) {
+    public void setWojp5(Date wojp5) {
         this.wojp5 = wojp5;
     }
 
@@ -1872,11 +1871,11 @@ public class Workorder implements Serializable {
         this.wol3 = wol3;
     }
 
-    public Timestamp getWol4() {
+    public Date getWol4() {
         return this.wol4;
     }
 
-    public void setWol4(Timestamp wol4) {
+    public void setWol4(Date wol4) {
         this.wol4 = wol4;
     }
 
@@ -1944,11 +1943,11 @@ public class Workorder implements Serializable {
         this.wolo6 = wolo6;
     }
 
-    public Timestamp getWolo7() {
+    public Date getWolo7() {
         return this.wolo7;
     }
 
-    public void setWolo7(Timestamp wolo7) {
+    public void setWolo7(Date wolo7) {
         this.wolo7 = wolo7;
     }
 

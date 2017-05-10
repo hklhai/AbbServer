@@ -2,7 +2,6 @@ package com.hxqh.abb.service;
 
 import com.hxqh.abb.model.Location;
 import com.hxqh.abb.model.Maxuser;
-import com.hxqh.abb.model.Wfassignment;
 import com.hxqh.abb.model.dto.IndexDto;
 import com.hxqh.abb.model.dto.LoginDto;
 import com.hxqh.abb.service.base.BaseService;
@@ -28,7 +27,7 @@ public interface SystemService extends BaseService {
 
     /*============================首页管理开始========================*/
 
-    public abstract IndexDto getSystemMessage();
+    public abstract IndexDto getSystemMessage() throws Exception;
 
 
 
