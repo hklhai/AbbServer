@@ -1,6 +1,5 @@
 package com.hxqh.abb.controller;
 
-import com.hxqh.abb.common.util.FastJsonTools;
 import com.hxqh.abb.common.util.MXCipherXUtils;
 import com.hxqh.abb.model.Location;
 import com.hxqh.abb.model.Maxuser;
@@ -16,8 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import psdi.util.MXException;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

@@ -2,10 +2,7 @@ package com.hxqh.abb.test;
 
 import com.hxqh.abb.common.util.MXCipherXUtils;
 import com.hxqh.abb.dao.*;
-import com.hxqh.abb.model.Location;
-import com.hxqh.abb.model.Maxuser;
-import com.hxqh.abb.model.Organization;
-import com.hxqh.abb.model.Site;
+import com.hxqh.abb.model.*;
 import com.hxqh.abb.model.dto.IndexDto;
 import com.hxqh.abb.model.dto.LoginDto;
 import com.hxqh.abb.service.SystemService;
@@ -43,7 +40,11 @@ public class SystemTest {
     private OrganizationDao organizationDao;
     @Resource
     private SiteDao siteDao;
-
+    @Resource
+    private LocationDao locationDao;
+    @Resource
+    private UdtoolDao udtoolDao;
+    
     @Test
     public void testGetLocation() {
         List<Location> locationList = systemService.getLocationList();
@@ -147,15 +148,23 @@ public class SystemTest {
         maxuser.setDefsite("234");
         LoginDto loginDto = new LoginDto();
         try {
-            BeanUtils.copyProperties(loginDto,maxuser);
+            BeanUtils.copyProperties(loginDto, maxuser);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
         System.out.println(loginDto);
-
     }
 
+
+    @Test
+    public void testLocationsAndUDTool() {
+        List<Location> all = locationDao.findAll();
+        List<Udtool> all1 = udtoolDao.findAll();
+
+        Assert.assertEquals(27, all.size());
+        Assert.assertEquals(27, all1.size());
+    }
 
 }
