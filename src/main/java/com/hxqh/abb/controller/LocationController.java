@@ -1,7 +1,7 @@
 package com.hxqh.abb.controller;
 
-import com.hxqh.abb.model.assist.UdtoolDto;
-import com.hxqh.abb.service.ToolService;
+import com.hxqh.abb.model.assist.LocationDto;
+import com.hxqh.abb.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,37 +15,37 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping("/tool")
-public class ToolController {
+@RequestMapping("/location")
+public class LocationController {
     @Autowired
-    private ToolService toolService;
+    private LocationService locationService;
 
     /**
-     * 工具页面跳转
+     * 地图页面跳转
      * 2017-5-10
      * @return
      */
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String list() {
-        return "tool/tool";
+    @RequestMapping(value = "/map", method = RequestMethod.GET)
+    public String map() {
+        return "stock/stock";
     }
 
 
     /**
-     * 工具页面数据接口
+     * 地图页面数据接口
      * 2017-5-10
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/listdata", method = RequestMethod.GET)
-    public List<UdtoolDto> listdata() {
-        List<UdtoolDto> listData = null;
+    @RequestMapping(value = "/mapdata", method = RequestMethod.GET)
+    public List<LocationDto> mapData() {
+        List<LocationDto> mapData = null;
         try {
-            listData= toolService.getListData();
+            mapData= locationService.getMapData();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return listData;
+        return mapData;
     }
 
 }
