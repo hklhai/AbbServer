@@ -2,7 +2,7 @@ package com.hxqh.abb.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.sql.Date;
 
 
 /**
@@ -99,9 +99,9 @@ public class Wfassignment implements Serializable {
 	private long wfid;
 
 
-	private Timestamp duedate;
+	private Date duedate;
 	private String description;
-	private Timestamp startdate;
+	private Date startdate;
 	@Column(name = "\"PRIORITY\"")
 	private Integer priority;
 
@@ -121,11 +121,11 @@ public class Wfassignment implements Serializable {
 		this.wfassignmentid = wfassignmentid;
 	}
 
-	public Timestamp getDuedate() {
+	public Date getDuedate() {
 		return duedate;
 	}
 
-	public void setDuedate(Timestamp duedate) {
+	public void setDuedate(Date duedate) {
 		this.duedate = duedate;
 	}
 
@@ -137,11 +137,11 @@ public class Wfassignment implements Serializable {
 		this.description = description;
 	}
 
-	public Timestamp getStartdate() {
+	public Date getStartdate() {
 		return startdate;
 	}
 
-	public void setStartdate(Timestamp startdate) {
+	public void setStartdate(Date startdate) {
 		this.startdate = startdate;
 	}
 

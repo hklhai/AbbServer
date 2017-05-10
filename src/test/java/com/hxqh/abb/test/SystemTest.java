@@ -3,10 +3,13 @@ package com.hxqh.abb.test;
 import com.hxqh.abb.common.util.MXCipherXUtils;
 import com.hxqh.abb.dao.*;
 import com.hxqh.abb.model.Location;
+import com.hxqh.abb.model.Maxuser;
 import com.hxqh.abb.model.Organization;
 import com.hxqh.abb.model.Site;
+import com.hxqh.abb.model.dto.IndexDto;
 import com.hxqh.abb.model.dto.LoginDto;
 import com.hxqh.abb.service.SystemService;
+import org.apache.commons.beanutils.BeanUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import psdi.util.MXException;
 
 import javax.annotation.Resource;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 /**
@@ -123,6 +127,33 @@ public class SystemTest {
         Assert.assertEquals(4, all.size());
         List<Site> all1 = siteDao.findAll();
         Assert.assertEquals(11, all1.size());
+    }
+
+    /**
+     * 测试 返回前台DTO对象
+     */
+    @Test
+    public void testDto() throws Exception {
+        IndexDto systemMessage = systemService.getSystemMessage();
+        System.out.println(systemMessage.getCalendarList());
+    }
+
+
+    @Test
+    public void testCopy() {
+        Maxuser maxuser = new Maxuser();
+        maxuser.setLoginid("111");
+        maxuser.setPassword("222");
+        maxuser.setDefsite("234");
+        LoginDto loginDto = new LoginDto();
+        try {
+            BeanUtils.copyProperties(loginDto,maxuser);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        System.out.println(loginDto);
 
     }
 
