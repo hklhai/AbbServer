@@ -15,7 +15,6 @@
     <meta name="keywords" content="">
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
     <script src="${ctx}/scripts/vue.js"></script>
-    <script src="${ctx}/js/index.js"></script>
     <link rel="stylesheet" href="${ctx}/css/reset.css">
     <link rel="stylesheet" href="${ctx}/css/index.css">
     <link rel="stylesheet" href="${ctx}/css/header.css">
@@ -138,8 +137,8 @@
                     <thead>
                     <tr>
                         <td width="30%" style="padding-left:2%;">描述</td>
-                        <td width="20%">到期日</td>
                         <td width="20%">开始日</td>
+                        <td width="20%">到期日</td>
                         <td width="20%">优先级</td>
                         <td width="8%">审批</td>
                     </tr>

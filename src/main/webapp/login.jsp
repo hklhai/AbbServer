@@ -16,76 +16,78 @@
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
-    <script src="${ctx}/js/index.js"></script>
+    <script src="${ctx}/scripts/vue.js"></script>
     <link rel="stylesheet" href="${ctx}/css/reset.css">
     <link rel="stylesheet" href="${ctx}/css/login.css">
     <script>
         $(function(){
-            $("#login-form").validate({
-                debug: true,
-                rules: {
-                    user: {
-                        required: true
-                    },
-                    pwd:{
-                        required: true
-                    }
-                }
-            })
-        });
-        $.validator.setDefaults({
-            submitHandler:function(){
-                var username = $("#userName").val();
-                var pwd = $("#pwd").val();
-                $.ajax({
-                    url: "${ctx}/index/login",
-                    method: "post",
-                    data: {
-                        loginid : username,
-                        password  : pwd
-                    },
-                    dataType: "json",
-                    success: function(data){
-                        if(data.success){
-                            if(data.code == "0"){
-                                var message = data.message;
-                                alert(message);
+            $("#reset").click(function(){
+                $("input[type='text']").val("");
+                $("input[type='password']").val("");
+            });
+            $("#userName").click(function(){
+                $("#pwd").removeClass("input-blue");
+                $("#userName").addClass("input-blue");
+            });
+            $("#pwd").click(function(){
+                $("#userName").removeClass("input-blue");
+                $("#pwd").addClass("input-blue");
+            });
+            $("#login").click(function(){
+                var username = $("#userName").val().trim();
+                var pwd = $("#pwd").val().trim();
+                if(username.length==0||pwd.length==0){
+                     $("#tip").text("用户名或者密码不能为空");
+                }else{
+                    $.ajax({
+                        url: "${ctx}/index/login",
+                        method: "post",
+                        data: {
+                            loginid : username,
+                            password  : pwd
+                        },
+                        dataType: "json",
+                        success: function(data){
+                            if(data.success){
+                                if(data.code == "0"){
+                                    $("#tip").text(data.message);
+                                }
+                                if(data.code == "1"){
+                                    window.location.href = "${ctx}/index/toIndex";
+                                }
                             }
-                            if(data.code == "1"){
-                                window.location.href = "${ctx}/index/toIndex";
-                            }
-                        }
-                    },
-                    error: function(){
+                        },
+                        error: function(){
 
-                    }
-                })
-            }
+                        }
+                    })
+                }
+            });
         });
     </script>
 </head>
 <body>
 <div  class="login-layout">
     <div class="login-box">
-        <form action="#" class="login-form" id="login-form" method="post">
+        <div class="login-form" id="login-form">
             <div class="login-header"></div>
             <div class="login-item user-item">
                 <label for="userName">用户名：</label>
-                <input type="text" id="userName" class="txt-input input-blue" name="user" />
+                <input type="text" id="userName" class="txt-input  input-grey" name="user"/>
             </div>
             <div class="login-item pwd-item">
                 <label for="pwd">密码：</label>
                 <input type="password" id="pwd" class="txt-input input-grey" name="pwd" />
             </div>
-            <div class="check-item">
+            <div class="check-item" id="tip">
               <%--  <input type="checkbox" value="自动登录">
                 自动登录--%>
             </div>
             <div class="login-item">
-                <button class="btn-blue btn left">登录</button>
-                <button class="btn-grey btn right">取消</button>
+                <button class="btn-blue btn left" id="login">登录</button>
+                <button class="btn-grey btn right" id="reset">取消</button>
             </div>
-        </form>
+        </div>
     </div>
 </div>
 </body>

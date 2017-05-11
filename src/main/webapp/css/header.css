@@ -36,6 +36,14 @@ ul li a.index-a{
 	padding-right: 27px;
 	padding-left: 27px;
 }
+.li-hover{
+	border-top: 4px solid #22AFFC;
+}
+.a-hover{
+	border-left: 1px solid #0A0A0A;
+	height: 46px;
+	text-decoration: none;
+}
 ul li.li-item:hover{
 	border-top: 4px solid #22AFFC;
 }
