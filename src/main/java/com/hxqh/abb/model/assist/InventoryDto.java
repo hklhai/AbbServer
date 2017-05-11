@@ -1,8 +1,6 @@
 package com.hxqh.abb.model.assist;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 
 
 public class InventoryDto {
