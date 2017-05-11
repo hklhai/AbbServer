@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 
-@Entity
-@Table(name = "Inventory")
 public class InventoryDto {
 
     private String siteid;//	SITEID	服务站点
