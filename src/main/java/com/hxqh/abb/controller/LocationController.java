@@ -17,12 +17,14 @@ import java.util.List;
 @Controller
 @RequestMapping("/location")
 public class LocationController {
+
     @Autowired
     private LocationService locationService;
 
     /**
      * 地图页面跳转
      * 2017-5-10
+     *
      * @return
      */
     @RequestMapping(value = "/map", method = RequestMethod.GET)
@@ -34,6 +36,7 @@ public class LocationController {
     /**
      * 地图页面数据接口
      * 2017-5-10
+     *
      * @return
      */
     @ResponseBody
@@ -41,7 +44,7 @@ public class LocationController {
     public List<LocationDto> mapData() {
         List<LocationDto> mapData = null;
         try {
-            mapData= locationService.getMapData();
+            mapData = locationService.getMapData();
         } catch (Exception e) {
             e.printStackTrace();
         }
