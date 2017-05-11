@@ -15,14 +15,43 @@
     <meta name="keywords" content="">
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
     <script src="${ctx}/scripts/vue.js"></script>
-    <script src="${ctx}/js/index.js"></script>
     <link rel="stylesheet" href="${ctx}/css/reset.css">
     <link rel="stylesheet" href="${ctx}/css/stock-tool.css">
     <link rel="stylesheet" href="${ctx}/css/header.css">
+    <script type="text/javascript">
+        $(function(){
+            var indexData = new Vue({
+                el: "#stock-data",
+                data: {
+                    tool: [],
+                    tools: ["a","b"]
+                },
+                method:{
+
+                },
+                created: function(){
+                    var self = this;
+                    $.ajax({
+                        url: "${ctx}/tool/listdata",
+                        method: "get",
+                        dataType: "json",
+                        success: function(data){
+                            self.tool = data;
+                            console.log(self.tool);
+                        },
+                        error: function(){
+
+                        }
+                    });
+                }
+            });
+        });
+
+    </script>
 </head>
 <body>
 <%@ include file="../commons/header.jsp"%>
-        <div class="stock-content">
+        <div class="stock-content" id="stock-data">
             <div class="stock-layout">
                  <div class="index-content-tit">
                       <span class="stock-tit">库存管理</span>
@@ -55,54 +84,12 @@
                         <div class="clearfix"></div>
                     </div>
                     <table class="stock-table">
-                        <tr>
-                            <td width="264px">TEST1001</td>
-                            <td width="220px">三相继电保护测试仪</td>
-                            <td width="212px">完成</td>
-                            <td width="322px">张三</td>
-                            <td width="168px">NJ</td>
-                        </tr>
-                        <tr>
-                            <td>NJ</td>
-                            <td>NJ-SWG</td>
-                            <td>NBB-N108Y</td>
-                            <td>带电的绝缘体</td>
-                            <td>DIK-10-10N</td> 
-                        </tr>
-                        <tr>
-                            <td>NJ</td>
-                            <td>NJ-SWG</td>
-                            <td>NBB-N108Y</td>
-                            <td>带电的绝缘体</td>
-                            <td>DIK-10-10N</td> 
-                        </tr>
-                        <tr>
-                            <td>NJ</td>
-                            <td>NJ-SWG</td>
-                            <td>NBB-N108Y</td>
-                            <td>带电的绝缘体</td>
-                            <td>DIK-10-10N</td> 
-                        </tr>
-                        <tr>
-                            <td>NJ</td>
-                            <td>NJ-SWG</td>
-                            <td>NBB-N108Y</td>
-                            <td>带电的绝缘体</td>
-                            <td>DIK-10-10N</td> 
-                        </tr>
-                        <tr>
-                            <td>NJ</td>
-                            <td>NJ-SWG</td>
-                            <td>NBB-N108Y</td>
-                            <td>带电的绝缘体</td>
-                            <td>DIK-10-10N</td> 
-                        </tr>
-                        <tr>
-                            <td>NJ</td>
-                            <td>NJ-SWG</td>
-                            <td>NBB-N108Y</td>
-                            <td>带电的绝缘体</td>
-                            <td>DIK-10-10N</td> 
+                        <tr v-for="item in tool">
+                            <td width="21%">{{item.toolnum}}</td>
+                            <td width="20%">{{item.description}}</td>
+                            <td width="20%">{{item.status}}</td>
+                            <td width="23%">{{item.keeper}}</td>
+                            <td width="15%">NJ</td>
                         </tr>
                     </table>
                  </div>

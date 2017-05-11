@@ -1,7 +1,6 @@
 .stock-layout{
-	width:1232px;
-	padding-left: 24px;
-	padding-right: 24px;
+	padding-left: 2%;
+	padding-right: 2%;
 	margin: 0 auto;
 	background: #EBEBEB;
 	padding-bottom: 30px;
@@ -15,32 +14,32 @@
 	font-size: 24px;
 	color: rgb(36, 36, 36);
 	padding-top: 41px;
-	padding-left:32px; 
+	padding-left:32px;
 	display: block;
 	float: left;
 }
 .stock-time{
-   height: 32px;
-   line-height: 32px;
-   font-size: 12px;
-   color: rgb(140, 140, 140);
-   padding-right:12px;
-   display: block;
-   float: right; 
+	height: 32px;
+	line-height: 32px;
+	font-size: 12px;
+	color: rgb(140, 140, 140);
+	padding-right:12px;
+	display: block;
+	float: right;
 }
 .stock-content-show{
-	padding-left: 24px;
-	padding-right: 24px;
+	padding-left: 3%;
+	padding-right: 3%;
 	background: #fff;
 	border: 1px solid #DADADA;
-    padding-bottom: 70px;
+	padding-bottom: 70px;
 }
 .table-tit{
 	padding-left: 12px;
 	font-size: 16px;
-    color: rgb(36, 36, 36);
-    height: 24px;
-    padding-top: 20px;
+	color: rgb(36, 36, 36);
+	height: 24px;
+	padding-top: 20px;
 }
 .search-item{
 	float: left;
@@ -49,21 +48,22 @@
 	margin-right: 20px;
 }
 .search-item input{
-    height: 30px;
+	height: 30px;
 	border: 1px solid #DADADA;
 }
 .search-item label{
-   height: 52px;
-   line-height: 52px;
-   font-size: 12px;
-   color: rgb(36, 36, 36);
-   display: block;
-   padding-left: 20px;
+	height: 52px;
+	line-height: 52px;
+	font-size: 12px;
+	color: rgb(36, 36, 36);
+	display: block;
+	padding-left: 20px;
 }
 .sevice{
 	width:125px;
 }
 .stock-table{
+	width:100%;
 	border-top: 1px solid #DADADA;
 	margin-top: 15px;
 }
@@ -75,32 +75,84 @@
 	color: rgb(36, 36, 36);
 }
 .stock-table tr td:first-child{
-   padding-left: 20px;
+	padding-left: 20px;
 }
 .tool-num{
-	margin-right: 52px;
+	margin-right: 4%;
+	width: 16%;
 }
 .tool-num input{
-	width: 194px;
+	width: 100%;
 }
 .tool-name{
-    margin-right: 30px;
+	margin-right: 4%;
+	width: 16%;
 }
 .tool-name input{
-    width: 190px;
+	width: 100%;
 }
 .tool-state{
-    margin-right: 88px;
+	margin-right: 8%;
+	width: 12%;
 }
 .tool-state input{
-	width: 128px;
+	width: 100%;
 }
 .tool-save input{
-	width: 126px;
+	width: 100%;
 }
 .tool-save{
-	margin-right: 190px;
+	margin-right: 7%;
+	width: 16%;
 }
 .tool-sevice{
-	width: 126px;
+	width: 16%;
+}
+.stock-siteid-item{
+	margin-right: 3%;
+	width: 10%;
+}
+.stock-location-item{
+	margin-right: 3%;
+	width: 10%;
+}
+.stock-itemnum-item{
+	margin-right: 3%;
+	width: 15%;
+}
+.stock-description-item{
+	margin-right: 7%;
+	width: 18%;
+	position: relative;
+}
+.stock-udsapnum-item{
+	width: 18%;
+}
+.stock-curbal-item{
+	width: 10%;
+}
+.search-item select{
+	background: transparent;
+	-webkit-appearance: none;
+	width: 120%;
+	height: 30px;
+	line-height: 30px;
+	border: 1px solid #DADADA;
+	border-radius: 5px;
+	position: relative;
+}
+.sel-form{
+	width:100%;
+	height: 30px;
+	overflow: hidden;
+	background: url("../img/select-logo.gif") no-repeat right #fff;
+}
+.search-icon{
+	width: 51px;
+	height: 30px;
+	display: block;
+	background: url("../img/search.gif") no-repeat;
+	position: absolute;
+	right: -30%;
+	bottom: 0%;
 }
