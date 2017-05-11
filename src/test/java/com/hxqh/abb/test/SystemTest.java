@@ -27,15 +27,12 @@ import java.util.List;
 public class SystemTest {
     @Resource
     private SystemService systemService;
-
     @Resource
     private AssetDao assetDao;
     @Resource
     private WorkorderDao workorderDao;
-
     @Resource
     private WfassignmentDao wfassignmentDao;
-
     @Resource
     private OrganizationDao organizationDao;
     @Resource
@@ -44,7 +41,68 @@ public class SystemTest {
     private LocationDao locationDao;
     @Resource
     private UdtoolDao udtoolDao;
-    
+    @Resource
+    private InventoryDao inventoryDao;
+    @Resource
+    private AssetattributeDao assetattributeDao;
+    @Resource
+    private ClassstructureDao classstructureDao;
+    @Resource
+    private CompanyDao companyDao;
+    @Resource
+    private InvbalanceDao invbalanceDao;
+    @Resource
+    private ItemDao itemDao;
+    @Resource
+    private MeterDao meterDao;
+    @Resource
+    private PersonDao personDao;
+    @Resource
+    private ServiceaddressDao serviceaddressDao;
+
+    @Test
+    public void onoToOne() {
+
+        Workorder workorder = workorderDao.find(2211L);
+        Location locations = workorder.getLocations();
+        System.out.println(locations);
+        System.out.println(locations.getDescription());
+
+//        Location location = locationDao.find(539l);
+//        Workorder workorder = location.getWorkorder();
+//        System.out.println(workorder.getDescription());
+
+    }
+
+
+    @Test
+    public void test8Class() {
+//        List<Assetattribute> list0=assetattributeDao.findAll();
+//        Assert.assertEquals(410,list0.size());
+//
+//        List<Classstructure> list1=classstructureDao.findAll();
+//        Assert.assertEquals(48,list1.size());
+//
+//        List<Company> list2=companyDao.findAll();
+//        Assert.assertEquals(111,list2.size());
+//
+//        List<Invbalance> list3=invbalanceDao.findAll();
+//        Assert.assertEquals(160,list3.size());
+//
+//        List<Item> list4=itemDao.findAll();
+//        Assert.assertEquals(122,list4.size());
+//
+//        List<Meter> list5=meterDao.findAll();
+//        Assert.assertEquals(169,list5.size());
+//
+//        List<Person> list6=personDao.findAll();
+//        Assert.assertEquals(77,list6.size());
+
+        List<Serviceaddress> list7 = serviceaddressDao.findAll();
+        Assert.assertEquals(0, list7.size());
+    }
+
+
     @Test
     public void testGetLocation() {
         List<Location> locationList = systemService.getLocationList();
@@ -97,7 +155,7 @@ public class SystemTest {
     public void testIndexAccess() {
         Assert.assertEquals(257, assetDao.findAll().size());
         Assert.assertEquals(8, workorderDao.findAll().size());
-        Assert.assertEquals(1438, wfassignmentDao.findAll().size());
+        //Assert.assertEquals(1438, wfassignmentDao.findAll().size());
         //System.out.println(workorderDao.findAll().size());
         //System.out.println(wfassignmentDao.findAll().size());
     }
@@ -166,5 +224,12 @@ public class SystemTest {
         Assert.assertEquals(27, all.size());
         Assert.assertEquals(27, all1.size());
     }
+
+    @Test
+    public void testInventoryAndAssetMan() {
+        List<Inventory> all = inventoryDao.findAll();
+        Assert.assertEquals(160, all.size());
+    }
+
 
 }
