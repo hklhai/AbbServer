@@ -27,15 +27,12 @@ import java.util.List;
 public class SystemTest {
     @Resource
     private SystemService systemService;
-
     @Resource
     private AssetDao assetDao;
     @Resource
     private WorkorderDao workorderDao;
-
     @Resource
     private WfassignmentDao wfassignmentDao;
-
     @Resource
     private OrganizationDao organizationDao;
     @Resource
@@ -48,27 +45,34 @@ public class SystemTest {
     private InventoryDao inventoryDao;
     @Resource
     private AssetattributeDao assetattributeDao;
-
     @Resource
     private ClassstructureDao classstructureDao;
-
     @Resource
     private CompanyDao companyDao;
-
     @Resource
     private InvbalanceDao invbalanceDao;
-
     @Resource
     private ItemDao itemDao;
-
     @Resource
     private MeterDao meterDao;
-
     @Resource
     private PersonDao personDao;
-
     @Resource
     private ServiceaddressDao serviceaddressDao;
+
+    @Test
+    public void onoToOne() {
+
+        Workorder workorder = workorderDao.find(2211L);
+        Location locations = workorder.getLocations();
+        System.out.println(locations);
+        System.out.println(locations.getDescription());
+
+//        Location location = locationDao.find(539l);
+//        Workorder workorder = location.getWorkorder();
+//        System.out.println(workorder.getDescription());
+
+    }
 
 
     @Test
