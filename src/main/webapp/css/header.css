@@ -90,4 +90,20 @@ ul li a.index-a-last{
 	color: #fff;
 	margin-right: 12px;
 }
-
+.username{
+	display: block;
+	float: right;
+	margin-right: 40px;
+	padding-top: 8px;
+	font-size: 20px;
+	height: 49px;
+	line-height: 49px;
+	color: #fff;
+}
+.user-icon{
+	display: block;
+	float: right;
+	height: 49px;
+	width: 35px;
+	background: url("../img/header/user-logo.gif") no-repeat 0px 15px;
+}
