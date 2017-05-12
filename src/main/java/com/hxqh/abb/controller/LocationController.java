@@ -29,7 +29,7 @@ public class LocationController {
      */
     @RequestMapping(value = "/map", method = RequestMethod.GET)
     public String map() {
-        return "stock/stock";
+        return "asset/asset";
     }
 
 

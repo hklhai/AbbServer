@@ -13,7 +13,6 @@ import java.util.List;
 /**
  * Created by lh on 2017/5/11.
  */
-
 @Controller
 @RequestMapping("/inventory")
 public class InventoryController {
