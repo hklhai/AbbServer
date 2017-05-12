@@ -19,10 +19,38 @@
     <link rel="stylesheet" href="${ctx}/css/reset.css">
     <link rel="stylesheet" href="${ctx}/css/stock-tool.css">
     <link rel="stylesheet" href="${ctx}/css/header.css">
+    <script type="text/javascript">
+        $(function(){
+            var stockData = new Vue({
+                el: "#stock-data",
+                data: {
+                    inventoryList: []
+                },
+                method:{
+
+                },
+                created: function(){
+                    var self = this;
+                    $.ajax({
+                        url: "${ctx} /inventory/inventoryData",
+                        method: "get",
+                        dataType: "json",
+                        success: function(data){
+                            self.inventoryList = data;
+                        },
+                        error: function(){
+
+                        }
+                    });
+                }
+            });
+        });
+
+    </script>
 </head>
 <body>
 <%@ include file="../commons/header.jsp"%>
-    <div class="stock-content">
+    <div class="stock-content" id="stock-data">
         <div class="stock-layout">
             <div class="index-content-tit">
                 <span class="stock-tit">库存管理</span>
@@ -87,21 +115,13 @@
                     <div class="clearfix"></div>
                 </div>
                 <table class="stock-table">
-                    <tr>
-                        <td width="13%">NJ</td>
-                        <td width="13%">NJ-SWG</td>
-                        <td width="18%">NBB-N108Y</td>
-                        <td width="25%">带电的绝缘体</td>
-                        <td width="18%">DIK-10-10N</td>
-                        <td width="10%">3</td>
-                    </tr>
-                    <tr>
-                        <td>NJ</td>
-                        <td>NJ-SWG</td>
-                        <td>NBB-N108Y</td>
-                        <td>带电的绝缘体</td>
-                        <td>DIK-10-10N</td>
-                        <td>3</td>
+                    <tr v-for=" item in inventoryList">
+                        <td width="13%">{{item.siteid}}</td>
+                        <td width="13%">{{item.location}}</td>
+                        <td width="18%">{{item.itemnum}}</td>
+                        <td width="25%">{{item.description}}</td>
+                        <td width="18%">{{item.udsapnum}}</td>
+                        <td width="10%">{{item.curbal}}</td>
                     </tr>
                 </table>
             </div>
