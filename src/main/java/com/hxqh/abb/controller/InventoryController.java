@@ -1,7 +1,8 @@
 package com.hxqh.abb.controller;
 
-import com.hxqh.abb.model.assist.UdtoolDto;
-import com.hxqh.abb.service.ToolService;
+import com.hxqh.abb.dao.AbbInventoryDao;
+import com.hxqh.abb.model.view.AbbInventory;
+import com.hxqh.abb.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,8 @@ import java.util.List;
 @RequestMapping("/inventory")
 public class InventoryController {
 
+    @Autowired
+    private LocationService locationService;
 
     /**
      * 库存管理页面跳转
@@ -28,6 +31,24 @@ public class InventoryController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list() {
         return "inventory/inventory";
+    }
+
+    /**
+     * 地图页面数据接口
+     * 2017-5-10
+     *
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/inventoryData", method = RequestMethod.GET)
+    public List<AbbInventory> inventoryData() {
+        List<AbbInventory> inventoryData = null;
+        try {
+            inventoryData = locationService.getInventoryData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return inventoryData;
     }
 
 

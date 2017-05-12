@@ -1,6 +1,7 @@
 package com.hxqh.abb.service;
 
 import com.hxqh.abb.model.assist.LocationDto;
+import com.hxqh.abb.model.view.AbbInventory;
 import com.hxqh.abb.service.base.BaseService;
 
 import java.util.List;
@@ -16,13 +17,15 @@ public interface LocationService extends BaseService {
     /*============================设备与位置开始=========================*/
     public abstract List<LocationDto> getMapData() throws Exception;
 
+    
+
     /*============================设备与位置结束 ========================*/
 
 
 
 
     /*============================库存管理开始===========================*/
-
+    public abstract List<AbbInventory> getInventoryData();
 
     /*============================库存管理结束 ==========================*/
 

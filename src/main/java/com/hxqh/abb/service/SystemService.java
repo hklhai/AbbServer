@@ -30,7 +30,6 @@ public interface SystemService extends BaseService {
     public abstract IndexDto getSystemMessage() throws Exception;
 
 
-
     /*============================首页管理结束 =======================*/
 
 

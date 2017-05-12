@@ -6,7 +6,7 @@ import org.junit.Test;
  * Created by lh on 2017-05-11.
  */
 public class GenerateDaoResource {
-    private static String[] MBOName = {"Assetattribute", "Classstructure", "Company", "Invbalance", "Item", "Meter", "Person", "Serviceaddress"};
+    private static String[] MBOName = {"AbbIndexAsset","AbbIndexWfassignment","AbbIndexWorkorder","AbbInventory"};
 
     @Test
     public void genResource() {
@@ -14,7 +14,7 @@ public class GenerateDaoResource {
             StringBuilder builder = new StringBuilder();
             System.out.println("@Resource");
             builder.append("private ").append(MBOName[i]).append("Dao ");
-            builder.append(MBOName[i].toLowerCase()).append("Dao;").append("\r\n");
+            builder.append(MBOName[i].toLowerCase()).append("Dao;");
             System.out.println(builder.toString());
         }
     }
