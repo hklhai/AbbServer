@@ -1,14 +1,8 @@
 package com.hxqh.abb.controller;
 
-import com.hxqh.abb.model.assist.UdtoolDto;
-import com.hxqh.abb.service.ToolService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
 
 /**
  * Created by lh on 2017/5/11.
@@ -18,15 +12,25 @@ import java.util.List;
 @RequestMapping("/asset")
 public class AssetController {
 
-//    /**
-//     * 资产页面跳转
-//     * 2017-5-10
-//     * @return
-//     */
-//    @RequestMapping(value = "/list", method = RequestMethod.GET)
-//    public String list() {
-//        return "tool/tool";
-//    }
+    /**
+     * 资产页面跳转
+     * 2017-5-12
+     * @return
+     */
+    @RequestMapping(value = "/asset", method = RequestMethod.GET)
+    public String asset() {
+        return "asset/asset";
+    }
+
+    /**
+     * 资产页面Location跳转
+     * 2017-5-12
+     * @return
+     */
+    @RequestMapping(value = "/location", method = RequestMethod.GET)
+    public String location() {
+        return "asset/location";
+    }
 
 
 
