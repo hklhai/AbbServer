@@ -1,12 +1,14 @@
 package com.hxqh.abb.service;
 
 import com.hxqh.abb.common.util.BeanUtilEx;
+import com.hxqh.abb.dao.AbbInventoryDao;
 import com.hxqh.abb.dao.AssetDao;
 import com.hxqh.abb.dao.LocationDao;
 import com.hxqh.abb.model.Asset;
 import com.hxqh.abb.model.Location;
 import com.hxqh.abb.model.assist.AssetDto;
 import com.hxqh.abb.model.assist.LocationDto;
+import com.hxqh.abb.model.view.AbbInventory;
 import com.hxqh.abb.service.base.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,8 @@ public class LocationServiceImpl extends BaseServiceImpl<Object> implements Loca
 
     @Autowired
     private LocationDao locationDao;
+    @Autowired
+    private AbbInventoryDao abbinventoryDao;
 
     @Override
     public List<LocationDto> getMapData() throws Exception {
@@ -31,6 +35,11 @@ public class LocationServiceImpl extends BaseServiceImpl<Object> implements Loca
         List<LocationDto> locationDtoList = new ArrayList<>();
         copy2LocationDto(locationList,locationDtoList);
         return locationDtoList;
+    }
+
+    @Override
+    public List<AbbInventory> getInventoryData() {
+        return abbinventoryDao.findAll(0, 15, null, null, " order by inventoryid desc");
     }
 
 

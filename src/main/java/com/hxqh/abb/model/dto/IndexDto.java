@@ -1,10 +1,11 @@
 package com.hxqh.abb.model.dto;
 
-import com.hxqh.abb.model.Asset;
-import com.hxqh.abb.model.Wfassignment;
 import com.hxqh.abb.model.assist.AssetDto;
 import com.hxqh.abb.model.assist.WfassignmentDto;
 import com.hxqh.abb.model.assist.WorkorderDto;
+import com.hxqh.abb.model.view.AbbIndexAsset;
+import com.hxqh.abb.model.view.AbbIndexWfassignment;
+import com.hxqh.abb.model.view.AbbIndexWorkorder;
 
 import java.util.List;
 
@@ -12,41 +13,42 @@ import java.util.List;
  * Created by Ocean Lin on 2017/5/9.
  */
 public class IndexDto {
-    private List<WorkorderDto> calendarList;
-    private List<AssetDto> assetList;
-    private List<WfassignmentDto> systemList;
+    private List<AbbIndexWorkorder> calendarList;
+    private List<AbbIndexAsset> assetList;
+    private List<AbbIndexWfassignment> systemList;
 
 
     public IndexDto() {
     }
 
-    public IndexDto(List<WorkorderDto> calendarList, List<AssetDto> assetList, List<WfassignmentDto> systemList) {
+
+    public IndexDto(List<AbbIndexWorkorder> calendarList, List<AbbIndexAsset> assetList, List<AbbIndexWfassignment> systemList) {
         this.calendarList = calendarList;
         this.assetList = assetList;
         this.systemList = systemList;
     }
 
-    public List<WorkorderDto> getCalendarList() {
+    public List<AbbIndexWorkorder> getCalendarList() {
         return calendarList;
     }
 
-    public void setCalendarList(List<WorkorderDto> calendarList) {
+    public void setCalendarList(List<AbbIndexWorkorder> calendarList) {
         this.calendarList = calendarList;
     }
 
-    public List<AssetDto> getAssetList() {
+    public List<AbbIndexAsset> getAssetList() {
         return assetList;
     }
 
-    public void setAssetList(List<AssetDto> assetList) {
+    public void setAssetList(List<AbbIndexAsset> assetList) {
         this.assetList = assetList;
     }
 
-    public List<WfassignmentDto> getSystemList() {
+    public List<AbbIndexWfassignment> getSystemList() {
         return systemList;
     }
 
-    public void setSystemList(List<WfassignmentDto> systemList) {
+    public void setSystemList(List<AbbIndexWfassignment> systemList) {
         this.systemList = systemList;
     }
 }
