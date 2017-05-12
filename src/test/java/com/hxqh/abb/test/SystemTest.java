@@ -5,6 +5,10 @@ import com.hxqh.abb.dao.*;
 import com.hxqh.abb.model.*;
 import com.hxqh.abb.model.dto.IndexDto;
 import com.hxqh.abb.model.dto.LoginDto;
+import com.hxqh.abb.model.view.AbbIndexAsset;
+import com.hxqh.abb.model.view.AbbIndexWfassignment;
+import com.hxqh.abb.model.view.AbbIndexWorkorder;
+import com.hxqh.abb.model.view.AbbInventory;
 import com.hxqh.abb.service.SystemService;
 import org.apache.commons.beanutils.BeanUtils;
 import org.junit.Assert;
@@ -59,19 +63,29 @@ public class SystemTest {
     private PersonDao personDao;
     @Resource
     private ServiceaddressDao serviceaddressDao;
+    @Resource
+    private AbbIndexAssetDao abbindexassetDao;
+    @Resource
+    private AbbIndexWfassignmentDao abbindexwfassignmentDao;
+    @Resource
+    private AbbIndexWorkorderDao abbindexworkorderDao;
+    @Resource
+    private AbbInventoryDao abbinventoryDao;
+
 
     @Test
-    public void onoToOne() {
+    public void view() {
+        List<AbbIndexAsset> list0=abbindexassetDao.findAll();
+        Assert.assertEquals(257,list0.size());
 
-        Workorder workorder = workorderDao.find(2211L);
-        Location locations = workorder.getLocations();
-        System.out.println(locations);
-        System.out.println(locations.getDescription());
+        List<AbbIndexWfassignment> list1=abbindexwfassignmentDao.findAll();
+        Assert.assertEquals(1439,list1.size());
 
-//        Location location = locationDao.find(539l);
-//        Workorder workorder = location.getWorkorder();
-//        System.out.println(workorder.getDescription());
+        List<AbbIndexWorkorder> list2=abbindexworkorderDao.findAll();
+        Assert.assertEquals(8,list2.size());
 
+        List<AbbInventory> list3=abbinventoryDao.findAll();
+        Assert.assertEquals(160,list3.size());
     }
 
 
