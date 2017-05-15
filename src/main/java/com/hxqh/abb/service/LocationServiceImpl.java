@@ -1,5 +1,6 @@
 package com.hxqh.abb.service;
 
+import com.hxqh.abb.common.Page;
 import com.hxqh.abb.common.util.BeanUtilEx;
 import com.hxqh.abb.dao.*;
 import com.hxqh.abb.model.Asset;
@@ -51,7 +52,7 @@ public class LocationServiceImpl extends BaseServiceImpl<Object> implements Loca
     }
 
     @Override
-    public InventoryDto getInventoryData(InventorySearchDto searchInventoryDto) {
+    public List<AbbInventory> getInventoryData(InventorySearchDto searchInventoryDto, Page page) {
         Map<String, Object> params = new HashMap<String, Object>();
         StringBuilder wherebuilder = new StringBuilder();
         wherebuilder.append("1=1 ");
@@ -75,8 +76,14 @@ public class LocationServiceImpl extends BaseServiceImpl<Object> implements Loca
             wherebuilder.append("and CURBAL =").append(":CURBAL");
             params.put("CURBAL", searchInventoryDto.getCurbal() );
         }
+        //TODO page
+        List<AbbInventory> inventoryList = abbinventoryDao.findAll(page.getThisPageFirstElementNumber(),page.getPageSize() , wherebuilder.toString(), params, " order by inventoryid desc");
+        return inventoryList;
+    }
 
-        List<AbbInventory> inventoryList = abbinventoryDao.findAll(0, 15, wherebuilder.toString(), params, " order by inventoryid desc");
+    @Override
+    public InventoryDto inventoryListData() {
+        List<AbbInventory> inventoryList = abbinventoryDao.findAll(0, 15, null, null, " order by inventoryid desc");
         List<AbbInventoryLocation> locationList = abbInventoryLocationDao.findAll();
         List<AbbInventorySite> siteList = siteDao.findAll();
         List<AbbInventoryItem> itemList = itemDao.findAll();

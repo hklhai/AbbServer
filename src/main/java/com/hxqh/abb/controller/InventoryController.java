@@ -1,13 +1,17 @@
 package com.hxqh.abb.controller;
 
+import com.hxqh.abb.common.Page;
 import com.hxqh.abb.model.dto.InventoryDto;
 import com.hxqh.abb.model.searchdto.InventorySearchDto;
+import com.hxqh.abb.model.view.AbbInventory;
 import com.hxqh.abb.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 
 /**
@@ -32,22 +36,40 @@ public class InventoryController {
     }
 
     /**
-     * 地图页面数据接口
+     * 地图页面数据接口  获取数据与分类列表信息
      * 2017-5-10
      *
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/inventoryData", method = RequestMethod.GET)
-    public InventoryDto inventoryData(InventorySearchDto inventorySearchDto) {
+    public InventoryDto inventoryListData() {
         InventoryDto inventoryData = null;
         try {
-            inventoryData = locationService.getInventoryData(inventorySearchDto);
+            inventoryData = locationService.inventoryListData();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return inventoryData;
     }
 
+
+    /**
+     * 地图页面数据接口  获取数据包含分页
+     * 2017-5-15
+     *
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/data", method = RequestMethod.GET)
+    public List<AbbInventory> data(InventorySearchDto inventorySearchDto, Page page) {
+        List<AbbInventory> inventoryList = null;
+        try {
+            inventoryList = locationService.getInventoryData(inventorySearchDto,page);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return inventoryList;
+    }
 
 }

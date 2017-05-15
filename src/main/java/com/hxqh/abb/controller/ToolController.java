@@ -1,5 +1,7 @@
 package com.hxqh.abb.controller;
 
+import com.hxqh.abb.common.Page;
+import com.hxqh.abb.model.dto.ToolDto;
 import com.hxqh.abb.model.searchdto.UdtoolDto;
 import com.hxqh.abb.model.view.AbbUdtool;
 import com.hxqh.abb.service.ToolService;
@@ -33,16 +35,33 @@ public class ToolController {
 
 
     /**
-     * 工具页面数据接口
+     * 工具页面数据与类别项接口
      * 2017-5-10
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/listdata", method = RequestMethod.GET)
-    public List<AbbUdtool> listdata(UdtoolDto udtoolDto) {
+    public ToolDto listdata() {
+        ToolDto listData = null;
+        try {
+            listData= toolService.getListData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listData;
+    }
+
+    /**
+     * 工具页面数据与类别项接口
+     * 2017-5-15
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/data", method = RequestMethod.GET)
+    public List<AbbUdtool> data(UdtoolDto udtoolDto,Page page) {
         List<AbbUdtool> listData = null;
         try {
-            listData= toolService.getListData(udtoolDto);
+            listData= toolService.getToolData(udtoolDto,page);
         } catch (Exception e) {
             e.printStackTrace();
         }
