@@ -1,8 +1,5 @@
 package com.hxqh.abb.model.dto;
 
-import com.hxqh.abb.model.Item;
-import com.hxqh.abb.model.Location;
-import com.hxqh.abb.model.Site;
 import com.hxqh.abb.model.view.AbbInventory;
 import com.hxqh.abb.model.view.AbbInventoryItem;
 import com.hxqh.abb.model.view.AbbInventoryLocation;

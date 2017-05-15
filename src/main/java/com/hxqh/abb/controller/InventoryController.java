@@ -1,6 +1,7 @@
 package com.hxqh.abb.controller;
 
 import com.hxqh.abb.model.dto.InventoryDto;
+import com.hxqh.abb.model.searchdto.InventorySearchDto;
 import com.hxqh.abb.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
 
 /**
  * Created by lh on 2017/5/11.
@@ -39,10 +39,10 @@ public class InventoryController {
      */
     @ResponseBody
     @RequestMapping(value = "/inventoryData", method = RequestMethod.GET)
-    public InventoryDto inventoryData() {
+    public InventoryDto inventoryData(InventorySearchDto inventorySearchDto) {
         InventoryDto inventoryData = null;
         try {
-            inventoryData = locationService.getInventoryData();
+            inventoryData = locationService.getInventoryData(inventorySearchDto);
         } catch (Exception e) {
             e.printStackTrace();
         }

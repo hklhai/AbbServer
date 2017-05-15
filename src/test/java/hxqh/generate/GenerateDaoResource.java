@@ -6,7 +6,8 @@ import org.junit.Test;
  * Created by lh on 2017-05-11.
  */
 public class GenerateDaoResource {
-    private static String[] MBOName = {"AbbIndexAsset","AbbIndexWfassignment","AbbIndexWorkorder","AbbInventory"};
+    private static String[] MBOName = {"AbbMap","AbbUdtool"};
+
 
     @Test
     public void genResource() {

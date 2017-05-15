@@ -1,6 +1,7 @@
 package com.hxqh.abb.controller;
 
-import com.hxqh.abb.model.assist.UdtoolDto;
+import com.hxqh.abb.model.searchdto.UdtoolDto;
+import com.hxqh.abb.model.view.AbbUdtool;
 import com.hxqh.abb.service.ToolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,10 +39,10 @@ public class ToolController {
      */
     @ResponseBody
     @RequestMapping(value = "/listdata", method = RequestMethod.GET)
-    public List<UdtoolDto> listdata() {
-        List<UdtoolDto> listData = null;
+    public List<AbbUdtool> listdata(UdtoolDto udtoolDto) {
+        List<AbbUdtool> listData = null;
         try {
-            listData= toolService.getListData();
+            listData= toolService.getListData(udtoolDto);
         } catch (Exception e) {
             e.printStackTrace();
         }

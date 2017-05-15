@@ -1,4 +1,4 @@
-package com.hxqh.abb.model.assist;
+package com.hxqh.abb.model.searchdto;
 
 import javax.persistence.Column;
 
@@ -10,19 +10,19 @@ public class UdtoolDto {
 
     @Column(name = "\"STATUS\"")
     private String status;//    STATUS	状态
-//    PERSON.DISPLAYNAME	保管人	KEEPER	PERSON	personid=:KEEPER
-//    PERSON.LOCATIONSITE	保管人	KEEPER	PERSON	personid=:KEEPER
+    private String displayname; //保管人
+    private String locationsite; //保管人
 
-    private String keeper;
 
     public UdtoolDto() {
     }
 
-    public UdtoolDto(String toolnum, String description, String status, String keeper) {
+    public UdtoolDto(String toolnum, String description, String status, String displayname, String locationsite) {
         this.toolnum = toolnum;
         this.description = description;
         this.status = status;
-        this.keeper = keeper;
+        this.displayname = displayname;
+        this.locationsite = locationsite;
     }
 
     public String getToolnum() {
@@ -49,12 +49,20 @@ public class UdtoolDto {
         this.status = status;
     }
 
-    public String getKeeper() {
-        return keeper;
+    public String getDisplayname() {
+        return displayname;
     }
 
-    public void setKeeper(String keeper) {
-        this.keeper = keeper;
+    public void setDisplayname(String displayname) {
+        this.displayname = displayname;
+    }
+
+    public String getLocationsite() {
+        return locationsite;
+    }
+
+    public void setLocationsite(String locationsite) {
+        this.locationsite = locationsite;
     }
 
     @Override
@@ -63,7 +71,8 @@ public class UdtoolDto {
         sb.append("toolnum='").append(toolnum).append('\'');
         sb.append(", description='").append(description).append('\'');
         sb.append(", status='").append(status).append('\'');
-        sb.append(", keeper='").append(keeper).append('\'');
+        sb.append(", displayname='").append(displayname).append('\'');
+        sb.append(", locationsite='").append(locationsite).append('\'');
         sb.append('}');
         return sb.toString();
     }
