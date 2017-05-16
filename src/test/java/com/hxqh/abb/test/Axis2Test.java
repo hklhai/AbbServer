@@ -44,7 +44,7 @@ public class Axis2Test {
      */
     @Test
     public void testAxis2() {
-        Wfassignment wfassignment = wfassignmentDao.find(79l);
+        Wfassignment wfassignment = wfassignmentDao.find(3592l);
         WFSERVICEStub wfService = null;
         try {
             wfService = new WFSERVICEStub();
@@ -56,9 +56,9 @@ public class Axis2Test {
         WfservicewfGoOn goOnService = new WfservicewfGoOn();
         WfservicewfGoOnType wfParam = new WfservicewfGoOnType();
         wfParam.setProcessname(wfassignment.getProcessname());//processname：流程名称
-        wfParam.setMboName(wfassignment.getProcessname());//mboName：当前记录所属的表名
-        wfParam.setKeyValue(wfassignment.getProcessname()+"ID");// 当前表的唯一主键字段名，一般为表名+ID
-        wfParam.setKey(String.valueOf(wfassignment.getWfassignmentid())); //唯一主键的值
+        wfParam.setMboName("WFASSIGNMENT");//mboName：当前记录所属的表名
+        wfParam.setKeyValue(String.valueOf(wfassignment.getWfassignmentid()));// 当前表的唯一主键字段名，一般为表名+ID
+        wfParam.setKey("WFASSIGNMENTID"); //唯一主键的值
         wfParam.setZx(1);//审批结果，1通过，0不通过
         wfParam.setDesc("同意调拨申请，lh测试使用");//desc：审批意见
         wfParam.setLoginid("MAXADMIN");  //当前登录人的ID
