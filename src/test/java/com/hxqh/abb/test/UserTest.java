@@ -30,7 +30,7 @@ public class UserTest {
         Assert.assertEquals(3, userList.size());
     }
 
-    @Test
+    //@Test
     public void lower() {
         String str = "ABc";
         StringBuilder sb = new StringBuilder(str);
@@ -40,7 +40,7 @@ public class UserTest {
         System.out.println(str);
     }
 
-    @Test
+    //@Test
     public void convert() {
         Timestamp ts = new Timestamp(System.currentTimeMillis());
         String tsStr = "";
