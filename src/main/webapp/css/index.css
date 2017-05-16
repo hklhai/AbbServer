@@ -24,14 +24,14 @@ table{
 }
 .calendar{
     width: 28%;
-    height: 317px;
+    height: 326px;
     border: 1px solid  rgb(214, 214, 214);
     float: left;
     background: #fff;
 }
 .index-div2{
     width: 69%;
-    height: 317px;
+    height: 326px;
     border: 1px solid  rgb(214, 214, 214);
     background: #fff;
     float: right;
@@ -45,7 +45,7 @@ table{
 }
 .equip-info{
 	width: 28%;
-    height: 317px;
+    height: 326px;
     border: 1px solid  rgb(214, 214, 214);
     float: left;
     background: #fff;

@@ -36,7 +36,10 @@
                         method: "get",
                         dataType: "json",
                         success: function(data){
-                            self.inventoryList = data;
+                            self.inventoryList = data.addInventoryList;
+                            self.siteList = data.siteList;
+                            self.locationList = data.locationList;
+                            self.item = data.itemList;
                         },
                         error: function(){
 

@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="${ctx}/css/reset.css">
     <link rel="stylesheet" href="${ctx}/css/index.css">
     <link rel="stylesheet" href="${ctx}/css/header.css">
+    <link rel="stylesheet" href="${ctx}/css/style.css">
     <script type="text/javascript">
         $(function(){
             var indexData = new Vue({
@@ -58,7 +59,14 @@
 <div class="index-content">
     <div class="index-layout" id="index-data">
         <div class="index-content-tit">首页</div>
-        <div class="calendar index-div1"></div>
+        <div class="calendar index-div1">
+            <div class="zAccountInner zAccount2 clearfix">
+                <div class="zAccountPlanL span5 no-margin-left" style="position:absolute;width:100%;">
+                    <div id="div1"></div> <input type="hidden" id="index_clander" />
+                    <input type="hidden" id="d523_y">
+                </div>
+            </div>
+        </div>
         <div class="work-task index-div2">
             <div class="index-div2-layout">
                 <p>工作任务</p>
@@ -158,5 +166,8 @@
         <div class="clearfix"></div>
     </div>
 </div>
+<script src="${ctx}/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="${ctx}/js/DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="${ctx}/js/DatePicker/extraDate.js"></script>
 </body>
 </html>
