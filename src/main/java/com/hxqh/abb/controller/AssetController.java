@@ -1,8 +1,12 @@
 package com.hxqh.abb.controller;
 
+import com.hxqh.abb.model.dto.action.AssetDto;
+import com.hxqh.abb.service.SystemService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by lh on 2017/5/11.
@@ -11,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/asset")
 public class AssetController {
+
+    @Autowired
+    private SystemService systemService;
 
     /**
      * 资产页面跳转
@@ -33,5 +40,18 @@ public class AssetController {
     }
 
 
+
+    /**
+     * 资设备与位置数据接口
+     * 2017-5-18
+     *
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/assetData", method = RequestMethod.GET)
+    public AssetDto inventoryListData() {
+        AssetDto assetData = systemService.getAssetData();
+        return assetData;
+    }
 
 }

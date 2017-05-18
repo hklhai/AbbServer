@@ -3,16 +3,16 @@ package com.hxqh.abb.service;
 import com.hxqh.abb.dao.*;
 import com.hxqh.abb.model.Location;
 import com.hxqh.abb.model.Maxuser;
-import com.hxqh.abb.model.dto.IndexDto;
-import com.hxqh.abb.model.dto.LoginDto;
-import com.hxqh.abb.model.view.AbbIndexAsset;
-import com.hxqh.abb.model.view.AbbIndexWfassignment;
-import com.hxqh.abb.model.view.AbbIndexWorkorder;
+import com.hxqh.abb.model.dto.action.AssetDto;
+import com.hxqh.abb.model.dto.action.IndexDto;
+import com.hxqh.abb.model.dto.action.LoginDto;
+import com.hxqh.abb.model.view.*;
 import com.hxqh.abb.service.base.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
@@ -34,7 +34,10 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
     private AbbIndexWorkorderDao abbindexworkorderDao;
     @Autowired
     private AbbIndexAssetDao abbindexassetDao;
-
+    @Resource
+    private AbbAssetLocationDao abbassetlocationDao;
+    @Resource
+    private AbbAssetDao abbassetDao;
 
     public List<Location> getLocationList() {
         return locationDao.findAll();
@@ -71,7 +74,13 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
         return indexDto;
     }
 
-
+    @Override
+    public AssetDto getAssetData() {
+        List<AbbAsset> abbAssetList = abbassetDao.findAll(0, 15, null, null, " order by assetuid desc");
+        List<AbbAssetLocation> abbAssetLocationList = abbassetlocationDao.findAll(0, 15, null, null, " order by locationsid desc");
+        AssetDto assetDto =new AssetDto(abbAssetList,abbAssetLocationList);
+        return assetDto;
+    }
 
 
 }
