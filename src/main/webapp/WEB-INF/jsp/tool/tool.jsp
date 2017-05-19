@@ -36,7 +36,7 @@
                         method: "get",
                         dataType: "json",
                         success: function(data){
-                            self.tool = data;
+                            self.tool = data.udtoolList;
                             console.log(self.tool);
                         },
                         error: function(){
@@ -54,7 +54,7 @@
         <div class="stock-content" id="stock-data">
             <div class="stock-layout">
                  <div class="index-content-tit">
-                      <span class="stock-tit">库存管理</span>
+                      <span class="stock-tit">工具台账</span>
                       <span class="stock-time">2017.4.19 11:23am</span>
                  </div>
                  <div class="stock-content-show">

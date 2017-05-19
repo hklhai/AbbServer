@@ -24,7 +24,10 @@
             var stockData = new Vue({
                 el: "#stock-data",
                 data: {
-                    inventoryList: []
+                    inventoryList: [],
+                    siteList: [],
+                    locationList: [],
+                    item: []
                 },
                 method:{
 
@@ -36,7 +39,7 @@
                         method: "get",
                         dataType: "json",
                         success: function(data){
-                            self.inventoryList = data.addInventoryList;
+                            self.inventoryList = data.abbInventoryList;
                             self.siteList = data.siteList;
                             self.locationList = data.locationList;
                             self.item = data.itemList;
@@ -64,47 +67,43 @@
                 <div class="search">
                     <div class="search-item stock-siteid-item">
                         <label>服务站点</label>
-                        <div class="sel-form">
+                        <div class="sel-form" style="text-overflow: ellipsis;">
                             <select name="" id="">
-                                <option value="">服务站点一</option>
-                                <option value="">服务站点二</option>
-                                <option value="">服务站点三</option>
-                                <option value="">服务站点四</option>
+                                <option value="" v-for=" item in siteList">{{item.description}}</option>
                             </select>
                         </div>
                     </div>
                     <div class="search-item stock-location-item">
                         <label>库房</label>
-                        <div class="sel-form">
+                        <div class="sel-form" style="text-overflow: ellipsis;">
                             <select name="" id="">
-                                <option value="">服务站点一</option>
-                                <option value="">服务站点二</option>
-                                <option value="">服务站点三</option>
-                                <option value="">服务站点四</option>
+                                <option value=""  v-for=" item in locationList">{{item.description}}</option>
                             </select>
                         </div>
                     </div>
                     <div class="search-item stock-itemnum-item">
                         <label>物资编码</label>
-                        <div class="sel-form">
-                            <select name="" id="">
-                                <option value="">服务站点一</option>
-                                <option value="">服务站点二</option>
-                                <option value="">服务站点三</option>
-                                <option value="">服务站点四</option>
-                            </select>
-                        </div>
+                        <%--<div class="sel-form">--%>
+                            <%--<select name="" id="">--%>
+                                <%--<option value="">服务站点一</option>--%>
+                                <%--<option value="">服务站点二</option>--%>
+                                <%--<option value="">服务站点三</option>--%>
+                                <%--<option value="">服务站点四</option>--%>
+                            <%--</select>--%>
+                        <%--</div>--%>
+                        <input type="text" width="100%">
                     </div>
                     <div class="search-item stock-description-item">
                         <label>物资名称</label>
-                        <div class="sel-form">
-                            <select name="" id="">
-                                <option value="">服务站点一</option>
-                                <option value="">服务站点二</option>
-                                <option value="">服务站点三</option>
-                                <option value="">服务站点四</option>
-                            </select>
-                        </div>
+                        <input type="text" width="100%">
+                        <%--<div class="sel-form">--%>
+                            <%--<select name="" id="">--%>
+                                <%--<option value="">服务站点一</option>--%>
+                                <%--<option value="">服务站点二</option>--%>
+                                <%--<option value="">服务站点三</option>--%>
+                                <%--<option value="">服务站点四</option>--%>
+                            <%--</select>--%>
+                        <%--</div>--%>
                         <i class="search-icon"></i>
                     </div>
                     <div class="search-item stock-udsapnum-item">
