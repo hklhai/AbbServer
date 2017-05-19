@@ -11,7 +11,7 @@
 <html>
 <head>
     <meta charset='utf-8'>
-    <title>登录页面</title>
+    <title>库存管理</title>
     <meta name="keywords" content="">
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
     <script src="${ctx}/scripts/vue.js"></script>
