@@ -1,4 +1,4 @@
-package com.hxqh.abb.model.dto;
+package com.hxqh.abb.model.dto.action;
 
 import com.hxqh.abb.model.assist.AssetDto;
 import com.hxqh.abb.model.assist.WfassignmentDto;

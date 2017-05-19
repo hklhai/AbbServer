@@ -15,7 +15,7 @@ import java.io.PrintStream;
  */
 public class GenerateDaoClass {
 
-	private static String[] MBOName = {"AbbMap","AbbUdtool"};
+	private static String[] MBOName = {"AbbAssetLocation","AbbAsset"};
 	
 
 	public static void main(String[] args) throws IOException {

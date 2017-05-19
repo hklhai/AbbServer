@@ -1,4 +1,4 @@
-package com.hxqh.abb.model.dto;
+package com.hxqh.abb.model.dto.action;
 
 /**
  * Created by Ocean Lin on 2017/5/7.

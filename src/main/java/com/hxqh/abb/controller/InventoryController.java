@@ -1,7 +1,7 @@
 package com.hxqh.abb.controller;
 
 import com.hxqh.abb.common.Page;
-import com.hxqh.abb.model.dto.InventoryDto;
+import com.hxqh.abb.model.dto.action.InventoryDto;
 import com.hxqh.abb.model.searchdto.InventorySearchDto;
 import com.hxqh.abb.model.view.AbbInventory;
 import com.hxqh.abb.service.LocationService;

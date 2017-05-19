@@ -1,7 +1,7 @@
 package com.hxqh.abb.service;
 
 import com.hxqh.abb.common.Page;
-import com.hxqh.abb.model.dto.ToolDto;
+import com.hxqh.abb.model.dto.action.ToolDto;
 import com.hxqh.abb.model.searchdto.UdtoolDto;
 import com.hxqh.abb.model.view.AbbUdtool;
 import com.hxqh.abb.service.base.BaseService;

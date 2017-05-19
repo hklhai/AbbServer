@@ -3,8 +3,8 @@ package com.hxqh.abb.test;
 import com.hxqh.abb.common.util.MXCipherXUtils;
 import com.hxqh.abb.dao.*;
 import com.hxqh.abb.model.*;
-import com.hxqh.abb.model.dto.IndexDto;
-import com.hxqh.abb.model.dto.LoginDto;
+import com.hxqh.abb.model.dto.action.IndexDto;
+import com.hxqh.abb.model.dto.action.LoginDto;
 import com.hxqh.abb.model.view.*;
 import com.hxqh.abb.service.SystemService;
 import org.apache.commons.beanutils.BeanUtils;
@@ -72,6 +72,11 @@ public class SystemTest {
     private AbbMapDao abbmapDao;
     @Resource
     private AbbUdtoolDao abbudtoolDao;
+    @Resource
+    private AbbAssetLocationDao abbassetlocationDao;
+    @Resource
+    private AbbAssetDao abbassetDao;
+
 
     @Test
     public void view() {
@@ -92,6 +97,12 @@ public class SystemTest {
 //
 //        List<AbbUdtool> list1=abbudtoolDao.findAll();
 //        Assert.assertEquals(27,list1.size());
+
+        List<AbbAssetLocation> list0=abbassetlocationDao.findAll();
+        Assert.assertEquals(28,list0.size());
+
+        List<AbbAsset> list1=abbassetDao.findAll();
+        Assert.assertEquals(257,list1.size());
     }
 
 
@@ -250,6 +261,7 @@ public class SystemTest {
         List<Inventory> all = inventoryDao.findAll();
         Assert.assertEquals(160, all.size());
     }
+
 
 
 }
