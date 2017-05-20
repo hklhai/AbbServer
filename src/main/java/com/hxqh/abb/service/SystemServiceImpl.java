@@ -9,6 +9,7 @@ import com.hxqh.abb.model.dto.action.LoginDto;
 import com.hxqh.abb.model.view.*;
 import com.hxqh.abb.service.base.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,6 +39,9 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
     private AbbAssetLocationDao abbassetlocationDao;
     @Resource
     private AbbAssetDao abbassetDao;
+
+    @Value(value = "${com.hxqh.abb.websitepath}")
+    private String websitepath;
 
     public List<Location> getLocationList() {
         return locationDao.findAll();
@@ -80,6 +84,12 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
         List<AbbAssetLocation> abbAssetLocationList = abbassetlocationDao.findAll(0, 15, null, null, " order by locationsid desc");
         AssetDto assetDto =new AssetDto(abbAssetList,abbAssetLocationList);
         return assetDto;
+    }
+
+    @Override
+    public String getWebsitPath()
+    {
+        return websitepath;
     }
 
 

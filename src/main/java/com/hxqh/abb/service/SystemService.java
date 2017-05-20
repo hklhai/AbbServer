@@ -22,7 +22,7 @@ public interface SystemService extends BaseService {
 
     /*============================测试结束==========================*/
 
-    public abstract List<Maxuser> getLoginUserList(LoginDto loginDto) ;
+    public abstract List<Maxuser> getLoginUserList(LoginDto loginDto);
 
 
 
@@ -41,6 +41,10 @@ public interface SystemService extends BaseService {
     /*============================现场及设备地图结束 ==================*/
 
 
+    /*============================微信 ==================*/
 
+    public abstract String getWebsitPath();
+
+    /*============================微信==================*/
 
 }

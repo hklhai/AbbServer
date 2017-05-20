@@ -225,13 +225,6 @@
       <version>9.2.15.v20160210</version>
     </dependency>
 
-
-    <dependency>
-      <groupId>com.jfinal</groupId>
-      <artifactId>jfinal</artifactId>
-      <version>2.2</version>
-    </dependency>
-
     <dependency>
       <groupId>org.jsoup</groupId>
       <artifactId>jsoup</artifactId>
@@ -604,7 +597,18 @@
       <version>2.2.7-b41</version>
     </dependency>
     <!-- axis2 -->
-
+    <!-- WeiXin Support -->
+    <dependency>
+      <groupId>com.jfinal</groupId>
+      <artifactId>jfinal</artifactId>
+      <version>0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.hxqh.weixin</groupId>
+      <artifactId>hxqh-weixin</artifactId>
+      <version>0.1</version>
+    </dependency>
+    <!-- WeiXin Support -->
   </dependencies>
   <build>
     <finalName>AbbServer</finalName>
