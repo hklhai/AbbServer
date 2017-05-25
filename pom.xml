@@ -36,21 +36,12 @@
         <repository>
             <id>Nexus</id>
             <name>Nexus Repository</name>
-            <url>http://127.0.0.1:8081/nexus/content/groups/public/</url>
+            <url>http://120.76.239.5:8081/nexus/content/groups/public/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
             <snapshots>
                 <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>Thirdparty</id>
-            <name>Thirdparty Repository</name>
-            <url>http://127.0.0.1:8081/nexus/content/repositories/thirdparty/</url>
-            <!--<layout>default</layout>-->
-            <snapshots>
-                <enabled>false</enabled>
             </snapshots>
         </repository>
     </repositories>
@@ -479,26 +470,6 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.30</version>
         </dependency>
-        <dependency>
-            <groupId>com.ibm.db2jcc</groupId>
-            <artifactId>db2jcc</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.db2jccjavax</groupId>
-            <artifactId>db2jcc_javax</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.db2jcclicensecu</groupId>
-            <artifactId>db2jcclicensecu</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ibm.businessobjects</groupId>
-            <artifactId>businessobjects</artifactId>
-            <version>7.6</version>
-        </dependency>
         <!-- axis2 -->
         <dependency>
             <groupId>org.apache.axis2</groupId>
@@ -606,16 +577,36 @@
             <version>2.2.7-b41</version>
         </dependency>
         <!-- axis2 -->
+        <dependency>
+            <groupId>com.ibm.db2jcc</groupId>
+            <artifactId>db2jcc</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.db2jccjavax</groupId>
+            <artifactId>db2jcc_javax</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.db2jcclicensecu</groupId>
+            <artifactId>db2jcclicensecu</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.businessobjects</groupId>
+            <artifactId>businessobjects</artifactId>
+            <version>7.6-abb</version>
+        </dependency>
         <!-- WeiXin Support -->
         <dependency>
             <groupId>com.jfinal</groupId>
             <artifactId>jfinal</artifactId>
-            <version>0.1</version>
+            <version>1.1</version>
         </dependency>
         <dependency>
             <groupId>com.hxqh.weixin</groupId>
             <artifactId>hxqh-weixin</artifactId>
-            <version>0.1</version>
+            <version>1.1</version>
         </dependency>
         <!-- WeiXin Support -->
     </dependencies>
