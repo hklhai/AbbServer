@@ -13,7 +13,6 @@
     <meta charset='utf-8'>
     <title>现场及设备地图</title>
     <meta name="keywords" content="">
-
     <link rel="stylesheet" href="${ctx}/css/reset.css">
     <link rel="stylesheet" href="${ctx}/css/location.css">
     <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
@@ -28,7 +27,7 @@
 <div class="equip-layout">
     <div class="equip-nav">
         <ul class="father-ul">
-            <li><a href="javascript:;" target="menuFrame"  class="left-bag">现场及设备地图</a></li>
+            <li><a href="javascript:;" class="left-bag">现场及设备地图</a></li>
             <li>
                 <a href="javascript:;"  class="left-down">设备及位置</a>
                 <ul class="child-ul">
@@ -294,26 +293,32 @@
             $(".equip-company").show();
             $("#right-content").hide();
         });
-       /* var indexData = new Vue({
-        el: "#equip-data",
-        data: {
-        isUlShow: true,
-        isLocation: true //true时显示地图，false显示设备及位置
-        },
-        methods:{
-        aClick: function(){
-        this.isUlShow = !this.isUlShow;
-        },
-        showLocation: function(){
-        this.isLocation = true;
-        },
-        showEquip: function(){
-        this.isLocation = false;
-        }
-        }
-        });*/
     });
+    $(function(){
+        var indexData = new Vue({
+            el: ".equip-company",
+            data: {
 
+            },
+            method:{
+
+            },
+            created: function(){
+                var self = this;
+                $.ajax({
+                    url: "${ctx}/tool/listdata",
+                    method: "get",
+                    dataType: "json",
+                    success: function(data){
+
+                    },
+                    error: function(){
+
+                    }
+                });
+            }
+        });
+    });
 </script>
 <script type="text/javascript" src="http://webapi.amap.com/demos/js/liteToolbar.js"></script>
 </body>
