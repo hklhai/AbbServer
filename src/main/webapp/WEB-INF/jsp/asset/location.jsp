@@ -11,102 +11,212 @@
 <html>
 <head>
     <meta charset='utf-8'>
-    <title>地图页面</title>
+    <title>现场及设备地图</title>
     <meta name="keywords" content="">
-    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="${ctx}/scripts/vue.js"></script>
     <script type="text/javascript"
             src="http://webapi.amap.com/maps?v=1.3&key=e4eb9da6d97281e42a0357655570e3ae"></script>
     <link rel="stylesheet" href="${ctx}/css/reset.css">
     <link rel="stylesheet" href="${ctx}/css/location.css">
     <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+    <link rel="stylesheet" href="${ctx}/css/equip-nav.css">
     <link rel="stylesheet" href="${ctx}/css/header.css">
+    <link rel="stylesheet" href="${ctx}/css/company.css">
+    <script type="text/javascript">
+        $(function(){
+
+            var treeShow = $("a.treeShow");
+            treeShow.each(function(){
+                var _index = $(this).index();
+                var self = $(this);
+                $(this).click(function(){
+                    alert("aaaaaa");
+                });
+//                $(this).mouseenter(function(){
+//                    self.siblings("ul.equip-tree").show();
+//                });
+//                $(this).mouseleave(function(){
+//                    self.siblings("ul.equip-tree").hide();
+//                });
+            });
+
+            var indexData = new Vue({
+                el: "#equip-data",
+                data: {
+                    isUlShow: true,
+                    isLocation: true //true时显示地图，false显示设备及位置
+                },
+                methods:{
+                    aClick: function(){
+                        this.isUlShow = !this.isUlShow;
+                    },
+                    showLocation: function(){
+                        this.isLocation = true;
+                    },
+                    showEquip: function(){
+                        this.isLocation = false;
+                    }
+                }
+            });
+        });
+
+    </script>
 </head>
 <body>
-<div id="container"></div>
-<div id="tip">点击地图上的点标记，打开所添加的自定义信息窗体</div>
-<script type="text/javascript">
-    //地图初始化时，在地图上添加一个marker标记,鼠标点击marker可弹出自定义的信息窗体
-    var map = new AMap.Map("container", {
-        resizeEnable: true,
-        center: [116.481181, 39.989792],
-        zoom: 16
-    });
-    var lnglats = [
-        [116.368904, 39.923423],
-        [116.382122, 39.921176],
-        [116.387271, 39.922501],
-        [116.398258, 39.914600]
-    ];
-    //添加marker标记
-    for (var i = 0, marker; i < lnglats.length; i++) {
-        addMarker();
-    }
-    function addMarker() {
-        var marker = new AMap.Marker({
-            map: map,
-            position:  lnglats[i]
-        });
-        //鼠标点击marker弹出自定义的信息窗体
-        AMap.event.addListener(marker, 'mouseover', function() {
-            infoWindow.open(map, marker.getPosition());
-        });
-    }
-
-    //实例化信息窗体
-    var title = '方恒假日酒店<span style="font-size:11px;color:#F00;">价格:318</span>',
-            content = [];
-    content.push("<img src='http://tpc.googlesyndication.com/simgad/5843493769827749134'>地址：北京市朝阳区阜通东大街6号院3号楼东北8.3公里");
-    content.push("电话：010-64733333");
-    content.push("<a href='http://ditu.amap.com/detail/B000A8URXB?citycode=110105'>详细信息</a>");
-    var infoWindow = new AMap.InfoWindow({
-        isCustom: true,  //使用自定义窗体
-        content: createInfoWindow(title, content.join("<br/>")),
-        offset: new AMap.Pixel(16, -45)
-    });
-
-    //实例化信息窗体
-    var title = '南京-AO：南京AO史密斯热水器有限公 <i class="arraw"></i>',
-            content = [];
-    content.push("<table class='locaiton-table'><thead><tr><td width='318px' style='padding-left:18px;'>位置编码</td><td width='218px'>位置描述</td></tr></thead><tbody><tr><td style='padding-left:18px;'>位置编码</td><td>位置描述</td></tr></tbody></table>");
-    content.push("<table class='locaiton-table-info'><thead><tr><td style='padding-left:18px;'>详细信息</td><td></td><td></td><td></td></tr></thead><tbody><tr><td>状<span style='color:#F5F5F5;'>状态</span>态</td><td>状态</td><td>电压等级</td><td>状态</td></tr><tr><td>位置类型</td><td>状态</td><td>设备数量</td><td>状态</td></tr><tr><td>健康指标</td><td>状态</td><td>报警数量</td><td>状态</td></tr><tr><td>地<span style='color:#F5F5F5;'>状态</span>址</td><td>状态</td><td></td><td></td></tr></tbody></table>");
-    var infoWindow = new AMap.InfoWindow({
-        isCustom: true,  //使用自定义窗体
-        content: createInfoWindow(title, content.join("")),
-        offset: new AMap.Pixel(320, 370)
-    });
-
-    //构建自定义信息窗体
-    function createInfoWindow(title, content) {
-        var info = document.createElement("div");
-        info.className = "echart-info";
-        info.style.width = "574px";
-        //可以通过下面的方式修改自定义窗体的宽高
-        //info.style.width = "400px";
-        // 定义顶部标题
-        var top = document.createElement("p");
-        var closeX = document.createElement("img");
-        top.className = "location-tree";
-        top.innerHTML = title;
-        closeX.src = "http://webapi.amap.com/images/close2.gif";
-        closeX.onclick = closeInfoWindow;
-
-        top.appendChild(closeX);
-        info.appendChild(top);
-
-        // 定义中部内容
-        var middle = document.createElement("div");
-        middle.className = "locaition-info";
-        middle.innerHTML = content;
-        info.appendChild(middle);
-        return info;
-    }
-
-    //关闭信息窗体
-    function closeInfoWindow() {
-        map.clearInfoWindow();
-    }
-</script>
-<script type="text/javascript" src="http://webapi.amap.com/demos/js/liteToolbar.js"></script>
+<%@ include file="../commons/header.jsp"%>
+<div class="equip-layout" id="equip-data">
+    <div class="equip-nav">
+        <ul class="father-ul">
+            <li><a class="left-bag" v-on:click="showLocation">现场及设备地图</a></li>
+            <li>
+                <a class="left-down" v-on:click="aClick">设备及位置</a>
+                <ul class="child-ul" v-show="isUlShow">
+                    <li>
+                        <a class="treeShow">南京</a>
+                        <ul  class="equip-tree" style="display:none;">
+                            <li><a href="">北京子公司</a></li>
+                            <li><a href="">北京子公司</a></li>
+                            <li><a href="">北京子公司</a></li>
+                            <li><a href="">北京子公司</a></li>
+                            <li><a href="">北京子公司</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="treeShow">南京</a>
+                        <ul  class="equip-tree" style="display:none;">
+                            <li><a href="">北京子公司</a></li>
+                            <li><a href="">北京子公司</a></li>
+                            <li><a href="">北京子公司</a></li>
+                            <li><a href="">北京子公司</a></li>
+                            <li><a href="">北京子公司</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <%--内容显示--%>
+    <div class="equip-company" style="display: none;">
+        <div class="equip-company-layout">
+            <div class="company-tit">
+                <h6>设备管理<span class="space"></span>/<span class="space"></span>设备与位置<span class="space"></span>/<span class="space"></span>南京</h6>
+                <h3>南京---南京供电公司</h3>
+            </div>
+            <div  class="company-header">
+                <div class="company-location">
+                    <h3>地图</h3>
+                </div>
+                <div class="location-info">
+                    <h3>位置信息</h3>
+                    <table>
+                        <tr>
+                            <td>位置编码：</td>
+                            <td>AO</td>
+                        </tr>
+                        <tr>
+                            <td>位置编码：</td>
+                            <td>AO</td>
+                        </tr>
+                        <tr>
+                            <td>位置编码：</td>
+                            <td>AO</td>
+                        </tr>
+                        <tr>
+                            <td>位置编码：</td>
+                            <td>AO</td>
+                        </tr>
+                        <tr>
+                            <td>位置编码：</td>
+                            <td>AO</td>
+                        </tr>
+                        <tr>
+                            <td>位置编码：</td>
+                            <td>AO</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="warn-info">
+                    <h3>报警信息</h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="equip-table">
+                <h3 class="equip-table-tit">设备表</h3>
+                <table>
+                    <thead>
+                    <tr class="tr-selected">
+                        <td>设备名称</td>
+                        <td>设备名称</td>
+                        <td>设备名称</td>
+                        <td>设备名称</td>
+                        <td>设备名称</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>设备名称</td>
+                        <td>设备名称</td>
+                        <td>设备名称</td>
+                        <td>设备名称</td>
+                        <td>设备名称</td>
+                    </tr>
+                    <tr>
+                        <td>设备名称</td>
+                        <td>设备名称</td>
+                        <td>设备名称</td>
+                        <td>设备名称</td>
+                        <td>设备名称</td>
+                    </tr>
+                    <tr>
+                        <td>设备名称</td>
+                        <td>设备名称</td>
+                        <td>设备名称</td>
+                        <td>设备名称</td>
+                        <td>设备名称</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="equip-info">
+                <h3 class="equip-table-tit">设备信息</h3>
+                <table>
+                    <tr>
+                        <td width="85px">设备编码：</td>
+                        <td width="248px">23444</td>
+                        <td width="98px">厂<span class="space">厂家</span>家：</td>
+                        <td width="210px">常见信息</td>
+                        <td width="110px">额定分段电流：</td>
+                        <td width="220px">电流信息</td>
+                    </tr>
+                    <tr>
+                        <td>设备描述：</td>
+                        <td>馈线柜</td>
+                        <td>额定电压</td>
+                        <td></td>
+                        <td>运行年限</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>设备状态：</td>
+                        <td></td>
+                        <td>额定电流：</td>
+                        <td></td>
+                        <td>所处声明周期：</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>型<span class="space">厂家</span>号</td>
+                        <td></td>
+                        <td>额定短时冲击电压</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

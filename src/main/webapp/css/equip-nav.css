@@ -46,6 +46,9 @@ ul.child-ul>li>a{
 ul.child-ul li:hover{
 	background: #1C4E74;
 }
+.child-ul-hover{
+	background: #1C4E74;
+}
 .equip-content{
 	margin-right:267px; 
 }
@@ -54,7 +57,7 @@ ul.child-ul li:hover{
 	height: 476px;
 	overflow: scroll;
 	position: absolute;
-	left: 104%;
+	left: 100%;
 	top: 0;
 	background: #246495;
 }
