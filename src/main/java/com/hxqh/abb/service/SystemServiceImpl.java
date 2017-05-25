@@ -3,12 +3,14 @@ package com.hxqh.abb.service;
 import com.hxqh.abb.dao.*;
 import com.hxqh.abb.model.Location;
 import com.hxqh.abb.model.Maxuser;
+import com.hxqh.abb.model.base.SessionInfo;
 import com.hxqh.abb.model.dto.action.AssetDto;
 import com.hxqh.abb.model.dto.action.IndexDto;
 import com.hxqh.abb.model.dto.action.LoginDto;
 import com.hxqh.abb.model.view.*;
 import com.hxqh.abb.service.base.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,6 +41,9 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
     @Resource
     private AbbAssetDao abbassetDao;
 
+    @Value(value = "${com.hxqh.abb.websitepath}")
+    private String websitepath;
+
     public List<Location> getLocationList() {
         return locationDao.findAll();
     }
@@ -64,12 +69,12 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
      * @return
      */
     @Override
-    public IndexDto getSystemMessage() throws Exception {
+    public IndexDto getSystemMessage(SessionInfo sessionInfo) throws Exception {
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("description", BigDecimal.ZERO);
-        List<AbbIndexWorkorder> calendarList = abbindexworkorderDao.findAll(0, 5, null, params, " order by workorderid desc");
-        List<AbbIndexAsset> assetList = abbindexassetDao.findAll(0, 5, null, params, " order by assetuid desc");
-        List<AbbIndexWfassignment> wfassignmentList = abbindexwfassignmentDao.findAll(0, 5, "startdate is not null and duedate is not null", params, " order by wfassignmentid desc");
+        params.put("siteid", sessionInfo.getSiteid());
+        List<AbbIndexWorkorder> calendarList = abbindexworkorderDao.findAll(0, 5, " siteid=:siteid ", params, " order by workorderid desc");
+        List<AbbIndexAsset> assetList = abbindexassetDao.findAll(0, 5, " siteid=:siteid ", params, " order by assetuid desc");
+        List<AbbIndexWfassignment> wfassignmentList = abbindexwfassignmentDao.findAll(0, 5, " siteid=:siteid and startdate is not null and duedate is not null", params, " order by wfassignmentid desc");
         IndexDto indexDto = new IndexDto(calendarList, assetList, wfassignmentList);
         return indexDto;
     }
@@ -80,6 +85,12 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
         List<AbbAssetLocation> abbAssetLocationList = abbassetlocationDao.findAll(0, 15, null, null, " order by locationsid desc");
         AssetDto assetDto =new AssetDto(abbAssetList,abbAssetLocationList);
         return assetDto;
+    }
+
+    @Override
+    public String getWebsitPath()
+    {
+        return websitepath;
     }
 
 

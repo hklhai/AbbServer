@@ -2,6 +2,7 @@ package com.hxqh.abb.service;
 
 import com.hxqh.abb.model.Location;
 import com.hxqh.abb.model.Maxuser;
+import com.hxqh.abb.model.base.SessionInfo;
 import com.hxqh.abb.model.dto.action.AssetDto;
 import com.hxqh.abb.model.dto.action.IndexDto;
 import com.hxqh.abb.model.dto.action.LoginDto;
@@ -22,13 +23,13 @@ public interface SystemService extends BaseService {
 
     /*============================测试结束==========================*/
 
-    public abstract List<Maxuser> getLoginUserList(LoginDto loginDto) ;
+    public abstract List<Maxuser> getLoginUserList(LoginDto loginDto);
 
 
 
     /*============================首页管理开始========================*/
 
-    public abstract IndexDto getSystemMessage() throws Exception;
+    public abstract IndexDto getSystemMessage(SessionInfo sessionInfo) throws Exception;
 
 
     /*============================首页管理结束 =======================*/
@@ -41,6 +42,10 @@ public interface SystemService extends BaseService {
     /*============================现场及设备地图结束 ==================*/
 
 
+    /*============================微信 ==================*/
 
+    public abstract String getWebsitPath();
+
+    /*============================微信==================*/
 
 }

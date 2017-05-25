@@ -98,11 +98,11 @@ public class SystemTest {
 //        List<AbbUdtool> list1=abbudtoolDao.findAll();
 //        Assert.assertEquals(27,list1.size());
 
-        List<AbbAssetLocation> list0=abbassetlocationDao.findAll();
-        Assert.assertEquals(28,list0.size());
-
-        List<AbbAsset> list1=abbassetDao.findAll();
-        Assert.assertEquals(257,list1.size());
+//        List<AbbAssetLocation> list0=abbassetlocationDao.findAll();
+//        Assert.assertEquals(28,list0.size());
+//
+//        List<AbbAsset> list1=abbassetDao.findAll();
+//        Assert.assertEquals(257,list1.size());
     }
 
 
@@ -219,14 +219,6 @@ public class SystemTest {
         Assert.assertEquals(11, all1.size());
     }
 
-    /**
-     * 测试 返回前台DTO对象
-     */
-   // @Test
-    public void testDto() throws Exception {
-        IndexDto systemMessage = systemService.getSystemMessage();
-        System.out.println(systemMessage.getCalendarList());
-    }
 
 
    // @Test
