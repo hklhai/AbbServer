@@ -74,7 +74,7 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
         params.put("siteid", sessionInfo.getSiteid());
         List<AbbIndexWorkorder> calendarList = abbindexworkorderDao.findAll(0, 5, " siteid=:siteid ", params, " order by workorderid desc");
         List<AbbIndexAsset> assetList = abbindexassetDao.findAll(0, 5, " siteid=:siteid ", params, " order by assetuid desc");
-        List<AbbIndexWfassignment> wfassignmentList = abbindexwfassignmentDao.findAll(0, 5, " siteid=:siteid and startdate is not null and duedate is not null", params, " order by wfassignmentid desc");
+        List<AbbIndexWfassignment> wfassignmentList = abbindexwfassignmentDao.findAll(0, 5, "startdate is not null and duedate is not null", params, " order by wfassignmentid desc");
         IndexDto indexDto = new IndexDto(calendarList, assetList, wfassignmentList);
         return indexDto;
     }
