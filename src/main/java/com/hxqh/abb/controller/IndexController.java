@@ -110,4 +110,57 @@ public class IndexController {
         return "index/index";
     }
 
+
+    /**
+     * loginWebChat  微信后台开发
+     *
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/loginWebChat", method = RequestMethod.POST)
+    public ModelAndView loginWebChat(LoginDto loginDto, Map<String, Object> map) {
+        List<Maxuser> loginUserList = systemService.getLoginUserList(loginDto);
+        return webChatLogin(loginUserList, loginDto, map);
+    }
+
+    private ModelAndView webChatLogin(List<Maxuser> loginUserList, LoginDto loginDto, Map<String, Object> map) {
+        Map<String, Object> result = new HashMap<>();
+        if (loginUserList.size() > 0) {
+            String password = null;
+            try {
+                password = MXCipherXUtils.encodePwd(loginDto.getPassword());
+                if (loginUserList.get(0).getPassword().toUpperCase().equals(password)) {
+                    //加入Session中
+                    Maxuser login = loginUserList.get(0);
+                    SessionInfo sessionInfo = new SessionInfo(login.getLoginid(), login.getDefsite(), " ");
+                    map.put("sessionInfo", sessionInfo);
+                    return new ModelAndView("index/index");
+                } else {
+                    result.put("message", "密码不正确");
+                    return new ModelAndView("weixin/fail",result);
+                }
+            } catch (MXException e) {
+                result.put("message", "异常，请联系管理员！");
+                e.printStackTrace();
+                return new ModelAndView("weixin/fail",result);
+            }
+        } else {
+            result.put("message", "用户名不存在");
+            return new ModelAndView("weixin/fail",result);
+        }
+    }
+
+
+    /**
+     * test  微信后台开发测试
+     *
+     * @return
+     */
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public ModelAndView test(LoginDto loginDto, Map<String, Object> map) {
+        Map<String, Object> result = new HashMap<>();
+        result.put("message", "哈哈haha");
+        return new ModelAndView("weixin/asset",result);
+    }
+
 }

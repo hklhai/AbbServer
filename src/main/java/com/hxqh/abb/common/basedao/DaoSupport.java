@@ -143,6 +143,9 @@ public abstract class DaoSupport<T extends Serializable> implements Dao<T> {
 		orderby = orderby == null ? "" : orderby;
 		Query query = sessionFactory.getCurrentSession().createQuery(
 				"from " + entityName + " o " + whereql + orderby);
+		if (where != null && !"".equals(where.trim())) {
+			setParameter(query, params);
+		}
 		if (firstResult != -1 && maxResult != -1)
 			query.setFirstResult(firstResult).setMaxResults(maxResult);
 		return query.list();

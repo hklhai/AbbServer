@@ -2,6 +2,7 @@ package com.hxqh.abb.controller.weixin;
 
 
 import com.hxqh.abb.common.weixin.MsgControllerAdapter;
+import com.hxqh.abb.service.SystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -36,7 +37,7 @@ public class WeixinMsgController extends MsgControllerAdapter {
 	//private static final String helpStr = "\t发送 help 可获得帮助，发送\"视频\" 可获取视频教程，发送 \"美女\" 可看美女，发送 music 可听音乐 ，发送新闻可看JFinal新版本消息。公众号功能持续完善中";
 	private static final String helpStr ="温馨提示：/亲亲\n1.发送“作品名称”或“ISTC码”获取作品详细信息/可爱\n2.点击详情页ISTC码获取正版网络文学/奋斗";
 	
-	private static final String welcomeStr="/可爱感谢您关注中国ISTC中心!/亲亲\n温馨提示:\n发送 “help”或“帮助”获取帮助/呲牙\n北方工业大学1107实验室竭诚为您服务/可爱";           
+	private static final String welcomeStr="/可爱感谢您关注!/亲亲\n温馨提示:\n发送任意信息获取登录页面/呲牙\n北方工业大学1107实验室竭诚为您服务/可爱";
 
 
 	private ApplicationContext context;
@@ -59,12 +60,14 @@ public class WeixinMsgController extends MsgControllerAdapter {
 	}
 
 	protected void processInTextMsg(InTextMsg inTextMsg) {
-
 		context = new ClassPathXmlApplicationContext("spring/applicationContext.xml");
 		System.out.println(inTextMsg);
-
-		//QueryService queryService = (QueryService) context.getBean("queryService");
-
+		SystemService systemService = (SystemService) context.getBean("systemService");
+		String websitpath = systemService.getWebsitPath();
+		String pic = getPic(websitpath);
+		OutNewsMsg outMsg = new OutNewsMsg(inTextMsg);
+		outMsg.addNews("主页请登录", "点击链接登录", pic, websitpath);
+		render(outMsg);
 //		String websitpath = queryService.getWebsitPath();
 //
 //		String msgContent = inTextMsg.getContent().trim();
@@ -104,8 +107,8 @@ public class WeixinMsgController extends MsgControllerAdapter {
 	}
 
 	private String getPic(String websitpath) {
-		int i = (int) (1 + Math.random() * (10 - 1 + 1));
-		String pic = websitpath + "/img/weixin/" + String.valueOf(i) + ".jpg";
+		int i = 2 ;
+		String pic = websitpath + "img/weixin/" + String.valueOf(i) + ".jpg";
 		return pic;
 	}
 

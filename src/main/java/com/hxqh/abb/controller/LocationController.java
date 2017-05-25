@@ -1,14 +1,20 @@
 package com.hxqh.abb.controller;
 
+import com.hxqh.abb.dao.AbbLocationDao;
 import com.hxqh.abb.model.assist.LocationDto;
+import com.hxqh.abb.model.view.AbbLocation;
 import com.hxqh.abb.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lh on 2017/5/6.
@@ -19,6 +25,8 @@ public class LocationController {
 
     @Autowired
     private LocationService locationService;
+    @Resource
+    private AbbLocationDao abblocationDao;
 
     /**
      * 地图页面跳转
@@ -48,6 +56,20 @@ public class LocationController {
             e.printStackTrace();
         }
         return mapData;
+    }
+
+
+    /**
+     * location Tree 数据&页面接口
+     *
+     * @return
+     */
+    @RequestMapping(value = "/location", method = RequestMethod.GET)
+    public ModelAndView location() {
+        Map<String, Object> result = new HashMap<>();
+        List<AbbLocation> abbLocationList = abblocationDao.findAll();
+        result.put("abbLocationList", abbLocationList);
+        return new ModelAndView("asset/asset",result);
     }
 
 }
