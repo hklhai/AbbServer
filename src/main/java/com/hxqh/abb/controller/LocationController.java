@@ -68,7 +68,14 @@ public class LocationController {
     public ModelAndView location() {
         Map<String, Object> result = new HashMap<>();
         List<AbbLocation> abbLocationList = abblocationDao.findAll();
+        List<LocationDto> mapData = null;
+        try {
+            mapData = locationService.getMapData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         result.put("abbLocationList", abbLocationList);
+        result.put("mapData", mapData);
         return new ModelAndView("asset/asset",result);
     }
 
