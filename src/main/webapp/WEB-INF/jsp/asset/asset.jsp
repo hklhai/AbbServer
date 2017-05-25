@@ -31,8 +31,9 @@
             <li>
                 <a href="javascript:;"  class="left-down">设备及位置</a>
                 <ul class="child-ul">
-                    <li><a class="treeShow">南京</a></li>
-                    <li><a class="treeShow">南京</a></li>
+                    <c:forEach var="locationList" items="${abbLocationList}" >
+                        <li><a class="treeShow"><c:out value="${locationList.description}"/></a></li>
+                    </c:forEach>
                 </ul>
                 <div class="equip-tree-ul">
                     <ul  class="equip-tree" style="display:none;z-index: 100;">
@@ -54,7 +55,7 @@
         </ul>
     </div>
     <%--地图显示--%>
-    <div id="right-content" style="display: none;">
+    <div id="right-content">
         <div id="container"></div>
         <div id="tip">点击地图上的点标记，打开所添加的自定义信息窗体</div>
     </div>
@@ -302,20 +303,6 @@
             },
             method:{
 
-            },
-            created: function(){
-                var self = this;
-                $.ajax({
-                    url: "${ctx}/tool/listdata",
-                    method: "get",
-                    dataType: "json",
-                    success: function(data){
-
-                    },
-                    error: function(){
-
-                    }
-                });
             }
         });
     });
