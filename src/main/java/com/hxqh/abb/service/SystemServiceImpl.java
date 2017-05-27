@@ -98,5 +98,10 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
         return websitepath;
     }
 
+    @Override
+    public AbbAsset getAssetById(long assetuid) {
+        return abbassetDao.find(assetuid);
+    }
+
 
 }

@@ -6,6 +6,7 @@ import com.hxqh.abb.model.base.SessionInfo;
 import com.hxqh.abb.model.dto.action.AssetDto;
 import com.hxqh.abb.model.dto.action.IndexDto;
 import com.hxqh.abb.model.dto.action.LoginDto;
+import com.hxqh.abb.model.view.AbbAsset;
 import com.hxqh.abb.model.view.AbbLogin;
 import com.hxqh.abb.service.base.BaseService;
 
@@ -46,6 +47,8 @@ public interface SystemService extends BaseService {
     /*============================微信 ==================*/
 
     public abstract String getWebsitPath();
+
+    public abstract AbbAsset getAssetById(long assetuid);
 
     /*============================微信==================*/
 
