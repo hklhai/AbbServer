@@ -48,7 +48,17 @@ public class AbbAsset implements Serializable {
 
 	private String udmodel;
 
+	private String location;
+
 	public AbbAsset() {
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	public String getAssetnum() {
