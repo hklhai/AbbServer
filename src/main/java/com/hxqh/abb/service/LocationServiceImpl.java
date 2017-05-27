@@ -42,6 +42,14 @@ public class LocationServiceImpl extends BaseServiceImpl<Object> implements Loca
         return abbLocations;
     }
 
+    @Override
+    public List<AbbLocation> getChildLocation(String location) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("location", location);
+        String where = "parent=:location";
+        List<AbbLocation> childList = abbLocationDao.findAll(where,params,null);
+        return childList;
+    }
 
 
     @Override

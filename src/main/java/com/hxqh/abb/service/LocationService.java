@@ -20,6 +20,7 @@ public interface LocationService extends BaseService {
     /*============================设备与位置开始=========================*/
     public abstract List<AbbLocation> getRootList();
 
+    public abstract List<AbbLocation>  getChildLocation(String location);
     /*============================设备与位置结束 ========================*/
 
 
@@ -28,8 +29,9 @@ public interface LocationService extends BaseService {
 
     public abstract InventoryDto inventoryListData();
 
-    /*============================库存管理结束 ==========================*/
+    
 
+    /*============================库存管理结束 ==========================*/
 
 
 
