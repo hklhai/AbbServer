@@ -6,6 +6,7 @@ import com.hxqh.abb.model.*;
 import com.hxqh.abb.model.dto.action.IndexDto;
 import com.hxqh.abb.model.dto.action.LoginDto;
 import com.hxqh.abb.model.view.*;
+import com.hxqh.abb.service.LocationService;
 import com.hxqh.abb.service.SystemService;
 import org.apache.commons.beanutils.BeanUtils;
 import org.junit.Assert;
@@ -80,10 +81,16 @@ public class SystemTest {
     private AbbLocationDao abblocationDao;
     @Resource
     private AbbLoginDao abbloginDao;
+    @Resource
+    LocationService locationService;
 
     @Test
     public void view() {
-
+        List<AbbLocation> childLocation = locationService.getChildLocation("HZ-HZ");
+        for(AbbLocation l :childLocation)
+        {
+            System.out.println(l.getDescription());
+        }
 //        List<AbbLogin> list0=abbloginDao.findAll();
 //        Assert.assertEquals(27,list0.size());
 
@@ -222,7 +229,7 @@ public class SystemTest {
     /**
      * 测试 org site
      */
-   // @Test
+    // @Test
     public void testOrgAndSite() {
         List<Organization> all = organizationDao.findAll();
         Assert.assertEquals(4, all.size());
@@ -231,8 +238,7 @@ public class SystemTest {
     }
 
 
-
-   // @Test
+    // @Test
     public void testCopy() {
         Maxuser maxuser = new Maxuser();
         maxuser.setLoginid("111");
@@ -264,7 +270,6 @@ public class SystemTest {
         List<Inventory> all = inventoryDao.findAll();
         Assert.assertEquals(160, all.size());
     }
-
 
 
 }

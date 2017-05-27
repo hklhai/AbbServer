@@ -3,12 +3,16 @@ package com.hxqh.abb.controller;
 import com.hxqh.abb.dao.AbbLocationDao;
 import com.hxqh.abb.dao.AbbMapDao;
 import com.hxqh.abb.model.assist.LocationDto;
+import com.hxqh.abb.model.dto.action.LoginDto;
+import com.hxqh.abb.model.dto.action.Message;
 import com.hxqh.abb.model.dto.action.ToolDto;
 import com.hxqh.abb.model.view.AbbLocation;
+import com.hxqh.abb.model.view.AbbLogin;
 import com.hxqh.abb.model.view.AbbMap;
 import com.hxqh.abb.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -46,11 +50,18 @@ public class LocationController {
 
 
     /**
-     * 地图页面数据接口
-     * 2017-5-10
+     * 地图页面 查询子节点数据接口
+     * 2017-5-27
      *
      * @return
      */
+    @ResponseBody
+    @RequestMapping(value = "/child", method = RequestMethod.POST)
+    public List<AbbLocation> child(@ModelAttribute String location) {
+        List<AbbLocation> childLocation = locationService.getChildLocation(location);
+        return childLocation;
+    }
+
 
 
     /**
@@ -64,14 +75,13 @@ public class LocationController {
         List<AbbMap> mapData = abbMapDao.findAll();
         List<AbbLocation> abbLocationList = locationService.getRootList();
         //处理location
-        for(AbbLocation location:abbLocationList)
-        {
-            location.setDescription(location.getDescription().substring(0,2));
+        for (AbbLocation location : abbLocationList) {
+            location.setDescription(location.getDescription().substring(0, 2));
         }
 
         result.put("abbLocationList", abbLocationList);
         result.put("mapData", mapData);
-        return new ModelAndView("asset/asset",result);
+        return new ModelAndView("asset/asset", result);
     }
 
 
