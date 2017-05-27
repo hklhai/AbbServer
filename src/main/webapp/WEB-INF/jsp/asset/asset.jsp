@@ -30,13 +30,8 @@
             <li><a href="javascript:;" class="left-bag">现场及设备地图</a></li>
             <li>
                 <a href="javascript:;"  class="left-down">设备及位置</a>
-                <%--<ul class="child-ul">
-                    <c:forEach var="locationList" items="${abbLocationList}" >
-                        <li><a class="treeShow"><c:out value="${locationList.description}"/></a></li>
-                    </c:forEach>
-                </ul>--%>
                 <ul class="child-ul">
-                    <c:forEach var="locationList" items="${mapData}" >
+                    <c:forEach var="locationList" items="${abbLocationList}" >
                         <li><a class="treeShow"><c:out value="${locationList.description}"/></a></li>
                     </c:forEach>
                 </ul>
@@ -201,11 +196,12 @@
     <c:forEach items="${mapData}" var="mapData">
         mapData.push(mapData);
         var tmpLocation = [];
-        tmpLocation.push(${mapData.longitude});
         tmpLocation.push(${mapData.dimension});
-        tmpLnglats.push('['+tmpLocation+']');
+        tmpLocation.push(${mapData.longitude});
+        tmpLnglats.push(tmpLocation);
     </c:forEach>
     var lnglats = tmpLnglats;
+    console.log(lnglats);
     alert(lnglats);
     //添加marker标记
     for (var i = 0, marker; i < lnglats.length; i++) {
@@ -214,14 +210,13 @@
     function addMarker() {
         var marker = new AMap.Marker({
             map: map,
-            position:  lnglats[i]
+            position: lnglats[i]
         });
         //鼠标点击marker弹出自定义的信息窗体
-        AMap.event.addListener(marker, 'mouseover', function() {
+        AMap.event.addListener(marker, 'mouseover', function () {
             infoWindow.open(map, marker.getPosition());
         });
     }
-
     //实例化信息窗体
     var title = '南京-AO：南京AO史密斯热水器有限公 <i class="arraw"></i>',
             content = [];
