@@ -8,11 +8,22 @@
 	z-index: 1004;
 }
 .equip-detail-form h4{
-   font-size: 14px;
-   color: rgb(36, 36, 36);
-   height: 71px;
-   line-height: 71px;
-   padding-left: 27px;
+	font-size: 14px;
+	color: rgb(36, 36, 36);
+	height: 71px;
+	line-height: 71px;
+	padding-left: 27px;
+	position: relative;
+}
+span.close{
+	background: url(../img/asset/close.gif)  no-repeat right center;
+	display: block;
+	height: 15px;
+	width: 12px;
+	position: absolute;
+	top: 25px;
+	right: 25px;
+	cursor: pointer;
 }
 .sel-Tab{
 	height: 68px;

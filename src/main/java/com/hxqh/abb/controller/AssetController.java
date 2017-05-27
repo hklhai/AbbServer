@@ -64,8 +64,8 @@ public class AssetController {
      */
     @ResponseBody
     @RequestMapping(value = "/detail", method = RequestMethod.POST)
-    public AbbAsset detail(@RequestParam("assetuid") long assetuid) {
-        AbbAsset abbAsset= systemService.getAssetById(assetuid);
+    public AbbAsset detail(@RequestParam("assetuid") String assetuid) {
+        AbbAsset abbAsset= systemService.getAssetById(Long.valueOf(assetuid));
         return abbAsset;
     }
 

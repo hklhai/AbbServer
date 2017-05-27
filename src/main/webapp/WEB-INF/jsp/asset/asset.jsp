@@ -155,7 +155,7 @@
         <%--设备详情页--%>
 
         <div class="equip-detail-form" style="display: none;">
-            <h4>南京-----南京供电公司----设备详情</h4>
+            <h4>南京-----南京供电公司----设备详情<span class="close"></span></h4>
             <div class="sel-Tab">
                 <button class="basic-info">基础信息</button>
                 <button class="tecno-info">技术信息</button>
@@ -166,37 +166,37 @@
                 <table class="basic" style="display:none;">
                     <tr>
                         <td>设备编码</td>
-                        <td></td>
+                        <td class="basic-assetnum"></td>
                         <td>合同号</td>
-                        <td></td>
+                        <td class="basic-udcontract"></td>
                     </tr>
                     <tr>
                         <td>设备描述</td>
-                        <td></td>
+                        <td class="basic-description"></td>
                         <td>序列号</td>
-                        <td></td>
+                        <td class="basic-serialnum"></td>
                     </tr>
                     <tr>
                         <td>设备状态</td>
-                        <td></td>
+                        <td class="basic-status"></td>
                         <td>型号</td>
-                        <td></td>
+                        <td class="basic-udmodel"></td>
                     </tr>
                     <tr>
                         <td>制造商</td>
-                        <td></td>
+                        <td class="companies-name"></td>
                         <td>安装日期</td>
-                        <td></td>
+                        <td class="basic-installdate"></td>
                     </tr>
                     <tr>
                         <td>报警</td>
-                        <td></td>
+                        <td class="basic-state"></td>
                         <td>位置</td>
-                        <td></td>
+                        <td class="basic-location"></td>
                     </tr>
                     <tr>
                         <td>归属公司</td>
-                        <td></td>
+                        <td class="basic-udbelong"></td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -388,9 +388,6 @@
                     $("#right-content").hide();
                     assetList = data.abbAssetList;
                     locationList = data.abbAssetLocationList;
-                    console.log(assetList);
-                    console.log(locationList);
-                    console.log(locationList.description);
                     $(".data-location").text(locationList.location);
                     $(".data-description").text(locationList.description);
                     $(".data-uphone").text(locationList.udhone);
@@ -412,7 +409,7 @@
         });
 
         $(".btn-detail").click(function(){
-            var 
+            var assetuid = $(this).attr("id");
             $("#mask").css("height",$(document).height());
             $("#mask").css("width",$(document).width());
             $("#mask").show();
@@ -421,31 +418,15 @@
                 url: "${ctx}/asset/detail",
                 method: "post",
                 data:{
-                    location: location
+                    assetuid: assetuid
                 },
                 dataType: "json",
                 success: function(data){
-                    $(".equip-company").show();
-                    $("#right-content").hide();
-                    assetList = data.abbAssetList;
-                    locationList = data.abbAssetLocationList;
-                    console.log(assetList);
-                    console.log(locationList);
-                    console.log(locationList.description);
-                    $(".data-location").text(locationList.location);
-                    $(".data-description").text(locationList.description);
-                    $(".data-uphone").text(locationList.udhone);
-                    $(".data-contact").text(locationList.udcontact);
-                    var equipHtml="";
-                    for(var i=0;i<assetList.length;i++){
-                        equipHtml+='<tr><td width="10%">'+assetList[i].state
-                                +'</td><td width="20%">'+assetList[i].description
-                                +'</td><td width="30%">'+assetList[i].name
-                                +'</td><td width="10%">'+assetList[i].udmodel
-                                +'</td><td width="30%">'+assetList[i].parent
-                                +'</td></tr>';
-                    }
-                    $(".equip-table table tbody").append(equipHtml);
+                    //$(".data-location").text(locationList.location);
+
+                    //显示遮罩层，显示数据
+
+
                 },
                 error: function(){
                 }
@@ -453,6 +434,17 @@
 
         });
 
+        $(".equip-detail-form span.close").click(function(){
+            $("#mask").hide();
+            $(".equip-detail-form").hide();
+        });
+
+        $(".basic-info").click(function(){
+            $("table.basic").show().siblings("table").hide();
+        });
+        $(".sth-info").click(function(){
+            $("table.sth").show().siblings("table").hide();
+        });
         $(".equip-table table tbody").delegate("tr","click",function(){
             var index =  $(this).index();
             var data = assetList[index];
@@ -461,6 +453,7 @@
             $(".data-asset-description").text(data.description);
             $(".data-status").text(data.status);
             $(".data-comUdmodel").text(data.udmodel);
+            $(".data-comUdmodel").attr("id",data.assetuid);
         });
 
         var map = new AMap.Map("map-location", {
