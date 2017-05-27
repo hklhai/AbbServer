@@ -197,7 +197,9 @@
         zoom: 16
     });
     var tmpLnglats = [];
+    var mapData = [];
     <c:forEach items="${mapData}" var="mapData">
+        mapData.push(mapData);
         var tmpLocation = [];
         tmpLocation.push(${mapData.longitude});
         tmpLocation.push(${mapData.dimension});
@@ -219,7 +221,7 @@
             infoWindow.open(map, marker.getPosition());
         });
     }
-    
+
     //实例化信息窗体
     var title = '南京-AO：南京AO史密斯热水器有限公 <i class="arraw"></i>',
             content = [];
