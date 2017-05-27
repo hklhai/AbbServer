@@ -22,7 +22,7 @@
     <script type="text/javascript">
         $(function(){
             var indexData = new Vue({
-                el: ".index-data",
+                el: "#index-data",
                 data: {
                     assetList: [],
                     calendarList: [],
@@ -63,12 +63,12 @@
             <li class="li-item"><a href="${ctx}/location/location" class="index-a"><i class="icon-equip"></i>设备管理</a></li>
             <li class="li-item"><a href="${ctx}/inventory/list" class="index-a"><i class="icon-stock"></i>库存管理</a></li>
             <li class="li-item"><a href="${ctx}/tool/list" class="index-a"><i class="icon-tool"></i>工具管理</a></li>
-            <li class="li-last index-data"><i class="user-icon"></i><span class="username">{{sessionInfo.loginId}}</span></li>
+            <li class="li-last index-data"><i class="user-icon"></i><span class="username">用户名</span></li>
         </ul>
     </div>
 </div>
 <div class="index-content">
-    <div class="index-layout index-data">
+    <div class="index-layout" id="index-data">
         <div class="index-content-tit">首页</div>
         <div class="calendar index-div1">
             <div class="zAccountInner zAccount2 clearfix">
