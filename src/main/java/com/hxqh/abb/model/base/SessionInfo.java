@@ -11,13 +11,26 @@ public class SessionInfo {
 
     private String orgid;
 
+    private String displayname;
+
     public SessionInfo() {
     }
 
-    public SessionInfo(String loginId, String siteid, String orgid) {
+
+
+    public SessionInfo(String loginId, String siteid, String orgid, String displayname) {
         this.loginId = loginId;
         this.siteid = siteid;
         this.orgid = orgid;
+        this.displayname = displayname;
+    }
+
+    public String getDisplayname() {
+        return displayname;
+    }
+
+    public void setDisplayname(String displayname) {
+        this.displayname = displayname;
     }
 
     public String getLoginId() {
