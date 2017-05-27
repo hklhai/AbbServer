@@ -185,11 +185,13 @@
         src="http://webapi.amap.com/maps?v=1.3&key=e4eb9da6d97281e42a0357655570e3ae"></script>
 <script type="text/javascript">
     //地图初始化时，在地图上添加一个marker标记,鼠标点击marker可弹出自定义的信息窗体
+
     var map = new AMap.Map("container", {
         resizeEnable: true,
         center: [116.481181, 39.989792],
         zoom: 16
     });
+    var mapdata = ${mapData};
     var lnglats = [
         [116.368904, 39.923423],
         [116.382122, 39.921176],
