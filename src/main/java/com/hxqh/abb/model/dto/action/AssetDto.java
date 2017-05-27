@@ -10,12 +10,12 @@ import java.util.List;
  */
 public class AssetDto {
     private List<AbbAsset> abbAssetList;
-    private List<AbbAssetLocation> abbAssetLocationList;
+    private AbbAssetLocation abbAssetLocationList;
 
     public AssetDto() {
     }
 
-    public AssetDto(List<AbbAsset> abbAssetList, List<AbbAssetLocation> abbAssetLocationList) {
+    public AssetDto(List<AbbAsset> abbAssetList, AbbAssetLocation abbAssetLocationList) {
         this.abbAssetList = abbAssetList;
         this.abbAssetLocationList = abbAssetLocationList;
     }
@@ -28,11 +28,11 @@ public class AssetDto {
         this.abbAssetList = abbAssetList;
     }
 
-    public List<AbbAssetLocation> getAbbAssetLocationList() {
+    public AbbAssetLocation getAbbAssetLocationList() {
         return abbAssetLocationList;
     }
 
-    public void setAbbAssetLocationList(List<AbbAssetLocation> abbAssetLocationList) {
+    public void setAbbAssetLocationList(AbbAssetLocation abbAssetLocationList) {
         this.abbAssetLocationList = abbAssetLocationList;
     }
 }

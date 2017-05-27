@@ -88,7 +88,7 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
         params.put("location",location);
         List<AbbAsset> abbAssetList = abbassetDao.findAll(0, 15, "location=:location", params, " order by assetuid desc");
         List<AbbAssetLocation> abbAssetLocationList = abbassetlocationDao.findAll(0, 15, "location=:location", params, " order by locationsid desc");
-        AssetDto assetDto =new AssetDto(abbAssetList,abbAssetLocationList);
+        AssetDto assetDto =new AssetDto(abbAssetList,abbAssetLocationList.get(0));
         return assetDto;
     }
 
