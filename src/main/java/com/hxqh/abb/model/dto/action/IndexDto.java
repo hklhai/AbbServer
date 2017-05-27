@@ -1,8 +1,5 @@
 package com.hxqh.abb.model.dto.action;
 
-import com.hxqh.abb.model.assist.AssetDto;
-import com.hxqh.abb.model.assist.WfassignmentDto;
-import com.hxqh.abb.model.assist.WorkorderDto;
 import com.hxqh.abb.model.base.SessionInfo;
 import com.hxqh.abb.model.view.AbbIndexAsset;
 import com.hxqh.abb.model.view.AbbIndexWfassignment;
