@@ -2,23 +2,17 @@ package com.hxqh.abb.controller;
 
 import com.hxqh.abb.dao.AbbLocationDao;
 import com.hxqh.abb.dao.AbbMapDao;
-import com.hxqh.abb.model.assist.LocationDto;
-import com.hxqh.abb.model.dto.action.LoginDto;
-import com.hxqh.abb.model.dto.action.Message;
-import com.hxqh.abb.model.dto.action.ToolDto;
 import com.hxqh.abb.model.view.AbbLocation;
-import com.hxqh.abb.model.view.AbbLogin;
 import com.hxqh.abb.model.view.AbbMap;
 import com.hxqh.abb.service.LocationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,11 +51,11 @@ public class LocationController {
      */
     @ResponseBody
     @RequestMapping(value = "/child", method = RequestMethod.POST)
-    public List<AbbLocation> child(@ModelAttribute String location) {
+    public List<AbbLocation> child(HttpServletRequest httpServletRequest) {
+        String location=(String)httpServletRequest.getParameter("location");
         List<AbbLocation> childLocation = locationService.getChildLocation(location);
         return childLocation;
     }
-
 
 
     /**

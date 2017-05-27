@@ -32,22 +32,11 @@
                 <a href="javascript:;"  class="left-down">设备及位置</a>
                 <ul class="child-ul">
                     <c:forEach var="locationList" items="${abbLocationList}" >
-                        <li><a class="treeShow"><c:out value="${locationList.description}"/></a></li>
+                        <li><a class="treeShow" id="${locationList.location}"><c:out value="${locationList.description}"/></a></li>
                     </c:forEach>
                 </ul>
                 <div class="equip-tree-ul">
                     <ul  class="equip-tree" style="display:none;z-index: 100;">
-                        <li><a href="javascript:;">北京子公司</a></li>
-                        <li><a href="javascript:;">北京子公司</a></li>
-                        <li><a href="javascript:;">北京子公司</a></li>
-                        <li><a href="javascript:;">北京子公司</a></li>
-                        <li><a href="javascript:;">北京子公司</a></li>
-                    </ul>
-                    <ul  class="equip-tree" style="display:none;z-index: 100;">
-                        <li><a href="javascript:;">北京子公司</a></li>
-                        <li><a href="javascript:;">北京子公司</a></li>
-                        <li><a href="javascript:;">北京子公司</a></li>
-                        <li><a href="javascript:;">北京子公司</a></li>
                         <li><a href="javascript:;">北京子公司</a></li>
                     </ul>
                 </div>
@@ -192,41 +181,53 @@
         zoom: 16
     });
     var tmpLnglats = [];
-    var mapData = [];
+    var tmpData = [];
     <c:forEach items="${mapData}" var="mapData">
-        mapData.push(mapData);
+        var tmpObj = {};
+        tmpObj.description = '${mapData.description}';
+        tmpObj.location = '${mapData.location}';
+        tmpObj.locationsid = '${mapData.locationsid}';
+        tmpObj.loccount = '${mapData.loccount}';
+        tmpObj.longitude = '${mapData.longitude}';
+        tmpObj.orgid = '${mapData.orgid}';
+        tmpObj.saddresscode = '${mapData.saddresscode}';
+        tmpObj.status = '${mapData.status}';
+        tmpObj.alertcount = '${mapData.alertcount}';
+        tmpData.push(tmpObj);
+
         var tmpLocation = [];
         tmpLocation.push(${mapData.dimension});
         tmpLocation.push(${mapData.longitude});
         tmpLnglats.push(tmpLocation);
     </c:forEach>
     var lnglats = tmpLnglats;
-    console.log(lnglats);
-    alert(lnglats);
     //添加marker标记
     for (var i = 0, marker; i < lnglats.length; i++) {
         addMarker();
+
     }
     function addMarker() {
         var marker = new AMap.Marker({
             map: map,
             position: lnglats[i]
         });
+        //实例化信息窗体
+        var title = tmpData[i].description + '<i class="arraw"></i>',
+                content = [];
+        content.push("<table class='locaiton-table'><thead><tr><td width='318px' style='padding-left:18px;'>位置编码</td><td width='218px'>位置描述</td></tr></thead><tbody><tr><td style='padding-left:18px;'>"+tmpData[i].location+"</td><td>位置描述</td></tr></tbody></table>");
+        content.push("<table class='locaiton-table-info'><thead><tr><td style='padding-left:18px;'>详细信息</td><td></td><td></td><td></td></tr></thead><tbody><tr><td>状<span style='color:#F5F5F5;'>状态</span>态</td><td>状态</td><td>电压等级</td><td>状态</td></tr><tr><td>位置类型</td><td>状态</td><td>设备数量</td><td>状态</td></tr><tr><td>健康指标</td><td>状态</td><td>报警数量</td><td>状态</td></tr><tr><td>地<span style='color:#F5F5F5;'>状态</span>址</td><td>状态</td><td></td><td></td></tr></tbody></table>");
+        var infoWindow = new AMap.InfoWindow({
+            isCustom: true,  //使用自定义窗体
+            content: createInfoWindow(title, content.join("")),
+            offset: new AMap.Pixel(320, 370)
+        });
         //鼠标点击marker弹出自定义的信息窗体
         AMap.event.addListener(marker, 'mouseover', function () {
             infoWindow.open(map, marker.getPosition());
         });
     }
-    //实例化信息窗体
-    var title = '南京-AO：南京AO史密斯热水器有限公 <i class="arraw"></i>',
-            content = [];
-    content.push("<table class='locaiton-table'><thead><tr><td width='318px' style='padding-left:18px;'>位置编码</td><td width='218px'>位置描述</td></tr></thead><tbody><tr><td style='padding-left:18px;'>位置编码</td><td>位置描述</td></tr></tbody></table>");
-    content.push("<table class='locaiton-table-info'><thead><tr><td style='padding-left:18px;'>详细信息</td><td></td><td></td><td></td></tr></thead><tbody><tr><td>状<span style='color:#F5F5F5;'>状态</span>态</td><td>状态</td><td>电压等级</td><td>状态</td></tr><tr><td>位置类型</td><td>状态</td><td>设备数量</td><td>状态</td></tr><tr><td>健康指标</td><td>状态</td><td>报警数量</td><td>状态</td></tr><tr><td>地<span style='color:#F5F5F5;'>状态</span>址</td><td>状态</td><td></td><td></td></tr></tbody></table>");
-    var infoWindow = new AMap.InfoWindow({
-        isCustom: true,  //使用自定义窗体
-        content: createInfoWindow(title, content.join("")),
-        offset: new AMap.Pixel(320, 370)
-    });
+
+
 
     //构建自定义信息窗体
     function createInfoWindow(title, content) {
@@ -272,10 +273,31 @@
             menuItem.each(function(){
                 var _index=$(this).index();//获取当前选择菜单列表的索引
                 $(this).mouseenter(function(){
-                    var y = $(this).position().top;//获取当前鼠标滑过的列表的顶部坐标
-                    $(".equip-tree-ul").show();
-                    $(this).addClass("child-ul-hover").siblings().removeClass("child-ul-hover");
-                    $(".equip-tree-ul>ul").eq(_index).show().css("top",y).siblings().hide();
+                    var self = $(this);
+                    var location = self.find("a").attr("id");
+                    alert(location);
+                    $.ajax({
+                        url: "${ctx}/location/child",
+                        method: "post",
+                        data:{
+                            location: location
+                        },
+                        dataType: "json",
+                        success: function(data){
+                            var html = '';
+                            for(var i=0;i<data.length;i++){
+                                html+= '<li><a href="javascript:;" id="'+data[i].locationSid+'">'+data[i].description+'</a></li>';
+                            }
+                           $("ul.equip-tree").apped(html);
+                            var y = self.position().top;//获取当前鼠标滑过的列表的顶部坐标
+                            $(".equip-tree-ul").show();
+                            self.addClass("child-ul-hover").siblings().removeClass("child-ul-hover");
+                            $(".equip-tree-ul>ul").show().css("top",y).siblings().hide();
+                        },
+                        error: function(){
+
+                        }
+                    });
                 });
             });/*导航菜单菜单*/
             $(".father-ul").mouseleave(function(){
