@@ -18,13 +18,9 @@ public interface LocationService extends BaseService {
 
 
     /*============================设备与位置开始=========================*/
-    public abstract List<LocationDto> getMapData() throws Exception;
 
-    
 
     /*============================设备与位置结束 ========================*/
-
-
 
 
     /*============================库存管理开始===========================*/
