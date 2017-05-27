@@ -63,27 +63,27 @@
                     <table>
                         <tr>
                             <td>位置编码：</td>
-                            <td>AO</td>
+                            <td class="data-location">AO</td>
                         </tr>
                         <tr>
-                            <td>位置编码：</td>
-                            <td>AO</td>
+                            <td>位置描述：</td>
+                            <td class="data-description">AO</td>
                         </tr>
                         <tr>
-                            <td>位置编码：</td>
-                            <td>AO</td>
+                            <td>位置类型：</td>
+                            <td class="data-type">AO</td>
                         </tr>
                         <tr>
-                            <td>位置编码：</td>
-                            <td>AO</td>
+                            <td>地址：</td>
+                            <td class="data-address">AO</td>
                         </tr>
                         <tr>
-                            <td>位置编码：</td>
-                            <td>AO</td>
+                            <td>联系电话：</td>
+                            <td class="data-uphone">AO</td>
                         </tr>
                         <tr>
-                            <td>位置编码：</td>
-                            <td>AO</td>
+                            <td>联系人：</td>
+                            <td class="data-contact">AO</td>
                         </tr>
                     </table>
                 </div>
@@ -320,10 +320,12 @@
                 success: function(data){
                     $(".equip-company").show();
                     $("#right-content").hide();
-                    assetList = data.abbAssetList;
+                    //assetList = data.abbAssetList;
                     locationList = data.abbAssetLocationList;
                     console.log(assetList);
                     console.log(locationList);
+                    
+                    $(".data-location").val();
                 },
                 error: function(){
                 }
