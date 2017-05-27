@@ -283,18 +283,20 @@
                         },
                         dataType: "json",
                         success: function(data){
-                            var html = '';
-                            for(var i=0;i<data.length;i++){
-                                html+= '<li><a href="javascript:;" id="'+data[i].locationSid+'">'+data[i].description+'</a></li>';
+                            if(data.length>0){
+                                var html = '';
+                                $("ul.equip-tree").html("");
+                                for(var i=0;i<data.length;i++){
+                                    html+= '<li><a  onclick="goTO('+data[i].location+')">'+data[i].description+'</a></li>';
+                                }
+                                $("ul.equip-tree").append(html);
+                                var y = self.position().top;//获取当前鼠标滑过的列表的顶部坐标
+                                $(".equip-tree-ul").show();
+                                self.addClass("child-ul-hover").siblings().removeClass("child-ul-hover");
+                                $(".equip-tree-ul>ul").show().css("top",y).siblings().hide();
                             }
-                           $("ul.equip-tree").apped(html);
-                            var y = self.position().top;//获取当前鼠标滑过的列表的顶部坐标
-                            $(".equip-tree-ul").show();
-                            self.addClass("child-ul-hover").siblings().removeClass("child-ul-hover");
-                            $(".equip-tree-ul>ul").show().css("top",y).siblings().hide();
                         },
                         error: function(){
-
                         }
                     });
                 });
@@ -309,6 +311,21 @@
             $(".equip-company").show();
             $("#right-content").hide();
         });
+        function goTO(location){
+            $.ajax({
+                url: "${ctx}/location/child",
+                method: "post",
+                data:{
+                    location: location
+                },
+                dataType: "json",
+                success: function(data){
+
+                },
+                error: function(){
+                }
+            });
+        }
     });
     $(function(){
         var indexData = new Vue({
