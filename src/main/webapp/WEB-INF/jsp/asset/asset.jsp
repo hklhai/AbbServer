@@ -275,7 +275,6 @@
                 $(this).mouseenter(function(){
                     var self = $(this);
                     var location = self.find("a").attr("id");
-                    alert(location);
                     $.ajax({
                         url: "${ctx}/location/child",
                         method: "post",
