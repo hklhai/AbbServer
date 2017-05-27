@@ -1,0 +1,85 @@
+.equip-detail-form{
+	width: 766px;
+	height: 486px;
+	background: #fafafa;
+	position:absolute;
+	top:200px;
+	left: 267px;
+	z-index: 1004;
+}
+.equip-detail-form h4{
+   font-size: 14px;
+   color: rgb(36, 36, 36);
+   height: 71px;
+   line-height: 71px;
+   padding-left: 27px;
+}
+.sel-Tab{
+	height: 68px;
+	padding-top: 8px;
+	padding-left: 17px;
+}
+.sel-Tab button{
+	display: block;
+	float: left;
+	height: 30px;
+	width: 71px;
+	text-align: center;
+	line-height: 30px;
+	background: #EAEAEA;
+	border: 1px solid #dcdcdc;
+	margin-left:10px; 
+	padding-left: 0px;
+	padding-right: 0px;
+	cursor: pointer;
+}
+.sel-btn{
+	border: 1px solid #0badff;
+}
+.tab-content{
+	position: relative;
+}
+table.basic{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	border-collapse:separate; 
+	border-spacing:0px 15px;
+}
+table.basic tr{
+	height: 30px;
+	line-height: 30px;
+	font-size: 12px;
+    color: rgb(70, 70, 70);
+}
+table.basic tr td:nth-child(1),table.basic tr td:nth-child(3){
+	padding-left: 36px;
+	width: 72px;
+}
+table.basic tr td:nth-child(2),table.basic tr td:nth-child(4){
+	width: 229px;
+	border: 1px solid #dcdcdc;
+}
+table.sth{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	margin-left: 40px;
+	margin-right: 40px;
+}
+table.sth thead tr{
+    border-bottom: 2px solid #dadada;
+}
+table.sth tr{
+	height: 43px;
+	line-height: 43px;
+	font-size: 12px;
+	color: rgb(70, 70, 70);
+}
+table.sth tr td:nth-child(1){
+    padding-left: 15px;
+}
+table.sth tbody tr{
+	border-bottom: 1px solid #dadada;
+}
+

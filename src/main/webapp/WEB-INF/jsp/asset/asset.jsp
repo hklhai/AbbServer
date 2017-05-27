@@ -19,11 +19,13 @@
     <link rel="stylesheet" href="${ctx}/css/equip-nav.css">
     <link rel="stylesheet" href="${ctx}/css/header.css">
     <link rel="stylesheet" href="${ctx}/css/company.css">
+    <link rel="stylesheet" href="${ctx}/css/equip-form.css">
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="${ctx}/scripts/vue.js"></script>
 </head>
 <body>
 <%@ include file="../commons/header.jsp"%>
+<div id="mask"></div>
 <div class="equip-layout">
     <div class="equip-nav">
         <ul class="father-ul">
@@ -57,6 +59,9 @@
             <div  class="company-header">
                 <div class="company-location">
                     <h3>地图</h3>
+                    <div id="map-location" style="height: 210px;width: 100%;">
+
+                    </div>
                 </div>
                 <div class="location-info">
                     <h3>位置信息</h3>
@@ -67,23 +72,23 @@
                         </tr>
                         <tr>
                             <td>位置描述：</td>
-                            <td class="data-description">AO</td>
+                            <td class="data-description"></td>
                         </tr>
                         <tr>
                             <td>位置类型：</td>
-                            <td class="data-type">AO</td>
+                            <td class="data-type"></td>
                         </tr>
                         <tr>
                             <td>地址：</td>
-                            <td class="data-address">AO</td>
+                            <td class="data-address"></td>
                         </tr>
                         <tr>
                             <td>联系电话：</td>
-                            <td class="data-uphone">AO</td>
+                            <td class="data-uphone"></td>
                         </tr>
                         <tr>
                             <td>联系人：</td>
-                            <td class="data-contact">AO</td>
+                            <td class="data-contact"></td>
                         </tr>
                     </table>
                 </div>
@@ -95,56 +100,36 @@
             <div class="equip-table">
                 <h3 class="equip-table-tit">设备表</h3>
                 <table>
-                    <thead>
-                    <tr class="tr-selected">
-                        <td>设备名称</td>
-                        <td>设备名称</td>
-                        <td>设备名称</td>
-                        <td>设备名称</td>
-                        <td>设备名称</td>
-                    </tr>
+                    <thead><%--行的选中样式为tr-selected--%>
+                        <tr>
+                            <th width="10%">状态</th>
+                            <th width="20%">设备名称</th>
+                            <th width="30%">厂家</th>
+                            <th width="10%">型号</th>
+                            <th width="30%">子设备</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>设备名称</td>
-                        <td>设备名称</td>
-                        <td>设备名称</td>
-                        <td>设备名称</td>
-                        <td>设备名称</td>
-                    </tr>
-                    <tr>
-                        <td>设备名称</td>
-                        <td>设备名称</td>
-                        <td>设备名称</td>
-                        <td>设备名称</td>
-                        <td>设备名称</td>
-                    </tr>
-                    <tr>
-                        <td>设备名称</td>
-                        <td>设备名称</td>
-                        <td>设备名称</td>
-                        <td>设备名称</td>
-                        <td>设备名称</td>
-                    </tr>
                     </tbody>
                 </table>
             </div>
             <div class="equip-info">
                 <h3 class="equip-table-tit">设备信息</h3>
+                <button class="btn-detail">设备详情</button>
                 <table>
                     <tr>
                         <td width="85px">设备编码：</td>
-                        <td width="248px">23444</td>
+                        <td width="248px" class="data-assetnum">23444</td>
                         <td width="98px">厂<span class="space">厂家</span>家：</td>
-                        <td width="210px">常见信息</td>
+                        <td width="210px" class="data-comName">常见信息</td>
                         <td width="110px">额定分段电流：</td>
-                        <td width="220px">电流信息</td>
+                        <td width="220px" class="data-alnvalue">电流信息</td>
                     </tr>
                     <tr>
                         <td>设备描述：</td>
-                        <td>馈线柜</td>
+                        <td class="data-asset-description">馈线柜</td>
                         <td>额定电压</td>
-                        <td></td>
+                        <td class="data-alnvalue"></td>
                         <td>运行年限</td>
                         <td></td>
                     </tr>
@@ -153,17 +138,98 @@
                         <td></td>
                         <td>额定电流：</td>
                         <td></td>
-                        <td>所处声明周期：</td>
+                        <td class="data-status">所处声明周期：</td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td>型<span class="space">厂家</span>号</td>
-                        <td></td>
+                        <td>型<span class="space">型号</span>号</td>
+                        <td class="data-comUdmodel"></td>
                         <td>额定短时冲击电压</td>
+                        <td class="data-alnvalue"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <%--设备详情页--%>
+
+        <div class="equip-detail-form" style="display: none;">
+            <h4>南京-----南京供电公司----设备详情</h4>
+            <div class="sel-Tab">
+                <button class="basic-info">基础信息</button>
+                <button class="tecno-info">技术信息</button>
+                <button class="sth-info">备件信息</button>
+                <button class="history-info">历史信息</button>
+            </div>
+            <div class="tab-content">
+                <table class="basic" style="display:none;">
+                    <tr>
+                        <td>设备编码</td>
+                        <td></td>
+                        <td>合同号</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>设备描述</td>
+                        <td></td>
+                        <td>序列号</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>设备状态</td>
+                        <td></td>
+                        <td>型号</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>制造商</td>
+                        <td></td>
+                        <td>安装日期</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>报警</td>
+                        <td></td>
+                        <td>位置</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>归属公司</td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
+                </table>
+                <table class="sth">
+                    <thead>
+                    <tr>
+                        <td width="160px">物资</td>
+                        <td width="260px">描述</td>
+                        <td width="95px">库存余量</td>
+                        <td width="100px">仓库归属</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>物资</td>
+                        <td>描述</td>
+                        <td>库存余量</td>
+                        <td>仓库归属</td>
+                    </tr>
+                    <tr>
+                        <td>物资</td>
+                        <td>描述</td>
+                        <td>库存余量</td>
+                        <td>仓库归属</td>
+                    </tr>
+                    <tr>
+                        <td>物资</td>
+                        <td>描述</td>
+                        <td>库存余量</td>
+                        <td>仓库归属</td>
+                    </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -259,8 +325,6 @@
         map.clearInfoWindow();
     }
     $(function(){
-        var assetList = [];
-        var locationList =[];
         $(".left-bag").click(function(){
             $(".equip-company").hide();
             $("#right-content").show();
@@ -308,6 +372,8 @@
             })
         }//展开二级菜单
         menu();//执行展开二级菜单函
+        var assetList = [];
+        var locationList =[];
         $("ul.equip-tree").delegate("li","click",function(){
             var location = $(this).find("a").attr("id");
             $.ajax({
@@ -320,28 +386,104 @@
                 success: function(data){
                     $(".equip-company").show();
                     $("#right-content").hide();
-                    //assetList = data.abbAssetList;
+                    assetList = data.abbAssetList;
                     locationList = data.abbAssetLocationList;
                     console.log(assetList);
                     console.log(locationList);
-                    
-                    $(".data-location").val();
+                    console.log(locationList.description);
+                    $(".data-location").text(locationList.location);
+                    $(".data-description").text(locationList.description);
+                    $(".data-uphone").text(locationList.udhone);
+                    $(".data-contact").text(locationList.udcontact);
+                    var equipHtml="";
+                    for(var i=0;i<assetList.length;i++){
+                        equipHtml+='<tr><td width="10%">'+assetList[i].state
+                                +'</td><td width="20%">'+assetList[i].description
+                                +'</td><td width="30%">'+assetList[i].name
+                                +'</td><td width="10%">'+assetList[i].udmodel
+                                +'</td><td width="30%">'+assetList[i].parent
+                                +'</td></tr>';
+                    }
+                    $(".equip-table table tbody").append(equipHtml);
                 },
                 error: function(){
                 }
             });
         });
-        var indexData = new Vue({
-            el: "#equip-company",
-            data: {
-                assetList: assetlist,
-                locationList: locationList
-            },
-            method:{
 
-            }
+        $(".btn-detail").click(function(){
+            var 
+            $("#mask").css("height",$(document).height());
+            $("#mask").css("width",$(document).width());
+            $("#mask").show();
+            $(".equip-detail-form").show();
+            $.ajax({
+                url: "${ctx}/asset/detail",
+                method: "post",
+                data:{
+                    location: location
+                },
+                dataType: "json",
+                success: function(data){
+                    $(".equip-company").show();
+                    $("#right-content").hide();
+                    assetList = data.abbAssetList;
+                    locationList = data.abbAssetLocationList;
+                    console.log(assetList);
+                    console.log(locationList);
+                    console.log(locationList.description);
+                    $(".data-location").text(locationList.location);
+                    $(".data-description").text(locationList.description);
+                    $(".data-uphone").text(locationList.udhone);
+                    $(".data-contact").text(locationList.udcontact);
+                    var equipHtml="";
+                    for(var i=0;i<assetList.length;i++){
+                        equipHtml+='<tr><td width="10%">'+assetList[i].state
+                                +'</td><td width="20%">'+assetList[i].description
+                                +'</td><td width="30%">'+assetList[i].name
+                                +'</td><td width="10%">'+assetList[i].udmodel
+                                +'</td><td width="30%">'+assetList[i].parent
+                                +'</td></tr>';
+                    }
+                    $(".equip-table table tbody").append(equipHtml);
+                },
+                error: function(){
+                }
+            });
+
         });
+
+        $(".equip-table table tbody").delegate("tr","click",function(){
+            var index =  $(this).index();
+            var data = assetList[index];
+            $(".data-assetnum").text(data.assetnum);
+            $(".data-comName").text(data.name);
+            $(".data-asset-description").text(data.description);
+            $(".data-status").text(data.status);
+            $(".data-comUdmodel").text(data.udmodel);
+        });
+
+        var map = new AMap.Map("map-location", {
+            resizeEnable: true,
+            center: [116.481181, 39.989792],
+            zoom: 16
+        });
+        var lnglats = [
+            [116.368904, 39.923423]
+        ];
+        //添加marker标记
+        for (var i = 0, marker; i < lnglats.length; i++) {
+            addMarker();
+        }
+        function addMarker() {
+            var marker = new AMap.Marker({
+                map: map,
+                position:  lnglats[i]
+            });
+        }
     });
+
+
 </script>
 <script type="text/javascript" src="http://webapi.amap.com/demos/js/liteToolbar.js"></script>
 </body>
