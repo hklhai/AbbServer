@@ -29,8 +29,6 @@ import java.util.Map;
 public class LocationServiceImpl extends BaseServiceImpl<Object> implements LocationService{
 
     @Autowired
-    private LocationDao locationDao;
-    @Autowired
     private AbbInventoryDao abbinventoryDao;
     @Autowired
     private AbbInventorySiteDao siteDao;
@@ -39,13 +37,6 @@ public class LocationServiceImpl extends BaseServiceImpl<Object> implements Loca
     @Autowired
     private AbbInventoryLocationDao abbInventoryLocationDao;
 
-    @Override
-    public List<LocationDto> getMapData() throws Exception {
-        List<Location> locationList = locationDao.findAll(0, 15, null, null, " order by locationsid desc");
-        List<LocationDto> locationDtoList = new ArrayList<>();
-        copy2LocationDto(locationList,locationDtoList);
-        return locationDtoList;
-    }
 
     @Override
     public List<AbbInventory> getInventoryData(InventorySearchDto searchInventoryDto, Page page) {
@@ -88,11 +79,4 @@ public class LocationServiceImpl extends BaseServiceImpl<Object> implements Loca
     }
 
 
-    private void copy2LocationDto(List<Location> locationList, List<LocationDto> locationDtoList) throws Exception  {
-        for (int i = 0; i < locationList.size(); i++) {
-            LocationDto locationDto = new LocationDto();
-            BeanUtilEx.copyProperties(locationDto, locationList.get(i));
-            locationDtoList.add(locationDto);
-        }
-    }
 }
