@@ -1,6 +1,7 @@
 package com.hxqh.abb.controller;
 
 import com.hxqh.abb.model.dto.action.AssetDto;
+import com.hxqh.abb.model.view.AbbAsset;
 import com.hxqh.abb.service.SystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,5 +55,19 @@ public class AssetController {
         AssetDto assetData = systemService.getAssetData(location);
         return assetData;
     }
+
+    /**
+     * 资设详细详细获取
+     * 2017-5-27
+     *
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/detail", method = RequestMethod.POST)
+    public AbbAsset detail(@RequestParam("assetuid") long assetuid) {
+        AbbAsset abbAsset= systemService.getAssetById(assetuid);
+        return abbAsset;
+    }
+
 
 }

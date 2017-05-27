@@ -87,14 +87,17 @@ public class SystemTest {
 
     @Test
     public void view() {
+        AbbAsset assetById = systemService.getAssetById(3255l);
+        System.out.println(assetById);
+
 //        List<AbbLocation> childLocation = locationService.getChildLocation("HZ-HZ");
 //        for(AbbLocation l :childLocation)
 //        {
 //            System.out.println(l.getDescription());
 //        }
 
-        AssetDto ao = systemService.getAssetData("AO");
-        System.out.println(ao);
+//        AssetDto ao = systemService.getAssetData("AO");
+//        System.out.println(ao);
 //        List<AbbLogin> list0=abbloginDao.findAll();
 //        Assert.assertEquals(27,list0.size());
 
