@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,7 +51,7 @@ public class LocationController {
      */
     @ResponseBody
     @RequestMapping(value = "/child", method = RequestMethod.POST)
-    public List<AbbLocation> child(@RequestParam("location")String location) {
+    public List<AbbLocation> child(@RequestParam("location") String location) {
         List<AbbLocation> childLocation = locationService.getChildLocation(location);
         return childLocation;
     }

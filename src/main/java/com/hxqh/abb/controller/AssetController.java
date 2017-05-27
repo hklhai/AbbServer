@@ -50,7 +50,7 @@ public class AssetController {
      */
     @ResponseBody
     @RequestMapping(value = "/assetData", method = RequestMethod.POST)
-    public AssetDto assetData(@RequestParam("location")String location) {
+    public AssetDto assetData(@RequestParam("location") String location) {
         AssetDto assetData = systemService.getAssetData(location);
         return assetData;
     }
