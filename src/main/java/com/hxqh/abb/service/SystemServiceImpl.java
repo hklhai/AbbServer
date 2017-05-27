@@ -83,9 +83,11 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
     }
 
     @Override
-    public AssetDto getAssetData() {
-        List<AbbAsset> abbAssetList = abbassetDao.findAll(0, 15, null, null, " order by assetuid desc");
-        List<AbbAssetLocation> abbAssetLocationList = abbassetlocationDao.findAll(0, 15, null, null, " order by locationsid desc");
+    public AssetDto getAssetData(String location) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("location",location);
+        List<AbbAsset> abbAssetList = abbassetDao.findAll(0, 15, "location=:location", params, " order by assetuid desc");
+        List<AbbAssetLocation> abbAssetLocationList = abbassetlocationDao.findAll(0, 15, "location=:location", params, " order by locationsid desc");
         AssetDto assetDto =new AssetDto(abbAssetList,abbAssetLocationList);
         return assetDto;
     }

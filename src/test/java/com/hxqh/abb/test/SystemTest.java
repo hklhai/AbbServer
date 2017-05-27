@@ -3,6 +3,7 @@ package com.hxqh.abb.test;
 import com.hxqh.abb.common.util.MXCipherXUtils;
 import com.hxqh.abb.dao.*;
 import com.hxqh.abb.model.*;
+import com.hxqh.abb.model.dto.action.AssetDto;
 import com.hxqh.abb.model.dto.action.IndexDto;
 import com.hxqh.abb.model.dto.action.LoginDto;
 import com.hxqh.abb.model.view.*;
@@ -86,11 +87,14 @@ public class SystemTest {
 
     @Test
     public void view() {
-        List<AbbLocation> childLocation = locationService.getChildLocation("HZ-HZ");
-        for(AbbLocation l :childLocation)
-        {
-            System.out.println(l.getDescription());
-        }
+//        List<AbbLocation> childLocation = locationService.getChildLocation("HZ-HZ");
+//        for(AbbLocation l :childLocation)
+//        {
+//            System.out.println(l.getDescription());
+//        }
+
+        AssetDto ao = systemService.getAssetData("AO");
+        System.out.println(ao);
 //        List<AbbLogin> list0=abbloginDao.findAll();
 //        Assert.assertEquals(27,list0.size());
 

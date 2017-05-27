@@ -38,7 +38,7 @@ public interface SystemService extends BaseService {
 
     /*============================现场及设备地图开始===================*/
 
-    public abstract AssetDto getAssetData();
+    public abstract AssetDto getAssetData(String location);
 
     /*============================现场及设备地图结束 ==================*/
 
