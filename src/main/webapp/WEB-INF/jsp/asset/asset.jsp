@@ -35,9 +35,8 @@
                         <li><a class="treeShow" id="${locationList.location}"><c:out value="${locationList.description}"/></a></li>
                     </c:forEach>
                 </ul>
-                <div class="equip-tree-ul">
+                <div class="equip-tree-ul equip-company">
                     <ul  class="equip-tree" style="display:none;z-index: 100;">
-                        <li><a href="javascript:;">北京子公司</a></li>
                     </ul>
                 </div>
             </li>
@@ -260,6 +259,7 @@
         map.clearInfoWindow();
     }
     $(function(){
+        var vueData = null;
         $(".left-bag").click(function(){
             $(".equip-company").hide();
             $("#right-content").show();
@@ -287,7 +287,7 @@
                                 var html = '';
                                 $("ul.equip-tree").html("");
                                 for(var i=0;i<data.length;i++){
-                                    html+= '<li><a  onclick="goTO('+data[i].location+')">'+data[i].description+'</a></li>';
+                                    html+= '<li><a  id="'+data[i].location+'">'+data[i].description+'</a></li>';
                                 }
                                 $("ul.equip-tree").append(html);
                                 var y = self.position().top;//获取当前鼠标滑过的列表的顶部坐标
@@ -307,35 +307,22 @@
             })
         }//展开二级菜单
         menu();//执行展开二级菜单函
-        $(".equip-tree>li").click(function(){
-            $(".equip-company").show();
-            $("#right-content").hide();
-        });
-        function goTO(location){
+        $("ul.equip-tree").delegate("li","click",function(){
+            var location = $(this).find("a").attr("id");
             $.ajax({
-                url: "${ctx}/location/child",
+                url: "${ctx}/asset/assetData",
                 method: "post",
                 data:{
                     location: location
                 },
                 dataType: "json",
                 success: function(data){
-
+                    $(".equip-company").show();
+                    $("#right-content").hide();
                 },
                 error: function(){
                 }
             });
-        }
-    });
-    $(function(){
-        var indexData = new Vue({
-            el: ".equip-company",
-            data: {
-
-            },
-            method:{
-
-            }
         });
     });
 </script>

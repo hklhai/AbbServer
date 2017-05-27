@@ -49,7 +49,7 @@ public class AssetController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/assetData", method = RequestMethod.GET)
+    @RequestMapping(value = "/assetData", method = RequestMethod.POST)
     public AssetDto assetData(@RequestParam("location")String location) {
         AssetDto assetData = systemService.getAssetData(location);
         return assetData;
