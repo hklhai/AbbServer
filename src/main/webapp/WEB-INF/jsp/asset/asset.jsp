@@ -30,8 +30,13 @@
             <li><a href="javascript:;" class="left-bag">现场及设备地图</a></li>
             <li>
                 <a href="javascript:;"  class="left-down">设备及位置</a>
-                <ul class="child-ul">
+                <%--<ul class="child-ul">
                     <c:forEach var="locationList" items="${abbLocationList}" >
+                        <li><a class="treeShow"><c:out value="${locationList.description}"/></a></li>
+                    </c:forEach>
+                </ul>--%>
+                <ul class="child-ul">
+                    <c:forEach var="locationList" items="${mapData}" >
                         <li><a class="treeShow"><c:out value="${locationList.description}"/></a></li>
                     </c:forEach>
                 </ul>
@@ -191,13 +196,15 @@
         center: [116.481181, 39.989792],
         zoom: 16
     });
-    var mapdata = ${mapData};
-    var lnglats = [
-        [116.368904, 39.923423],
-        [116.382122, 39.921176],
-        [116.387271, 39.922501],
-        [116.398258, 39.914600]
-    ];
+    var tmpLnglats = [];
+    <c:forEach items="${mapData}" var="mapData">
+        var tmpLocation = [];
+        tmpLocation.push(${mapData.longitude});
+        tmpLocation.push(${mapData.dimension});
+        tmpLnglats.push('['+tmpLocation+']');
+    </c:forEach>
+    var lnglats = tmpLnglats;
+    alert(lnglats);
     //添加marker标记
     for (var i = 0, marker; i < lnglats.length; i++) {
         addMarker();
@@ -212,19 +219,7 @@
             infoWindow.open(map, marker.getPosition());
         });
     }
-
-    //实例化信息窗体
-    var title = '方恒假日酒店<span style="font-size:11px;color:#F00;">价格:318</span>',
-            content = [];
-    content.push("<img src='http://tpc.googlesyndication.com/simgad/5843493769827749134'>地址：北京市朝阳区阜通东大街6号院3号楼东北8.3公里");
-    content.push("电话：010-64733333");
-    content.push("<a href='http://ditu.amap.com/detail/B000A8URXB?citycode=110105'>详细信息</a>");
-    var infoWindow = new AMap.InfoWindow({
-        isCustom: true,  //使用自定义窗体
-        content: createInfoWindow(title, content.join("<br/>")),
-        offset: new AMap.Pixel(16, -45)
-    });
-
+    
     //实例化信息窗体
     var title = '南京-AO：南京AO史密斯热水器有限公 <i class="arraw"></i>',
             content = [];
