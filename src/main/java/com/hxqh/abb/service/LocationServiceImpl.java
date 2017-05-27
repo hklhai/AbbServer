@@ -7,10 +7,7 @@ import com.hxqh.abb.model.Location;
 import com.hxqh.abb.model.assist.LocationDto;
 import com.hxqh.abb.model.dto.action.InventoryDto;
 import com.hxqh.abb.model.searchdto.InventorySearchDto;
-import com.hxqh.abb.model.view.AbbInventory;
-import com.hxqh.abb.model.view.AbbInventoryItem;
-import com.hxqh.abb.model.view.AbbInventoryLocation;
-import com.hxqh.abb.model.view.AbbInventorySite;
+import com.hxqh.abb.model.view.*;
 import com.hxqh.abb.service.base.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +33,15 @@ public class LocationServiceImpl extends BaseServiceImpl<Object> implements Loca
     private AbbInventoryItemDao itemDao;
     @Autowired
     private AbbInventoryLocationDao abbInventoryLocationDao;
+    @Autowired
+    private AbbLocationDao abbLocationDao;
+
+    @Override
+    public List<AbbLocation> getRootList() {
+        List<AbbLocation>  abbLocations = abbLocationDao.findAll("parent is null",null,null);
+        return abbLocations;
+    }
+
 
 
     @Override

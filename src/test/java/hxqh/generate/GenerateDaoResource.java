@@ -6,7 +6,7 @@ import org.junit.Test;
  * Created by lh on 2017-05-11.
  */
 public class GenerateDaoResource {
-    private static String[] MBOName = {"AbbAssetLocation","AbbAsset"};
+    private static String[] MBOName = {"AbbLogin"};
 
 
     @Test

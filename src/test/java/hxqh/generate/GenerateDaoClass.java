@@ -15,12 +15,12 @@ import java.io.PrintStream;
  */
 public class GenerateDaoClass {
 
-	private static String[] MBOName = {"AbbAssetLocation","AbbAsset"};
+	private static String[] MBOName = {"AbbLocationMap"};
 	
 
 	public static void main(String[] args) throws IOException {
-		File mboFile = new File("D:\\myProject\\AbbServer\\AbbServer\\src\\test\\resources\\dao.property");
-		File daoImpl = new File("D:\\myProject\\AbbServer\\AbbServer\\src\\test\\resources\\daoImpl.property");
+		File mboFile = new File("D:\\HXQH\\CompanyProject\\AbbServer\\src\\test\\resources\\dao.property");
+		File daoImpl = new File("D:\\HXQH\\CompanyProject\\AbbServer\\src\\test\\resources\\daoImpl.property");
 
 
 		for (String string : MBOName) {

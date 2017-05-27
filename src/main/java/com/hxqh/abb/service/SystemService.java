@@ -6,6 +6,7 @@ import com.hxqh.abb.model.base.SessionInfo;
 import com.hxqh.abb.model.dto.action.AssetDto;
 import com.hxqh.abb.model.dto.action.IndexDto;
 import com.hxqh.abb.model.dto.action.LoginDto;
+import com.hxqh.abb.model.view.AbbLogin;
 import com.hxqh.abb.service.base.BaseService;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public interface SystemService extends BaseService {
 
     /*============================测试结束==========================*/
 
-    public abstract List<Maxuser> getLoginUserList(LoginDto loginDto);
+    public abstract List<AbbLogin> getLoginUserList(LoginDto loginDto);
 
 
 

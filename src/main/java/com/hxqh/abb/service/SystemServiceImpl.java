@@ -40,6 +40,9 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
     private AbbAssetLocationDao abbassetlocationDao;
     @Resource
     private AbbAssetDao abbassetDao;
+    @Resource
+    private AbbLoginDao abbloginDao;
+
 
     @Value(value = "${com.hxqh.abb.websitepath}")
     private String websitepath;
@@ -54,12 +57,12 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
     }
 
     @Override
-    public List<Maxuser> getLoginUserList(LoginDto loginDto) {
+    public List<AbbLogin> getLoginUserList(LoginDto loginDto) {
 
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("loginid", loginDto.getLoginid());
         String where = "loginid=:loginid ";
-        List<Maxuser> maxuserList = maxuserDao.findAll(where, params, null);
+        List<AbbLogin> maxuserList = abbloginDao.findAll(where, params, null);
         return maxuserList;
     }
 
@@ -75,7 +78,7 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
         List<AbbIndexWorkorder> calendarList = abbindexworkorderDao.findAll(0, 5, " siteid=:siteid ", params, " order by workorderid desc");
         List<AbbIndexAsset> assetList = abbindexassetDao.findAll(0, 5, " siteid=:siteid ", params, " order by assetuid desc");
         List<AbbIndexWfassignment> wfassignmentList = abbindexwfassignmentDao.findAll(0, 5, "startdate is not null and duedate is not null", params, " order by wfassignmentid desc");
-        IndexDto indexDto = new IndexDto(calendarList, assetList, wfassignmentList);
+        IndexDto indexDto = new IndexDto(calendarList, assetList, wfassignmentList,sessionInfo);
         return indexDto;
     }
 

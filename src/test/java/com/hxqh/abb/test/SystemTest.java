@@ -78,9 +78,16 @@ public class SystemTest {
     private AbbAssetDao abbassetDao;
     @Resource
     private AbbLocationDao abblocationDao;
+    @Resource
+    private AbbLoginDao abbloginDao;
 
     @Test
     public void view() {
+
+//        List<AbbLogin> list0=abbloginDao.findAll();
+//        Assert.assertEquals(27,list0.size());
+
+
 //        List<AbbIndexAsset> list0=abbindexassetDao.findAll();
 //        Assert.assertEquals(257,list0.size());
 //

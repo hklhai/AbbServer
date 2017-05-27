@@ -7,6 +7,7 @@ import com.hxqh.abb.model.base.SessionInfo;
 import com.hxqh.abb.model.dto.action.IndexDto;
 import com.hxqh.abb.model.dto.action.LoginDto;
 import com.hxqh.abb.model.dto.action.Message;
+import com.hxqh.abb.model.view.AbbLogin;
 import com.hxqh.abb.service.SystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -65,11 +66,11 @@ public class IndexController {
     @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Message login(LoginDto loginDto, Map<String, Object> map) {
-        List<Maxuser> loginUserList = systemService.getLoginUserList(loginDto);
+        List<AbbLogin> loginUserList = systemService.getLoginUserList(loginDto);
         return doLogin(loginUserList, loginDto, map);
     }
 
-    private Message doLogin(List<Maxuser> loginUserList, LoginDto loginDto, Map<String, Object> map) {
+    private Message doLogin(List<AbbLogin> loginUserList, LoginDto loginDto, Map<String, Object> map) {
         Message message = new Message(0, "", false);
         Message success = new Message(1, "LoginSuccess", true);
 
@@ -79,8 +80,8 @@ public class IndexController {
                 password = MXCipherXUtils.encodePwd(loginDto.getPassword());
                 if (loginUserList.get(0).getPassword().toUpperCase().equals(password)) {
                     //加入Session中
-                    Maxuser login = loginUserList.get(0);
-                    SessionInfo sessionInfo = new SessionInfo(login.getLoginid(), login.getDefsite(), " ");
+                    AbbLogin login = loginUserList.get(0);
+                    SessionInfo sessionInfo = new SessionInfo(login.getLoginid(), login.getDefsite(), " ",login.getDisplayname());
                     map.put("sessionInfo", sessionInfo);
                     return success;
                 } else {
@@ -119,11 +120,11 @@ public class IndexController {
     @ResponseBody
     @RequestMapping(value = "/loginWebChat", method = RequestMethod.POST)
     public ModelAndView loginWebChat(LoginDto loginDto, Map<String, Object> map) {
-        List<Maxuser> loginUserList = systemService.getLoginUserList(loginDto);
+        List<AbbLogin> loginUserList = systemService.getLoginUserList(loginDto);
         return webChatLogin(loginUserList, loginDto, map);
     }
 
-    private ModelAndView webChatLogin(List<Maxuser> loginUserList, LoginDto loginDto, Map<String, Object> map) {
+    private ModelAndView webChatLogin(List<AbbLogin> loginUserList, LoginDto loginDto, Map<String, Object> map) {
         Map<String, Object> result = new HashMap<>();
         if (loginUserList.size() > 0) {
             String password = null;
@@ -131,8 +132,8 @@ public class IndexController {
                 password = MXCipherXUtils.encodePwd(loginDto.getPassword());
                 if (loginUserList.get(0).getPassword().toUpperCase().equals(password)) {
                     //加入Session中
-                    Maxuser login = loginUserList.get(0);
-                    SessionInfo sessionInfo = new SessionInfo(login.getLoginid(), login.getDefsite(), " ");
+                    AbbLogin login = loginUserList.get(0);
+                    SessionInfo sessionInfo = new SessionInfo(login.getLoginid(), login.getDefsite(), " ",login.getDisplayname());
                     map.put("sessionInfo", sessionInfo);
                     return new ModelAndView("index/index");
                 } else {

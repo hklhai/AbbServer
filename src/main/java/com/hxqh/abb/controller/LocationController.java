@@ -29,6 +29,9 @@ public class LocationController {
     private AbbLocationDao abblocationDao;
     @Resource
     private AbbMapDao abbMapDao;
+    @Resource
+    private LocationService locationService;
+
     /**
      * 地图页面跳转
      * 2017-5-10
@@ -58,9 +61,9 @@ public class LocationController {
     public ModelAndView location() {
         Map<String, Object> result = new HashMap<>();
         List<AbbLocation> abbLocationList = abblocationDao.findAll();
-        List<AbbMap> abbMapList = abbMapDao.findAll();
+        List<AbbLocation> rootList = locationService.getRootList();
         result.put("abbLocationList", abbLocationList);
-        result.put("mapData", abbMapList);
+        result.put("mapData", rootList);
         return new ModelAndView("asset/asset",result);
     }
 
