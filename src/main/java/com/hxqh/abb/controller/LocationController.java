@@ -3,6 +3,7 @@ package com.hxqh.abb.controller;
 import com.hxqh.abb.dao.AbbLocationDao;
 import com.hxqh.abb.dao.AbbMapDao;
 import com.hxqh.abb.model.assist.LocationDto;
+import com.hxqh.abb.model.dto.action.ToolDto;
 import com.hxqh.abb.model.view.AbbLocation;
 import com.hxqh.abb.model.view.AbbMap;
 import com.hxqh.abb.service.LocationService;
@@ -60,11 +61,18 @@ public class LocationController {
     @RequestMapping(value = "/location", method = RequestMethod.GET)
     public ModelAndView location() {
         Map<String, Object> result = new HashMap<>();
-        List<AbbLocation> abbLocationList = abblocationDao.findAll();
-        List<AbbLocation> rootList = locationService.getRootList();
+        List<AbbMap> mapData = abbMapDao.findAll();
+        List<AbbLocation> abbLocationList = locationService.getRootList();
+        //处理location
+        for(AbbLocation location:abbLocationList)
+        {
+            location.setDescription(location.getDescription().substring(0,2));
+        }
+
         result.put("abbLocationList", abbLocationList);
-        result.put("mapData", rootList);
+        result.put("mapData", mapData);
         return new ModelAndView("asset/asset",result);
     }
+
 
 }
