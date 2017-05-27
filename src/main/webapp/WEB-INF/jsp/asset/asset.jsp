@@ -25,7 +25,7 @@
 <body>
 <%@ include file="../commons/header.jsp"%>
 <div class="equip-layout">
-    <div class="equip-nav">
+    <div class="asset-data equip-nav">
         <ul class="father-ul">
             <li><a href="javascript:;" class="left-bag">现场及设备地图</a></li>
             <li>
@@ -258,12 +258,9 @@
     function closeInfoWindow() {
         map.clearInfoWindow();
     }
+    var assetList = [];
+    var locationList =[];
     $(function(){
-        var vueData = null;
-        $(".left-bag").click(function(){
-            $(".equip-company").hide();
-            $("#right-content").show();
-        });
         $(".left-down").click(function(){
             $(".child-ul").toggle();
         });
@@ -319,11 +316,26 @@
                 success: function(data){
                     $(".equip-company").show();
                     $("#right-content").hide();
+                    assetList = data.abbAssetlist;
+                    locationList = data.abbAssetLocationList;
                 },
                 error: function(){
                 }
             });
         });
+    });
+    $(function(){
+        var indexData = new Vue({
+            el: ".equip-company",
+            data: {
+                assetList: assetList,
+                locationList: locationList,
+                test: "aaaa"
+            },
+            method:{
+            }
+        });
+
     });
 </script>
 <script type="text/javascript" src="http://webapi.amap.com/demos/js/liteToolbar.js"></script>
