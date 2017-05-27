@@ -25,7 +25,7 @@
 <body>
 <%@ include file="../commons/header.jsp"%>
 <div class="equip-layout">
-    <div class="asset-data equip-nav">
+    <div class="equip-nav">
         <ul class="father-ul">
             <li><a href="javascript:;" class="left-bag">现场及设备地图</a></li>
             <li>
@@ -182,22 +182,22 @@
     var tmpLnglats = [];
     var tmpData = [];
     <c:forEach items="${mapData}" var="mapData">
-        var tmpObj = {};
-        tmpObj.description = '${mapData.description}';
-        tmpObj.location = '${mapData.location}';
-        tmpObj.locationsid = '${mapData.locationsid}';
-        tmpObj.loccount = '${mapData.loccount}';
-        tmpObj.longitude = '${mapData.longitude}';
-        tmpObj.orgid = '${mapData.orgid}';
-        tmpObj.saddresscode = '${mapData.saddresscode}';
-        tmpObj.status = '${mapData.status}';
-        tmpObj.alertcount = '${mapData.alertcount}';
-        tmpData.push(tmpObj);
+    var tmpObj = {};
+    tmpObj.description = '${mapData.description}';
+    tmpObj.location = '${mapData.location}';
+    tmpObj.locationsid = '${mapData.locationsid}';
+    tmpObj.loccount = '${mapData.loccount}';
+    tmpObj.longitude = '${mapData.longitude}';
+    tmpObj.orgid = '${mapData.orgid}';
+    tmpObj.saddresscode = '${mapData.saddresscode}';
+    tmpObj.status = '${mapData.status}';
+    tmpObj.alertcount = '${mapData.alertcount}';
+    tmpData.push(tmpObj);
 
-        var tmpLocation = [];
-        tmpLocation.push(${mapData.dimension});
-        tmpLocation.push(${mapData.longitude});
-        tmpLnglats.push(tmpLocation);
+    var tmpLocation = [];
+    tmpLocation.push(${mapData.dimension});
+    tmpLocation.push(${mapData.longitude});
+    tmpLnglats.push(tmpLocation);
     </c:forEach>
     var lnglats = tmpLnglats;
     //添加marker标记
@@ -258,9 +258,13 @@
     function closeInfoWindow() {
         map.clearInfoWindow();
     }
-    var assetList = [];
-    var locationList =[];
     $(function(){
+        var assetList = [];
+        var locationList =[];
+        $(".left-bag").click(function(){
+            $(".equip-company").hide();
+            $("#right-content").show();
+        });
         $(".left-down").click(function(){
             $(".child-ul").toggle();
         });
@@ -316,26 +320,25 @@
                 success: function(data){
                     $(".equip-company").show();
                     $("#right-content").hide();
-                    assetList = data.abbAssetlist;
+                    assetList = data.abbAssetList;
                     locationList = data.abbAssetLocationList;
+                    console.log(assetList);
+                    console.log(locationList);
                 },
                 error: function(){
                 }
             });
         });
-    });
-    $(function(){
         var indexData = new Vue({
-            el: ".equip-company",
+            el: "#equip-company",
             data: {
-                assetList: assetList,
-                locationList: locationList,
-                test: "aaaa"
+                assetList: assetlist,
+                locationList: locationList
             },
             method:{
+
             }
         });
-
     });
 </script>
 <script type="text/javascript" src="http://webapi.amap.com/demos/js/liteToolbar.js"></script>
