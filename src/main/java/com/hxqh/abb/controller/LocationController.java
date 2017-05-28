@@ -1,15 +1,11 @@
 package com.hxqh.abb.controller;
 
-import com.hxqh.abb.dao.AbbLocationDao;
 import com.hxqh.abb.dao.AbbMapDao;
 import com.hxqh.abb.model.view.AbbLocation;
 import com.hxqh.abb.model.view.AbbMap;
 import com.hxqh.abb.service.LocationService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -22,10 +18,9 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/location")
+@SessionAttributes(value = "sessionInfo")
 public class LocationController {
 
-    @Resource
-    private AbbLocationDao abblocationDao;
     @Resource
     private AbbMapDao abbMapDao;
     @Resource

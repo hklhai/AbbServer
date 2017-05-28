@@ -2,6 +2,7 @@ package com.hxqh.abb.model.dto.action;
 
 import com.hxqh.abb.model.view.AbbAsset;
 import com.hxqh.abb.model.view.AbbAssetLocation;
+import com.hxqh.abb.model.view.AbbLocation;
 
 import java.util.List;
 
@@ -11,13 +12,21 @@ import java.util.List;
 public class AssetDto {
     private List<AbbAsset> abbAssetList;
     private AbbAssetLocation abbAssetLocationList;
-
+    private AbbLocation abbLocation;
     public AssetDto() {
     }
 
     public AssetDto(List<AbbAsset> abbAssetList, AbbAssetLocation abbAssetLocationList) {
         this.abbAssetList = abbAssetList;
         this.abbAssetLocationList = abbAssetLocationList;
+    }
+
+    public AbbLocation getAbbLocation() {
+        return abbLocation;
+    }
+
+    public void setAbbLocation(AbbLocation abbLocation) {
+        this.abbLocation = abbLocation;
     }
 
     public List<AbbAsset> getAbbAssetList() {

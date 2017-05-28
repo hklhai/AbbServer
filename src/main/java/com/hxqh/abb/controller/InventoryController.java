@@ -1,5 +1,8 @@
 package com.hxqh.abb.controller;
 
+import com.hxqh.abb.common.util.TimeUtil;
+import com.hxqh.abb.model.assist.Time;
+import com.hxqh.abb.model.base.SessionInfo;
 import com.hxqh.abb.model.searchdto.Page;
 import com.hxqh.abb.model.dto.action.InventoryDto;
 import com.hxqh.abb.model.searchdto.InventorySearchDto;
@@ -7,9 +10,7 @@ import com.hxqh.abb.model.view.AbbInventory;
 import com.hxqh.abb.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/inventory")
+@SessionAttributes(value = "sessionInfo")
 public class InventoryController {
 
     @Autowired
@@ -43,13 +45,16 @@ public class InventoryController {
      */
     @ResponseBody
     @RequestMapping(value = "/inventoryData", method = RequestMethod.POST)
-    public InventoryDto inventoryListData(Page page) {
+    public InventoryDto inventoryListData(Page page,@ModelAttribute("sessionInfo") SessionInfo sessionInfo) {
         InventoryDto inventoryData = null;
+
         try {
             inventoryData = locationService.inventoryListData(page);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        inventoryData.setSessionInfo(sessionInfo);
+        inventoryData.setTime(new Time(TimeUtil.getTime()));
         return inventoryData;
     }
 

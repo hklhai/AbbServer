@@ -1,8 +1,10 @@
 package com.hxqh.abb.controller;
 
 import com.hxqh.abb.common.util.MXCipherXUtils;
+import com.hxqh.abb.common.util.TimeUtil;
 import com.hxqh.abb.model.Location;
 import com.hxqh.abb.model.Maxuser;
+import com.hxqh.abb.model.assist.Time;
 import com.hxqh.abb.model.base.SessionInfo;
 import com.hxqh.abb.model.dto.action.IndexDto;
 import com.hxqh.abb.model.dto.action.LoginDto;
@@ -15,9 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import psdi.util.MXException;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by lh on 2017/5/6.
@@ -54,6 +55,7 @@ public class IndexController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        indexDto.setTime(new Time(TimeUtil.getTime()));
         return indexDto;
     }
 
@@ -81,7 +83,7 @@ public class IndexController {
                 if (loginUserList.get(0).getPassword().toUpperCase().equals(password)) {
                     //加入Session中
                     AbbLogin login = loginUserList.get(0);
-                    SessionInfo sessionInfo = new SessionInfo(login.getLoginid(), login.getDefsite(), " ",login.getDisplayname());
+                    SessionInfo sessionInfo = new SessionInfo(login.getLoginid(), login.getDefsite(), " ", login.getDisplayname());
                     map.put("sessionInfo", sessionInfo);
                     return success;
                 } else {
@@ -133,21 +135,21 @@ public class IndexController {
                 if (loginUserList.get(0).getPassword().toUpperCase().equals(password)) {
                     //加入Session中
                     AbbLogin login = loginUserList.get(0);
-                    SessionInfo sessionInfo = new SessionInfo(login.getLoginid(), login.getDefsite(), " ",login.getDisplayname());
+                    SessionInfo sessionInfo = new SessionInfo(login.getLoginid(), login.getDefsite(), " ", login.getDisplayname());
                     map.put("sessionInfo", sessionInfo);
                     return new ModelAndView("index/index");
                 } else {
                     result.put("message", "密码不正确");
-                    return new ModelAndView("weixin/fail",result);
+                    return new ModelAndView("weixin/fail", result);
                 }
             } catch (MXException e) {
                 result.put("message", "异常，请联系管理员！");
                 e.printStackTrace();
-                return new ModelAndView("weixin/fail",result);
+                return new ModelAndView("weixin/fail", result);
             }
         } else {
             result.put("message", "用户名不存在");
-            return new ModelAndView("weixin/fail",result);
+            return new ModelAndView("weixin/fail", result);
         }
     }
 
@@ -161,7 +163,8 @@ public class IndexController {
     public ModelAndView test(LoginDto loginDto, Map<String, Object> map) {
         Map<String, Object> result = new HashMap<>();
         result.put("message", "哈哈haha");
-        return new ModelAndView("weixin/asset",result);
+        return new ModelAndView("weixin/asset", result);
     }
+
 
 }
