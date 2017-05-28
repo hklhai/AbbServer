@@ -75,7 +75,7 @@
                     initData:function(){
                         var self = this;
                         $.ajax({
-                            url: "${ctx} /inventory/inventory",
+                            url: "${ctx} /inventory/data",
                             method: "post",
                             data: {
                                 pageSize: 15,

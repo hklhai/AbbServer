@@ -1,6 +1,6 @@
 package com.hxqh.abb.service;
 
-import com.hxqh.abb.common.Page;
+import com.hxqh.abb.model.searchdto.Page;
 import com.hxqh.abb.model.dto.action.InventoryDto;
 import com.hxqh.abb.model.searchdto.InventorySearchDto;
 import com.hxqh.abb.model.view.AbbInventory;

@@ -1,6 +1,6 @@
 package com.hxqh.abb.controller;
 
-import com.hxqh.abb.common.Page;
+import com.hxqh.abb.model.searchdto.Page;
 import com.hxqh.abb.model.dto.action.ToolDto;
 import com.hxqh.abb.model.searchdto.UdtoolDto;
 import com.hxqh.abb.model.view.AbbUdtool;

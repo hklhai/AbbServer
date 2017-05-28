@@ -1,7 +1,8 @@
-package com.hxqh.abb.common;
+package com.hxqh.abb.model.searchdto;
 
 import java.util.List;
 
+import com.hxqh.abb.common.PageUtils;
 import org.springframework.data.domain.PageRequest;
 
 public class Page {
@@ -19,9 +20,9 @@ public class Page {
     }
 
     public Page() {
-        this.pageNumber = 1;
-        this.pageSize = 15;
-        this.totalCount = 0;
+//        this.pageNumber = 1;
+//        this.pageSize = 15;
+//        this.totalCount = 0;
     }
 
     public Page(int pageNumber2, int pageSize2, int totalCount2) {
@@ -184,5 +185,23 @@ public class Page {
     }
 
 
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
 
+    public int getPageNumber() {
+        return pageNumber;
+    }
+
+    public void setPageNumber(int pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
+    }
+
+    public int getTotalPageNum() {
+        return totalPageNum;
+    }
 }

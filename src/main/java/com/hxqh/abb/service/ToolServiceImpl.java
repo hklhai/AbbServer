@@ -1,6 +1,6 @@
 package com.hxqh.abb.service;
 
-import com.hxqh.abb.common.Page;
+import com.hxqh.abb.model.searchdto.Page;
 import com.hxqh.abb.dao.AbbInventorySiteDao;
 import com.hxqh.abb.dao.AbbUdtoolDao;
 import com.hxqh.abb.model.dto.action.ToolDto;
@@ -44,26 +44,26 @@ public class ToolServiceImpl extends BaseServiceImpl<Object> implements ToolServ
         StringBuilder wherebuilder = new StringBuilder();
         wherebuilder.append("1=1 ");
         if (udtoolDto.getToolnum() != null && !"".equals(udtoolDto.getToolnum())) {
-            wherebuilder.append("and TOOLNUM =").append(":TOOLNUM");
+            wherebuilder.append(" and TOOLNUM =").append(":TOOLNUM");
             params.put("TOOLNUM", udtoolDto.getToolnum());
         }
         if (udtoolDto.getDescription() != null && !"".equals(udtoolDto.getDescription())) {
-            wherebuilder.append("and (DESCRIPTION Like '%'||").append(":DESCRIPTION").append("||'%' )");
+            wherebuilder.append(" and (DESCRIPTION like '%'||").append(":DESCRIPTION").append("||'%' )");
             params.put("DESCRIPTION", udtoolDto.getDescription());
         }
         if (udtoolDto.getStatus() != null && !"".equals(udtoolDto.getStatus())) {
-            wherebuilder.append("and STATUS =").append(":STATUS");
+            wherebuilder.append(" and STATUS =").append(":STATUS");
             params.put("STATUS", udtoolDto.getStatus());
         }
         if (udtoolDto.getDisplayname() != null && !"".equals(udtoolDto.getDisplayname())) {
-            wherebuilder.append("and DISPLAYNAME =").append(":DISPLAYNAME");
+            wherebuilder.append(" and DISPLAYNAME =").append(":DISPLAYNAME");
             params.put("DISPLAYNAME", udtoolDto.getDisplayname());
         }
         if (udtoolDto.getLocationsite() != null && !"".equals(udtoolDto.getLocationsite())) {
-            wherebuilder.append("and LOCATIONSITE =").append(":LOCATIONSITE");
+            wherebuilder.append(" and LOCATIONSITE =").append(":LOCATIONSITE");
             params.put("LOCATIONSITE", udtoolDto.getLocationsite());
         }
-        List<AbbUdtool> udtoolList = udtoolDao.findAll(page.getThisPageFirstElementNumber(), page.getPageSize(), wherebuilder.toString(), params, " order by udtoolid desc");
+        List<AbbUdtool> udtoolList = udtoolDao.findAll(page.getThisPageFirstElementNumber()-1, page.getPageSize(), wherebuilder.toString(), params, " order by udtoolid desc");
         return udtoolList;
     }
 
