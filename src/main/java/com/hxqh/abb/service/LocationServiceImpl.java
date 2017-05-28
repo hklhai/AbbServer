@@ -1,9 +1,9 @@
 package com.hxqh.abb.service;
 
-import com.hxqh.abb.model.searchdto.Page;
 import com.hxqh.abb.dao.*;
 import com.hxqh.abb.model.dto.action.InventoryDto;
 import com.hxqh.abb.model.searchdto.InventorySearchDto;
+import com.hxqh.abb.model.searchdto.Page;
 import com.hxqh.abb.model.view.*;
 import com.hxqh.abb.service.base.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.Map;
  */
 @Transactional
 @Service("locationService")
-public class LocationServiceImpl extends BaseServiceImpl<Object> implements LocationService{
+public class LocationServiceImpl extends BaseServiceImpl<Object> implements LocationService {
 
     @Autowired
     private AbbInventoryDao abbinventoryDao;
@@ -34,7 +34,7 @@ public class LocationServiceImpl extends BaseServiceImpl<Object> implements Loca
 
     @Override
     public List<AbbLocation> getRootList() {
-        List<AbbLocation>  abbLocations = abbLocationDao.findAll("parent is null",null,null);
+        List<AbbLocation> abbLocations = abbLocationDao.findAll("parent is null", null, null);
         return abbLocations;
     }
 
@@ -43,7 +43,7 @@ public class LocationServiceImpl extends BaseServiceImpl<Object> implements Loca
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("location", location);
         String where = "parent=:location";
-        List<AbbLocation> childList = abbLocationDao.findAll(where,params,null);
+        List<AbbLocation> childList = abbLocationDao.findAll(where, params, null);
         return childList;
     }
 
@@ -55,7 +55,7 @@ public class LocationServiceImpl extends BaseServiceImpl<Object> implements Loca
         wherebuilder.append("1=1 ");
         if (searchInventoryDto.getSiteid() != null && !"".equals(searchInventoryDto.getSiteid())) {
             wherebuilder.append(" and SITEID =").append(":SITEID");
-            params.put("SITEID", searchInventoryDto.getSiteid() );
+            params.put("SITEID", searchInventoryDto.getSiteid());
         }
         if (searchInventoryDto.getDescription() != null && !"".equals(searchInventoryDto.getDescription())) {
             wherebuilder.append(" and (DESCRIPTION Like '%'||").append(":DESCRIPTION").append("||'%' )");
@@ -63,18 +63,18 @@ public class LocationServiceImpl extends BaseServiceImpl<Object> implements Loca
         }
         if (searchInventoryDto.getLocation() != null && !"".equals(searchInventoryDto.getLocation())) {
             wherebuilder.append(" and LOCATION =").append(":LOCATION");
-            params.put("LOCATION", searchInventoryDto.getLocation() );
+            params.put("LOCATION", searchInventoryDto.getLocation());
         }
         if (searchInventoryDto.getUdsapnum() != null && !"".equals(searchInventoryDto.getUdsapnum())) {
             wherebuilder.append(" and UDSAPNUM =").append(":UDSAPNUM");
-            params.put("UDSAPNUM", searchInventoryDto.getUdsapnum() );
+            params.put("UDSAPNUM", searchInventoryDto.getUdsapnum());
         }
         if (searchInventoryDto.getCurbal() != null && !"".equals(searchInventoryDto.getCurbal())) {
             wherebuilder.append(" and CURBAL =").append(":CURBAL");
-            params.put("CURBAL", searchInventoryDto.getCurbal() );
+            params.put("CURBAL", searchInventoryDto.getCurbal());
         }
         //TODO page
-        List<AbbInventory> inventoryList = abbinventoryDao.findAll(page.getThisPageFirstElementNumber()-1,page.getPageSize() , wherebuilder.toString(), params, " order by inventoryid desc");
+        List<AbbInventory> inventoryList = abbinventoryDao.findAll(page.getThisPageFirstElementNumber() - 1, page.getPageSize(), wherebuilder.toString(), params, " order by inventoryid desc");
         return inventoryList;
     }
 
@@ -85,8 +85,19 @@ public class LocationServiceImpl extends BaseServiceImpl<Object> implements Loca
         List<AbbInventorySite> siteList = siteDao.findAll();
         List<AbbInventoryItem> itemList = itemDao.findAll();
         page.setTotalPageNum((int) abbinventoryDao.getCount());
-        InventoryDto inventoryDto = new InventoryDto(inventoryList,siteList,locationList,itemList,page);
+        InventoryDto inventoryDto = new InventoryDto(inventoryList, siteList, locationList, itemList, page);
         return inventoryDto;
+    }
+
+    @Override
+    public AbbLocation getParentLocation(String location) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("location", location);
+        String where = "location=:location";
+        List<AbbLocation> childList = abbLocationDao.findAll(where, params, null);
+        params.put("location", childList.get(0).getParent());
+        List<AbbLocation> parent = abbLocationDao.findAll(where, params, null);
+        return parent.get(0);
     }
 
 

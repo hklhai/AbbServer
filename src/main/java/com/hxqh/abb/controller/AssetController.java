@@ -2,10 +2,14 @@ package com.hxqh.abb.controller;
 
 import com.hxqh.abb.model.dto.action.AssetDto;
 import com.hxqh.abb.model.view.AbbAsset;
+import com.hxqh.abb.model.view.AbbLocation;
+import com.hxqh.abb.service.LocationService;
 import com.hxqh.abb.service.SystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /**
  * Created by lh on 2017/5/11.
@@ -18,7 +22,8 @@ public class AssetController {
 
     @Autowired
     private SystemService systemService;
-
+    @Resource
+    private LocationService locationService;
     /**
      * 资产页面跳转
      * 2017-5-12
@@ -51,6 +56,8 @@ public class AssetController {
     @RequestMapping(value = "/assetData", method = RequestMethod.POST)
     public AssetDto assetData(@RequestParam("location") String location) {
         AssetDto assetData = systemService.getAssetData(location);
+        AbbLocation abbLocation = locationService.getParentLocation(location);
+        assetData.setAbbLocation(abbLocation);
         return assetData;
     }
 

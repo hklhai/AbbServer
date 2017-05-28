@@ -1,6 +1,5 @@
 package com.hxqh.abb.controller;
 
-import com.hxqh.abb.dao.AbbLocationDao;
 import com.hxqh.abb.dao.AbbMapDao;
 import com.hxqh.abb.model.view.AbbLocation;
 import com.hxqh.abb.model.view.AbbMap;
@@ -22,8 +21,6 @@ import java.util.Map;
 @SessionAttributes(value = "sessionInfo")
 public class LocationController {
 
-    @Resource
-    private AbbLocationDao abblocationDao;
     @Resource
     private AbbMapDao abbMapDao;
     @Resource

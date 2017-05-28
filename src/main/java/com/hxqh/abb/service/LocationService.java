@@ -29,7 +29,8 @@ public interface LocationService extends BaseService {
 
     public abstract InventoryDto inventoryListData(Page page);
 
-    
+    public abstract AbbLocation getParentLocation(String location);
+
 
     /*============================库存管理结束 ==========================*/
 
