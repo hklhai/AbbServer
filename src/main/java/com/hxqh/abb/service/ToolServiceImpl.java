@@ -29,11 +29,12 @@ public class ToolServiceImpl extends BaseServiceImpl<Object> implements ToolServ
     private AbbInventorySiteDao siteDao;
 
     @Override
-    public ToolDto getListData() throws Exception {
+    public ToolDto getListData(Page page) throws Exception {
         List<AbbUdtool> udtoolList = udtoolDao.findAll(0, 15, null, null, " order by udtoolid desc");
         List<AbbInventorySite> siteList = siteDao.findAll();
         List<String> statusList = Arrays.asList(new String[]{"完好","维修"});
-        ToolDto toolDto = new ToolDto(udtoolList,siteList,statusList);
+        page.setTotalPageNum((int) udtoolDao.getCount());
+        ToolDto toolDto = new ToolDto(udtoolList,siteList,statusList,page);
         return toolDto;
     }
 

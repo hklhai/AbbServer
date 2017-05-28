@@ -1,5 +1,6 @@
 package com.hxqh.abb.model.dto.action;
 
+import com.hxqh.abb.common.Page;
 import com.hxqh.abb.model.view.AbbInventorySite;
 import com.hxqh.abb.model.view.AbbUdtool;
 
@@ -9,17 +10,28 @@ import java.util.List;
  * Created by dell on 2017-05-15.
  */
 public class ToolDto {
-    List<AbbUdtool> udtoolList;
-    List<AbbInventorySite> siteList;
-    List<String> statusList;
+    private List<AbbUdtool> udtoolList;
+    private List<AbbInventorySite> siteList;
+    private List<String> statusList;
+    private Page page;
+
 
     public ToolDto() {
     }
 
-    public ToolDto(List<AbbUdtool> udtoolList, List<AbbInventorySite> siteList, List<String> statusList) {
+    public ToolDto(List<AbbUdtool> udtoolList, List<AbbInventorySite> siteList, List<String> statusList, Page page) {
         this.udtoolList = udtoolList;
         this.siteList = siteList;
         this.statusList = statusList;
+        this.page = page;
+    }
+
+    public Page getPage() {
+        return page;
+    }
+
+    public void setPage(Page page) {
+        this.page = page;
     }
 
     public List<AbbUdtool> getUdtoolList() {

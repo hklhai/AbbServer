@@ -40,11 +40,11 @@ public class ToolController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/listdata", method = RequestMethod.GET)
-    public ToolDto listdata() {
+    @RequestMapping(value = "/listdata", method = RequestMethod.POST)
+    public ToolDto listdata(Page page) {
         ToolDto listData = null;
         try {
-            listData= toolService.getListData();
+            listData= toolService.getListData(page);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,7 +57,7 @@ public class ToolController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/data", method = RequestMethod.GET)
+    @RequestMapping(value = "/data", method = RequestMethod.POST)
     public List<AbbUdtool> data(UdtoolDto udtoolDto,Page page) {
         List<AbbUdtool> listData = null;
         try {
