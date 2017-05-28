@@ -3,6 +3,7 @@ package com.hxqh.abb.controller;
 import com.hxqh.abb.common.util.MXCipherXUtils;
 import com.hxqh.abb.model.Location;
 import com.hxqh.abb.model.Maxuser;
+import com.hxqh.abb.model.assist.Time;
 import com.hxqh.abb.model.base.SessionInfo;
 import com.hxqh.abb.model.dto.action.IndexDto;
 import com.hxqh.abb.model.dto.action.LoginDto;
@@ -15,9 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import psdi.util.MXException;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by lh on 2017/5/6.
@@ -163,5 +163,30 @@ public class IndexController {
         result.put("message", "哈哈haha");
         return new ModelAndView("weixin/asset",result);
     }
+
+
+    /**
+     * getDate  获取时间接口
+     *
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/date", method = RequestMethod.GET)
+    public Time date() {
+        String time = getTime();
+
+        return new Time(time);
+    }
+
+    private String getTime()
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
+        stringBuilder.append(df.format(new Date()));
+        GregorianCalendar ca = new GregorianCalendar();
+        stringBuilder.append(0==ca.get(GregorianCalendar.AM_PM)?" am":" pm");
+        return stringBuilder.toString();
+    }
+
 
 }

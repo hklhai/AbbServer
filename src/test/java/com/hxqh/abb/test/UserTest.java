@@ -12,6 +12,8 @@ import javax.annotation.Resource;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -23,6 +25,26 @@ import java.util.List;
 public class UserTest {
     @Resource
     private UserService userService;
+
+
+
+
+    @Test
+    public void time() {
+        System.out.println(getTime());
+    }
+
+
+    private String getTime()
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
+        stringBuilder.append(df.format(new Date()));
+        GregorianCalendar ca = new GregorianCalendar();
+        stringBuilder.append(0==ca.get(GregorianCalendar.AM_PM)?" am":" pm");
+        return stringBuilder.toString();
+    }
+
 
     //@Test
     public void testGetTestBook() {
