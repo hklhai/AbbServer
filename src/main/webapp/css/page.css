@@ -1,88 +1,52 @@
+#page_control{
+    color:#aaa;
+}
+#pageControl span{
+    font-weight:bold;
+    font-size:14px;
 
-.index-content{
-	width: 100%;
-	height: 100%;
-    background: #EBEBEB;
-    min-width: 1280px;
 }
-.index-layout{
-    padding-left: 2%;
-    padding-right: 2%;
-	margin: 0 auto;
-    background: #EBEBEB;
+#pageControl span a:hover{
+    font-size:12px;
+    font-weight: bold;
+    color: #873838;
 }
-.index-content-tit{
-	height: 52px;
-	width: 100%;
-	font-size: 24px;
-	color: rgb(36, 36, 36);
-	padding-top: 41px;
-	padding-left:32px; 
+#page_control .s_space{
+    display:inline-block;
+    width:10px;}
+#page_control{
+    float:right;
+    font-weight:bold;
+    margin-top: 20px;
 }
-table{
-    width: 100%;
+#curpage{
+    width:48px;
+    margin:0 5px;
 }
-.calendar{
-    width: 28%;
-    height: 326px;
-    border: 1px solid  rgb(214, 214, 214);
-    float: left;
-    background: #fff;
+span.prePage,span.nextPage,span.gotoPage{
+    cursor:pointer;
+    width:48px;
+    height:21px;
+    display: inline-block;
+    border-radius:3px;
+    padding:3px 3px;
 }
-.index-div2{
-    width: 69%;
-    height: 326px;
-    border: 1px solid  rgb(214, 214, 214);
-    background: #fff;
-    float: right;
+#queryDiv{
+    float:right;
+    padding:5px 30px;
+
 }
-.index-div2-layout{
-    padding-left: 3%;
-    padding-right: 3%; 
+#page_control input[type="text"]{
+    height:35px;
+    border: 1px solid #d4d4d4;
+    padding:2px 5px;
 }
-.index-div2-layout table{
-    width: 100%;
-}
-.equip-info{
-	width: 28%;
-    height: 326px;
-    border: 1px solid  rgb(214, 214, 214);
-    float: left;
-    background: #fff;
-}
-.equip-info-layout{
-    padding-left: 5%;
-    padding-right: 5%;
-}
-.bottom-div{
-	margin-top: 24px;
-}
-.index-div2 p,.index-div1 p{
-    height: 51px;
-    line-height: 51px;
-    font-size: 16px;
-    color: rgb(36, 36, 36);
-    margin-bottom: 4px;
-}
-.index-div2 table td,.index-div1 table td{
-   font-size: 12px;
-   color: rgb(36, 36, 36);
-}
-.index-div2 table tr,.index-div1 table tr{
-	border-bottom: 1px solid #DADADA;
-}
-.index-div2 thead tr,.index-div1 thead tr{
-	height: 36px;
-	line-height: 36px;
-}
-.index-div2 tbody tr,.index-div1 tbody tr{
-	height: 33px;
-	line-height: 32px;
-}
-.apply{
-    display:block;
-    width: 20px;
-    height: 20px;
-    margin-top: 3px;
-    background:url(../img/header/apply.gif) no-repeat;
+#page_control input[type="submit"]{
+    height:35px;
+    width:50px;
+    border:none;
+    background-color:#0c89ff;
+    color:#ffffff;
+    margin-left:10px;
+    font-size:16px;
 }

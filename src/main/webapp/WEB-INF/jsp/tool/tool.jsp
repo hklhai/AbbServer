@@ -18,26 +18,82 @@
     <link rel="stylesheet" href="${ctx}/css/reset.css">
     <link rel="stylesheet" href="${ctx}/css/stock-tool.css">
     <link rel="stylesheet" href="${ctx}/css/header.css">
+    <link rel="stylesheet" href="${ctx}/css/page.css">
     <script type="text/javascript">
         $(function(){
             var indexData = new Vue({
                 el: "#stock-data",
                 data: {
                     tool: [],
-                    tools: ["a","b"]
+                    //页面的page信息
+                    currentPage:"",
+                    totalPage:"",
+                    pageNumber:""
+                    //筛选条件
+
                 },
                 method:{
+                    prePage:function(){
+                        var prepage=currentPage-1;
+                        var page= prepage-1;
+                        if(prepage<1){
+                            alert("已是第一页！");
+                        }else{
+                            this.initData();
+                        }
+                    },
+                    nextPage:function(){
+                        var nextpage=currentPage+1;
+                        var page=nextpage-1;
+                        var totalPage=$(".totalPage").text();
+                        if(nextpage>totalPage){
+                            alert("已是最后一页！");
+                        }else{
+                            this.initData();
+                        }
+                    },
+                    gotoPage:function(){
+                        var totalPage=$(".totalPage").text();
+                        var currentPage=$("#curPage").val();
+                        var page=currentPage-1;
+                        if(currentPage<1||currentPage>totalPage){
+                            alert("请输入正确的页数！")
+                        }else{
+                            this.initData();
+                        }
+                    },
+                    initData:function(){
+                        $.ajax({
+                            url: "${ctx}/tool/listdata",
+                            method: "post",
+                            data: {
+                                pageSize: 15,
+                                pageNumber: 1
+                            },
+                            dataType: "json",
+                            success: function(data){
+                                self.tool = data.udtoolList;
+                            },
+                            error: function(){
+
+                            }
+                        });
+                    }
 
                 },
                 created: function(){
                     var self = this;
                     $.ajax({
                         url: "${ctx}/tool/listdata",
-                        method: "get",
+                        method: "post",
+                        data: {
+                            pageSize: 15,
+                            pageNumber: 1
+                        },
                         dataType: "json",
                         success: function(data){
                             self.tool = data.udtoolList;
-                            console.log(self.tool);
+
                         },
                         error: function(){
 
@@ -93,6 +149,18 @@
                             <td width="15%">NJ</td>
                         </tr>
                     </table>
+                     <div id="page_control">
+                         <span class="prePage" style="line-height: 21px;"><a href="javascript:;" v-on:click="prePage">上一页</a></span>
+                         <span class="s_space"></span>
+                         <span class="nextPage"  style="line-height: 21px;"><a href="javascript:;" v-on:click="nextPage">下一页</a></span>
+                         <span class="s_space"></span>
+                         第<span class="pageNo"></span>
+                         页/共<span class="totalPage"></span>页
+                         <span class="s_space"></span>
+                         到第<input name="curPage" id="curPage" type="text"/>页
+                         <span class="s_space"></span>
+                         <span class="gotoPage" style="line-height: 21px;"><a href="javascript:;" v-on:click="gotoPage">跳转</a></span>
+                     </div>
                  </div>
             </div>
         </div>

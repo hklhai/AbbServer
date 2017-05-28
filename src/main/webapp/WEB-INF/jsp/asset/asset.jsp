@@ -475,8 +475,6 @@
             });
         }
     });
-
-
 </script>
 <script type="text/javascript" src="http://webapi.amap.com/demos/js/liteToolbar.js"></script>
 </body>
