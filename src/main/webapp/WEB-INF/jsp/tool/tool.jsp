@@ -26,53 +26,69 @@
                 data: {
                     tool: [],
                     //页面的page信息
-                    currentPage:"",
-                    totalPage:"",
-                    pageNumber:""
+                    currentPage: 1,
+                    totalPage: null,
+                    pageNumber: 1,
                     //筛选条件
+                    toolnum: "",
+                    description: "",
+                    status: "",
+                    displayname: "",
+                    locationsite: ""
 
                 },
-                method:{
+                methods:{
                     prePage:function(){
-                        var prepage=currentPage-1;
-                        var page= prepage-1;
+                        var prepage=this.currentPage-1;
                         if(prepage<1){
                             alert("已是第一页！");
                         }else{
+                            this.pageNumber = prepage;
                             this.initData();
                         }
                     },
                     nextPage:function(){
-                        var nextpage=currentPage+1;
-                        var page=nextpage-1;
-                        var totalPage=$(".totalPage").text();
+                        var nextpage=this.currentPage+1;
+                        var totalPage=this.totalPage;
                         if(nextpage>totalPage){
                             alert("已是最后一页！");
                         }else{
+                            this.pageNumber = nextpage;
                             this.initData();
                         }
                     },
                     gotoPage:function(){
-                        var totalPage=$(".totalPage").text();
-                        var currentPage=$("#curPage").val();
-                        var page=currentPage-1;
-                        if(currentPage<1||currentPage>totalPage){
+                        var totalPage=this.totalPage;
+                        var gotoPage=$("#curPage").val();
+                        if(gotoPage<1||gotoPage>totalPage){
                             alert("请输入正确的页数！")
                         }else{
+                            this.pageNumber = gotoPage;
                             this.initData();
                         }
                     },
+                    search:function(){
+                        this.initData();
+                    },
                     initData:function(){
+                        var self = this;
                         $.ajax({
-                            url: "${ctx}/tool/listdata",
+                            url: "${ctx}/tool/data",
                             method: "post",
                             data: {
                                 pageSize: 15,
-                                pageNumber: 1
+                                pageNumber: self.pageNumber,
+                                toolnum: self.toolnum,
+                                description: self.description,
+                                status: self.status,
+                                displayname: self.displayname,
+                                locationsite: self.locationsite
                             },
                             dataType: "json",
                             success: function(data){
-                                self.tool = data.udtoolList;
+                                $("#curPage").val("");
+                                self.currentPage = self.pageNumber;
+                                self.tool = data;
                             },
                             error: function(){
 
@@ -93,7 +109,7 @@
                         dataType: "json",
                         success: function(data){
                             self.tool = data.udtoolList;
-
+                            self.totalPage = data.page.totalPageNum;
                         },
                         error: function(){
 
@@ -119,24 +135,24 @@
                     <div class="search">
                         <div class="search-item tool-num">
                             <label>工具编号</label>
-                            <input type="text"/>
+                            <input type="text" @keyup.13="search" v-model="toolnum"/>
                             <i class="search-icon"></i>
                         </div>
                         <div class="search-item tool-name">
                             <label>工具名称</label>
-                            <input type="text"/>
+                            <input type="text" @keyup.13="search" v-model="description"/>
                         </div>
                         <div class="search-item tool-state">
                             <label>状态</label>
-                            <input type="text"/>
+                            <input type="text" @keyup.13="search" v-model="status"/>
                         </div>
                         <div class="search-item tool-save">
                             <label>保管人</label>
-                            <input type="text"/>
+                            <input type="text" @keyup.13="search" v-model="displayname"/>
                         </div>
                         <div class="search-item tool-sevice">
                             <label>服务站</label>
-                            <input type="text"/>
+                            <input type="text" @keyup.13="search" v-model="locationsite"/>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -149,13 +165,13 @@
                             <td width="15%">NJ</td>
                         </tr>
                     </table>
-                     <div id="page_control">
+                    <div id="page_control">
                          <span class="prePage" style="line-height: 21px;"><a href="javascript:;" v-on:click="prePage">上一页</a></span>
                          <span class="s_space"></span>
                          <span class="nextPage"  style="line-height: 21px;"><a href="javascript:;" v-on:click="nextPage">下一页</a></span>
                          <span class="s_space"></span>
-                         第<span class="pageNo"></span>
-                         页/共<span class="totalPage"></span>页
+                         第<span class="pageNo">{{currentPage}}</span>
+                         页/共<span class="totalPage">{{totalPage}}</span>页
                          <span class="s_space"></span>
                          到第<input name="curPage" id="curPage" type="text"/>页
                          <span class="s_space"></span>
