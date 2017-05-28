@@ -18,6 +18,7 @@
     <script src="${ctx}/js/header.js"></script>
     <link rel="stylesheet" href="${ctx}/css/reset.css">
     <link rel="stylesheet" href="${ctx}/css/stock-tool.css">
+    <link rel="stylesheet" href="${ctx}/css/page.css">
     <link rel="stylesheet" href="${ctx}/css/header.css">
     <script type="text/javascript">
         $(function(){
@@ -27,18 +28,87 @@
                     inventoryList: [],
                     siteList: [],
                     locationList: [],
-                    item: []
+                    item: [],
+                    //页面的page信息
+                    currentPage: 1,
+                    totalPage: null,
+                    pageNumber: 1,
+                    //筛选条件
+                    siteid: "",
+                    description: "",
+                    location: "",
+                    itemNum: "",
                 },
-                method:{
+                methods:{
+                    prePage:function(){
+                        var prepage=this.currentPage-1;
+                        if(prepage<1){
+                            alert("已是第一页！");
+                        }else{
+                            this.pageNumber = prepage;
+                            this.initData();
+                        }
+                    },
+                    nextPage:function(){
+                        var nextpage=this.currentPage+1;
+                        var totalPage=this.totalPage;
+                        if(nextpage>totalPage){
+                            alert("已是最后一页！");
+                        }else{
+                            this.pageNumber = nextpage;
+                            this.initData();
+                        }
+                    },
+                    gotoPage:function(){
+                        var totalPage=this.totalPage;
+                        var gotoPage=$("#curPage").val();
+                        if(gotoPage<1||gotoPage>totalPage){
+                            alert("请输入正确的页数！")
+                        }else{
+                            this.pageNumber = gotoPage;
+                            this.initData();
+                        }
+                    },
+                    search:function(){
+                        this.initData();
+                    },
+                    initData:function(){
+                        var self = this;
+                        $.ajax({
+                            url: "${ctx} /inventory/inventory",
+                            method: "post",
+                            data: {
+                                pageSize: 15,
+                                pageNumber: self.pageNumber,
+                                siteid: self.siteid,
+                                location: self.location,
+                                itemNum: self.itemNum,
+                                description: self.description,
+                            },
+                            dataType: "json",
+                            success: function(data){
+                                $("#curPage").val("");
+                                self.currentPage = self.pageNumber;
+                                self.inventoryList = data;
+                            },
+                            error: function(){
 
+                            }
+                        });
+                    }
                 },
                 created: function(){
                     var self = this;
                     $.ajax({
                         url: "${ctx} /inventory/inventoryData",
-                        method: "get",
+                        method: "post",
+                        data: {
+                            pageSize: 15,
+                            pageNumber: 1
+                        },
                         dataType: "json",
                         success: function(data){
+                            /*self.totalPage = data.page.totalPageNum;*/
                             self.inventoryList = data.abbInventoryList;
                             self.siteList = data.siteList;
                             self.locationList = data.locationList;
@@ -68,16 +138,16 @@
                     <div class="search-item stock-siteid-item">
                         <label>服务站点</label>
                         <div class="sel-form" style="text-overflow: ellipsis;">
-                            <select name="" id="">
-                                <option value="" v-for=" item in siteList">{{item.description}}</option>
+                            <select  v-model="siteid">
+                                <option v-for=" item in siteList" :value="item.description">{{item.description}}</option>
                             </select>
                         </div>
                     </div>
                     <div class="search-item stock-location-item">
                         <label>库房</label>
                         <div class="sel-form" style="text-overflow: ellipsis;">
-                            <select name="" id="">
-                                <option value=""  v-for=" item in locationList">{{item.description}}</option>
+                            <select v-model="location">
+                                <option v-for=" item in locationList" :value="item.description">{{item.description}}</option>
                             </select>
                         </div>
                     </div>
@@ -91,11 +161,11 @@
                                 <%--<option value="">服务站点四</option>--%>
                             <%--</select>--%>
                         <%--</div>--%>
-                        <input type="text" width="100%">
+                        <input type="text" width="100%" @keyup.13="search" v-model="itemNum">
                     </div>
                     <div class="search-item stock-description-item">
                         <label>物资名称</label>
-                        <input type="text" width="100%">
+                        <input type="text" width="100%" @keyup.13="search" v-model="description">
                         <%--<div class="sel-form">--%>
                             <%--<select name="" id="">--%>
                                 <%--<option value="">服务站点一</option>--%>
@@ -104,7 +174,7 @@
                                 <%--<option value="">服务站点四</option>--%>
                             <%--</select>--%>
                         <%--</div>--%>
-                        <i class="search-icon"></i>
+                        <i class="search-icon" v-on:click="search"></i>
                     </div>
                     <div class="search-item stock-udsapnum-item">
                         <label>SAP编码</label>
@@ -126,6 +196,18 @@
                         <td width="10%">{{item.curbal}}</td>
                     </tr>
                 </table>
+                <div id="page_control">
+                    <span class="prePage" style="line-height: 21px;"><a href="javascript:;" v-on:click="prePage">上一页</a></span>
+                    <span class="s_space"></span>
+                    <span class="nextPage"  style="line-height: 21px;"><a href="javascript:;" v-on:click="nextPage">下一页</a></span>
+                    <span class="s_space"></span>
+                    第<span class="pageNo">{{currentPage}}</span>
+                    页/共<span class="totalPage">{{totalPage}}</span>页
+                    <span class="s_space"></span>
+                    到第<input name="curPage" id="curPage" type="text"/>页
+                    <span class="s_space"></span>
+                    <span class="gotoPage" style="line-height: 21px;"><a href="javascript:;" v-on:click="gotoPage">跳转</a></span>
+                </div>
             </div>
         </div>
     </div>
