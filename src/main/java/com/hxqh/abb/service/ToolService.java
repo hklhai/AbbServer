@@ -14,7 +14,7 @@ import java.util.List;
 public interface ToolService extends BaseService {
 
 
-    public abstract ToolDto getListData() throws Exception;
+    public abstract ToolDto getListData(Page page) throws Exception;
 
     public abstract List<AbbUdtool> getToolData(UdtoolDto udtoolDto,Page page) throws Exception;
 }

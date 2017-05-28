@@ -42,7 +42,7 @@ public class InventoryController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/inventoryData", method = RequestMethod.GET)
+    @RequestMapping(value = "/inventoryData", method = RequestMethod.POST)
     public InventoryDto inventoryListData() {
         InventoryDto inventoryData = null;
         try {
@@ -61,7 +61,7 @@ public class InventoryController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/data", method = RequestMethod.GET)
+    @RequestMapping(value = "/data", method = RequestMethod.POST)
     public List<AbbInventory> data(InventorySearchDto inventorySearchDto, Page page) {
         List<AbbInventory> inventoryList = null;
         try {

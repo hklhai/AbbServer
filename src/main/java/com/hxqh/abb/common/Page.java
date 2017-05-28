@@ -12,6 +12,8 @@ public class Page {
 
     public int totalCount = 0;
 
+    public int totalPageNum;
+
     public Page(PageRequest p, int totalCount) {
         this(p.getPageNumber(), p.getPageSize(), totalCount);
     }
@@ -170,6 +172,17 @@ public class Page {
     public List<Integer> getLinkPageNumbers() {
         return PageUtils.generateLinkPageNumbers(getThisPageNumber(), getLastPageNumber(), 10);
     }
+
+    /**
+     * 得计算总页数
+     *
+     * @return
+     */
+    public void setTotalPageNum(int totalRecord)
+    {
+        totalPageNum = (totalRecord  +  pageSize  - 1) / pageSize;
+    }
+
 
 
 }
