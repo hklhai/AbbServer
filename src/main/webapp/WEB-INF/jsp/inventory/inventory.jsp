@@ -108,7 +108,7 @@
                         },
                         dataType: "json",
                         success: function(data){
-                            /*self.totalPage = data.page.totalPageNum;*/
+                            self.totalPage = data.page.totalPageNum;
                             self.inventoryList = data.abbInventoryList;
                             self.siteList = data.siteList;
                             self.locationList = data.locationList;

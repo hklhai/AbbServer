@@ -83,45 +83,27 @@
                 <p>工作任务</p>
                 <table>
                     <thead>
-                    <tr>
-                        <td width="15%" style="padding-left:2%">工单流水号</td>
-                        <td width="15%">工单描述</td>
-                        <td width="15%">位置描述</td>
-                        <td width="15%">工作负责人</td>
-                        <td width="20%">开始日</td>
-                        <td width="10%">状态</td>
-                        <!--实际长度为77px，因为字体原因先改动width-->
-                        <td width="10%">所属服务站</td>
-                    </tr>
+                        <tr>
+                            <td width="15%" style="padding-left:2%">工单流水号</td>
+                            <td width="15%">工单描述</td>
+                            <td width="15%">位置描述</td>
+                            <td width="15%">工作负责人</td>
+                            <td width="20%">开始日</td>
+                            <td width="10%">状态</td>
+                            <!--实际长度为77px，因为字体原因先改动width-->
+                            <td width="10%">所属服务站</td>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td style="padding-left:2%;"></td>
-                        <td>测试数据001</td>
-                        <td></td>
-                        <td>金鹏宇</td>
-                        <td>2014-4-19 1:28:00</td>
-                        <td>APPR</td>
-                        <td>GZ</td>
-                    </tr>
-                    <tr>
-                        <td style="padding-left:2%;">1066</td>
-                        <td>测试数据001</td>
-                        <td></td>
-                        <td>金鹏宇</td>
-                        <td>2014-4-19 1:28:00</td>
-                        <td>APPR</td>
-                        <td>GZ</td>
-                    </tr>
-                    <tr>
-                        <td style="padding-left:2%;">1066</td>
-                        <td>测试数据001</td>
-                        <td></td>
-                        <td>金鹏宇</td>
-                        <td>2014-4-19 1:28:00</td>
-                        <td>APPR</td>
-                        <td>GZ</td>
-                    </tr>
+                        <tr v-for="work in calendarList">
+                            <td style="padding-left:2%;">{{work.wonum}}</td>
+                            <td>{{work.description}}</td>
+                            <td>{{work.locationsDecription}}</td>
+                            <td>{{work.displayname}}</td>
+                            <td>{{work.targstartdate}}</td>
+                            <td>{{work.status}}</td>
+                            <td>{{work.siteid}}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
