@@ -36,18 +36,7 @@ $(function(){
 			
 		];
 		//预计还款日
-		var limitDaysArr=[
-			{
-				time: '2017-5-5',
-				x:'1056、1074',
-				y:'1045、1044'
-			},
-			{
-				time: '2017-5-16',
-				x:'1050、1055',
-				y:'1060、1063'
-			}
-		]
+		var limitDaysArr = limitDaysArrs;
 		var d = new Date();
 		var str = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
 		WdatePicker({eCont:'div1',dateFmt:'yyyy-MM-dd',readOnly:true,isShowClear:false,isShowToday:true,isShowOK:true,qsEnabled:false,quickSel:null,skin:'whyGreen',onpicked:function(dp){

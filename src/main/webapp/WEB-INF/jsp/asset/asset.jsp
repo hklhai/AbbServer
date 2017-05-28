@@ -29,10 +29,10 @@
 <div class="equip-layout">
     <div class="equip-nav">
         <ul class="father-ul">
-            <li><a href="javascript:;" class="left-bag">现场及设备地图</a></li>
-            <li>
+            <li class="father-ul-a"><a href="javascript:;" class="left-bag">现场及设备地图</a></li>
+            <li class="father-ul-li">
                 <a href="javascript:;"  class="left-down">设备及位置</a>
-                <ul class="child-ul">
+                <ul class="child-ul" style="display: none;">
                     <c:forEach var="locationList" items="${abbLocationList}" >
                         <li><a class="treeShow" id="${locationList.location}"><c:out value="${locationList.description}"/></a></li>
                     </c:forEach>
@@ -120,7 +120,7 @@
                     <tr>
                         <td width="85px">设备编码：</td>
                         <td width="248px" class="data-assetnum">23444</td>
-                        <td width="98px">厂<span class="space">厂家</span>家：</td>
+                        <td width="98px">厂家：</td>
                         <td width="210px" class="data-comName">常见信息</td>
                         <td width="110px">额定分段电流：</td>
                         <td width="220px" class="data-alnvalue">电流信息</td>
@@ -128,9 +128,9 @@
                     <tr>
                         <td>设备描述：</td>
                         <td class="data-asset-description">馈线柜</td>
-                        <td>额定电压</td>
+                        <td>额定电压:</td>
                         <td class="data-alnvalue"></td>
-                        <td>运行年限</td>
+                        <td>运行年限:</td>
                         <td></td>
                     </tr>
                     <tr>
@@ -142,9 +142,9 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td>型<span class="space">型号</span>号</td>
+                        <td>型号:</td>
                         <td class="data-comUdmodel"></td>
-                        <td>额定短时冲击电压</td>
+                        <td>额定短时冲击电压:</td>
                         <td class="data-alnvalue"></td>
                         <td></td>
                         <td></td>
@@ -163,7 +163,7 @@
                 <button class="history-info">历史信息</button>
             </div>
             <div class="tab-content">
-                <table class="basic" style="display:none;">
+                <table class="basic">
                     <tr>
                         <td>设备编码</td>
                         <td class="basic-assetnum"></td>
@@ -201,7 +201,7 @@
                         <td></td>
                     </tr>
                 </table>
-                <table class="sth">
+                <table class="sth" style="display: none;">
                     <thead>
                     <tr>
                         <td width="160px">物资</td>
@@ -290,6 +290,9 @@
         AMap.event.addListener(marker, 'mouseover', function () {
             infoWindow.open(map, marker.getPosition());
         });
+        AMap.event.addListener(marker, 'mouseout ', function () {
+            closeInfoWindow();
+        });
     }
 
 
@@ -324,12 +327,20 @@
     function closeInfoWindow() {
         map.clearInfoWindow();
     }
+
+
     $(function(){
+
         $(".left-bag").click(function(){
             $(".equip-company").hide();
             $("#right-content").show();
+            $(".child-ul").hide();
+            $(".father-ul").find("li").removeClass("father-ul-a");
+            $(".father-ul>li:first").addClass("father-ul-a");
         });
         $(".left-down").click(function(){
+            $(".father-ul").find("li").removeClass("father-ul-a");
+            $(".father-ul-li").addClass("father-ul-a");
             $(".child-ul").toggle();
         });
         var mod_menu=$(".child-ul");//导航模块区
@@ -393,6 +404,11 @@
                     $(".data-uphone").text(locationList.udhone);
                     $(".data-contact").text(locationList.udcontact);
                     var equipHtml="";
+                    if(assetList.length>0){
+                        $(".btn-detail").show();
+                    }else{
+                        $(".btn-detail").hide();
+                    }
                     for(var i=0;i<assetList.length;i++){
                         equipHtml+='<tr><td width="10%">'+assetList[i].state
                                 +'</td><td width="20%">'+assetList[i].description
@@ -408,12 +424,10 @@
             });
         });
 
+        //设备详情按钮事件
         $(".btn-detail").click(function(){
             var assetuid = $(this).attr("id");
-            $("#mask").css("height",$(document).height());
-            $("#mask").css("width",$(document).width());
-            $("#mask").show();
-            $(".equip-detail-form").show();
+
             $.ajax({
                 url: "${ctx}/asset/detail",
                 method: "post",
@@ -422,10 +436,23 @@
                 },
                 dataType: "json",
                 success: function(data){
-                    //$(".data-location").text(locationList.location);
+                    $(".basic-assetnum").text(data.assetnum);
+                    $(".basic-udcontract").text(data.udcontract);
+                    $(".basic-description").text(data.description);
+                    $(".basic-serialnum").text(data.serialnum);
+                    $(".basic-status").text(data.status);
+                    $(".basic-udmodel").text(data.udmodel);
+                    $(".companies-name").text(data.name);
+                    $(".basic-installdate").text(data.installdate);
+                    $(".basic-state").text(data.state);
+                    $(".basic-location").text(data.location);
 
                     //显示遮罩层，显示数据
-
+                    $("#mask").css("height",$(document).height());
+                    $("#mask").css("width",$(document).width());
+                    $("button.basic-info").css("border-color","#0badff");
+                    $("#mask").show();
+                    $(".equip-detail-form").show();
 
                 },
                 error: function(){
@@ -440,9 +467,11 @@
         });
 
         $(".basic-info").click(function(){
+            $("button.basic-info").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
             $("table.basic").show().siblings("table").hide();
         });
         $(".sth-info").click(function(){
+            $("button.sth-info").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
             $("table.sth").show().siblings("table").hide();
         });
         $(".equip-table table tbody").delegate("tr","click",function(){
@@ -453,7 +482,7 @@
             $(".data-asset-description").text(data.description);
             $(".data-status").text(data.status);
             $(".data-comUdmodel").text(data.udmodel);
-            $(".data-comUdmodel").attr("id",data.assetuid);
+            $(".btn-detail").attr("id",data.assetuid);
         });
 
         var map = new AMap.Map("map-location", {

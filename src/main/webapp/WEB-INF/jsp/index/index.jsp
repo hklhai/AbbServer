@@ -28,6 +28,7 @@
                     calendarList: [],
                     systemList: [],
                     workTaskList: [],
+                    sessionInfo:{}
                 },
                 method:{
 
@@ -43,6 +44,7 @@
                             self.calendarList = data.calendarList;
                             self.systemList = data.systemList;
                             self.workTaskList = data.workTaskList;
+                            self.sessionInfo = data.sessionInfo;
                         },
                         error: function(){
 
@@ -55,110 +57,126 @@
     </script>
 </head>
 <body>
-<div class="header">
-    <div class="header-layout">
-        <div class="logo"></div>
-        <ul>
-            <li class="li-item"><a href="${ctx}/index/toIndex" class="index-a"><i class="icon-index"></i>首页</a></li>
-            <li class="li-item"><a href="${ctx}/location/location" class="index-a"><i class="icon-equip"></i>设备管理</a></li>
-            <li class="li-item"><a href="${ctx}/inventory/list" class="index-a"><i class="icon-stock"></i>库存管理</a></li>
-            <li class="li-item"><a href="${ctx}/tool/list" class="index-a"><i class="icon-tool"></i>工具管理</a></li>
-            <li class="li-last index-data"><i class="user-icon"></i><span class="username">用户名</span></li>
-        </ul>
+<div id="index-data">
+    <div class="header">
+        <div class="header-layout">
+            <div class="logo"></div>
+            <ul>
+                <li class="li-item"><a href="${ctx}/index/toIndex" class="index-a"><i class="icon-index"></i>首页</a></li>
+                <li class="li-item"><a href="${ctx}/location/location" class="index-a"><i class="icon-equip"></i>设备管理</a></li>
+                <li class="li-item"><a href="${ctx}/inventory/list" class="index-a"><i class="icon-stock"></i>库存管理</a></li>
+                <li class="li-item"><a href="${ctx}/tool/list" class="index-a"><i class="icon-tool"></i>工具管理</a></li>
+                <li class="li-last"><i class="user-icon"></i><span class="username">{{sessionInfo.displayname}}</span></li>
+            </ul>
+        </div>
     </div>
-</div>
-<div class="index-content">
-    <div class="index-layout" id="index-data">
-        <div class="index-content-tit">首页</div>
-        <div class="calendar index-div1">
-            <div class="zAccountInner zAccount2 clearfix">
-                <div class="zAccountPlanL span5 no-margin-left" style="position:absolute;width:100%;">
-                    <div id="div1"></div> <input type="hidden" id="index_clander" />
-                    <input type="hidden" id="d523_y">
+    <div class="index-content">
+        <div class="index-layout">
+            <div class="index-content-tit"></div>
+            <div class="calendar index-div1">
+                <div class="zAccountInner zAccount2 clearfix">
+                    <div class="zAccountPlanL span5 no-margin-left" style="position:absolute;width:100%;">
+                        <div id="div1"></div> <input type="hidden" id="index_clander" />
+                        <input type="hidden" id="d523_y">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="work-task index-div2">
-            <div class="index-div2-layout">
-                <p>工作任务</p>
-                <table>
-                    <thead>
-                        <tr>
-                            <td width="15%" style="padding-left:2%">工单流水号</td>
-                            <td width="15%">工单描述</td>
-                            <td width="15%">位置描述</td>
-                            <td width="15%">工作负责人</td>
-                            <td width="20%">开始日</td>
-                            <td width="10%">状态</td>
-                            <!--实际长度为77px，因为字体原因先改动width-->
-                            <td width="10%">所属服务站</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="work in calendarList">
-                            <td style="padding-left:2%;">{{work.wonum}}</td>
-                            <td>{{work.description}}</td>
-                            <td>{{work.locationsDecription}}</td>
-                            <td>{{work.displayname}}</td>
-                            <td>{{work.targstartdate}}</td>
-                            <td>{{work.status}}</td>
-                            <td>{{work.siteid}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <div class="work-task index-div2">
+                <div class="index-div2-layout">
+                    <p>工作任务</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td width="15%" style="padding-left:2%">工单流水号</td>
+                                <td width="15%">工单描述</td>
+                                <td width="15%">位置描述</td>
+                                <td width="15%">工作负责人</td>
+                                <td width="20%">开始日</td>
+                                <td width="10%">状态</td>
+                                <!--实际长度为77px，因为字体原因先改动width-->
+                                <td width="10%">所属服务站</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="work in calendarList">
+                                <td style="padding-left:2%;">{{work.wonum}}</td>
+                                <td>{{work.description}}</td>
+                                <td>{{work.locationsDecription}}</td>
+                                <td>{{work.displayname}}</td>
+                                <td>{{work.targstartdate}}</td>
+                                <td>{{work.status}}</td>
+                                <td>{{work.siteid}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-        </div>
-        <div class="clearfix"></div>
-        <div class="equip-info index-div1 bottom-div">
-            <div class="equip-info-layout">
-                <p>设备信息</p>
-                <table>
-                    <thead>
-                    <tr>
-                        <td width="16%" style="padding-left:4%">状态</td>
-                        <td width="30%">设备名称</td>
-                        <td width="50%">位置信息</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr v-for="asset in assetList">
-                        <td>{{asset.state}}</td>
-                        <td>{{asset.description}}</td>
-                        <td>{{asset.location}}</td>
-                    </tr>
-                    </tbody>
-                </table>
             </div>
-        </div>
-        <div class="sys-notice index-div2 bottom-div">
-            <div class="index-div2-layout">
-                <p>系统通知</p>
-                <table>
-                    <thead>
-                    <tr>
-                        <td width="30%" style="padding-left:2%;">描述</td>
-                        <td width="20%">开始日</td>
-                        <td width="20%">到期日</td>
-                        <td width="20%">优先级</td>
-                        <td width="8%">审批</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr v-for="sys in systemList">
-                        <td style="padding-left:2%">{{sys.description}}</td>
-                        <td>{{sys.startdate}}</td>
-                        <td>{{sys.duedate}}</td>
-                        <td>{{sys.priority}}</td>
-                        <td><a href="" class="apply"></a></td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div class="clearfix"></div>
+            <div class="equip-info index-div1 bottom-div">
+                <div class="equip-info-layout">
+                    <p>设备信息</p>
+                    <table>
+                        <thead>
+                        <tr>
+                            <td width="16%" style="padding-left:4%">状态</td>
+                            <td width="30%">设备名称</td>
+                            <td width="50%">位置信息</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="asset in assetList">
+                            <td>{{asset.state}}</td>
+                            <td>{{asset.description}}</td>
+                            <td>{{asset.location}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+            <div class="sys-notice index-div2 bottom-div">
+                <div class="index-div2-layout">
+                    <p>系统通知</p>
+                    <table>
+                        <thead>
+                        <tr>
+                            <td width="30%" style="padding-left:2%;">描述</td>
+                            <td width="20%">开始日</td>
+                            <td width="20%">到期日</td>
+                            <td width="20%">优先级</td>
+                            <td width="8%">审批</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="sys in systemList">
+                            <td style="padding-left:2%">{{sys.description}}</td>
+                            <td>{{sys.startdate}}</td>
+                            <td>{{sys.duedate}}</td>
+                            <td>{{sys.priority}}</td>
+                            <td><a href="" class="apply"></a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="clearfix"></div>
         </div>
-        <div class="clearfix"></div>
     </div>
 </div>
+<script>
+    var limitDaysArrs=[
+        {
+            time: '2017-5-5',
+            x:'10、10',
+            y:'10、15'
+        },
+        {
+            time: '2017-5-16',
+            x:'1050、1055',
+            y:'1060、1063'
+        }
+    ]
+</script>
 <script src="${ctx}/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="${ctx}/js/DatePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="${ctx}/js/DatePicker/extraDate.js"></script>

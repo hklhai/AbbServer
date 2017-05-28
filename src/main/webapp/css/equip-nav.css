@@ -20,6 +20,9 @@
 	font-size: 14px;
 	display: block;
 }
+.father-ul-a{
+	background: #1C4E74;
+}
 .left-bag{
     background: url("../img/asset/left-bag.gif") no-repeat 49px 10px;
 }
@@ -44,7 +47,7 @@ ul.child-ul>li>a{
     display: block;
 }
 ul.child-ul li:hover{
-	background: #1C4E74;
+	background: #246495;
 }
 .child-ul-hover{
 	background: #1C4E74;

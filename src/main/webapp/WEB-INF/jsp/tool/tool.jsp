@@ -25,6 +25,8 @@
                 el: "#stock-data",
                 data: {
                     tool: [],
+                    statusList:[],
+                    siteList: [],
                     //页面的page信息
                     currentPage: 1,
                     totalPage: null,
@@ -112,6 +114,8 @@
                         success: function (data) {
                             self.tool = data.udtoolList;
                             self.totalPage = data.page.totalPageNum;
+                            self.statusList = data.statusList;
+                            self.siteList = data.siteList;
                         },
                         error: function () {
 
@@ -146,7 +150,11 @@
                 </div>
                 <div class="search-item tool-state">
                     <label>状态</label>
-                    <input type="text" @keyup.13="search" v-model="status"/>
+                    <div class="sel-form" style="text-overflow: ellipsis;">
+                        <select v-model="status">
+                            <option v-for=" item in statusList" :value="item">{{item}}</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="search-item tool-save">
                     <label>保管人</label>
@@ -154,7 +162,11 @@
                 </div>
                 <div class="search-item tool-sevice">
                     <label>服务站</label>
-                    <input type="text" @keyup.13="search" v-model="locationsite"/>
+                    <div class="sel-form" style="text-overflow: ellipsis;">
+                        <select v-model="locationsite">
+                            <option v-for=" item in siteList" :value="item.siteid">{{item.description}}</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="clearfix"></div>
             </div>

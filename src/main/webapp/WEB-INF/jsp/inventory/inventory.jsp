@@ -174,15 +174,15 @@
                                 <%--<option value="">服务站点四</option>--%>
                             <%--</select>--%>
                         <%--</div>--%>
-                        <i class="search-icon" v-on:click="search"></i>
+                        <%--<i class="search-icon" v-on:click="search"></i>--%>
                     </div>
                     <div class="search-item stock-udsapnum-item">
                         <label>SAP编码</label>
-                        <!-- <input type="text"/> -->
+                        <input type="text" disabled="disabled" style="background:#dadada;"/>
                     </div>
                     <div class="search-item stock-curbal-item">
                         <label>当前余量</label>
-                        <!-- <input type="text"/> -->
+                        <input type="text" disabled="disabled" style="background: #dadada;"/>
                     </div>
                     <div class="clearfix"></div>
                 </div>
