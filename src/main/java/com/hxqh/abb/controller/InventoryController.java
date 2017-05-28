@@ -43,10 +43,10 @@ public class InventoryController {
      */
     @ResponseBody
     @RequestMapping(value = "/inventoryData", method = RequestMethod.POST)
-    public InventoryDto inventoryListData() {
+    public InventoryDto inventoryListData(Page page) {
         InventoryDto inventoryData = null;
         try {
-            inventoryData = locationService.inventoryListData();
+            inventoryData = locationService.inventoryListData(page);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -83,12 +83,13 @@ public class LocationServiceImpl extends BaseServiceImpl<Object> implements Loca
     }
 
     @Override
-    public InventoryDto inventoryListData() {
+    public InventoryDto inventoryListData(Page page) {
         List<AbbInventory> inventoryList = abbinventoryDao.findAll(0, 15, null, null, " order by inventoryid desc");
         List<AbbInventoryLocation> locationList = abbInventoryLocationDao.findAll();
         List<AbbInventorySite> siteList = siteDao.findAll();
         List<AbbInventoryItem> itemList = itemDao.findAll();
-        InventoryDto inventoryDto = new InventoryDto(inventoryList,siteList,locationList,itemList);
+        page.setTotalPageNum((int) abbinventoryDao.getCount());
+        InventoryDto inventoryDto = new InventoryDto(inventoryList,siteList,locationList,itemList,page);
         return inventoryDto;
     }
 

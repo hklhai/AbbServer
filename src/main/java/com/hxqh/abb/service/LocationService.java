@@ -27,7 +27,7 @@ public interface LocationService extends BaseService {
     /*============================库存管理开始===========================*/
     public abstract List<AbbInventory> getInventoryData(InventorySearchDto inventorySearchDto, Page page);
 
-    public abstract InventoryDto inventoryListData();
+    public abstract InventoryDto inventoryListData(Page page);
 
     
 
