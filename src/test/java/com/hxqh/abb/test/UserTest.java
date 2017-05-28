@@ -26,26 +26,6 @@ public class UserTest {
     @Resource
     private UserService userService;
 
-
-
-
-    @Test
-    public void time() {
-        System.out.println(getTime());
-    }
-
-
-    private String getTime()
-    {
-        StringBuilder stringBuilder = new StringBuilder();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
-        stringBuilder.append(df.format(new Date()));
-        GregorianCalendar ca = new GregorianCalendar();
-        stringBuilder.append(0==ca.get(GregorianCalendar.AM_PM)?" am":" pm");
-        return stringBuilder.toString();
-    }
-
-
     //@Test
     public void testGetTestBook() {
         List<User> userList = userService.getUserList();

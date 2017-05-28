@@ -1,5 +1,8 @@
 package com.hxqh.abb.controller;
 
+import com.hxqh.abb.common.util.TimeUtil;
+import com.hxqh.abb.model.assist.Time;
+import com.hxqh.abb.model.base.SessionInfo;
 import com.hxqh.abb.model.searchdto.Page;
 import com.hxqh.abb.model.dto.action.ToolDto;
 import com.hxqh.abb.model.searchdto.UdtoolDto;
@@ -7,9 +10,7 @@ import com.hxqh.abb.model.view.AbbUdtool;
 import com.hxqh.abb.service.ToolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/tool")
+@SessionAttributes(value = "sessionInfo")
 public class ToolController {
     @Autowired
     private ToolService toolService;
@@ -41,13 +43,15 @@ public class ToolController {
      */
     @ResponseBody
     @RequestMapping(value = "/listdata", method = RequestMethod.POST)
-    public ToolDto listdata(Page page) {
+    public ToolDto listdata(Page page,@ModelAttribute("sessionInfo") SessionInfo sessionInfo) {
         ToolDto listData = null;
         try {
             listData= toolService.getListData(page);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        listData.setSessionInfo(sessionInfo);
+        listData.setTime(new Time(TimeUtil.getTime()));
         return listData;
     }
 

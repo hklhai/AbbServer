@@ -1,5 +1,7 @@
 package com.hxqh.abb.model.dto.action;
 
+import com.hxqh.abb.model.assist.Time;
+import com.hxqh.abb.model.base.SessionInfo;
 import com.hxqh.abb.model.searchdto.Page;
 import com.hxqh.abb.model.view.AbbInventory;
 import com.hxqh.abb.model.view.AbbInventoryItem;
@@ -19,6 +21,9 @@ public class InventoryDto {
 
     private Page page;
 
+    private SessionInfo sessionInfo;
+    private Time time;
+
     public InventoryDto() {
     }
 
@@ -28,6 +33,22 @@ public class InventoryDto {
         this.locationList = locationList;
         this.itemList = itemList;
         this.page = page;
+    }
+
+    public SessionInfo getSessionInfo() {
+        return sessionInfo;
+    }
+
+    public void setSessionInfo(SessionInfo sessionInfo) {
+        this.sessionInfo = sessionInfo;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
     }
 
     public Page getPage() {
