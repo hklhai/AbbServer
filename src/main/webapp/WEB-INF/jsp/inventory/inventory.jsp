@@ -139,7 +139,7 @@
                         <label>服务站点</label>
                         <div class="sel-form" style="text-overflow: ellipsis;">
                             <select  v-model="siteid">
-                                <option v-for=" item in siteList" :value="item.description">{{item.description}}</option>
+                                <option v-for=" item in siteList" :value="item.siteid">{{item.description}}</option>
                             </select>
                         </div>
                     </div>
@@ -147,7 +147,7 @@
                         <label>库房</label>
                         <div class="sel-form" style="text-overflow: ellipsis;">
                             <select v-model="location">
-                                <option v-for=" item in locationList" :value="item.description">{{item.description}}</option>
+                                <option v-for=" item in locationList" :value="item.location">{{item.description}}</option>
                             </select>
                         </div>
                     </div>
