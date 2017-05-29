@@ -1,0 +1,67 @@
+.city-list{
+    width:100%;
+    padding-left: 5%;
+    padding-top: 0.32rem;
+    padding-bottom: 0.38rem;
+}
+.city-list button{
+    width: 27%;
+    border: 1px solid #d7d8de;
+    background: #fff;
+    text-align: center;
+    border-radius: 0.02rem;
+    float: left;
+    margin-right: 6%;
+    height: 0.75rem;
+    line-height: 0.75rem;
+    font-size: 0.3rem;
+    color: rgb(36, 36, 36);
+    margin-bottom: 0.2rem;
+}
+.city-list button.blue-btn{
+    background: #0088cc;
+}
+.list-detail-tit{
+   height: 0.46rem;
+   line-height: 0.46rem;
+   background: #e6e6e6;
+   padding-left: 0.42rem;
+   font-size: 0.28rem;
+   color: rgb(36, 36, 36);
+}
+.list-detail ul li{
+    line-height: 0.8rem;
+    font-size: 0.28rem;
+    color: rgb(36, 36, 36);
+    padding-left: 0.42rem;
+    border-bottom: 1px solid #ccc;
+}
+.list-detail ul li:hover{
+    background: #0088cc;
+}
+.list-detail ul li a{
+    display: block;
+    height: 0.80rem;
+    line-height: 0.80rem;
+    font-size: 0.28rem;
+    color: rgb(36, 36, 36);
+}
+/* .icon-left{
+    background: url("../images/arrow.gif") no-repeat 95% center;
+    background: #000;
+} */
+/* .icon-left a{
+    color: #fff;
+} */
+/* .list-detail ul li:hover{
+    background: #0088cc;
+} */
+.second-ul{
+    width: 100%;
+    color: #fff;
+    padding-left: 0.42rem;
+}   
+ul.second-ul>li>a{
+    color: #fff;
+}
+
