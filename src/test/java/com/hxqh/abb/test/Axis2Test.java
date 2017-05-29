@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 
 import javax.annotation.Resource;
 import java.rmi.RemoteException;
@@ -25,6 +24,7 @@ public class Axis2Test {
 
     @Resource
     private WfassignmentDao wfassignmentDao;
+
     /**
      * 利用axis2插件生成客户端方式调用 wsdl2java简化客户端的编写
      *
