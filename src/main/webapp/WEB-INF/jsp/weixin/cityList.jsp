@@ -24,12 +24,10 @@
 </head>
 <body>
 <div class="city-list">
-    <button>${cityDto.abbLocation.description}</button>
-   <%-- <button class="blue-btn">北京</button>
-    <button>广州</button>
-    <button>厦门</button>
-    <button class="blue-btn">北京</button>
-    <button>广州</button>--%>
+    <c:forEach items="${cityDto.rootList}" var="item">
+        <button id="${item.location}">${item.description}</button>
+    </c:forEach>
+   <%-- <button class="blue-btn">北京</button>--%>
     <div class="clearfix"></div>
 </div>
 <div class="list-detail">
@@ -60,12 +58,13 @@
            window.location.href = "${ctx}/index/equip";
        });
         function init(){
-            var btnHtml = "";
-            var siteList = localStorage.getItem("siteId");
-            for(var i=0;i<siteList.length;i++){
-                btnHtml+="<button id='"+siteList[i].location+"'>"+siteList[i].description+"</button> ";
+            var currentCity = ${abbLocation.description};
+            var doms = $(".city-list").find("button");
+            for(var i=0;i<doms.length;i++){
+               if(doms[i].attr["id"] == currentCity){
+                   doms[i].addClass("blue-btn");
+               }
             }
-            $(".city-list").append(btnHtml);
         }
         init();
     });
