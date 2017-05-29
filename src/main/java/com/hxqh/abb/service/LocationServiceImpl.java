@@ -1,6 +1,7 @@
 package com.hxqh.abb.service;
 
 import com.hxqh.abb.dao.*;
+import com.hxqh.abb.model.dto.action.CityDto;
 import com.hxqh.abb.model.dto.action.InventoryDto;
 import com.hxqh.abb.model.searchdto.InventorySearchDto;
 import com.hxqh.abb.model.searchdto.Page;
@@ -98,6 +99,19 @@ public class LocationServiceImpl extends BaseServiceImpl<Object> implements Loca
         params.put("location", childList.get(0).getParent());
         List<AbbLocation> parent = abbLocationDao.findAll(where, params, null);
         return parent.get(0);
+    }
+
+    @Override
+    public CityDto getCityList(String location) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("location", location);
+        String where = "location=:location";
+        List<AbbLocation> abbLocations = abbLocationDao.findAll(where, params, null);
+
+        String whereChild = "parent=:location";
+        List<AbbLocation> childList = abbLocationDao.findAll(whereChild, params, null);
+        CityDto cityDto = new CityDto(childList,abbLocations.get(0));
+        return cityDto;
     }
 
 

@@ -6,6 +6,7 @@ import com.hxqh.abb.model.Location;
 import com.hxqh.abb.model.Maxuser;
 import com.hxqh.abb.model.assist.Time;
 import com.hxqh.abb.model.base.SessionInfo;
+import com.hxqh.abb.model.dto.action.CityDto;
 import com.hxqh.abb.model.dto.action.IndexDto;
 import com.hxqh.abb.model.dto.action.LoginDto;
 import com.hxqh.abb.model.dto.action.Message;
@@ -194,6 +195,28 @@ public class IndexController {
     public List<AbbLocation> webChatData(LoginDto loginDto, Map<String, Object> map) {
         List<AbbLocation> abbLocationList = locationService.getRootList();
         return abbLocationList;
+    }
+
+    /**
+     * cityList  cityList页跳转
+     *
+     * @return
+     */
+    @RequestMapping(value = "/cityList", method = RequestMethod.GET)
+    public String cityList() {
+        return "weixin/cityList";
+    }
+
+    /**
+     * cityList  cityList页数据接口
+     *
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/cityData", method = RequestMethod.GET)
+    public CityDto cityData(@RequestParam("location") String location) {
+        CityDto cityDto = locationService.getCityList(location);
+        return cityDto;
     }
 
 }

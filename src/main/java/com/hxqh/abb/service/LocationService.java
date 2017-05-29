@@ -1,5 +1,6 @@
 package com.hxqh.abb.service;
 
+import com.hxqh.abb.model.dto.action.CityDto;
 import com.hxqh.abb.model.searchdto.Page;
 import com.hxqh.abb.model.dto.action.InventoryDto;
 import com.hxqh.abb.model.searchdto.InventorySearchDto;
@@ -32,15 +33,17 @@ public interface LocationService extends BaseService {
     public abstract AbbLocation getParentLocation(String location);
 
 
+
+
     /*============================库存管理结束 ==========================*/
 
 
 
 
 
-    /*============================工具管理开始===========================*/
+    /*============================微信位置开始===========================*/
+    public abstract CityDto getCityList(String location);
 
-
-    /*============================工具管理结束 ==========================*/
+    /*============================微信位置结束 ==========================*/
 
 }
