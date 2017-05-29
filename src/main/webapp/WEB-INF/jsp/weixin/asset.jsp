@@ -22,10 +22,41 @@
     <script src="${ctx}/scripts/rem.js"></script>
     <script src="${ctx}/scripts/jquery-1.8.3.min.js"></script>
     <script type="text/javascript">
+        var loactionData = [];
+        var position = [];
+        var tmpLocation = [{
+            position: [116.205467, 39.907761]
+        }, {
+            position: [116.368904, 39.913423]
+        }, {
+            position: [116.305467, 39.807761]
+        }];
+        var url = ["www.baidu.com","www.youku.com","www.youku.com"];
         $(function(){
             $("h4").click(function(){
                 $(this).siblings("div").toggle();
             });
+            function initData(){
+                $.ajax({
+                    url: "${ctx}/index/webChatData",
+                    method: "get",
+                    dataType: "json",
+                    success: function(data){
+                        for(var i=0;i<data.length;i++){
+                            var tmpObj = {};
+                            var tmpPostion = [];
+                            tmpPostion.push(data[i].longitude);
+                            tmpPostion.push(data[i].dimension);
+                            tmpObj.position = tmpPostion;
+                            loactionData.push(tmpObj);
+                        }
+                    },
+                    error: function(){
+
+                    }
+                });
+            };
+            initData();
         })
     </script>
     <script type="text/javascript"
@@ -37,7 +68,7 @@
     <div id="container"></div>
     <div class="location">
         <h4>位置信息</h4>
-        <div class="location-info">
+        <div class="location-info" style="display: none;">
             请选择站点
         </div>
     </div>
@@ -66,18 +97,9 @@
         position: map.getCenter()
     });
     marker.setMap(map);
-    var markers = [{
-        icon: 'http://webapi.amap.com/theme/v1.3/markers/n/mark_b1.png',
-        position: [116.205467, 39.907761]
-    }, {
-        icon: 'http://webapi.amap.com/theme/v1.3/markers/n/mark_b2.png',
-        position: [116.368904, 39.913423]
-    }, {
-        icon: 'http://webapi.amap.com/theme/v1.3/markers/n/mark_b3.png',
-        position: [116.305467, 39.807761]
-    }];
+    var markers = tmpLocation;
     // 添加一些分布不均的点到地图上,地图上添加三个点标记，作为参照
-    markers.forEach(function(marker) {
+    markers.forEach(function(marker,index) {
         var marker=new AMap.Marker({
             map: map,
             position: [marker.position[0], marker.position[1]],
@@ -90,7 +112,7 @@
         // 设置label标签
         marker.setLabel({//label默认蓝框白底左上角显示，样式className为：amap-marker-label
             offset: new AMap.Pixel(20, 20),//修改label相对于maker的位置
-            content: "<a href='http:/wwww.baidu.com'>我是marker的label标签</a>"
+            content: "<a href='"+url[index]+"'>我是marker的label标签</a>"
         });
         AMap.event.addDomListener(marker, 'touchend', function() {
             console.log("aaaa");
