@@ -9,7 +9,9 @@ import com.hxqh.abb.model.base.SessionInfo;
 import com.hxqh.abb.model.dto.action.IndexDto;
 import com.hxqh.abb.model.dto.action.LoginDto;
 import com.hxqh.abb.model.dto.action.Message;
+import com.hxqh.abb.model.view.AbbLocation;
 import com.hxqh.abb.model.view.AbbLogin;
+import com.hxqh.abb.service.LocationService;
 import com.hxqh.abb.service.SystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import psdi.util.MXException;
 
+import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -30,6 +33,9 @@ import java.util.*;
 public class IndexController {
     @Autowired
     private SystemService systemService;
+    @Resource
+    private LocationService locationService;
+
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ModelAndView getAuthorDetail() {
@@ -166,5 +172,28 @@ public class IndexController {
         return new ModelAndView("weixin/asset", result);
     }
 
+    /**
+     * webChat  微信登录后首页跳转
+     *
+     * @return
+     */
+    @RequestMapping(value = "/webChat", method = RequestMethod.GET)
+    public String webChat() {
+        return "weixin/asset";
+    }
+
+
+
+    /**
+     * webChatData  微信登录后首页数据接口
+     *
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/webChatData", method = RequestMethod.GET)
+    public List<AbbLocation> webChatData(LoginDto loginDto, Map<String, Object> map) {
+        List<AbbLocation> abbLocationList = locationService.getRootList();
+        return abbLocationList;
+    }
 
 }
