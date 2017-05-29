@@ -1,0 +1,79 @@
+.tab-sel{
+    width: 100%;
+    padding-top:0.12rem; 
+    padding-bottom: 0.12rem;
+    border-bottom: 2px solid #dedede;
+}
+.tab-layout{
+    width: 95%;
+    margin: 0 auto;
+}
+span#sel{
+    border-top: 2px solid #58B7E6;
+    background: #E6E6E6;
+}
+.tab-sel span{
+    display: inline-block;
+    float: left;
+    border: 1px solid #dedede;
+    margin-left: 0.01rem;
+    text-align: center;
+    height: 0.56rem;
+    line-height: 0.56rem;
+    width: 22%;
+    font-size: 0.28rem;
+    color: rgb(36, 36, 36);
+    margin: 0 auto;
+}
+.table-div{
+    margin-top: 0.3rem;
+    position: relative;
+}
+table.basic-info{
+    margin-top: 0.10rem;
+    margin-bottom: 0.33rem;
+    width: 85%;   
+    border-collapse:separate; 
+    border-spacing:0rem 0.1rem;
+    margin: 0 auto;
+    position: absolute;
+    top: 0rem;
+    left: 7%;
+}
+table.basic-info tr{
+    height: 0.72rem;
+    line-height: 0.72rem    
+}
+table.basic-info tr td:nth-child(1){   
+    padding-right: 2%;
+    font-size: 0.26rem;
+    color: rgb(36, 36, 36);
+    text-align:justify;
+} 
+table.basic-info tr td:nth-child(2){
+    padding-right: 6%;
+    border: 1px solid #DCDCDC;
+    font-size: 0.26rem;
+    color: rgb(36, 36, 36);
+    padding-left: 3%;
+} 
+table.sth-info{
+    margin-top: 0.10rem;
+    margin-bottom: 0.33rem;
+    width: 95%;  
+    position: absolute;
+    top: 0rem;
+    left: 2.5%;
+
+}
+table.sth-info td{
+    font-size: 0.26rem;
+    color: rgb(36, 36, 36);
+    text-align: center; 
+    height: 0.56rem;
+    line-height: 0.56rem;
+}
+table.sth-info tbody td{
+    border: 1px solid #dadada;
+}
+

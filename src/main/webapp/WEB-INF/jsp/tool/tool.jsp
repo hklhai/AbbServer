@@ -36,7 +36,9 @@
                     description: "",
                     status: "",
                     displayname: "",
-                    locationsite: ""
+                    locationsite: "",
+                    sessionInfo:{},
+                    time:{}
 
                 },
                 methods: {
@@ -116,6 +118,8 @@
                             self.totalPage = data.page.totalPageNum;
                             self.statusList = data.statusList;
                             self.siteList = data.siteList;
+                            self.sessionInfo = data.sessionInfo;
+                            self.time = data.time;
                         },
                         error: function () {
 
@@ -129,12 +133,24 @@
     </script>
 </head>
 <body>
-<%@ include file="../commons/header.jsp" %>
-<div class="stock-content" id="stock-data">
+<div id="stock-data">
+<div class="header">
+    <div class="header-layout">
+        <div class="logo"></div>
+        <ul>
+            <li class="li-item"><a href="${ctx}/index/toIndex" class="index-a"><i class="icon-index"></i>首页</a></li>
+            <li class="li-item"><a href="${ctx}/location/location" class="index-a"><i class="icon-equip"></i>设备管理</a></li>
+            <li class="li-item"><a href="${ctx}/inventory/list" class="index-a"><i class="icon-stock"></i>库存管理</a></li>
+            <li class="li-item"><a href="${ctx}/tool/list" class="index-a"><i class="icon-tool"></i>工具管理</a></li>
+            <li class="li-last"><i class="user-icon"></i><span class="username">{{sessionInfo.displayname}}</span></li>
+        </ul>
+    </div>
+</div>
+<div class="stock-content">
     <div class="stock-layout">
         <div class="index-content-tit">
             <span class="stock-tit">工具台账</span>
-            <span class="stock-time">2017.4.19 11:23am</span>
+            <span class="stock-time">{{time.time}}</span>
         </div>
         <div class="stock-content-show">
             <h3 class="table-tit">工具台账</h3>
@@ -196,6 +212,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>

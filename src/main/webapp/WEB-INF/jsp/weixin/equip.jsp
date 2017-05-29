@@ -19,9 +19,68 @@
     <link rel="stylesheet" href="${ctx}/css/weixin/reset.css">
     <link rel="stylesheet" href="${ctx}/css/weixin/index-detail.css">
     <link href="${ctx}/css/weixin/style.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="${ctx}/scripts/rem.js"></script>
     <script type="text/javascript"
             src="http://webapi.amap.com/maps?v=1.3&key=e4eb9da6d97281e42a0357655570e3ae"></script>
+    <script>
+        $(function(){
+            var assetList=[];
+            var locationList = [];
+            function initData(){
+                var location = localStorage.getItem("location");
+                $.ajax({
+                    url: "${ctx}/asset/assetData",
+                    method: "post",
+                    data:{
+                        location: location
+                    },
+                    dataType: "json",
+                    success: function(data){
+                        assetList = data.abbAssetList;
+                        locationList = data.abbAssetLocationList;
+                        $(".data-location").text(locationList.location);
+                        $(".data-description").text(locationList.description);
+                        $(".layout-tit").text(locationList.description);
+                        var equipHtml="";
+                        for(var i=0;i<assetList.length;i++){
+                            equipHtml+='<tr><td>'+assetList[i].state
+                                    +'</td><td>'+assetList[i].description
+                                    +'</td><td>'+assetList[i].name
+                                    +'</td><td>'+assetList[i].udmodel
+                                    +'</td><td>'+assetList[i].parent
+                                    +'</td></tr>';
+                        }
+                        $("table.equip-table tbody").append(equipHtml);
+                    },
+                    error: function(){
+                    }
+                });
+            }
+            initData();
+
+            //设备表行事件绑定
+            $("table.equip-table  tbody").delegate("tr","click",function(){
+                var index =  $(this).index();
+                var data = assetList[index];
+                $(".data-assetnum").text(data.assetnum);
+                $(".data-comName").text(data.name);
+                $(".data-asset-description").text(data.description);
+                $(".data-status").text(data.status);
+                $(".data-comUdmodel").text(data.udmodel);
+                $(".btn-detail").attr("id",data.assetuid);
+                $(".table-tit").show();
+                $(".equip-info-talbe").show();
+            });
+
+            //设备详情按钮事件
+            $(".btn-detail").click(function(){
+                var assetuid = $(this).attr("id");
+                localStorage.setItem("assetuid",assetuid);
+                window.location.href = "${ctx}/index/equipDetail";
+            });
+        })
+    </script>
 </head>
 <body>
 <div class="layout">
@@ -33,38 +92,38 @@
             <table>
                 <tr>
                     <td>位置编码：</td>
-                    <td>JSHD</td>
+                    <td class="data-location"></td>
                 </tr>
                 <tr>
                     <td>位置描述：</td>
-                    <td>JSHD</td>
+                    <td class="data-description">JSHD</td>
                 </tr>
                 <tr>
                     <td>状<span style="color: #fff;">状态</span>态：</td>
-                    <td></td>
+                    <td class=""></td>
                 </tr>
                 <tr>
                     <td>位置类型：</td>
-                    <td>JSHD</td>
+                    <td class="data-type"></td>
                 </tr>
                 <tr>
                     <td>健康指标：</td>
                     <td>JSHD</td>
                 </tr>
                 <td>地<span style="color: #fff;">状态</span>址：</td>
-                <td>JSHD</td>
+                <td class="data-address"></td>
                 </tr>
                 <tr>
                     <td>电压等级：</td>
-                    <td>JSHD</td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>设备数量：</td>
-                    <td>JSHD</td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>报警数量：</td>
-                    <td>JSHD</td>
+                    <td></td>
                 </tr>
             </table>
         </div>
@@ -89,28 +148,56 @@
                     <td width="18%">子设备</td>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>正常</td>
-                    <td>正常</td>
-                    <td>正常</td>
-                    <td>正常</td>
-                    <td>正常</td>
-                </tr>
-                </tbody>
+                <tbody></tbody>
             </table>
-            <div class="table-tit">
+            <div class="table-tit"  style="display:none;">
                 <span>设备信息</span>
-                <button>设备详情</button>
+                <button class="btn-detail">设备详情</button>
             </div>
-            <table class="equip-info-talbe">
+            <table class="equip-info-talbe" style="display:none;">
                 <tr>
                     <td width="30%">设备编码</td>
-                    <td width="70%">233444</td>
+                    <td width="70%" class="data-assetnum"></td>
                 </tr>
                 <tr>
                     <td>设备描述</td>
-                    <td>233444</td>
+                    <td class="data-asset-description"></td>
+                </tr>
+                <tr>
+                    <td>设备状态</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>型号</td>
+                    <td class="data-comUdmodel"></td>
+                </tr>
+                <tr>
+                    <td>厂家</td>
+                    <td class="data-comName"></td>
+                </tr>
+                <tr>
+                    <td>额定电压</td>
+                    <td class="data-alnvalue"></td>
+                </tr>
+                <tr>
+                    <td>额定电流</td>
+                    <td class="data-alnvalue"></td>
+                </tr>
+                <tr>
+                    <td>额定短时冲击电压</td>
+                    <td class="data-alnvalue"></td>
+                </tr>
+                <tr>
+                    <td>额定分断电流</td>
+                    <td class="data-alnvalue"></td>
+                </tr>
+                <tr>
+                    <td>运行年限</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>所处声明周期</td>
+                    <td class="data-status"></td>
                 </tr>
             </table>
         </div>

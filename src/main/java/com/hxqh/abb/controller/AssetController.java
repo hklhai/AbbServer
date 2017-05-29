@@ -73,6 +73,19 @@ public class AssetController {
         AbbAsset abbAsset= systemService.getAssetById(Long.valueOf(assetuid));
         return abbAsset;
     }
+    /**
+     * 资设详细详细获取
+     * 2017-5-27
+     *
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/detail", method = RequestMethod.GET)
+    public AbbAsset details(@RequestParam("assetuid") String assetuid) {
+        AbbAsset abbAsset= systemService.getAssetById(Long.valueOf(assetuid));
+        return abbAsset;
+    }
+
 
 
 }

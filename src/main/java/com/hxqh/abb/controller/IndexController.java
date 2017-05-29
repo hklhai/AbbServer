@@ -219,4 +219,39 @@ public class IndexController {
         return cityDto;
     }
 
+
+
+    /**
+     * city页面加数据
+     *
+     * @return
+     */
+    @RequestMapping(value = "/city", method = RequestMethod.GET)
+    public ModelAndView city(@RequestParam("location") String location) {
+        Map<String, Object> result = new HashMap<>();
+        CityDto cityDto = locationService.getCityList(location);
+        result.put("cityDto", cityDto);
+        return new ModelAndView("weixin/cityList", result);
+    }
+
+    /**
+     * equip  equip页跳转
+     *
+     * @return
+     */
+    @RequestMapping(value = "/equip", method = RequestMethod.GET)
+    public String equip() {
+        return "weixin/equip";
+    }
+
+    /**
+     * equip-detail  equip-detail页跳转
+     *
+     * @return
+     */
+    @RequestMapping(value = "/equipDetail", method = RequestMethod.GET)
+    public String Detail() {
+        return "weixin/equipDetail";
+    }
+
 }

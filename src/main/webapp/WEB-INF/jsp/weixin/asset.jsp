@@ -24,6 +24,7 @@
     <script type="text/javascript">
         var loactionData = [];
         var position = [];
+        var locastory = [];
         var tmpLocation = [{
             position: [116.205467, 39.907761]
         }, {
@@ -31,12 +32,8 @@
         }, {
             position: [116.305467, 39.807761]
         }];
-        var url = ["www.baidu.com","www.youku.com","www.youku.com"];
-        $(function(){
-            $("h4").click(function(){
-                $(this).siblings("div").toggle();
-            });
-            function initData(){
+        var url = [];
+        function initData(){
                 $.ajax({
                     url: "${ctx}/index/webChatData",
                     method: "get",
@@ -45,21 +42,31 @@
                         for(var i=0;i<data.length;i++){
                             var tmpObj = {};
                             var tmpPostion = [];
+                            var tmpLocation = {};
+                            tmpLocation.description = data[i].description;
+                            tmpLocation.location = data[i].location;
+                            locastory.push(tmpLocation);
                             tmpPostion.push(data[i].longitude);
                             tmpPostion.push(data[i].dimension);
                             tmpObj.position = tmpPostion;
                             loactionData.push(tmpObj);
-                            var url = ""+data.location;
-                            url.push(url);
+                            var urls = "${ctx}/index/city?location="+data[i].location;
+                            url.push(urls);
                         }
+                        localStorage.removeItem("siteId");
+                        localStorage.setItem("siteId",locastory);
                     },
                     error: function(){
 
                     }
                 });
             };
-            initData();
-        })
+        initData();
+        $(function(){
+            $("h4").click(function(){
+                $(this).siblings("div").toggle();
+            });
+        });
     </script>
     <script type="text/javascript"
             src="http://webapi.amap.com/maps?v=1.3&key=e4eb9da6d97281e42a0357655570e3ae"></script>
@@ -89,43 +96,39 @@
 </div>
 </body>
 <script>
-    var map = new AMap.Map('container', {
-        resizeEnable: true,
-        center: [116.397428, 39.90923],
-        zoom: 13
-    });
-    map.clearMap();  // 清除地图覆盖物
-    var marker = new AMap.Marker({
-        position: map.getCenter()
-    });
-    marker.setMap(map);
-    var markers = tmpLocation;
-    // 添加一些分布不均的点到地图上,地图上添加三个点标记，作为参照
-    markers.forEach(function(marker,index) {
-        var marker=new AMap.Marker({
-            map: map,
-            position: [marker.position[0], marker.position[1]],
-            offset: new AMap.Pixel(0, 0),
-            clickable: true
+    window.onload = function(){
+        var map = new AMap.Map('container', {
+            resizeEnable: true,
+            center: [116.397428, 39.90923],
+            zoom: 13
+        });
+        map.clearMap();  // 清除地图覆盖物
+        var marker = new AMap.Marker({
+            position: map.getCenter()
         });
         marker.setMap(map);
-        // 设置鼠标划过点标记显示的文字提示
-        marker.setTitle('我是marker的title');
-        // 设置label标签
-        marker.setLabel({//label默认蓝框白底左上角显示，样式className为：amap-marker-label
-            offset: new AMap.Pixel(20, 20),//修改label相对于maker的位置
-            content: "<a href='"+url[index]+"'>我是marker的label标签</a>"
+        var markers = tmpLocation;
+        // 添加一些分布不均的点到地图上,地图上添加三个点标记，作为参照
+        markers.forEach(function(marker,index) {
+            var marker=new AMap.Marker({
+                map: map,
+                position: [marker.position[0], marker.position[1]],
+                offset: new AMap.Pixel(0, 0),
+                clickable: true
+            });
+            marker.setMap(map);
+            // 设置鼠标划过点标记显示的文字提示
+            marker.setTitle('我是marker的title');
+            // 设置label标签
+            marker.setLabel({//label默认蓝框白底左上角显示，样式className为：amap-marker-label
+                offset: new AMap.Pixel(20, 20),//修改label相对于maker的位置
+                content: "<a href='"+url[index]+"'>我是marker的label标签</a>"
+            });
+            AMap.event.addDomListener(marker, 'touchend', function() {
+                console.log("aaaa");
+            });
         });
-        AMap.event.addDomListener(marker, 'touchend', function() {
-            console.log("aaaa");
-        });
-    });
-    /*var center = map.getCenter();
-     var centerText = '当前中心点坐标：' + center.getLng() + ',' + center.getLat();
-     document.getElementById('centerCoord').innerHTML = centerText;
-     document.getElementById('tips').innerHTML = '成功添加三个点标记，其中有两个在当前地图视野外！';*/
-
-    // 添加事件监听, 使地图自适应显示到合适的范围
+    }
 
 </script>
 <script type="text/javascript" src="http://webapi.amap.com/demos/js/liteToolbar.js"></script>

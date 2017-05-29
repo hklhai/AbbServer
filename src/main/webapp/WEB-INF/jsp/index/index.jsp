@@ -30,8 +30,31 @@
                     workTaskList: [],
                     sessionInfo:{}
                 },
-                method:{
+                methods:{
+                    apply: function(e){
+                        var applyId = $(e.currentTarget).text();
+                        $.ajax({
+                            url: "${ctx}/index/audit",
+                            method: "post",
+                            data: {
+                                wfassignmentid: applyId
+                            },
+                            dataType: "json",
+                            success: function(data){
+                                if(data.success){
+                                    if(data.code == "0"){
+                                        $("#tip").text(data.message);
+                                    }
+                                    if(data.code == "1"){
+                                        self.systemList = data.systemList;
+                                    }
+                                }
+                            },
+                            error: function(){
 
+                            }
+                        });
+                    }
                 },
                 created: function(){
                     var self = this;
@@ -153,7 +176,7 @@
                             <td>{{sys.startdate}}</td>
                             <td>{{sys.duedate}}</td>
                             <td>{{sys.priority}}</td>
-                            <td><a href="" class="apply"></a></td>
+                            <td><a href="javascript:;" class="apply" v-on:click="apply($event)" style="color: #fff;">{{sys.wfassignmentid}}</a></td>
                         </tr>
                         </tbody>
                     </table>
