@@ -1,0 +1,32 @@
+.radius5{border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;}
+.radius3{border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;}
+.radius2{border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;}
+.boxSize{box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;}
+.clearfix{}
+.clearfix::after{display:block;content:'';clear:both;height:0;overflow:hidden;}
+
+/**2016  8 25**/
+.zAccountInner{width:100%;height:370px;overflow:hidden;position:relative;}
+.row-fluid  .zAccountPlanR{border-top:4px solid #fc977b;height:326px;background:url("../images/zArtboard29.png") repeat-x 0 bottom;line-height:2;text-align:center; }
+.row-fluid  .zAccount5{width:300px;float:left;}
+.zAccountPlanRinner{margin-right:20px;}
+.zAccountPlanR .week{  font-size:14px;line-height:2;}
+.zAccountPlanR  .date{font-size:18px;line-height:30px;padding:0 5px 10px 5px;}
+.today{font-size:16px;color:#fb653b;padding:8px 0;text-align:left;}
+.zAccountPlanR  .detail{font-size:16px;}
+.zAccountPlanR  .day{font-size:48px;color:#fb653b;line-height:84px;padding-bottom:20px;}
+.zAccountPlanR  .detail{color:#fb653b;}
+.zAccountLeft{padding-bottom:15px;   margin-right:1%;}
+.zAccountRight{margin-left:1% !important;}
+.zTabMoney{cursor:pointer;}
+.zTabMoney p{width:50%;font-size:18px;float:left;text-align:center;background:#e5e5e5;color:#565656;line-height:63px;}
+.zTabMoney p.cur{background:#ffffff;color:#fb653b}
+.zAccountPlanInvest{border:1px solid #ececec;}
+.zSituation table{text-align:center;line-height:51px;}
+.zSituation table tr{border-top:1px solid #ececec;}
+.zAccountable .invest.gray{background:#d2d2d2;}
+.colorsBox{ margin-bottom:18px; }
+.colorsBox>div{float:left ;font-size:18px;line-height:24px;}
+.colorsBox>div:first-child{padding-right:45px;}
+.colorsBox>div .box{display:block;width:25px;height:18px;float:left;background:#fdab01;margin-top:3px;margin-right:20px;}
+.colorsBox>div .box.blue{background:#63b7fd;}

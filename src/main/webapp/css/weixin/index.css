@@ -1,0 +1,36 @@
+.layout{
+    width: 100%;
+}
+.layout-tit{
+    width: 100%;
+    height: 0.85rem;
+    line-height: 0.85rem;
+    text-align: center;
+    color: rgb(345,345,345);
+    font-size: 0.36rem;
+    background: #000;
+}
+#container{
+    height: 9.68rem;
+    width: 100%;
+}
+.location,.warning,.equip{
+    width: 100%;
+}
+.location h4,.warning h4,.equip h4{
+    height: 0.82rem;
+    line-height: 0.82rem;
+    padding-left: 0.44rem;
+    background: #246495;
+    color: #fff;
+    font-size: 0.28rem;
+    border: 1px solid  #2576B3;
+}
+.location-info,.warning-info,.equip-info{
+    height: 2.32rem;
+    color: rgb(122, 122, 122);
+    font-size: 0.28rem;
+    line-height: 2rem;
+    text-align: center;
+}
+
