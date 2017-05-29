@@ -1,19 +1,16 @@
 package com.hxqh.abb.test;
 
+import com.alibaba.fastjson.JSON;
 import com.hxqh.abb.model.User;
+import com.hxqh.abb.model.assist.InterfaceMessage;
 import com.hxqh.abb.service.UserService;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -25,6 +22,14 @@ import java.util.List;
 public class UserTest {
     @Resource
     private UserService userService;
+
+    @Test
+    public void json() {
+        String j = "{\"massage\":\"您不是当前流程任务分配人，无权限操作\"} ";
+        InterfaceMessage message= JSON.parseObject(j, InterfaceMessage.class);
+        System.out.println(message.getMassage());
+    }
+
 
     //@Test
     public void testGetTestBook() {

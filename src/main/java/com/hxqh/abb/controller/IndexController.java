@@ -1,9 +1,15 @@
 package com.hxqh.abb.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.hxqh.abb.axis2.WFSERVICEStub;
+import com.hxqh.abb.axis2.WFSERVICEStub.WfservicewfGoOn;
+import com.hxqh.abb.axis2.WFSERVICEStub.WfservicewfGoOnType;
 import com.hxqh.abb.common.util.MXCipherXUtils;
 import com.hxqh.abb.common.util.TimeUtil;
+import com.hxqh.abb.dao.WfassignmentDao;
 import com.hxqh.abb.model.Location;
-import com.hxqh.abb.model.Maxuser;
+import com.hxqh.abb.model.Wfassignment;
+import com.hxqh.abb.model.assist.InterfaceMessage;
 import com.hxqh.abb.model.assist.Time;
 import com.hxqh.abb.model.base.SessionInfo;
 import com.hxqh.abb.model.dto.action.CityDto;
@@ -14,6 +20,7 @@ import com.hxqh.abb.model.view.AbbLocation;
 import com.hxqh.abb.model.view.AbbLogin;
 import com.hxqh.abb.service.LocationService;
 import com.hxqh.abb.service.SystemService;
+import org.apache.axis2.AxisFault;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +28,10 @@ import org.springframework.web.servlet.ModelAndView;
 import psdi.util.MXException;
 
 import javax.annotation.Resource;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.rmi.RemoteException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lh on 2017/5/6.
@@ -32,11 +41,14 @@ import java.util.*;
 @RequestMapping("/index")
 @SessionAttributes(value = "sessionInfo")
 public class IndexController {
+    private static final String FAIL_MESSAGE = "您不是当前流程任务分配人，无权限操作";
+
     @Autowired
     private SystemService systemService;
     @Resource
     private LocationService locationService;
-
+    @Resource
+    private WfassignmentDao wfassignmentDao;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ModelAndView getAuthorDetail() {
@@ -184,7 +196,6 @@ public class IndexController {
     }
 
 
-
     /**
      * webChatData  微信登录后首页数据接口
      *
@@ -212,6 +223,7 @@ public class IndexController {
      *
      * @return
      */
+    @Deprecated
     @ResponseBody
     @RequestMapping(value = "/cityData", method = RequestMethod.GET)
     public CityDto cityData(@RequestParam("location") String location) {
@@ -225,7 +237,6 @@ public class IndexController {
     }
 
 
-
     /**
      * city页面加数据
      *
@@ -235,6 +246,12 @@ public class IndexController {
     public ModelAndView city(@RequestParam("location") String location) {
         Map<String, Object> result = new HashMap<>();
         CityDto cityDto = locationService.getCityList(location);
+        List<AbbLocation> rootList = locationService.getRootList();
+        for (AbbLocation loc : rootList) {
+            loc.setDescription(loc.getDescription().substring(0, 2));
+        }
+        cityDto.setRootList(rootList);
+
         result.put("cityDto", cityDto);
         return new ModelAndView("weixin/cityList", result);
     }
@@ -255,8 +272,53 @@ public class IndexController {
      * @return
      */
     @RequestMapping(value = "/equipDetail", method = RequestMethod.GET)
-    public String Detail() {
+    public String detail() {
         return "weixin/equipDetail";
+    }
+
+    /**
+     * 审批接口数据接口
+     *
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/audit", method = RequestMethod.POST)
+    public Message audit(@RequestParam("wfassignmentid") String wfassignmentid) {
+
+        Wfassignment wfassignment = wfassignmentDao.find(Long.valueOf(wfassignmentid));
+        WFSERVICEStub wfService = null;
+        try {
+            wfService = new WFSERVICEStub();
+        } catch (AxisFault axisFault) {
+            axisFault.printStackTrace();
+        }
+
+        //设置Param
+        WFSERVICEStub.WfservicewfGoOn goOnService = new WfservicewfGoOn();
+        WfservicewfGoOnType wfParam = new WfservicewfGoOnType();
+        wfParam.setProcessname(wfassignment.getProcessname());//processname：流程名称
+        wfParam.setMboName("WFASSIGNMENT");//mboName：当前记录所属的表名
+        wfParam.setKeyValue(String.valueOf(wfassignment.getWfassignmentid()));// 当前表的唯一主键字段名，一般为表名+ID
+        wfParam.setKey("WFASSIGNMENTID"); //唯一主键的值
+        wfParam.setZx(1);//审批结果，1通过，0不通过
+        wfParam.setDesc("同意调拨申请，lh测试使用");//desc：审批意见
+        wfParam.setLoginid("MAXADMIN");  //当前登录人的ID
+
+        goOnService.setWfservicewfGoOn(wfParam);
+        String response = null;
+        try {
+            response = wfService.wfGoOn(goOnService).getWfservicewfGoOnResponse().get_return();
+//            System.out.println("===================");
+//            System.out.println(response);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        if (!JSON.parseObject(response, InterfaceMessage.class).getMassage().equals(FAIL_MESSAGE)) {
+
+        }
+
+        return null;
+
     }
 
 }
