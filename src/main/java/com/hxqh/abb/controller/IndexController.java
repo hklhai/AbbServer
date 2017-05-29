@@ -216,6 +216,11 @@ public class IndexController {
     @RequestMapping(value = "/cityData", method = RequestMethod.GET)
     public CityDto cityData(@RequestParam("location") String location) {
         CityDto cityDto = locationService.getCityList(location);
+        List<AbbLocation> rootList = locationService.getRootList();
+        for (AbbLocation loc : rootList) {
+            loc.setDescription(loc.getDescription().substring(0, 2));
+        }
+        cityDto.setRootList(rootList);
         return cityDto;
     }
 
