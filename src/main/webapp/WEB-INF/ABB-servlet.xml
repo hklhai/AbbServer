@@ -15,13 +15,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
     <context:component-scan base-package="com.hxqh.abb.controller"/>
 
     <!-- 配置直接转发页面 跳过handler -->
-    <mvc:view-controller path="/query" view-name="query/toquery"/>
-    <mvc:view-controller path="/information" view-name="information/webContent"/>
-    <mvc:view-controller path="/synopsis" view-name="/index/istcoutline"/>
-    <mvc:view-controller path="/intro" view-name="/index/introduction"/>
-    <mvc:view-controller path="/law" view-name="/index/laws"/>
-    <mvc:view-controller path="/contact" view-name="/index/contactus"/>
-    <mvc:view-controller path="/fore" view-name="/query/forecast"/>
+    <!--<mvc:view-controller path="/webChat" view-name="weixin/asset"/>-->
 
     <mvc:default-servlet-handler/>
 

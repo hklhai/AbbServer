@@ -7,75 +7,94 @@ import java.util.Date;
 
 /**
  * The persistent class for the ABB_ASSET database table.
- * 
  */
 @Entity
-@Table(name="ABB_LOCATION")
+@Table(name = "ABB_LOCATION")
 public class AbbLocation implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private String location;
+    private String location;
 
-	@Id
-	private long locationsid;
+    @Id
+    private long locationsid;
 
-	private String description;
+    private String description;
 
-	@Column(name="\"PARENT\"")
-	private String parent;
+    @Column(name = "\"PARENT\"")
+    private String parent;
 
-	private String type;
+    private String type;
 
-	private String status;
+    private String status;
 
-	public AbbLocation() {
-	}
+    private String longitude;
 
-	public String getType() {
-		return type;
-	}
+    private String dimension;
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public AbbLocation() {
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public String getDescription() {
-		return this.description;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public String getLocation() {
-		return location;
-	}
+    public String getDescription() {
+        return this.description;
+    }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public long getLocationsid() {
-		return locationsid;
-	}
+    public String getLocation() {
+        return location;
+    }
 
-	public void setLocationsid(long locationsid) {
-		this.locationsid = locationsid;
-	}
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-	public String getParent() {
-		return parent;
-	}
+    public long getLocationsid() {
+        return locationsid;
+    }
 
-	public void setParent(String parent) {
-		this.parent = parent;
-	}
+    public void setLocationsid(long locationsid) {
+        this.locationsid = locationsid;
+    }
+
+    public String getParent() {
+        return parent;
+    }
+
+    public void setParent(String parent) {
+        this.parent = parent;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getDimension() {
+        return dimension;
+    }
+
+    public void setDimension(String dimension) {
+        this.dimension = dimension;
+    }
 }
