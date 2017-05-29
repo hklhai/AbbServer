@@ -49,6 +49,8 @@
                             tmpPostion.push(data[i].dimension);
                             tmpObj.position = tmpPostion;
                             loactionData.push(tmpObj);
+                            var url = ""+data.location;
+                            url.push(url);
                         }
                     },
                     error: function(){
