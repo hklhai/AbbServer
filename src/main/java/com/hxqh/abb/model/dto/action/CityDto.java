@@ -12,6 +12,8 @@ public class CityDto {
 
     private List<AbbLocation> childLocation;
     private AbbLocation abbLocation;
+    private List<AbbLocation>  rootList;
+
 
     public CityDto() {
     }
@@ -19,6 +21,14 @@ public class CityDto {
     public CityDto(List<AbbLocation> childLocation, AbbLocation abbLocation) {
         this.childLocation = childLocation;
         this.abbLocation = abbLocation;
+    }
+
+    public List<AbbLocation> getRootList() {
+        return rootList;
+    }
+
+    public void setRootList(List<AbbLocation> rootList) {
+        this.rootList = rootList;
     }
 
     public List<AbbLocation> getChildLocation() {
