@@ -60,21 +60,16 @@ public class InventoryController {
 
 
     /**
-     * 地图页面数据接口  获取数据包含分页
+     * 库存页面数据接口  获取数据包含分页
      * 2017-5-15
      *
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/data", method = RequestMethod.POST)
-    public List<AbbInventory> data(InventorySearchDto inventorySearchDto, Page page) {
-        List<AbbInventory> inventoryList = null;
-        try {
-            inventoryList = locationService.getInventoryData(inventorySearchDto,page);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return inventoryList;
+    public InventoryDto data(InventorySearchDto inventorySearchDto, Page page) {
+        InventoryDto inventoryData = locationService.getInventoryData(inventorySearchDto, page);
+        return inventoryData;
     }
 
 }

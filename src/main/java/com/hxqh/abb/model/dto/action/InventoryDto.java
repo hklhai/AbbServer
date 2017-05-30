@@ -27,6 +27,11 @@ public class InventoryDto {
     public InventoryDto() {
     }
 
+    public InventoryDto(List<AbbInventory> abbInventoryList, Page page) {
+        this.abbInventoryList = abbInventoryList;
+        this.page = page;
+    }
+
     public InventoryDto(List<AbbInventory> abbInventoryList, List<AbbInventorySite> siteList, List<AbbInventoryLocation> locationList, List<AbbInventoryItem> itemList, Page page) {
         this.abbInventoryList = abbInventoryList;
         this.siteList = siteList;

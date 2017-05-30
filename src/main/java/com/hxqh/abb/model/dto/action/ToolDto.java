@@ -23,6 +23,11 @@ public class ToolDto {
     public ToolDto() {
     }
 
+    public ToolDto(List<AbbUdtool> udtoolList, Page page) {
+        this.udtoolList = udtoolList;
+        this.page = page;
+    }
+
     public ToolDto(List<AbbUdtool> udtoolList, List<AbbInventorySite> siteList, List<String> statusList, Page page) {
         this.udtoolList = udtoolList;
         this.siteList = siteList;
