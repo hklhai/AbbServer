@@ -66,6 +66,10 @@ public class LocationController {
         for (AbbLocation location : abbLocationList) {
             location.setDescription(location.getDescription().substring(0, 2));
         }
+        for (AbbMap abbMap : mapData) {
+            if (abbMap.getParentdesc() != null)
+                abbMap.setParentdesc(abbMap.getParentdesc().substring(0, 2));
+        }
 
         result.put("abbLocationList", abbLocationList);
         result.put("mapData", mapData);
