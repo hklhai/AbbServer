@@ -11,6 +11,16 @@
 	margin-bottom: 8px;
 	position: relative;
 }
+.location-tree span{
+	padding-left:10px;
+	display:inline-block;
+	cursor:pointer;
+}
+.location-tree img{
+	position: absolute;
+	right:20px;
+	top:27px;
+}
 .locaition-info{
 	padding: 10px;
 	background: #323232;

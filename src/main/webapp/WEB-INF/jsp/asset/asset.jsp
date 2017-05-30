@@ -51,7 +51,7 @@
                     </c:forEach>
                 </ul>
                 <div class="equip-tree-ul equip-company">
-                    <ul  class="equip-tree" style="display:none;z-index: 100;">
+                    <ul  class="equip-tree" style="display:none;z-index: 1000;">
                     </ul>
                 </div>
             </li>
@@ -260,7 +260,9 @@
     });
     var tmpLnglats = [];
     var tmpData = [];
+    var lStatus = [];
     <c:forEach items="${mapData}" var="mapData">
+
     var tmpObj = {};
     tmpObj.description = '${mapData.description}';
     tmpObj.location = '${mapData.location}';
@@ -272,6 +274,7 @@
     tmpObj.status = '${mapData.status}';
     tmpObj.alertcount = '${mapData.alertcount}';
     tmpData.push(tmpObj);
+    lStatus.push('${mapData.status}');
 
     var tmpLocation = [];
     tmpLocation.push(${mapData.dimension});
@@ -280,24 +283,39 @@
     </c:forEach>
     var lnglats = tmpLnglats;
     //添加marker标记
-    for (var i = 0, marker; i < lnglats.length; i++) {
+    for (var i = 0; i < lnglats.length; i++) {
         addMarker();
 
     }
     function addMarker() {
-        var marker = new AMap.Marker({
-            map: map,
-            position: lnglats[i]
-        });
+        if(lStatus[i] == "ACTIVE"){
+            var marker = new AMap.Marker({
+                map: map,
+                position: lnglats[i],
+                icon: new AMap.Icon({
+                    size: new AMap.Size(40, 50),  //图标大小
+                    image: "${ctx}/img/asset/blue-icon.gif",
+                })
+            });
+        }else{
+            var marker = new AMap.Marker({
+                map: map,
+                position: lnglats[i],
+                icon: new AMap.Icon({
+                    size: new AMap.Size(40, 50),  //图标大小
+                    image: "${ctx}/img/asset/red-icon.gif",
+                })
+            });
+        }
         //实例化信息窗体
-        var title = tmpData[i].description + '<i class="arraw"></i>',
+        var title = '<i class="arraw"></i>',
                 content = [];
         content.push("<table class='locaiton-table'><thead><tr><td width='318px' style='padding-left:18px;'>位置编码</td><td width='218px'>位置描述</td></tr></thead><tbody><tr><td style='padding-left:18px;'>"+tmpData[i].location+"</td><td>位置描述</td></tr></tbody></table>");
         content.push("<table class='locaiton-table-info'><thead><tr><td style='padding-left:18px;'>详细信息</td><td></td><td></td><td></td></tr></thead><tbody><tr><td>状<span style='color:#F5F5F5;'>状态</span>态</td><td>状态</td><td>电压等级</td><td>状态</td></tr><tr><td>位置类型</td><td>状态</td><td>设备数量</td><td>状态</td></tr><tr><td>健康指标</td><td>状态</td><td>报警数量</td><td>状态</td></tr><tr><td>地<span style='color:#F5F5F5;'>状态</span>址</td><td>状态</td><td></td><td></td></tr></tbody></table>");
         var infoWindow = new AMap.InfoWindow({
             isCustom: true,  //使用自定义窗体
             content: createInfoWindow(title, content.join("")),
-            offset: new AMap.Pixel(320, 370)
+            offset: new AMap.Pixel(320, 350)
         });
         //鼠标点击marker弹出自定义的信息窗体
         AMap.event.addListener(marker, 'mouseover', function () {
@@ -320,11 +338,15 @@
         // 定义顶部标题
         var top = document.createElement("p");
         var closeX = document.createElement("img");
+        var titSpan = document.createElement("span");
+        titSpan.innerText = tmpData[i].description ;
+        titSpan.id = tmpData[i].location;
+        titSpan.onclick = goto;
         top.className = "location-tree";
-        top.innerHTML = title;
         closeX.src = "http://webapi.amap.com/images/close2.gif";
         closeX.onclick = closeInfoWindow;
 
+        top.appendChild(titSpan);
         top.appendChild(closeX);
         info.appendChild(top);
 
@@ -339,8 +361,54 @@
     //关闭信息窗体
     function closeInfoWindow() {
         map.clearInfoWindow();
+        return false;
+    }
+    function goto(){
+        var location = $(this).attr("id");
+        equipDetail(location);
     }
 
+
+    //显示设备信息页
+    var assetList = [];
+    var locationList =[];
+    function equipDetail(location){
+        $.ajax({
+            url: "${ctx}/asset/assetData",
+            method: "post",
+            data:{
+                location: location
+            },
+            dataType: "json",
+            success: function(data){
+                $(".equip-company").show();
+                $("#right-content").hide();
+                assetList = data.abbAssetList;
+                locationList = data.abbAssetLocationList;
+                $(".data-location").text(locationList.location);
+                $(".data-description").text(locationList.description);
+                $(".data-uphone").text(locationList.udhone);
+                $(".data-contact").text(locationList.udcontact);
+                var equipHtml="";
+                if(assetList.length>0){
+                    $(".btn-detail").show();
+                }else{
+                    $(".btn-detail").hide();
+                }
+                for(var i=0;i<assetList.length;i++){
+                    equipHtml+='<tr><td width="10%">'+assetList[i].state
+                            +'</td><td width="20%">'+assetList[i].description
+                            +'</td><td width="30%">'+assetList[i].name
+                            +'</td><td width="10%">'+assetList[i].udmodel
+                            +'</td><td width="30%">'+assetList[i].parent
+                            +'</td></tr>';
+                }
+                $(".equip-table table tbody").append(equipHtml);
+            },
+            error: function(){
+            }
+        });
+    }
 
     $(function(){
 
@@ -396,45 +464,10 @@
             })
         }//展开二级菜单
         menu();//执行展开二级菜单函
-        var assetList = [];
-        var locationList =[];
+
         $("ul.equip-tree").delegate("li","click",function(){
             var location = $(this).find("a").attr("id");
-            $.ajax({
-                url: "${ctx}/asset/assetData",
-                method: "post",
-                data:{
-                    location: location
-                },
-                dataType: "json",
-                success: function(data){
-                    $(".equip-company").show();
-                    $("#right-content").hide();
-                    assetList = data.abbAssetList;
-                    locationList = data.abbAssetLocationList;
-                    $(".data-location").text(locationList.location);
-                    $(".data-description").text(locationList.description);
-                    $(".data-uphone").text(locationList.udhone);
-                    $(".data-contact").text(locationList.udcontact);
-                    var equipHtml="";
-                    if(assetList.length>0){
-                        $(".btn-detail").show();
-                    }else{
-                        $(".btn-detail").hide();
-                    }
-                    for(var i=0;i<assetList.length;i++){
-                        equipHtml+='<tr><td width="10%">'+assetList[i].state
-                                +'</td><td width="20%">'+assetList[i].description
-                                +'</td><td width="30%">'+assetList[i].name
-                                +'</td><td width="10%">'+assetList[i].udmodel
-                                +'</td><td width="30%">'+assetList[i].parent
-                                +'</td></tr>';
-                    }
-                    $(".equip-table table tbody").append(equipHtml);
-                },
-                error: function(){
-                }
-            });
+            equipDetail(location);
         });
 
         //设备详情按钮事件
