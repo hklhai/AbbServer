@@ -1,8 +1,5 @@
 package com.hxqh.abb.controller;
 
-/**
- * Created by dell on 2017-05-24.
- */
 
 import com.hxqh.abb.model.base.SessionInfo;
 import org.springframework.stereotype.Controller;
@@ -22,8 +19,8 @@ import javax.servlet.http.HttpSession;
 @SessionAttributes(value = "sessionInfo")
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
-    private static final String[] IGNORE_URI = {"/login.jsp", "/indexFirst.jsp", "index/login", "scripts/", "css/", "favicon.ico"};
-    private static final String LOGIN_URL = "/login.jsp";
+    private static final String[] IGNORE_URI = {"/index/first", "/indexFirst.jsp", "index/login", "scripts/", "css/", "favicon.ico"};
+    private static final String LOGIN_URL = "/indexFirst.jsp";
     private static final String LOGOUT_URL = "index/logout";
 
     @Override
@@ -39,7 +36,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         }
         if(url.contains(LOGOUT_URL))
         {
-            flag = true;
             HttpSession session = request.getSession();
             session.removeAttribute("sessionInfo");
             session.invalidate();
@@ -50,7 +46,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             if (sessionInfo != null)
                 flag = true;
             else
-                response.sendRedirect(LOGIN_URL);
+                response.sendRedirect("first");
         }
         return flag;
     }
