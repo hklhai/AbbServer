@@ -13,10 +13,10 @@ public class TimeUtil {
     public static String getTime()
     {
         StringBuilder stringBuilder = new StringBuilder();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy.MM.dd ");
         stringBuilder.append(df.format(new Date()));
-        GregorianCalendar ca = new GregorianCalendar();
-        stringBuilder.append(0==ca.get(GregorianCalendar.AM_PM)?" am":" pm");
+        //GregorianCalendar ca = new GregorianCalendar();
+        //stringBuilder.append(0==ca.get(GregorianCalendar.AM_PM)?" am":" pm");
         return stringBuilder.toString();
     }
 

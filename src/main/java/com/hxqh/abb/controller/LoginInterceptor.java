@@ -23,6 +23,8 @@ import javax.servlet.http.HttpSession;
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
     private static final String[] IGNORE_URI = {"/login.jsp", "/indexFirst.jsp", "index/login", "scripts/", "css/", "favicon.ico"};
+    private static final String LOGIN_URL = "/login.jsp";
+    private static final String LOGOUT_URL = "index/logout";
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -35,10 +37,20 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
                 break;
             }
         }
+        if(url.contains(LOGOUT_URL))
+        {
+            flag = true;
+            HttpSession session = request.getSession();
+            session.removeAttribute("sessionInfo");
+            session.invalidate();
+        }
         if (!flag) {
             HttpSession session = request.getSession();
             SessionInfo sessionInfo = (SessionInfo) session.getAttribute("sessionInfo");
-            if (sessionInfo != null) flag = true;
+            if (sessionInfo != null)
+                flag = true;
+            else
+                response.sendRedirect(LOGIN_URL);
         }
         return flag;
     }
