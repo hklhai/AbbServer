@@ -66,7 +66,7 @@
     <div class="equip-company" style="display: none;">
         <div class="equip-company-layout">
             <div class="company-tit">
-                <h6>设备管理<span class="space"></span>/<span class="space"></span>设备与位置<span class="space"></span>/<span class="space"></span>南京</h6>
+                <h6>设备管理<span class="space"></span>/<span class="space"></span>设备与位置<span class="space"></span>/<span class="space"></span><span class="location-tit"></span></h6>
                 <h3>南京---南京供电公司</h3>
             </div>
             <div  class="company-header">
@@ -132,15 +132,15 @@
                 <table>
                     <tr>
                         <td width="85px">设备编码：</td>
-                        <td width="248px" class="data-assetnum">23444</td>
+                        <td width="248px" class="data-assetnum"></td>
                         <td width="98px">厂家：</td>
-                        <td width="210px" class="data-comName">常见信息</td>
+                        <td width="210px" class="data-comName"></td>
                         <td width="110px">额定分段电流：</td>
                         <td width="220px" class="data-alnvalue">电流信息</td>
                     </tr>
                     <tr>
                         <td>设备描述：</td>
-                        <td class="data-asset-description">馈线柜</td>
+                        <td class="data-asset-description"></td>
                         <td>额定电压:</td>
                         <td class="data-alnvalue"></td>
                         <td>运行年限:</td>
@@ -262,24 +262,22 @@
     var tmpData = [];
     var lStatus = [];
     <c:forEach items="${mapData}" var="mapData">
-
-    var tmpObj = {};
-    tmpObj.description = '${mapData.description}';
-    tmpObj.location = '${mapData.location}';
-    tmpObj.locationsid = '${mapData.locationsid}';
-    tmpObj.loccount = '${mapData.loccount}';
-    tmpObj.longitude = '${mapData.longitude}';
-    tmpObj.orgid = '${mapData.orgid}';
-    tmpObj.saddresscode = '${mapData.saddresscode}';
-    tmpObj.status = '${mapData.status}';
-    tmpObj.alertcount = '${mapData.alertcount}';
-    tmpData.push(tmpObj);
-    lStatus.push('${mapData.status}');
-
-    var tmpLocation = [];
-    tmpLocation.push(${mapData.dimension});
-    tmpLocation.push(${mapData.longitude});
-    tmpLnglats.push(tmpLocation);
+        var tmpObj = {};
+        tmpObj.description = '${mapData.description}';
+        tmpObj.location = '${mapData.location}';
+        tmpObj.locationsid = '${mapData.locationsid}';
+        tmpObj.loccount = '${mapData.loccount}';
+        tmpObj.longitude = '${mapData.longitude}';
+        tmpObj.orgid = '${mapData.orgid}';
+        tmpObj.saddresscode = '${mapData.saddresscode}';
+        tmpObj.status = '${mapData.status}';
+        tmpObj.alertcount = '${mapData.alertcount}';
+        tmpData.push(tmpObj);
+        lStatus.push('${mapData.status}');
+        var tmpLocation = [];
+        tmpLocation.push(${mapData.dimension});
+        tmpLocation.push(${mapData.longitude});
+        tmpLnglats.push(tmpLocation);
     </c:forEach>
     var lnglats = tmpLnglats;
     //添加marker标记
@@ -372,6 +370,7 @@
     //显示设备信息页
     var assetList = [];
     var locationList =[];
+    var detailLnglats =[];
     function equipDetail(location){
         $.ajax({
             url: "${ctx}/asset/assetData",
@@ -389,6 +388,17 @@
                 $(".data-description").text(locationList.description);
                 $(".data-uphone").text(locationList.udhone);
                 $(".data-contact").text(locationList.udcontact);
+
+                var locationTit = data.abbLocation.description.replace("一级位置","");
+                var tit = data.abbLocation.description+"---"+locationList.description;
+                $(".company-tit h3").text(tit);
+                $("span.location-tit").text(locationTit);
+                //具体站点经纬度
+                var tmpdetail = [];
+                tmpdetail.push(locationList.dimension);
+                tmpdetail.push(locationList.longitude);
+                detailLnglats.push(tmpdetail);
+
                 var equipHtml="";
                 if(assetList.length>0){
                     $(".btn-detail").show();
@@ -404,6 +414,7 @@
                             +'</td></tr>';
                 }
                 $(".equip-table table tbody").append(equipHtml);
+                initSmall();
             },
             error: function(){
             }
@@ -530,15 +541,14 @@
             $(".data-comUdmodel").text(data.udmodel);
             $(".btn-detail").attr("id",data.assetuid);
         });
-
+    });
+    function  initSmall(){
         var map = new AMap.Map("map-location", {
             resizeEnable: true,
             center: [116.481181, 39.989792],
             zoom: 16
         });
-        var lnglats = [
-            [116.368904, 39.923423]
-        ];
+        var lnglats = detailLnglats;
         //添加marker标记
         for (var i = 0, marker; i < lnglats.length; i++) {
             addMarker();
@@ -549,7 +559,7 @@
                 position:  lnglats[i]
             });
         }
-    });
+    }
 </script>
 <script type="text/javascript" src="http://webapi.amap.com/demos/js/liteToolbar.js"></script>
 </body>
