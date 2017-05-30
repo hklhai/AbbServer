@@ -124,9 +124,9 @@
                 offset: new AMap.Pixel(20, 20),//修改label相对于maker的位置
                 content: "<a href='"+url[index]+"'>我是marker的label标签</a>"
             });
-            AMap.event.addDomListener(marker, 'touchend', function() {
+           /* AMap.event.addDomListener(marker, 'touchend', function() {
                 console.log("aaaa");
-            });
+            });*/
         });
     }
 

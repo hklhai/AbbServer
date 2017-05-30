@@ -62,6 +62,7 @@
 	line-height: 27px;
 	margin-top: 10px;
 	font-size: 12px;
+	cursor: pointer;
 }
 .left{
 	float: left;

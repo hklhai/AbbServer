@@ -93,7 +93,7 @@
                                 $("#curPage").val("");
                                 self.currentPage = self.pageNumber;
                                 self.totalPage = data.page.totalPageNum;
-                                self.inventoryList = data;
+                                self.inventoryList = data.abbInventoryList;
                             },
                             error: function () {
 
@@ -221,16 +221,14 @@
                 <div id="page_control">
                     <span class="prePage" style="line-height: 21px;"><a href="javascript:;" v-on:click="prePage">上一页</a></span>
                     <span class="s_space"></span>
-                    <span class="nextPage" style="line-height: 21px;"><a href="javascript:;"
-                                                                         v-on:click="nextPage">下一页</a></span>
+                    <span class="nextPage" style="line-height: 21px;"><a href="javascript:;" v-on:click="nextPage">下一页</a></span>
                     <span class="s_space"></span>
                     第<span class="pageNo">{{currentPage}}</span>
                     页/共<span class="totalPage">{{totalPage}}</span>页
                     <span class="s_space"></span>
                     到第<input name="curPage" id="curPage" type="text"/>页
                     <span class="s_space"></span>
-                    <span class="gotoPage" style="line-height: 21px;"><a href="javascript:;"
-                                                                         v-on:click="gotoPage">跳转</a></span>
+                    <span class="gotoPage" style="line-height: 21px;"><a href="javascript:;"  v-on:click="gotoPage">跳转</a></span>
                 </div>
             </div>
         </div>

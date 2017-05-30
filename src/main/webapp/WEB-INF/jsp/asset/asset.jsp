@@ -107,6 +107,8 @@
                 </div>
                 <div class="warn-info">
                     <h3>报警信息</h3>
+                     <p class="warn-first-p"></p>
+                     <p class="warn-sec-p"></p>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -115,20 +117,19 @@
                 <table>
                     <thead><%--行的选中样式为tr-selected--%>
                         <tr>
-                            <th width="10%">状态</th>
-                            <th width="20%">设备名称</th>
-                            <th width="30%">厂家</th>
-                            <th width="10%">型号</th>
-                            <th width="30%">子设备</th>
+                            <td width="10%" style="padding-left: 10px;">状态</td>
+                            <td width="20%">设备名称</td>
+                            <td width="30%">厂家</td>
+                            <td width="10%">型号</td>
+                            <td width="30%">子设备</td>
                         </tr>
                     </thead>
-                    <tbody>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
             <div class="equip-info">
                 <h3 class="equip-table-tit">设备信息</h3>
-                <button class="btn-detail">设备详情</button>
+                <button class="btn-detail" style="display: none;">设备详情</button>
                 <table>
                     <tr>
                         <td width="85px">设备编码：</td>
@@ -168,7 +169,7 @@
         <%--设备详情页--%>
 
         <div class="equip-detail-form" style="display: none;">
-            <h4>南京-----南京供电公司----设备详情<span class="close"></span></h4>
+            <h4><i>南京-----南京供电公司----设备详情</i><span class="close"></span></h4>
             <div class="sel-Tab">
                 <button class="basic-info">基础信息</button>
                 <button class="tecno-info">技术信息</button>
@@ -216,15 +217,15 @@
                 </table>
                 <table class="sth" style="display: none;">
                     <thead>
-                    <tr>
-                        <td width="160px">物资</td>
-                        <td width="260px">描述</td>
-                        <td width="95px">库存余量</td>
-                        <td width="100px">仓库归属</td>
-                    </tr>
+                        <tr>
+                            <td width="160px">物资</td>
+                            <td width="260px">描述</td>
+                            <td width="95px">库存余量</td>
+                            <td width="100px">仓库归属</td>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                   <%-- <tr>
                         <td>物资</td>
                         <td>描述</td>
                         <td>库存余量</td>
@@ -241,7 +242,7 @@
                         <td>描述</td>
                         <td>库存余量</td>
                         <td>仓库归属</td>
-                    </tr>
+                    </tr>--%>
                     </tbody>
                 </table>
             </div>
@@ -252,7 +253,6 @@
         src="http://webapi.amap.com/maps?v=1.3&key=e4eb9da6d97281e42a0357655570e3ae"></script>
 <script type="text/javascript">
     //地图初始化时，在地图上添加一个marker标记,鼠标点击marker可弹出自定义的信息窗体
-
     var map = new AMap.Map("container", {
         resizeEnable: true,
         center: [116.481181, 39.989792],
@@ -272,6 +272,7 @@
         tmpObj.saddresscode = '${mapData.saddresscode}';
         tmpObj.status = '${mapData.status}';
         tmpObj.alertcount = '${mapData.alertcount}';
+        tmpObj.parentdesc = '${mapData.parentdesc}';
         tmpData.push(tmpObj);
         lStatus.push('${mapData.status}');
         var tmpLocation = [];
@@ -305,6 +306,10 @@
                 })
             });
         }
+        marker.setLabel({//label默认蓝框白底左上角显示，样式className为：amap-marker-label
+            offset: new AMap.Pixel(-60, -30),//修改label相对于maker的位置
+            content: tmpData[i].description
+        });
         //实例化信息窗体
         var title = '<i class="arraw"></i>',
                 content = [];
@@ -337,7 +342,7 @@
         var top = document.createElement("p");
         var closeX = document.createElement("img");
         var titSpan = document.createElement("span");
-        titSpan.innerText = tmpData[i].description ;
+        titSpan.innerText = tmpData[i].parentdesc+'--'+tmpData[i].description ;
         titSpan.id = tmpData[i].location;
         titSpan.onclick = goto;
         top.className = "location-tree";
@@ -371,6 +376,7 @@
     var assetList = [];
     var locationList =[];
     var detailLnglats =[];
+    var detailTit ="";
     function equipDetail(location){
         $.ajax({
             url: "${ctx}/asset/assetData",
@@ -382,6 +388,7 @@
             success: function(data){
                 $(".equip-company").show();
                 $("#right-content").hide();
+                $(".equip-table table tbody").html("");
                 assetList = data.abbAssetList;
                 locationList = data.abbAssetLocationList;
                 $(".data-location").text(locationList.location);
@@ -391,22 +398,20 @@
 
                 var locationTit = data.abbLocation.description.replace("一级位置","");
                 var tit = data.abbLocation.description+"---"+locationList.description;
+                localStorage.setItem("tit",tit);
                 $(".company-tit h3").text(tit);
                 $("span.location-tit").text(locationTit);
                 //具体站点经纬度
                 var tmpdetail = [];
                 tmpdetail.push(locationList.dimension);
                 tmpdetail.push(locationList.longitude);
+                detailLnglats.length = 0;
                 detailLnglats.push(tmpdetail);
+                detailTit = locationList.description;
 
                 var equipHtml="";
-                if(assetList.length>0){
-                    $(".btn-detail").show();
-                }else{
-                    $(".btn-detail").hide();
-                }
                 for(var i=0;i<assetList.length;i++){
-                    equipHtml+='<tr><td width="10%">'+assetList[i].state
+                    equipHtml+='<tr><td width="10%" style="padding-left: 10px;">'+assetList[i].state
                             +'</td><td width="20%">'+assetList[i].description
                             +'</td><td width="30%">'+assetList[i].name
                             +'</td><td width="10%">'+assetList[i].udmodel
@@ -435,6 +440,7 @@
             $(".father-ul-li").addClass("father-ul-a");
             $(".child-ul").toggle();
         });
+
         var mod_menu=$(".child-ul");//导航模块区
         var menu=function(){
             var menuItem=$(".child-ul li");//选择导航列表
@@ -476,9 +482,28 @@
         }//展开二级菜单
         menu();//执行展开二级菜单函
 
+        //位置树点击事件
         $("ul.equip-tree").delegate("li","click",function(){
             var location = $(this).find("a").attr("id");
             equipDetail(location);
+        });
+
+        //设备表行点击事件
+        $(".equip-table table tbody").delegate("tr","click",function(){
+            $(".btn-detail").show();
+            var index =  $(this).index();
+            var data = assetList[index];
+            $(".data-assetnum").text(data.assetnum);
+            $(".data-comName").text(data.name);
+            $(".data-asset-description").text(data.description);
+            $(".data-status").text(data.status);
+            $(".data-comUdmodel").text(data.udmodel);
+            $(".btn-detail").attr("id",data.assetuid);
+            //根据设备的报警状态显示不同的信息
+            if(data.state == ""){
+                $(".warn-first-p").text();
+                $(".warn-sec-p").text();
+            }
         });
 
         //设备详情按钮事件
@@ -503,6 +528,9 @@
                     $(".basic-installdate").text(data.installdate);
                     $(".basic-state").text(data.state);
                     $(".basic-location").text(data.location);
+                    var tit = localStorage.getItem("tit");
+                    $(".equip-detail-form h4 i").text(tit);
+
 
                     //显示遮罩层，显示数据
                     $("#mask").css("height",$(document).height());
@@ -531,17 +559,9 @@
             $("button.sth-info").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
             $("table.sth").show().siblings("table").hide();
         });
-        $(".equip-table table tbody").delegate("tr","click",function(){
-            var index =  $(this).index();
-            var data = assetList[index];
-            $(".data-assetnum").text(data.assetnum);
-            $(".data-comName").text(data.name);
-            $(".data-asset-description").text(data.description);
-            $(".data-status").text(data.status);
-            $(".data-comUdmodel").text(data.udmodel);
-            $(".btn-detail").attr("id",data.assetuid);
-        });
     });
+
+    //设备及位置地图渲染
     function  initSmall(){
         var map = new AMap.Map("map-location", {
             resizeEnable: true,
@@ -557,6 +577,10 @@
             var marker = new AMap.Marker({
                 map: map,
                 position:  lnglats[i]
+            });
+            marker.setLabel({//label默认蓝框白底左上角显示，样式className为：amap-marker-label
+                offset: new AMap.Pixel(-60, -30),//修改label相对于maker的位置
+                content: detailTit
             });
         }
     }

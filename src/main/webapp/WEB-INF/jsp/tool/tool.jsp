@@ -96,7 +96,7 @@
                                 $("#curPage").val("");
                                 self.currentPage = self.pageNumber;
                                 self.totalPage = data.page.totalPageNum;
-                                self.tool = data;
+                                self.tool = data.udtoolList;
                             },
                             error: function () {
 

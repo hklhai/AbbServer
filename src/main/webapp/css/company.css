@@ -57,6 +57,17 @@ span.space{
 	font-size: 16px;
 	font-weight: normal;
 }
+.warn-first-p{
+	font-size:20px;
+	color: rgb(237, 51, 69);
+	padding-left: 20px;
+	margin-top: 30px;
+}
+.warn-sec-p{
+	font-size: 12px;
+	color: rgb(36, 36, 36);
+	padding-left: 20px;
+}
 .location-info table{
 	width: 100%;
 	margin-top: 10px;
@@ -88,16 +99,20 @@ span.space{
 	width: 500px;
 }
 .equip-table table thead tr{
-	width: 100%;
-	display: block;
+	/*width: 100%;*/
+	/*display: block;*/
 	height: 42px;
 	line-height: 42px;
 	font-size: 12px;
 	color: rgb(36, 36, 36);
 	border-bottom: 2px solid  #DADADA;
+	display:table;
+	width:100%;
+	table-layout:fixed;
+	font-weight: bold;
+	width:98%;
 }
 .equip-table table tbody{
-	width:100%;
 	display: block;
 	height:121px;
 	overflow: auto;
@@ -108,6 +123,9 @@ span.space{
 	font-size: 12px;
 	color: rgb(36, 36, 36);
 	cursor: pointer;
+	display:table;
+	width:100%;
+	table-layout:fixed;
 }
 .equip-table table tbody tr:hover{
 	background: #E7F7FE;
