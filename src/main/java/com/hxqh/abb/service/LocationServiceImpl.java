@@ -50,7 +50,7 @@ public class LocationServiceImpl extends BaseServiceImpl<Object> implements Loca
 
 
     @Override
-    public List<AbbInventory> getInventoryData(InventorySearchDto searchInventoryDto, Page page) {
+    public InventoryDto getInventoryData(InventorySearchDto searchInventoryDto, Page page) {
         Map<String, Object> params = new HashMap<String, Object>();
         StringBuilder wherebuilder = new StringBuilder();
         wherebuilder.append("1=1 ");
@@ -74,9 +74,10 @@ public class LocationServiceImpl extends BaseServiceImpl<Object> implements Loca
             wherebuilder.append(" and CURBAL =").append(":CURBAL");
             params.put("CURBAL", searchInventoryDto.getCurbal());
         }
-        //TODO page
         List<AbbInventory> inventoryList = abbinventoryDao.findAll(page.getThisPageFirstElementNumber() - 1, page.getPageSize(), wherebuilder.toString(), params, " order by inventoryid desc");
-        return inventoryList;
+        page.setTotalPageNum((int) abbinventoryDao.getCount(wherebuilder.toString(), params));
+        InventoryDto inventoryDto = new InventoryDto(inventoryList,page);
+        return inventoryDto;
     }
 
     @Override

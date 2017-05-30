@@ -180,7 +180,6 @@
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>javax.servlet.jsp-api</artifactId>
             <version>2.3.1</version>
-            <scope>provided</scope>
         </dependency>
 
         <!-- jetty -->
@@ -363,11 +362,6 @@
         </dependency>
         <!-- spring mongodb -->
 
-        <dependency>
-            <groupId>taglibs</groupId>
-            <artifactId>standard</artifactId>
-            <version>1.1.2</version>
-        </dependency>
         <dependency>
             <groupId>org.codehaus.woodstox</groupId>
             <artifactId>stax2-api</artifactId>
@@ -592,11 +586,6 @@
             <artifactId>db2jcclicensecu</artifactId>
             <version>1.1</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>com.ibm.businessobjects</groupId>-->
-            <!--<artifactId>businessobjects</artifactId>-->
-            <!--<version>7.6-abb</version>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>ibm.businessobjects</groupId>
             <artifactId>businessobjects</artifactId>

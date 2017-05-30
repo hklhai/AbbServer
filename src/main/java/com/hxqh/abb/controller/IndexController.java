@@ -146,6 +146,16 @@ public class IndexController {
         return "index/index";
     }
 
+    /**
+     * first 登录页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "/first", method = RequestMethod.GET)
+    public String first() {
+        return "login";
+    }
+
 
     /**
      * loginWebChat  微信后台开发

@@ -39,7 +39,7 @@ public class ToolServiceImpl extends BaseServiceImpl<Object> implements ToolServ
     }
 
     @Override
-    public List<AbbUdtool> getToolData(UdtoolDto udtoolDto, Page page) throws Exception {
+    public ToolDto getToolData(UdtoolDto udtoolDto, Page page) throws Exception {
         Map<String, Object> params = new HashMap<String, Object>();
         StringBuilder wherebuilder = new StringBuilder();
         wherebuilder.append("1=1 ");
@@ -64,7 +64,9 @@ public class ToolServiceImpl extends BaseServiceImpl<Object> implements ToolServ
             params.put("LOCATIONSITE", udtoolDto.getLocationsite());
         }
         List<AbbUdtool> udtoolList = udtoolDao.findAll(page.getThisPageFirstElementNumber()-1, page.getPageSize(), wherebuilder.toString(), params, " order by udtoolid desc");
-        return udtoolList;
+        page.setTotalPageNum((int) udtoolDao.getCount(wherebuilder.toString(), params));
+        ToolDto toolDto = new ToolDto(udtoolList,page);
+        return toolDto;
     }
 
 }

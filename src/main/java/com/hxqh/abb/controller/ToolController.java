@@ -28,6 +28,7 @@ public class ToolController {
     /**
      * 工具页面跳转
      * 2017-5-10
+     *
      * @return
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -39,14 +40,15 @@ public class ToolController {
     /**
      * 工具页面数据与类别项接口
      * 2017-5-10
+     *
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/listdata", method = RequestMethod.POST)
-    public ToolDto listdata(Page page,@ModelAttribute("sessionInfo") SessionInfo sessionInfo) {
+    public ToolDto listdata(Page page, @ModelAttribute("sessionInfo") SessionInfo sessionInfo) {
         ToolDto listData = null;
         try {
-            listData= toolService.getListData(page);
+            listData = toolService.getListData(page);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -58,14 +60,15 @@ public class ToolController {
     /**
      * 工具页面数据与类别项接口
      * 2017-5-15
+     *
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/data", method = RequestMethod.POST)
-    public List<AbbUdtool> data(UdtoolDto udtoolDto,Page page) {
-        List<AbbUdtool> listData = null;
+    public ToolDto data(UdtoolDto udtoolDto, Page page) {
+        ToolDto listData = null;
         try {
-            listData= toolService.getToolData(udtoolDto,page);
+            listData = toolService.getToolData(udtoolDto, page);
         } catch (Exception e) {
             e.printStackTrace();
         }
