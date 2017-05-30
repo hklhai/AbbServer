@@ -1,7 +1,10 @@
 package com.hxqh.abb.model.view;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
-import javax.persistence.*;
 
 
 /**
@@ -36,7 +39,27 @@ public class AbbMap implements Serializable {
 	@Column(name="\"STATUS\"")
 	private String status;
 
+	private String parent;
+
+	private String parentdesc;
+
 	public AbbMap() {
+	}
+
+	public String getParent() {
+		return parent;
+	}
+
+	public void setParent(String parent) {
+		this.parent = parent;
+	}
+
+	public String getParentdesc() {
+		return parentdesc;
+	}
+
+	public void setParentdesc(String parentdesc) {
+		this.parentdesc = parentdesc;
 	}
 
 	public Integer getAlertcount() {
