@@ -28,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 import psdi.util.MXException;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.List;
@@ -120,6 +121,19 @@ public class IndexController {
         }
         return message;
     }
+
+    /**
+     * 注销，销毁Session 重定向至login
+     *
+     * @return
+     */
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpSession session) {
+        session.removeAttribute("sessionInfo");
+        session.invalidate();
+        return "redirect:/login.jsp";
+    }
+
 
 
     /**
@@ -318,7 +332,9 @@ public class IndexController {
         }
 
         return null;
-
     }
+
+
+
 
 }
