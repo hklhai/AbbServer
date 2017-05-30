@@ -136,7 +136,7 @@
                         <td width="98px">厂家：</td>
                         <td width="210px" class="data-comName"></td>
                         <td width="110px">额定分段电流：</td>
-                        <td width="220px" class="data-alnvalue">电流信息</td>
+                        <td width="220px" class="data-alnvalue"></td>
                     </tr>
                     <tr>
                         <td>设备描述：</td>
