@@ -72,6 +72,7 @@
                         }
                     },
                     search:function(){
+                        this.pageNumber = 1;
                         this.initData();
                     },
                     initData:function(){
@@ -91,6 +92,7 @@
                             success: function(data){
                                 $("#curPage").val("");
                                 self.currentPage = self.pageNumber;
+                                self.totalPage = data.page.totalPageNum;
                                 self.inventoryList = data;
                             },
                             error: function(){
