@@ -31,7 +31,7 @@
     <div class="clearfix"></div>
 </div>
 <div class="list-detail">
-    <h3 class="list-detail-tit">南京下的站点</h3>
+    <h3 class="list-detail-tit">${cityDto.abbLocation.description}下的站点</h3>
     <ul class="list-detail-ul">
         <%--<li class="icon-left">
             <a href="wwww.baidu.com">南京史密斯热水器有限公司</a>
@@ -58,15 +58,42 @@
            window.location.href = "${ctx}/index/equip";
        });
         function init(){
-            var currentCity = ${abbLocation.description};
+            var currentCity = "${cityDto.abbLocation.description}";
             var doms = $(".city-list").find("button");
             for(var i=0;i<doms.length;i++){
-               if(doms[i].attr["id"] == currentCity){
-                   doms[i].addClass("blue-btn");
+               if($(doms[i]).text() == currentCity){
+                   $(doms[i]).addClass("blue-btn");
                }
             }
         }
         init();
+        $(".city-list").delegate("button","click",function(){
+             $(this).addClass("blue-btn").siblings("button").removeClass("blue-btn");
+             var location = $(this).attr("id");
+             $.ajax({
+                url: "${ctx}/index/cityData",
+                method: "get",
+                data:{
+                    location: location
+                },
+                dataType: "json",
+                success: function(data){
+                    var tit = data.abbLocation.description+"下的站点";
+                    $(".list-detail-tit").text(tit);
+                    $(".list-detail-ul").html("");
+                    var tmpHtml = "";
+                    for(var i=0;i<data.childLocation.length;i++){
+                        tmpHtml+='<li><a href="javascript:;" id="'
+                                +data.childLocation[i].location+'">'
+                                +data.childLocation[i].description
+                                +'</a></li>';
+                    }
+                    $(".list-detail-ul").append(tmpHtml);
+                },
+                error: function(){
+                }
+            });
+        });
     });
 </script>
 </html>

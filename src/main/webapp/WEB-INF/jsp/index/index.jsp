@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="${ctx}/css/header.css">
     <link rel="stylesheet" href="${ctx}/css/style.css">
     <script type="text/javascript">
+        var calendar = [];
         $(function(){
             var indexData = new Vue({
                 el: "#index-data",
@@ -28,7 +29,7 @@
                     calendarList: [],
                     systemList: [],
                     workTaskList: [],
-                    sessionInfo:{}
+                    sessionInfo:{},
                 },
                 methods:{
                     apply: function(e){
@@ -68,6 +69,7 @@
                             self.systemList = data.systemList;
                             self.workTaskList = data.workTaskList;
                             self.sessionInfo = data.sessionInfo;
+                            calendar = data.calendar;
                         },
                         error: function(){
 
@@ -187,7 +189,16 @@
     </div>
 </div>
 <script>
-    var limitDaysArrs=[
+    var limitDaysArrs = [];
+    function doData(){
+        for(var i=0;i<calendar.length;i++){
+            var tmpObj = {};
+            tmpObj.time = calendar[i].targstartdate;
+            tmpObj.x =  calendar[i].wonum.join(",");
+            limtDays.push(tmpObj);
+        }
+    }
+   /* var limitDaysArrs=[
         {
             time: '2017-5-5',
             x:'10、10',
@@ -198,7 +209,7 @@
             x:'1050、1055',
             y:'1060、1063'
         }
-    ]
+    ]*/
 </script>
 <script src="${ctx}/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="${ctx}/js/DatePicker/WdatePicker.js"></script>
