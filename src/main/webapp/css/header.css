@@ -93,7 +93,7 @@ ul li a.index-a-last{
 .username{
 	display: block;
 	float: right;
-	margin-right: 40px;
+	margin-right: 10px;
 	padding-top: 8px;
 	font-size: 20px;
 	height: 49px;
@@ -106,4 +106,13 @@ ul li a.index-a-last{
 	height: 49px;
 	width: 35px;
 	background: url("../img/header/user-logo.gif") no-repeat 0px 15px;
+}
+.close-icon{
+	display: block;
+	float: right;
+	height: 49px;
+	width: 35px;
+	background: url("../img/header/close-icon.gif") no-repeat 0px 15px;
+	margin-left: 50px;
+	cursor: pointer;
 }
