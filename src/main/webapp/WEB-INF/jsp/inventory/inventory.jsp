@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="${ctx}/css/page.css">
     <link rel="stylesheet" href="${ctx}/css/header.css">
     <script type="text/javascript">
-        $(function(){
+        $(function () {
             var stockData = new Vue({
                 el: "#stock-data",
                 data: {
@@ -38,35 +38,35 @@
                     description: "",
                     location: "",
                     itemNum: "",
-                    sessionInfo:{},
-                    time:{}
+                    sessionInfo: {},
+                    time: {}
                 },
-                methods:{
-                    prePage:function(){
-                        var prepage=this.currentPage-1;
-                        if(prepage<1){
+                methods: {
+                    prePage: function () {
+                        var prepage = this.currentPage - 1;
+                        if (prepage < 1) {
                             alert("已是第一页！");
-                        }else{
+                        } else {
                             this.pageNumber = prepage;
                             this.initData();
                         }
                     },
-                    nextPage:function(){
-                        var nextpage=this.currentPage+1;
-                        var totalPage=this.totalPage;
-                        if(nextpage>totalPage){
+                    nextPage: function () {
+                        var nextpage = this.currentPage + 1;
+                        var totalPage = this.totalPage;
+                        if (nextpage > totalPage) {
                             alert("已是最后一页！");
-                        }else{
+                        } else {
                             this.pageNumber = nextpage;
                             this.initData();
                         }
                     },
-                    gotoPage:function(){
-                        var totalPage=this.totalPage;
-                        var gotoPage=$("#curPage").val();
-                        if(gotoPage<1||gotoPage>totalPage){
+                    gotoPage: function () {
+                        var totalPage = this.totalPage;
+                        var gotoPage = $("#curPage").val();
+                        if (gotoPage < 1 || gotoPage > totalPage) {
                             alert("请输入正确的页数！")
-                        }else{
+                        } else {
                             this.pageNumber = gotoPage;
                             this.initData();
                         }
@@ -75,10 +75,10 @@
                         this.pageNumber = 1;
                         this.initData();
                     },
-                    initData:function(){
+                    initData: function () {
                         var self = this;
                         $.ajax({
-                            url: "${ctx} /inventory/data",
+                            url: "${ctx}/inventory/data",
                             method: "post",
                             data: {
                                 pageSize: 15,
@@ -89,29 +89,29 @@
                                 description: self.description
                             },
                             dataType: "json",
-                            success: function(data){
+                            success: function (data) {
                                 $("#curPage").val("");
                                 self.currentPage = self.pageNumber;
                                 self.totalPage = data.page.totalPageNum;
                                 self.inventoryList = data;
                             },
-                            error: function(){
+                            error: function () {
 
                             }
                         });
                     }
                 },
-                created: function(){
+                created: function () {
                     var self = this;
                     $.ajax({
-                        url: "${ctx} /inventory/inventoryData",
+                        url: "${ctx}/inventory/inventoryData",
                         method: "post",
                         data: {
                             pageSize: 15,
                             pageNumber: 1
                         },
                         dataType: "json",
-                        success: function(data){
+                        success: function (data) {
                             self.totalPage = data.page.totalPageNum;
                             self.inventoryList = data.abbInventoryList;
                             self.siteList = data.siteList;
@@ -120,13 +120,10 @@
                             self.sessionInfo = data.sessionInfo;
                             self.time = data.time;
                         },
-                        error: function(){
+                        error: function () {
 
                         }
                     });
-                },
-                close: function(){
-                    window.location.href = "${ctx}/index/logout";
                 }
             });
         });
@@ -140,15 +137,17 @@
             <div class="logo"></div>
             <ul>
                 <li class="li-item"><a href="${ctx}/index/toIndex" class="index-a"><i class="icon-index"></i>首页</a></li>
-                <li class="li-item"><a href="${ctx}/location/location" class="index-a"><i class="icon-equip"></i>设备管理</a></li>
-                <li class="li-item"><a href="${ctx}/inventory/list" class="index-a"><i class="icon-stock"></i>库存管理</a></li>
+                <li class="li-item"><a href="${ctx}/location/location" class="index-a"><i
+                        class="icon-equip"></i>设备管理</a></li>
+                <li class="li-item"><a href="${ctx}/inventory/list" class="index-a"><i class="icon-stock"></i>库存管理</a>
+                </li>
                 <li class="li-item"><a href="${ctx}/tool/list" class="index-a"><i class="icon-tool"></i>工具管理</a></li>
-                <li class="li-last"><i class="close-icon" v-on:click="close"></i></li>
-                <li class="li-last"><i class="user-icon"></i><span class="username">{{sessionInfo.displayname}}</span></li>
+                <li class="li-last"><i class="user-icon"></i><span class="username">{{sessionInfo.displayname}}</span>
+                </li>
             </ul>
         </div>
     </div>
-    <div class="stock-content" >
+    <div class="stock-content">
         <div class="stock-layout">
             <div class="index-content-tit">
                 <span class="stock-tit">库存管理</span>
@@ -160,7 +159,7 @@
                     <div class="search-item stock-siteid-item">
                         <label>服务站点</label>
                         <div class="sel-form" style="text-overflow: ellipsis;">
-                            <select  v-model="siteid">
+                            <select v-model="siteid">
                                 <option v-for=" item in siteList" :value="item.siteid">{{item.description}}</option>
                             </select>
                         </div>
@@ -169,19 +168,20 @@
                         <label>库房</label>
                         <div class="sel-form" style="text-overflow: ellipsis;">
                             <select v-model="location">
-                                <option v-for=" item in locationList" :value="item.location">{{item.description}}</option>
+                                <option v-for=" item in locationList" :value="item.location">{{item.description}}
+                                </option>
                             </select>
                         </div>
                     </div>
                     <div class="search-item stock-itemnum-item">
                         <label>物资编码</label>
                         <%--<div class="sel-form">--%>
-                            <%--<select name="" id="">--%>
-                                <%--<option value="">服务站点一</option>--%>
-                                <%--<option value="">服务站点二</option>--%>
-                                <%--<option value="">服务站点三</option>--%>
-                                <%--<option value="">服务站点四</option>--%>
-                            <%--</select>--%>
+                        <%--<select name="" id="">--%>
+                        <%--<option value="">服务站点一</option>--%>
+                        <%--<option value="">服务站点二</option>--%>
+                        <%--<option value="">服务站点三</option>--%>
+                        <%--<option value="">服务站点四</option>--%>
+                        <%--</select>--%>
                         <%--</div>--%>
                         <input type="text" width="100%" @keyup.13="search" v-model="itemNum">
                     </div>
@@ -189,12 +189,12 @@
                         <label>物资名称</label>
                         <input type="text" width="100%" @keyup.13="search" v-model="description">
                         <%--<div class="sel-form">--%>
-                            <%--<select name="" id="">--%>
-                                <%--<option value="">服务站点一</option>--%>
-                                <%--<option value="">服务站点二</option>--%>
-                                <%--<option value="">服务站点三</option>--%>
-                                <%--<option value="">服务站点四</option>--%>
-                            <%--</select>--%>
+                        <%--<select name="" id="">--%>
+                        <%--<option value="">服务站点一</option>--%>
+                        <%--<option value="">服务站点二</option>--%>
+                        <%--<option value="">服务站点三</option>--%>
+                        <%--<option value="">服务站点四</option>--%>
+                        <%--</select>--%>
                         <%--</div>--%>
                         <%--<i class="search-icon" v-on:click="search"></i>--%>
                     </div>
@@ -221,14 +221,16 @@
                 <div id="page_control">
                     <span class="prePage" style="line-height: 21px;"><a href="javascript:;" v-on:click="prePage">上一页</a></span>
                     <span class="s_space"></span>
-                    <span class="nextPage"  style="line-height: 21px;"><a href="javascript:;" v-on:click="nextPage">下一页</a></span>
+                    <span class="nextPage" style="line-height: 21px;"><a href="javascript:;"
+                                                                         v-on:click="nextPage">下一页</a></span>
                     <span class="s_space"></span>
                     第<span class="pageNo">{{currentPage}}</span>
                     页/共<span class="totalPage">{{totalPage}}</span>页
                     <span class="s_space"></span>
                     到第<input name="curPage" id="curPage" type="text"/>页
                     <span class="s_space"></span>
-                    <span class="gotoPage" style="line-height: 21px;"><a href="javascript:;" v-on:click="gotoPage">跳转</a></span>
+                    <span class="gotoPage" style="line-height: 21px;"><a href="javascript:;"
+                                                                         v-on:click="gotoPage">跳转</a></span>
                 </div>
             </div>
         </div>
