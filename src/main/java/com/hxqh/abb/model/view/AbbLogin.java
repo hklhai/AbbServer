@@ -19,6 +19,33 @@ public class AbbLogin implements Serializable {
     private String personid;
     private String displayname;
     private String password;
+    private String siteid;
+    private String longitude;
+    private String dimension;
+
+    public String getSiteid() {
+        return siteid;
+    }
+
+    public void setSiteid(String siteid) {
+        this.siteid = siteid;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getDimension() {
+        return dimension;
+    }
+
+    public void setDimension(String dimension) {
+        this.dimension = dimension;
+    }
 
     public String getPassword() {
         return password;

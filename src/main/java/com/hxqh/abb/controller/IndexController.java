@@ -179,6 +179,9 @@ public class IndexController {
                     //加入Session中
                     AbbLogin login = loginUserList.get(0);
                     SessionInfo sessionInfo = new SessionInfo(login.getLoginid(), login.getDefsite(), " ", login.getDisplayname());
+                    //增加经纬度信息
+                    sessionInfo.setLongitude(login.getLongitude());
+                    sessionInfo.setDimension(login.getDimension());
                     map.put("sessionInfo", sessionInfo);
                     return new ModelAndView("index/index");
                 } else {
