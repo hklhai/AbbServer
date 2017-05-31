@@ -13,16 +13,34 @@ public class SessionInfo {
 
     private String displayname;
 
+    private String longitude;
+
+    private String dimension;
+
     public SessionInfo() {
     }
-
-
 
     public SessionInfo(String loginId, String siteid, String orgid, String displayname) {
         this.loginId = loginId;
         this.siteid = siteid;
         this.orgid = orgid;
         this.displayname = displayname;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getDimension() {
+        return dimension;
+    }
+
+    public void setDimension(String dimension) {
+        this.dimension = dimension;
     }
 
     public String getDisplayname() {
