@@ -6,67 +6,75 @@ import javax.persistence.*;
 
 /**
  * The persistent class for the ABB_INDEX_ASSET database table.
- * 
  */
 @Entity
-@Table(name="ABB_INDEX_ASSET")
+@Table(name = "ABB_INDEX_ASSET")
 public class AbbIndexAsset implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	private long assetuid;
+    @Id
+    private long assetuid;
 
-	private String description;
+    private String description;
 
-	@Column(name="\"LOCATION\"")
-	private String location;
+    @Column(name = "\"LOCATION\"")
+    private String location;
 
-	private String siteid;
+    private String siteid;
 
-	@Column(name="\"STATE\"")
-	private String state;
+    @Column(name = "\"STATE\"")
+    private String state;
 
-	public AbbIndexAsset() {
-	}
+    private String locdesc;
 
-	public long getAssetuid() {
-		return assetuid;
-	}
+    public AbbIndexAsset() {
+    }
 
-	public void setAssetuid(long assetuid) {
-		this.assetuid = assetuid;
-	}
+    public long getAssetuid() {
+        return assetuid;
+    }
 
-	public String getDescription() {
-		return this.description;
-	}
+    public void setAssetuid(long assetuid) {
+        this.assetuid = assetuid;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDescription() {
+        return this.description;
+    }
 
-	public String getLocation() {
-		return this.location;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    public String getLocation() {
+        return this.location;
+    }
 
-	public String getSiteid() {
-		return this.siteid;
-	}
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-	public void setSiteid(String siteid) {
-		this.siteid = siteid;
-	}
+    public String getSiteid() {
+        return this.siteid;
+    }
 
-	public String getState() {
-		return this.state;
-	}
+    public void setSiteid(String siteid) {
+        this.siteid = siteid;
+    }
 
-	public void setState(String state) {
-		this.state = state;
-	}
+    public String getState() {
+        return this.state;
+    }
 
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getLocdesc() {
+        return locdesc;
+    }
+
+    public void setLocdesc(String locdesc) {
+        this.locdesc = locdesc;
+    }
 }
