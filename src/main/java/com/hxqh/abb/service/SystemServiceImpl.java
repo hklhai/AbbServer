@@ -74,7 +74,7 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("siteid", sessionInfo.getSiteid());
         List<AbbIndexWorkorder> calendarList = abbindexworkorderDao.findAll(0, 5, "targstartdate is not null", null, " order by workorderid desc");
-        List<AbbIndexAsset> assetList = abbindexassetDao.findAll(0, 5, " siteid=:siteid ", params, " order by assetuid desc");
+        List<AbbIndexAsset> assetList = abbindexassetDao.findAll(0, 4, " siteid=:siteid ", params, " order by assetuid desc");
         List<AbbIndexWfassignment> wfassignmentList = abbindexwfassignmentDao.findAll(0, 5, "startdate is not null and duedate is not null", params, " order by wfassignmentid desc");
         //增加对Calendar处理
         List<Calendar> calendar = process(calendarList);
