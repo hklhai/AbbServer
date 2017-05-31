@@ -73,6 +73,8 @@
                             self.workTaskList = data.workTaskList;
                             self.sessionInfo = data.sessionInfo;
                             calendar = data.calendar;
+                            /*var tmpheight = $(document.body).height()-59+"px";
+                            $("index-content").height(tmpheight);*/
                         },
                         error: function(){
 
@@ -158,7 +160,7 @@
                         <tr v-for="asset in assetList">
                             <td>{{asset.state}}</td>
                             <td>{{asset.description}}</td>
-                            <td>{{asset.location}}</td>
+                            <td>{{asset.locdesc}}</td>
                         </tr>
                         </tbody>
                     </table>
