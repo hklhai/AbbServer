@@ -206,6 +206,7 @@
                         <label>当前余量</label>
                         <input type="text" disabled="disabled" style="background: #dadada;"/>
                     </div>
+                    <i class="search-icon" v-on:click="search"></i>
                     <div class="clearfix"></div>
                 </div>
                 <table class="stock-table">
