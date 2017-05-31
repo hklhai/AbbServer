@@ -38,6 +38,7 @@
                     description: "",
                     location: "",
                     itemNum: "",
+
                     sessionInfo: {},
                     time: {}
                 },
@@ -75,6 +76,12 @@
                         this.pageNumber = 1;
                         this.initData();
                     },
+                    reset:function(){
+                        this.siteid = "";
+                        this.description = "";
+                        this.location = "";
+                        this.itemNum = "";
+                    },
                     initData: function () {
                         var self = this;
                         $.ajax({
@@ -100,6 +107,9 @@
                             }
                         });
                     }
+                },
+                close: function(){
+                    window.location.href = "${ctx}/index/logout";
                 },
                 created: function () {
                     var self = this;
@@ -136,12 +146,13 @@
         <div class="header-layout">
             <div class="logo"></div>
             <ul>
-                <li class="li-item"><a href="${ctx}/index/toIndex" class="index-a"><i class="icon-index"></i>首页</a></li>
+                <li class="li-item"><a href="${ctx}/index/toIndex" class="index-a"><span style="color:#242424; ">首</span><i class="icon-index"></i>首页<span style="color:#242424;">页</span></a></li>
                 <li class="li-item"><a href="${ctx}/location/location" class="index-a"><i
                         class="icon-equip"></i>设备管理</a></li>
                 <li class="li-item"><a href="${ctx}/inventory/list" class="index-a"><i class="icon-stock"></i>库存管理</a>
                 </li>
                 <li class="li-item"><a href="${ctx}/tool/list" class="index-a"><i class="icon-tool"></i>工具管理</a></li>
+                <li class="li-last"><i class="close-icon" v-on:click="close"></i></li>
                 <li class="li-last"><i class="user-icon"></i><span class="username">{{sessionInfo.displayname}}</span>
                 </li>
             </ul>
@@ -204,9 +215,10 @@
                     </div>
                     <div class="search-item stock-curbal-item">
                         <label>当前余量</label>
-                        <input type="text" disabled="disabled" style="background: #dadada;"/>
+                        <input type="text" disabled="disabled" style="background: #dadada;width:70%;"/>
                     </div>
                     <i class="search-icon" v-on:click="search"></i>
+                    <i class="reset-icon" v-on:click="reset">重置</i>
                     <div class="clearfix"></div>
                 </div>
                 <table class="stock-table">

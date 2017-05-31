@@ -28,7 +28,7 @@
     <div class="header-layout">
         <div class="logo"></div>
         <ul>
-            <li class="li-item"><a href="${ctx}/index/toIndex" class="index-a"><i class="icon-index"></i>首页</a></li>
+            <li class="li-item"><a href="${ctx}/index/toIndex" class="index-a"><span style="color:#242424; ">首</span><i class="icon-index"></i>首页<span style="color:#242424;">页</span></a></li>
             <li class="li-item"><a href="${ctx}/location/location" class="index-a"><i class="icon-equip"></i>设备管理</a></li>
             <li class="li-item"><a href="${ctx}/inventory/list" class="index-a"><i class="icon-stock"></i>库存管理</a></li>
             <li class="li-item"><a href="${ctx}/tool/list" class="index-a"><i class="icon-tool"></i>工具管理</a></li>
@@ -256,7 +256,7 @@
     var map = new AMap.Map("container", {
         resizeEnable: true,
         center: [116.481181, 39.989792],
-        zoom: 16
+        zoom: 5
     });
     var tmpLnglats = [];
     var tmpData = [];
@@ -427,7 +427,9 @@
     }
 
     $(function(){
-
+        $(".close-icon").click(function(){
+            window.location.href = "${ctx}/index/logout";
+        });
         $(".left-bag").click(function(){
             $(".equip-company").hide();
             $("#right-content").show();

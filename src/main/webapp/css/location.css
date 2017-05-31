@@ -1,10 +1,10 @@
 .echart-info{
-	width: 574px;
+	width: 530px;
 	margin: 0 auto;
 }
 .location-tree{
-	height: 60px;
-	line-height: 60px;
+	height: 45px;
+	line-height: 45px;
 	font-size: 12px;
 	color: rgb(255, 255, 255);
 	background: #323232;
@@ -19,10 +19,10 @@
 .location-tree img{
 	position: absolute;
 	right:20px;
-	top:27px;
+	top:18px;
 }
 .locaition-info{
-	padding: 10px;
+	padding: 5px;
 	background: #323232;
 }
 .locaiton-table,.locaiton-table-info{
@@ -32,12 +32,12 @@
 }
 .locaiton-table-info thead tr,.locaiton-table thead tr{
 	background: #D7F1FE;
-	height: 40px;
-	line-height: 40px;
+	height: 36px;
+	line-height: 36px;
 }
 .locaiton-table-info tbody tr,.locaiton-table tbody tr{
-	height: 44px;
-	line-height: 44px;
+	height: 38px;
+	line-height: 38px;
 	border-bottom: 1px solid #DADADA;
 }
 .locaiton-table-info tbody td:first-child,.locaiton-table-info tbody td:nth-child(3){
@@ -57,6 +57,6 @@
 	height:10px;
 	position: absolute;
 	left: -5px;
-	top: 25px;
+	top: 18px;
 	display: block;
 }
