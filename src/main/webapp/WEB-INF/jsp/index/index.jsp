@@ -73,8 +73,8 @@
                             self.workTaskList = data.workTaskList;
                             self.sessionInfo = data.sessionInfo;
                             calendar = data.calendar;
-                            /*var tmpheight = $(document.body).height()-59+"px";
-                            $("index-content").height(tmpheight);*/
+                            /*var tmpheight = $(window).height()-59;
+                            $(".index-content").height(732);*/
                         },
                         error: function(){
 

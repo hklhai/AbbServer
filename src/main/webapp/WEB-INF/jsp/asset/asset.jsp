@@ -253,11 +253,29 @@
         src="http://webapi.amap.com/maps?v=1.3&key=e4eb9da6d97281e42a0357655570e3ae"></script>
 <script type="text/javascript">
     //地图初始化时，在地图上添加一个marker标记,鼠标点击marker可弹出自定义的信息窗体
+/*    var longitude = ;
+    var dimension = ;*/
+
+/*    if(==""||==""){
+        var map = new AMap.Map("container", {
+            resizeEnable: true,
+            center: locationCenter,
+            zoom: 7
+        });
+    }else{
+
+    }*/
+    var locationCenter = [];
+    locationCenter.push(${sessionInfo.longitude});
+    locationCenter.push(${sessionInfo.dimension});
+    var tmpCenter = [116.397428, 39.90923];
     var map = new AMap.Map("container", {
         resizeEnable: true,
-        center: [116.481181, 39.989792],
-        zoom: 5
+        center: tmpCenter,
+        zoom: 7
     });
+
+    map.setZoomAndCenter(7, tmpCenter);
     var tmpLnglats = [];
     var tmpData = [];
     var lStatus = [];
@@ -427,6 +445,10 @@
     }
 
     $(function(){
+        var cWidth = $(window).width()-267;
+        $("#right-content").width(cWidth);
+        $("#container").width(cWidth);
+
         $(".close-icon").click(function(){
             window.location.href = "${ctx}/index/logout";
         });
