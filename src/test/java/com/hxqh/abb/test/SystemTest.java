@@ -87,8 +87,11 @@ public class SystemTest {
 
     @Test
     public void view() {
-        AbbAsset assetById = systemService.getAssetById(3255l);
-        System.out.println(assetById);
+       // AbbAsset assetById = systemService.getAssetById(3255l);
+        //System.out.println(assetById);
+
+        List<AbbAsset> assetList = systemService.getAssetByChild("馈线柜");
+        Assert.assertTrue(assetList.size()>0);
 
 //        List<AbbLocation> childLocation = locationService.getChildLocation("HZ-HZ");
 //        for(AbbLocation l :childLocation)

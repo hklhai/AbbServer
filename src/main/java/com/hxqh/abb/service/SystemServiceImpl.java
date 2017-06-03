@@ -129,6 +129,14 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
     }
 
     @Override
+    public List<AbbAsset> getAssetByChild(String childname) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("childname", childname);
+        List<AbbAsset> abbAssetList = abbassetDao.findAll("DESCRIPTION=:childname", params,null);
+        return abbAssetList;
+    }
+
+    @Override
     public String getWebsitPath() {
         return websitepath;
     }

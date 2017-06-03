@@ -41,6 +41,8 @@ public interface SystemService extends BaseService {
 
     public abstract AssetDto getAssetData(String location);
 
+    public abstract List<AbbAsset> getAssetByChild(String childname);
+
     /*============================现场及设备地图结束 ==================*/
 
 
@@ -49,6 +51,8 @@ public interface SystemService extends BaseService {
     public abstract String getWebsitPath();
 
     public abstract AbbAsset getAssetById(long assetuid);
+
+    
 
     /*============================微信==================*/
 

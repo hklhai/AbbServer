@@ -19,7 +19,9 @@ public class AbbAsset implements Serializable {
 	@Id
 	private long assetuid;
 
-	private String child;
+	private String childname;
+
+
 
 	private String description;
 
@@ -27,6 +29,8 @@ public class AbbAsset implements Serializable {
 	private Date installdate;
 
 	private String locdesc;
+
+	private Integer haschild;
 
 	@Column(name="\"NAME\"")
 	private String name;
@@ -77,13 +81,6 @@ public class AbbAsset implements Serializable {
 		this.assetuid = assetuid;
 	}
 
-	public String getChild() {
-		return this.child;
-	}
-
-	public void setChild(String child) {
-		this.child = child;
-	}
 
 	public String getDescription() {
 		return this.description;
@@ -173,4 +170,19 @@ public class AbbAsset implements Serializable {
 		this.udmodel = udmodel;
 	}
 
+	public String getChildname() {
+		return childname;
+	}
+
+	public void setChildname(String childname) {
+		this.childname = childname;
+	}
+
+	public Integer getHaschild() {
+		return haschild;
+	}
+
+	public void setHaschild(Integer haschild) {
+		this.haschild = haschild;
+	}
 }

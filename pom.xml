@@ -24,13 +24,13 @@
     </properties>
 
     <distributionManagement>
-        <repository>
-            <id>Abb-Release</id>
-            <name>Abb Project Release</name>
-            <url>http://120.76.239.5:8081/nexus/content/repositories/releases/</url>
-        </repository>
+        <!--<repository>-->
+            <!--<id>abb-release</id>-->
+            <!--<name>Abb Project Release</name>-->
+            <!--<url>http://120.76.239.5:8081/nexus/content/repositories/releases/</url>-->
+        <!--</repository>-->
         <snapshotRepository>
-            <id>Abb-Snapshot</id>
+            <id>abb-snapshot</id>
             <name>Abb Project Snapshot</name>
             <url>http://120.76.239.5:8081/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
@@ -470,8 +470,9 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.7</version>
+            <version>1.2.31</version>
         </dependency>
+
         <!-- 导入Mysql数据库链接jar包 -->
         <dependency>
             <groupId>mysql</groupId>
