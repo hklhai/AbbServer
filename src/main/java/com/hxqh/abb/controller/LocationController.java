@@ -1,6 +1,7 @@
 package com.hxqh.abb.controller;
 
 import com.hxqh.abb.dao.AbbMapDao;
+import com.hxqh.abb.model.base.SessionInfo;
 import com.hxqh.abb.model.view.AbbLocation;
 import com.hxqh.abb.model.view.AbbMap;
 import com.hxqh.abb.service.LocationService;
@@ -58,7 +59,7 @@ public class LocationController {
      * @return
      */
     @RequestMapping(value = "/location", method = RequestMethod.GET)
-    public ModelAndView location() {
+    public ModelAndView location(@ModelAttribute("sessionInfo") SessionInfo sessionInfo) {
         Map<String, Object> result = new HashMap<>();
         List<AbbMap> mapData = abbMapDao.findAll();
         List<AbbLocation> abbLocationList = locationService.getRootList();
@@ -73,6 +74,7 @@ public class LocationController {
 
         result.put("abbLocationList", abbLocationList);
         result.put("mapData", mapData);
+        result.put("sessionInfo",sessionInfo);
         return new ModelAndView("asset/asset", result);
     }
 

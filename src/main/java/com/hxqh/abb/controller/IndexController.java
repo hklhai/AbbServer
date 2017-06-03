@@ -104,6 +104,8 @@ public class IndexController {
                     //加入Session中
                     AbbLogin login = loginUserList.get(0);
                     SessionInfo sessionInfo = new SessionInfo(login.getLoginid(), login.getDefsite(), " ", login.getDisplayname());
+                    sessionInfo.setLongitude(login.getLongitude());
+                    sessionInfo.setDimension(login.getDimension());
                     map.put("sessionInfo", sessionInfo);
                     return success;
                 } else {

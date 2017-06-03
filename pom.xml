@@ -23,6 +23,20 @@
         <axis-version>1.7.5</axis-version>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>Abb-Release</id>
+            <name>Abb Project Release</name>
+            <url>http://120.76.239.5:8081/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>Abb-Snapshot</id>
+            <name>Abb Project Snapshot</name>
+            <url>http://120.76.239.5:8081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+
     <repositories>
         <repository>
             <id>central</id>

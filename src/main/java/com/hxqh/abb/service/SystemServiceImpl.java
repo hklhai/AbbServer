@@ -73,7 +73,10 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
     public IndexDto getSystemMessage(SessionInfo sessionInfo) throws Exception {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("siteid", sessionInfo.getSiteid());
-        List<AbbIndexWorkorder> calendarList = abbindexworkorderDao.findAll(0, 5, "targstartdate is not null", null, " order by workorderid desc");
+        params.put("reportedby", sessionInfo.getDisplayname());
+        String where = "targstartdate is not null and reportedby=:reportedby";
+
+        List<AbbIndexWorkorder> calendarList = abbindexworkorderDao.findAll(0, 5, where, params, " order by workorderid desc");
         List<AbbIndexAsset> assetList = abbindexassetDao.findAll(0, 4, " siteid=:siteid ", params, " order by assetuid desc");
         List<AbbIndexWfassignment> wfassignmentList = abbindexwfassignmentDao.findAll(0, 5, "startdate is not null and duedate is not null", params, " order by wfassignmentid desc");
         //增加对Calendar处理
