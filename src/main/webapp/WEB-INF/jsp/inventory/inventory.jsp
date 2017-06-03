@@ -215,7 +215,7 @@
                     </div>
                     <div class="search-item stock-curbal-item">
                         <label>当前余量</label>
-                        <input type="text" disabled="disabled" style="background: #dadada;width:70%;"/>
+                        <input type="text" disabled="disabled" style="background: #dadada;width:50%;"/>
                     </div>
                     <i class="search-icon" v-on:click="search"></i>
                     <i class="reset-icon" v-on:click="reset">重置</i>

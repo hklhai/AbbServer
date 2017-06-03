@@ -253,29 +253,16 @@
         src="http://webapi.amap.com/maps?v=1.3&key=e4eb9da6d97281e42a0357655570e3ae"></script>
 <script type="text/javascript">
     //地图初始化时，在地图上添加一个marker标记,鼠标点击marker可弹出自定义的信息窗体
-/*    var longitude = ;
-    var dimension = ;*/
-
-/*    if(==""||==""){
-        var map = new AMap.Map("container", {
-            resizeEnable: true,
-            center: locationCenter,
-            zoom: 7
-        });
-    }else{
-
-    }*/
     var locationCenter = [];
-    locationCenter.push(${sessionInfo.longitude});
     locationCenter.push(${sessionInfo.dimension});
-    var tmpCenter = [116.397428, 39.90923];
+    locationCenter.push(${sessionInfo.longitude});
     var map = new AMap.Map("container", {
         resizeEnable: true,
-        center: tmpCenter,
+        center: locationCenter,
         zoom: 7
     });
 
-    map.setZoomAndCenter(7, tmpCenter);
+    map.setZoomAndCenter(7, locationCenter);
     var tmpLnglats = [];
     var tmpData = [];
     var lStatus = [];
@@ -460,8 +447,6 @@
             $(".father-ul>li:first").addClass("father-ul-a");
         });
         $(".left-down").click(function(){
-            $(".father-ul").find("li").removeClass("father-ul-a");
-            $(".father-ul-li").addClass("father-ul-a");
             $(".child-ul").toggle();
         });
 
@@ -589,9 +574,10 @@
     function  initSmall(){
         var map = new AMap.Map("map-location", {
             resizeEnable: true,
-            center: [116.481181, 39.989792],
-            zoom: 16
+            center: detailLnglats[0],
+            zoom: 7
         });
+        map.setZoomAndCenter(7, detailLnglats[0]);
         var lnglats = detailLnglats;
         //添加marker标记
         for (var i = 0, marker; i < lnglats.length; i++) {
@@ -602,6 +588,7 @@
                 map: map,
                 position:  lnglats[i]
             });
+
             marker.setLabel({//label默认蓝框白底左上角显示，样式className为：amap-marker-label
                 offset: new AMap.Pixel(-60, -30),//修改label相对于maker的位置
                 content: detailTit

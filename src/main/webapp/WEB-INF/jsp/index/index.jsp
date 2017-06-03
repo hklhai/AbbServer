@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="${ctx}/css/style.css">
     <script type="text/javascript">
         var calendar = [];
+        var limitDaysArrs = [];
         $(function(){
             var indexData = new Vue({
                 el: "#index-data",
@@ -72,9 +73,17 @@
                             self.systemList = data.systemList;
                             self.workTaskList = data.workTaskList;
                             self.sessionInfo = data.sessionInfo;
+                            //日历显示数据
                             calendar = data.calendar;
-                            /*var tmpheight = $(window).height()-59;
-                            $(".index-content").height(732);*/
+                            for(var i=0;i<calendar.length;i++){
+                                var tmpObj = {};
+                                tmpObj.time = calendar[i].targstartdate;
+                                tmpObj.x = "工作任务：";
+                                tmpObj.y=  calendar[i].wonum.join(",");
+                                limitDaysArrs.push(tmpObj);
+                            }
+                            var tmpheight = $(window).height()-59;
+                            $(".index-content").height(tmpheight);
                         },
                         error: function(){
 
@@ -83,7 +92,6 @@
                 }
             });
         });
-        
     </script>
 </head>
 <body>
@@ -107,9 +115,21 @@
             <div class="index-content-tit"></div>
             <div class="calendar index-div1">
                 <div class="zAccountInner zAccount2 clearfix">
-                    <div class="zAccountPlanL span5 no-margin-left" style="position:absolute;width:100%;">
+                    <div class="zAccountPlanL span5 no-margin-left" style="position:absolute;left:0px;top:0px;width:450px;">
                         <div id="div1"></div> <input type="hidden" id="index_clander" />
                         <input type="hidden" id="d523_y">
+                    </div>
+                    <div class="span7" style="height: 320px;position:absolute;right:0;text-align:center;top:50px;width:290px; display:none;">
+                        <div class="zAccount5 boxSize no-margin-left">
+                            <div class="zAccountPlanRinner zAccountPlanR">
+                                <div class="today"></div>
+                                <div class="week" id="d523_w"></div>
+                                <div class="day" id="d523_d"></div>
+
+                                <p class="date"></p>
+                                <a href="" class="detail"></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -195,29 +215,6 @@
         </div>
     </div>
 </div>
-<script>
-    var limitDaysArrs = [];
-    function doData(){
-        for(var i=0;i<calendar.length;i++){
-            var tmpObj = {};
-            tmpObj.time = calendar[i].targstartdate;
-            tmpObj.x =  calendar[i].wonum.join(",");
-            limtDays.push(tmpObj);
-        }
-    }
-   /* var limitDaysArrs=[
-        {
-            time: '2017-5-5',
-            x:'10、10',
-            y:'10、15'
-        },
-        {
-            time: '2017-5-16',
-            x:'1050、1055',
-            y:'1060、1063'
-        }
-    ]*/
-</script>
 <script src="${ctx}/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="${ctx}/js/DatePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="${ctx}/js/DatePicker/extraDate.js"></script>
