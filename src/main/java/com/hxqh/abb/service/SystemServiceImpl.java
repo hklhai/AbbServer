@@ -40,7 +40,8 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
     private AbbAssetDao abbassetDao;
     @Resource
     private AbbLoginDao abbloginDao;
-
+    @Resource
+    private AbbAssetSpecDao abbAssetSpecDao;
 
     @Value(value = "${com.hxqh.abb.websitepath}")
     private String websitepath;
@@ -134,6 +135,14 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
         params.put("childname", childname);
         List<AbbAsset> abbAssetList = abbassetDao.findAll("DESCRIPTION=:childname", params,null);
         return abbAssetList;
+    }
+
+    @Override
+    public List<AbbAssetSpec> getAssetSpec(String classstructureid) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("classstructureid", classstructureid);
+        List<AbbAssetSpec> assetSpecList = abbAssetSpecDao.findAll("classstructureid=:classstructureid", params, null);
+        return assetSpecList;
     }
 
     @Override

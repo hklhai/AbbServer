@@ -93,6 +93,9 @@ public class SystemTest {
         List<AbbAsset> assetList = systemService.getAssetByChild("馈线柜");
         Assert.assertTrue(assetList.size()>0);
 
+        List<AbbAssetSpec> assetSpecList = systemService.getAssetSpec("1001");
+        Assert.assertTrue(assetSpecList.size()>0);
+
 //        List<AbbLocation> childLocation = locationService.getChildLocation("HZ-HZ");
 //        for(AbbLocation l :childLocation)
 //        {

@@ -3,6 +3,7 @@ package com.hxqh.abb.controller;
 import com.hxqh.abb.common.util.FastJsonTools;
 import com.hxqh.abb.model.dto.action.AssetDto;
 import com.hxqh.abb.model.view.AbbAsset;
+import com.hxqh.abb.model.view.AbbAssetSpec;
 import com.hxqh.abb.model.view.AbbLocation;
 import com.hxqh.abb.service.LocationService;
 import com.hxqh.abb.service.SystemService;
@@ -122,5 +123,19 @@ public class AssetController {
         return abbAssetList;
     }
 
+
+    /**
+     * 通过classstructureid获取备件信息
+     * 暂时未考虑分页
+     * 22017-6-3 18:57:56
+     *
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/assetSpec", method = RequestMethod.POST)
+    public List<AbbAssetSpec> assetSpec(@RequestParam("classstructureid") String classstructureid) {
+        List<AbbAssetSpec> abbAssetList = systemService.getAssetSpec(classstructureid);
+        return abbAssetList;
+    }
 
 }
