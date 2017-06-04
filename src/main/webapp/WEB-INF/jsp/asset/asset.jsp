@@ -120,8 +120,8 @@
                             <td width="10%" style="padding-left: 10px;">状态</td>
                             <td width="20%">设备名称</td>
                             <td width="30%">厂家</td>
-                            <td width="10%">型号</td>
-                            <td width="30%">子设备</td>
+                            <td width="20%">型号</td>
+                            <td width="20%">子设备</td>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -416,12 +416,23 @@
 
                 var equipHtml="";
                 for(var i=0;i<assetList.length;i++){
-                    equipHtml+='<tr><td width="10%" style="padding-left: 10px;">'+assetList[i].state
-                            +'</td><td width="20%">'+assetList[i].description
-                            +'</td><td width="30%">'+assetList[i].name
-                            +'</td><td width="10%">'+assetList[i].udmodel
-                            +'</td><td width="30%">'+assetList[i].parent
-                            +'</td></tr>';
+                    if(assetList[i].haschild == '1'){
+                        equipHtml+='<tr><td width="10%" style="padding-left: 10px;">'+assetList[i].state
+                                +'</td><td width="20%">'+assetList[i].description
+                                +'</td><td width="30%">'+assetList[i].name
+                                +'</td><td width="20%">'+assetList[i].udmodel
+                                +'</td><td width="20%">'+assetList[i].parent
+                                +'</td></tr>';
+                    }else{
+                        equipHtml+='<tr><td width="10%" style="padding-left: 10px;">'+assetList[i].state
+                                +'</td><td width="20%">'+assetList[i].description
+                                +'</td><td width="30%">'+assetList[i].name
+                                +'</td><td width="20%">'+assetList[i].udmodel
+                                +'</td><td width="20%" class="last-td">'+'<img src="${ctx}/img/asset/child-equip.gif" alt="子设备" id="'+assetList[i].childname+'">'
+                                        +'<span class="equip-left"></span>'
+                                +'</td></tr>';
+                    }
+
                 }
                 $(".equip-table table tbody").append(equipHtml);
                 initSmall();
@@ -495,6 +506,38 @@
         $("ul.equip-tree").delegate("li","click",function(){
             var location = $(this).find("a").attr("id");
             equipDetail(location);
+        });
+
+        //子设备查看点击事件
+        $(".equip-table table tbody").delegate("tr td.last-td","click",function(){
+            var childName = $(this).find("img").attr("id");
+            var index = $(this).index();
+            var child = ".child-equip" + index;
+            if($(child).exist()){
+                $(child).toggle();
+            }else{
+                $.ajax({
+                    url: "${ctx}/asset/assetChild",
+                    method: "post",
+                    data:{
+                        childname: childName
+                    },
+                    dataType: "json",
+                    success: function(data){
+                        var childDom = "";
+                        for(var i=0;i<data.length;i++){
+                            childDom+='<tr class="child-equip'+index+'"><td width="10%" style="padding-left: 10px;">'+data[i].state
+                                    +'</td><td width="20%">'+data[i].description
+                                    +'</td><td width="30%">'+data[i].name
+                                    +'</td><td width="20%">'+data[i].udmodel
+                                    +'</td><td width="20%"></td></tr>';
+                        }
+                        $(this).after(childDom);
+                    },
+                    error: function(){
+                    }
+                });
+            }
         });
 
         //设备表行点击事件
@@ -595,6 +638,14 @@
             });
         }
     }
+    (function($) {
+        $.fn.exist = function(){
+            if($(this).length>=1){
+                return true;
+            }
+            return false;
+        };
+    })(jQuery);
 </script>
 <script type="text/javascript" src="http://webapi.amap.com/demos/js/liteToolbar.js"></script>
 </body>
