@@ -416,15 +416,30 @@
 
                 var equipHtml="";
                 for(var i=0;i<assetList.length;i++){
-                    if(assetList[i].haschild == '1'){
-                        equipHtml+='<tr><td width="10%" style="padding-left: 10px;">'+assetList[i].state
+                    //TODO
+                    //设备表状态的图标选择
+                    var states = '';
+                    if(assetList[i].state=='0'){
+                        states = '<img src="${ctx}/img/asset/equip-error.gif">';
+                    }
+                    if(assetList[i].state=='1'){
+                        states = '<img src="${ctx}/img/asset/equip-warn.gif">';
+                    }else{
+                        states = '正常';
+                    }
+                   /* if(assetList[i].state=='2'){
+                        states = '<img src="${ctx}/img/asset/equip-error.gif">';
+                    }*/
+
+                    if(assetList[i].haschild == '0'){
+                        equipHtml+='<tr><td width="10%" style="padding-left: 10px;">'+states
                                 +'</td><td width="20%">'+assetList[i].description
                                 +'</td><td width="30%">'+assetList[i].name
                                 +'</td><td width="20%">'+assetList[i].udmodel
                                 +'</td><td width="20%">'+assetList[i].parent
                                 +'</td></tr>';
                     }else{
-                        equipHtml+='<tr><td width="10%" style="padding-left: 10px;">'+assetList[i].state
+                        equipHtml+='<tr><td width="10%" style="padding-left: 10px;">'+states
                                 +'</td><td width="20%">'+assetList[i].description
                                 +'</td><td width="30%">'+assetList[i].name
                                 +'</td><td width="20%">'+assetList[i].udmodel
@@ -551,6 +566,7 @@
             $(".data-status").text(data.status);
             $(".data-comUdmodel").text(data.udmodel);
             $(".btn-detail").attr("id",data.assetuid);
+            //TODO
             //根据设备的报警状态显示不同的信息
             if(data.state == ""){
                 $(".warn-first-p").text();
