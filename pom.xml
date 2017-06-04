@@ -24,13 +24,13 @@
     </properties>
 
     <distributionManagement>
-        <!--<repository>-->
-            <!--<id>abb-release</id>-->
-            <!--<name>Abb Project Release</name>-->
-            <!--<url>http://120.76.239.5:8081/nexus/content/repositories/releases/</url>-->
-        <!--</repository>-->
+        <repository>
+            <id>abbRelease</id>
+            <name>Abb Project Release</name>
+            <url>http://120.76.239.5:8081/nexus/content/repositories/releases/</url>
+        </repository>
         <snapshotRepository>
-            <id>abb-snapshot</id>
+            <id>abbSnapshot</id>
             <name>Abb Project Snapshot</name>
             <url>http://120.76.239.5:8081/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>

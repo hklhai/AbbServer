@@ -66,8 +66,8 @@ public class Axis2Test {
         goOnService.setWfservicewfGoOn(wfParam);
         try {
             String response = wfService.wfGoOn(goOnService).getWfservicewfGoOnResponse().get_return();
-            System.out.println("===================");
-            System.out.println(response);
+//            System.out.println("===================");
+//            System.out.println(response);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
