@@ -7,6 +7,7 @@ import com.hxqh.abb.model.dto.action.AssetDto;
 import com.hxqh.abb.model.dto.action.IndexDto;
 import com.hxqh.abb.model.dto.action.LoginDto;
 import com.hxqh.abb.model.view.AbbAsset;
+import com.hxqh.abb.model.view.AbbAssetSpec;
 import com.hxqh.abb.model.view.AbbLogin;
 import com.hxqh.abb.service.base.BaseService;
 
@@ -43,6 +44,8 @@ public interface SystemService extends BaseService {
 
     public abstract List<AbbAsset> getAssetByChild(String childname);
 
+    public abstract List<AbbAssetSpec> getAssetSpec(String classstructureid);
+
     /*============================现场及设备地图结束 ==================*/
 
 
@@ -51,6 +54,8 @@ public interface SystemService extends BaseService {
     public abstract String getWebsitPath();
 
     public abstract AbbAsset getAssetById(long assetuid);
+
+
 
     
 
