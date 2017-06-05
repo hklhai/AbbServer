@@ -23,4 +23,14 @@ public class UserServiceImpl extends BaseServiceImpl<Object> implements UserServ
     }
 
 
+    /**
+     *
+     */
+    public void springResendCallbackMsg()
+    {
+        //TODO
+        //定时任务
+
+    }
+
 }

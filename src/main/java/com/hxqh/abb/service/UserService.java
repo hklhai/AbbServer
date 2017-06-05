@@ -12,4 +12,6 @@ public interface UserService extends BaseService {
 
 
     public abstract List<User> getUserList();
+
+    public abstract void springResendCallbackMsg();
 }
