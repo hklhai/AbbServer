@@ -67,16 +67,16 @@
     <!--
     MySQL
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"-->
-          <!--destroy-method="close">-->
-        <!--<property name="driverClassName" value="com.mysql.jdbc.Driver"/>-->
-        <!--<property name="url"-->
-                  <!--value="jdbc:mysql://${jdbc.host}:${jdbc.port}/${jdbc.database}"/>-->
-        <!--<property name="username" value="${jdbc.user}"/>-->
-        <!--<property name="password" value="${jdbc.password}"/>-->
-        <!--<property name="maxActive" value="130"/>-->
-        <!--<property name="maxWait" value="3000"/>-->
-        <!--<property name="removeAbandoned" value="true"/>-->
-        <!--<property name="removeAbandonedTimeout" value="180"/>-->
+    <!--destroy-method="close">-->
+    <!--<property name="driverClassName" value="com.mysql.jdbc.Driver"/>-->
+    <!--<property name="url"-->
+    <!--value="jdbc:mysql://${jdbc.host}:${jdbc.port}/${jdbc.database}"/>-->
+    <!--<property name="username" value="${jdbc.user}"/>-->
+    <!--<property name="password" value="${jdbc.password}"/>-->
+    <!--<property name="maxActive" value="130"/>-->
+    <!--<property name="maxWait" value="3000"/>-->
+    <!--<property name="removeAbandoned" value="true"/>-->
+    <!--<property name="removeAbandonedTimeout" value="180"/>-->
     <!--</bean>-->
 
     <!-- 配置国际化资源文件 -->
@@ -132,6 +132,30 @@
             <aop:around pointcut-ref="webServiceMethods" method="doAround"/>
         </aop:aspect>
     </aop:config>
+
+
+    <!-- 定时任务 -->
+    <!-- 总管理类，如果lazy-init='false',则容器启动时就会执行调度程序-->
+    <!-- 如果lazy-init="true",则需要实例化该bean才能执行调度程序         -->
+    <!--<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean" autowire="no">-->
+        <!--<property name="triggers">-->
+            <!--<list>-->
+                <!--<ref bean="cronTrigger"/>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <!--<bean id="jobDetail"-->
+          <!--class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
+        <!--<property name="targetObject" ref="userService"/>-->
+        <!--<property name="targetMethod" value="springResendCallbackMsg"/>-->
+        <!--&lt;!&ndash;<property name="concurrent" value="false" />&ndash;&gt;-->
+    <!--</bean>-->
+    <!--<bean id="cronTrigger"-->
+          <!--class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">-->
+        <!--<property name="jobDetail" ref="jobDetail"/>-->
+        <!--<property name="cronExpression" value="00 00 00 * * ? "/>-->
+    <!--</bean>-->
+
 
     <import resource="classpath*:META-INF/cxf/cxf.xml"/>
     <import resource="classpath*:META-INF/cxf/cxf-servlet.xml"/>
