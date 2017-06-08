@@ -2,7 +2,6 @@ package com.hxqh.abb.service;
 
 import com.hxqh.abb.dao.UserDao;
 import com.hxqh.abb.model.User;
-import com.hxqh.abb.service.base.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +13,7 @@ import java.util.List;
  */
 @Transactional
 @Service("userService")
-public class UserServiceImpl extends BaseServiceImpl<Object> implements UserService{
+public class UserServiceImpl   implements UserService{
     @Autowired
     private UserDao userDao;
 

@@ -125,13 +125,13 @@
     <context:component-scan base-package="com.hxqh.abb.**.webservice.**"/>
 
     <!--配置com.spring.service包下所有类或接口的所有方法 -->
-    <aop:config>
-        <aop:aspect id="actionAspectId" ref="actionAspect">
-            <aop:pointcut id="webServiceMethods"
-                          expression="execution(* com.hxqh.abb.webservice.*WebService.*(..)) "/>
-            <aop:around pointcut-ref="webServiceMethods" method="doAround"/>
-        </aop:aspect>
-    </aop:config>
+    <!--<aop:config>-->
+        <!--<aop:aspect id="actionAspectId" ref="actionAspect">-->
+            <!--<aop:pointcut id="webServiceMethods"-->
+                          <!--expression="execution(* com.hxqh.abb.webservice.*WebService.*(..)) "/>-->
+            <!--<aop:around pointcut-ref="webServiceMethods" method="doAround"/>-->
+        <!--</aop:aspect>-->
+    <!--</aop:config>-->
 
 
     <!-- 定时任务 -->
@@ -159,5 +159,4 @@
 
     <import resource="classpath*:META-INF/cxf/cxf.xml"/>
     <import resource="classpath*:META-INF/cxf/cxf-servlet.xml"/>
-    <import resource="classpath:spring/spring-cxf.xml"/>
 </beans>

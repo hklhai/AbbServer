@@ -6,7 +6,6 @@ import com.hxqh.abb.model.dto.action.InventoryDto;
 import com.hxqh.abb.model.searchdto.InventorySearchDto;
 import com.hxqh.abb.model.searchdto.Page;
 import com.hxqh.abb.model.view.*;
-import com.hxqh.abb.service.base.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +19,7 @@ import java.util.Map;
  */
 @Transactional
 @Service("locationService")
-public class LocationServiceImpl extends BaseServiceImpl<Object> implements LocationService {
+public class LocationServiceImpl  implements LocationService {
 
     @Autowired
     private AbbInventoryDao abbinventoryDao;

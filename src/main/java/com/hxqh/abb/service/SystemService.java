@@ -1,7 +1,6 @@
 package com.hxqh.abb.service;
 
 import com.hxqh.abb.model.Location;
-import com.hxqh.abb.model.Maxuser;
 import com.hxqh.abb.model.base.SessionInfo;
 import com.hxqh.abb.model.dto.action.AssetDto;
 import com.hxqh.abb.model.dto.action.IndexDto;
@@ -9,14 +8,13 @@ import com.hxqh.abb.model.dto.action.LoginDto;
 import com.hxqh.abb.model.view.AbbAsset;
 import com.hxqh.abb.model.view.AbbAssetSpec;
 import com.hxqh.abb.model.view.AbbLogin;
-import com.hxqh.abb.service.base.BaseService;
 
 import java.util.List;
 
 /**
  * Created by lh on 2017/4/14.
  */
-public interface SystemService extends BaseService {
+public interface SystemService  {
 
     /*============================测试开始===========================*/
     public abstract List<Location> getLocationList();

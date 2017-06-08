@@ -8,7 +8,6 @@ import com.hxqh.abb.model.dto.action.Calendar;
 import com.hxqh.abb.model.dto.action.IndexDto;
 import com.hxqh.abb.model.dto.action.LoginDto;
 import com.hxqh.abb.model.view.*;
-import com.hxqh.abb.service.base.BaseServiceImpl;
 import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +22,7 @@ import java.util.*;
  */
 @Transactional
 @Service("systemService")
-public class SystemServiceImpl extends BaseServiceImpl<Object> implements SystemService {
+public class SystemServiceImpl implements SystemService {
     @Autowired
     private LocationDao locationDao;
     @Autowired
@@ -83,26 +82,25 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
         //增加对Calendar处理
         List<Calendar> calendar = process(calendarList);
 
-        IndexDto indexDto = new IndexDto(calendarList, assetList, wfassignmentList, sessionInfo,calendar);
+        IndexDto indexDto = new IndexDto(calendarList, assetList, wfassignmentList, sessionInfo, calendar);
         return indexDto;
     }
 
-    private  List<Calendar> process(List<AbbIndexWorkorder> calendarList) {
+    private List<Calendar> process(List<AbbIndexWorkorder> calendarList) {
         //先放入Map中
         Map<Date, List<String>> map = new HashMap<>();
         Set<Map.Entry<Date, List<String>>> entries = map.entrySet();
         for (AbbIndexWorkorder cal : calendarList) {
             List<String> wList = new ArrayList<>();
 
-            if (map.size() == 0&&cal.getTargstartdate()!=null) {
+            if (map.size() == 0 && cal.getTargstartdate() != null) {
                 wList.add(cal.getWonum());
                 map.put(cal.getTargstartdate(), wList);
             } else {
                 for (Map.Entry<Date, List<String>> entry : entries) {
-                    if(DateUtils.isSameDay(cal.getTargstartdate(),entry.getKey()))
-                    {
+                    if (DateUtils.isSameDay(cal.getTargstartdate(), entry.getKey())) {
                         entry.getValue().add(cal.getWonum());
-                    }else {
+                    } else {
                         wList.add(cal.getWonum());
                         map.put(cal.getTargstartdate(), wList);
                     }
@@ -112,7 +110,7 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
 
         List<Calendar> calendar = new ArrayList<>();
         for (Map.Entry<Date, List<String>> entry : entries) {
-            Calendar c = new Calendar(entry.getKey(),entry.getValue());
+            Calendar c = new Calendar(entry.getKey(), entry.getValue());
             calendar.add(c);
         }
         return calendar;
@@ -133,7 +131,7 @@ public class SystemServiceImpl extends BaseServiceImpl<Object> implements System
     public List<AbbAsset> getAssetByChild(String childname) {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("childname", childname);
-        List<AbbAsset> abbAssetList = abbassetDao.findAll("DESCRIPTION=:childname", params,null);
+        List<AbbAsset> abbAssetList = abbassetDao.findAll("DESCRIPTION=:childname", params, null);
         return abbAssetList;
     }
 

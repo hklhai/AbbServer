@@ -1,10 +1,9 @@
 package com.hxqh.abb.model;
 
 import com.thoughtworks.xstream.XStream;
-import com.hxqh.abb.model.base.BaseModel;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -15,7 +14,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name="LOCATIONS")
-public class Location extends BaseModel implements Serializable {
+public class Location  implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -608,11 +607,6 @@ public class Location extends BaseModel implements Serializable {
 		this.useinpopr = useinpopr;
 	}
 
-	@Override
-	protected void setConvertRules(XStream xstream) {
-		xstream.alias("Location", Location.class);
-		xstream.setMode(XStream.NO_REFERENCES);
-	}
 
 	@Override
 	public String toString() {
