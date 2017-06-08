@@ -27,12 +27,12 @@
         <repository>
             <id>abbRelease</id>
             <name>Abb Project Release</name>
-            <url>http://120.76.239.5:8081/nexus/content/repositories/releases/</url>
+            <url>http://abbNexus.com:8081/nexus/content/repositories/releases/</url>
         </repository>
         <snapshotRepository>
             <id>abbSnapshot</id>
             <name>Abb Project Snapshot</name>
-            <url>http://120.76.239.5:8081/nexus/content/repositories/snapshots/</url>
+            <url>http://abbNexus.com:8081/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
@@ -50,7 +50,7 @@
         <repository>
             <id>Nexus</id>
             <name>Nexus Repository</name>
-            <url>http://120.76.239.5:8081/nexus/content/groups/public/</url>
+            <url>http://abbNexus.com:8081/nexus/content/groups/public/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
