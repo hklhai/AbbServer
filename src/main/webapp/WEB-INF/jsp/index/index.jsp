@@ -13,7 +13,9 @@
     <meta charset='utf-8'>
     <title>首页</title>
     <meta name="keywords" content="">
-    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" ;content="IE=edge, chrome=1">
+    <script src="${ctx}/scripts/jquery-1.8.3.min.js"></script>
     <script src="${ctx}/scripts/vue.js"></script>
     <link rel="stylesheet" href="${ctx}/css/reset.css">
     <link rel="stylesheet" href="${ctx}/css/index.css">
@@ -138,27 +140,27 @@
                     <p>工作任务</p>
                     <table>
                         <thead>
-                            <tr>
-                                <td width="15%" style="padding-left:2%">工单流水号</td>
-                                <td width="15%">工单描述</td>
-                                <td width="15%">位置描述</td>
-                                <td width="15%">工作负责人</td>
-                                <td width="20%">开始日</td>
-                                <td width="10%">状态</td>
-                                <!--实际长度为77px，因为字体原因先改动width-->
-                                <td width="10%">所属服务站</td>
-                            </tr>
+                        <tr>
+                            <td width="15%" style="padding-left:2%">工单流水号</td>
+                            <td width="15%">工单描述</td>
+                            <td width="15%">位置描述</td>
+                            <td width="15%">工作负责人</td>
+                            <td width="20%">开始日</td>
+                            <td width="10%">状态</td>
+                            <!--实际长度为77px，因为字体原因先改动width-->
+                            <td width="10%">所属服务站</td>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="work in calendarList">
-                                <td style="padding-left:2%;">{{work.wonum}}</td>
-                                <td>{{work.description}}</td>
-                                <td>{{work.locationsDecription}}</td>
-                                <td>{{work.displayname}}</td>
-                                <td>{{work.targstartdate}}</td>
-                                <td>{{work.status}}</td>
-                                <td>{{work.siteid}}</td>
-                            </tr>
+                        <tr v-for="work in calendarList">
+                            <td style="padding-left:2%;">{{work.wonum}}</td>
+                            <td>{{work.description}}</td>
+                            <td>{{work.locationsDecription}}</td>
+                            <td>{{work.displayname}}</td>
+                            <td>{{work.targstartdate}}</td>
+                            <td>{{work.status}}</td>
+                            <td>{{work.siteid}}</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
