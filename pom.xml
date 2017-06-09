@@ -27,12 +27,12 @@
         <repository>
             <id>abbRelease</id>
             <name>Abb Project Release</name>
-            <url>http://120.76.239.5:8081/nexus/content/repositories/releases/</url>
+            <url>http://abbNexus.com:8081/nexus/content/repositories/releases/</url>
         </repository>
         <snapshotRepository>
             <id>abbSnapshot</id>
             <name>Abb Project Snapshot</name>
-            <url>http://120.76.239.5:8081/nexus/content/repositories/snapshots/</url>
+            <url>http://abbNexus.com:8081/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
@@ -50,7 +50,7 @@
         <repository>
             <id>Nexus</id>
             <name>Nexus Repository</name>
-            <url>http://120.76.239.5:8081/nexus/content/groups/public/</url>
+            <url>http://abbNexus.com:8081/nexus/content/groups/public/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -194,6 +194,7 @@
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>javax.servlet.jsp-api</artifactId>
             <version>2.3.1</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- jetty -->
@@ -618,6 +619,12 @@
             <version>1.1</version>
         </dependency>
         <!-- WeiXin Support -->
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.2.1</version>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>AbbServer</finalName>
@@ -625,10 +632,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>2.5.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
         </plugins>

@@ -1,6 +1,5 @@
 package com.hxqh.abb.model;
 
-import com.hxqh.abb.model.base.BaseModel;
 import com.thoughtworks.xstream.XStream;
 
 import javax.persistence.Entity;
@@ -11,7 +10,7 @@ import java.io.Serializable;
 
 //@Entity
 //@Table(name = "tb_user")
-public class User extends BaseModel implements Serializable {
+public class User  implements Serializable {
 
     private int id;
     private String name;
@@ -64,9 +63,4 @@ public class User extends BaseModel implements Serializable {
     }
 
 
-    @Override
-    protected void setConvertRules(XStream xstream) {
-        xstream.alias("User", User.class);
-        xstream.setMode(XStream.NO_REFERENCES);
-    }
 }

@@ -1,7 +1,7 @@
 package com.hxqh.abb.model;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 
 

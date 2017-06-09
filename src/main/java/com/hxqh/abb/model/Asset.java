@@ -1,12 +1,9 @@
 package com.hxqh.abb.model;
 
-import com.thoughtworks.xstream.XStream;
-import com.hxqh.abb.model.base.BaseModel;
-
-import java.io.Serializable;
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
 
 
@@ -16,7 +13,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name="Asset")
-public class Asset extends BaseModel implements Serializable {
+public class Asset  implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -1183,9 +1180,4 @@ public class Asset extends BaseModel implements Serializable {
 		this.ytdcost = ytdcost;
 	}
 
-	@Override
-	protected void setConvertRules(XStream xstream) {
-		xstream.alias("Asset", Asset.class);
-		xstream.setMode(XStream.NO_REFERENCES);
-	}
 }

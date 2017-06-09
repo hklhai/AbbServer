@@ -1,13 +1,12 @@
 package com.hxqh.abb.service;
 
-import com.hxqh.abb.model.searchdto.Page;
 import com.hxqh.abb.dao.AbbInventorySiteDao;
 import com.hxqh.abb.dao.AbbUdtoolDao;
 import com.hxqh.abb.model.dto.action.ToolDto;
+import com.hxqh.abb.model.searchdto.Page;
 import com.hxqh.abb.model.searchdto.UdtoolDto;
 import com.hxqh.abb.model.view.AbbInventorySite;
 import com.hxqh.abb.model.view.AbbUdtool;
-import com.hxqh.abb.service.base.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +21,7 @@ import java.util.Map;
  */
 @Transactional
 @Service("toolService")
-public class ToolServiceImpl extends BaseServiceImpl<Object> implements ToolService {
+public class ToolServiceImpl implements ToolService {
     @Autowired
     private AbbUdtoolDao udtoolDao;
     @Autowired

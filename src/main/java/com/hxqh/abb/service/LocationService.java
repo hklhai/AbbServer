@@ -1,19 +1,17 @@
 package com.hxqh.abb.service;
 
 import com.hxqh.abb.model.dto.action.CityDto;
-import com.hxqh.abb.model.searchdto.Page;
 import com.hxqh.abb.model.dto.action.InventoryDto;
 import com.hxqh.abb.model.searchdto.InventorySearchDto;
-import com.hxqh.abb.model.view.AbbInventory;
+import com.hxqh.abb.model.searchdto.Page;
 import com.hxqh.abb.model.view.AbbLocation;
-import com.hxqh.abb.service.base.BaseService;
 
 import java.util.List;
 
 /**
  * Created by lh on 2017/5/6.
  */
-public interface LocationService extends BaseService {
+public interface LocationService  {
 
 
 
