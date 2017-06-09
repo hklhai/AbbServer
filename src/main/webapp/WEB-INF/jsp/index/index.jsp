@@ -117,7 +117,7 @@
             <div class="index-content-tit"></div>
             <div class="calendar index-div1">
                 <div class="zAccountInner zAccount2 clearfix">
-                    <div class="zAccountPlanL span5 no-margin-left" style="position:absolute;left:0px;top:0px;width:450px;">
+                    <div class="zAccountPlanL span5 no-margin-left" style="position:absolute;left:0px;top:0px;width:100%;">
                         <div id="div1"></div> <input type="hidden" id="index_clander" />
                         <input type="hidden" id="d523_y">
                     </div>
@@ -127,7 +127,6 @@
                                 <div class="today"></div>
                                 <div class="week" id="d523_w"></div>
                                 <div class="day" id="d523_d"></div>
-
                                 <p class="date"></p>
                                 <a href="" class="detail"></a>
                             </div>
