@@ -169,7 +169,7 @@
         <%--设备详情页--%>
 
         <div class="equip-detail-form" style="display: none;">
-            <h4><i>南京-----南京供电公司----设备详情</i><span class="close"></span></h4>
+            <h4>南京-----南京供电公司----设备详情<span class="close"></span></h4>
             <div class="sel-Tab">
                 <button class="basic-info">基础信息</button>
                 <button class="tecno-info">技术信息</button>
@@ -180,57 +180,51 @@
                 <table class="basic">
                     <tr>
                         <td>设备编码</td>
-                        <td class="basic-assetnum"></td>
+                        <td></td>
                         <td>合同号</td>
-                        <td class="basic-udcontract"></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>设备描述</td>
-                        <td class="basic-description"></td>
+                        <td></td>
                         <td>序列号</td>
-                        <td class="basic-serialnum"></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>设备状态</td>
-                        <td class="basic-status"></td>
+                        <td></td>
                         <td>型号</td>
-                        <td class="basic-udmodel"></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>制造商</td>
-                        <td class="companies-name"></td>
+                        <td></td>
                         <td>安装日期</td>
-                        <td class="basic-installdate"></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>报警</td>
-                        <td class="basic-state"></td>
+                        <td></td>
                         <td>位置</td>
-                        <td class="basic-location"></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>归属公司</td>
-                        <td class="basic-udbelong"></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                     </tr>
                 </table>
-                <table class="sth" style="display: none;">
+                <table class="sth" style="display:none;">
                     <thead>
-                        <tr>
-                            <td width="160px">物资</td>
-                            <td width="260px">描述</td>
-                            <td width="95px">库存余量</td>
-                            <td width="100px">仓库归属</td>
-                        </tr>
+                    <tr>
+                        <td width="160px">物资</td>
+                        <td width="260px">描述</td>
+                        <td width="95px">库存余量</td>
+                        <td width="100px">仓库归属</td>
+                    </tr>
                     </thead>
                     <tbody>
-                   <%-- <tr>
-                        <td>物资</td>
-                        <td>描述</td>
-                        <td>库存余量</td>
-                        <td>仓库归属</td>
-                    </tr>
                     <tr>
                         <td>物资</td>
                         <td>描述</td>
@@ -242,9 +236,137 @@
                         <td>描述</td>
                         <td>库存余量</td>
                         <td>仓库归属</td>
-                    </tr>--%>
+                    </tr>
+                    <tr>
+                        <td>物资</td>
+                        <td>描述</td>
+                        <td>库存余量</td>
+                        <td>仓库归属</td>
+                    </tr>
                     </tbody>
                 </table>
+                <table class="technology" style="display:none;">
+                    <thead>
+                    <tr>
+                        <td width="95px">属性</td>
+                        <td width="160px">描述</td>
+                        <td width="210px">文本及数量</td>
+                        <td width="150px">计量单位</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>物资</td>
+                        <td>描述</td>
+                        <td>库存余量</td>
+                        <td>仓库归属</td>
+                    </tr>
+                    <tr>
+                        <td>物资</td>
+                        <td>描述</td>
+                        <td>库存余量</td>
+                        <td>仓库归属</td>
+                    </tr>
+                    <tr>
+                        <td>物资</td>
+                        <td>描述</td>
+                        <td>库存余量</td>
+                        <td>仓库归属</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="history" style="display: none;">
+                    <div>
+                        <button>工单记录</button>
+                        <button>服务执行记录</button>
+                        <button>设备检测记录</button>
+                        <button>设备维护记录</button>
+                    </div>
+                    <table class="history-table  gongdan" style="display: none;">
+                        <thead>
+                        <tr>
+                            <td width="87px">工单流水号</td>
+                            <td width="87px">工单描述</td>
+                            <td width="87px">位置描述</td>
+                            <td width="87px">设备描述</td>
+                            <td width="87px">工作负责人</td>
+                            <td width="87px">状态</td>
+                            <td width="87px">所属服务站</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>物资</td>
+                            <td>描述</td>
+                            <td>库存余量</td>
+                            <td>仓库归属</td>
+                            <td>库存余量</td>
+                            <td>仓库归属</td>
+                            <td>库存余量</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="history-table zhixing" style="display: none;">
+                        <thead>
+                        <tr>
+                            <td width="122px">服务执行号</td>
+                            <td width="122px">描述</td>
+                            <td width="122px">服务合同号</td>
+                            <td width="122px">服务工程师</td>
+                            <td width="122px">工作时间</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>物资</td>
+                            <td>描述</td>
+                            <td>库存余量</td>
+                            <td>仓库归属</td>
+                            <td>库存余量</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="history-table shebeijiance">
+                        <thead>
+                        <tr>
+                            <td width="122px">计量表</td>
+                            <td width="122px">描述</td>
+                            <td width="122px">计量表类型</td>
+                            <td width="122px">读数/平均值</td>
+                            <td width="122px">读数最大值</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>物资</td>
+                            <td>描述</td>
+                            <td>库存余量</td>
+                            <td>仓库归属</td>
+                            <td>库存余量</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="history-table shebeiweihu">
+                        <thead>
+                        <tr>
+                            <td width="122px">计量表</td>
+                            <td width="122px">描述</td>
+                            <td width="122px">计量表类型</td>
+                            <td width="122px">读数/平均值</td>
+                            <td width="122px">读数最大值</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>物资</td>
+                            <td>描述</td>
+                            <td>库存余量</td>
+                            <td>仓库归属</td>
+                            <td>库存余量</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -622,10 +744,21 @@
         $(".basic-info").click(function(){
             $("button.basic-info").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
             $("table.basic").show().siblings("table").hide();
+            $("div.history").hide();
         });
         $(".sth-info").click(function(){
             $("button.sth-info").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
             $("table.sth").show().siblings("table").hide();
+            $("div.history").hide();
+        });
+        $(".tecno-info").click(function(){
+            $("button.sth-info").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
+            $("table.technology").show().siblings("table").hide();
+            $("div.history").hide();
+        });
+        $(".history-info").click(function(){
+            $("button.history-info").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
+            $("div.history").show().siblings("table").hide();
         });
     });
 

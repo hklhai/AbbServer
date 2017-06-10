@@ -54,14 +54,14 @@ table.basic{
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	border-collapse:separate; 
+	border-collapse:separate;
 	border-spacing:0px 15px;
 }
 table.basic tr{
 	height: 30px;
 	line-height: 30px;
 	font-size: 12px;
-    color: rgb(70, 70, 70);
+	color: rgb(70, 70, 70);
 }
 table.basic tr td:nth-child(1),table.basic tr td:nth-child(3){
 	padding-left: 36px;
@@ -70,28 +70,72 @@ table.basic tr td:nth-child(1),table.basic tr td:nth-child(3){
 table.basic tr td:nth-child(2),table.basic tr td:nth-child(4){
 	width: 229px;
 	border: 1px solid #dcdcdc;
-	padding-left: 10px;
 }
-table.sth{
+table.sth,table.technology{
 	position: absolute;
 	top: 0px;
 	left: 0px;
 	margin-left: 40px;
 	margin-right: 40px;
 }
-table.sth thead tr{
-    border-bottom: 2px solid #dadada;
+table.sth thead tr,table.technology thead tr{
+	border-bottom: 2px solid #dadada;
 }
-table.sth tr{
+table.sth tr,table.technology tr{
 	height: 43px;
 	line-height: 43px;
 	font-size: 12px;
 	color: rgb(70, 70, 70);
 }
-table.sth tr td:nth-child(1){
-    padding-left: 15px;
+table.sth tr td:nth-child(1),table.technology tr td:nth-child(1){
+	padding-left: 15px;
 }
-table.sth tbody tr{
+table.sth tbody tr,table.technology tbody tr{
 	border-bottom: 1px solid #dadada;
 }
-
+div.history{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 93%;
+	border-top: 1px solid #dadada;
+	padding-top: 8px;
+	margin-left: 27px;
+	margin-right: 27px;
+}
+div.history div{
+	width: 440px;
+	margin: 0 auto;
+}
+div.history button{
+	height: 28px;
+	line-height: 28px;
+	/*font-size: 12px;*/
+	background: #EAEAEA;
+	border: 1px solid #dcdcdc;
+	width: 96px;
+	text-align: center;
+	margin-left: 8px;
+}
+.history-table{
+	width: 100%;
+	margin-top: 20px;
+	position: absolute;
+	left: 0px;
+	top: 40px;
+}
+.history-table thead tr{
+	border-bottom: 2px solid #dadada;
+}
+.history-table tbody tr{
+	border-bottom: 1px solid #dadada;
+}
+.history-table tr{
+	height: 43px;
+	line-height: 43px;
+	font-size: 12px;
+	color: rgb(70, 70, 70);
+}
+.history-table tr td:nth-child(1){
+	padding-left: 15px;
+}
