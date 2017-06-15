@@ -31,53 +31,38 @@
     </bean>
 
 
-    <!-- XML 手动注解方式（注：注意set方法需要手动写明） <bean name="weixinMsgController" id="weixinMsgController"
-        class="hxqh.eam.abb.istc.controller.weixin.WeixinMsgController"> <property
-        name="queryService"> <ref bean="queryService"></ref> </property> </bean>
-        <bean name="queryService" id="queryService" class="hxqh.eam.abb.istc.service.mobile.QueryServiceImpl">
-        <property name="productDao"> <ref bean="productDao"></ref> </property> </bean>
-        <bean name="productDao" id="productDao" class="hxqh.eam.abb.istc.dao.ProductDaoImpl">
-        </bean> -->
-
-
-    <!--使用spring管理MongoDB -->
-    <!-- 	<mongo:db-factory id="mongoDbFactory" host="${mongo_host}"
-            port="${mongo_port}" dbname="${mongo_dbname}" username="${mongo_username}"
-            password="${mongo_password}" />
-        <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-            <constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
-        </bean>
-     -->
-
     <!-- DataSource -->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-          destroy-method="close">
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
         <property name="driverClassName" value="com.ibm.db2.jcc.DB2Driver"/>
-        <property name="url"
-                  value="jdbc:db2://${jdbc.host}:${jdbc.port}/${jdbc.database}"/>
+        <property name="url" value="jdbc:db2://${jdbc.host}:${jdbc.port}/${jdbc.database}"/>
         <property name="username" value="${jdbc.user}"/>
         <property name="password" value="${jdbc.password}"/>
-        <property name="maxActive" value="130"/>
-        <property name="maxWait" value="3000"/>
         <property name="removeAbandoned" value="true"/>
         <property name="removeAbandonedTimeout" value="180"/>
+
+        <property name="connectionProperties" value="config.decrypt=true"/>
+        <!--<property name="filters" value="config" />-->
+        <!-- 配置初始化大小、最小、最大 -->
+        <property name="initialSize" value="1" />
+        <property name="minIdle" value="1" />
+        <property name="maxActive" value="20" />
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="60000" />
+
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000" />
+
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="300000" />
+
+        <property name="testWhileIdle" value="true" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="poolPreparedStatements" value="true" />
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
     </bean>
 
-
-    <!--
-    MySQL
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"-->
-    <!--destroy-method="close">-->
-    <!--<property name="driverClassName" value="com.mysql.jdbc.Driver"/>-->
-    <!--<property name="url"-->
-    <!--value="jdbc:mysql://${jdbc.host}:${jdbc.port}/${jdbc.database}"/>-->
-    <!--<property name="username" value="${jdbc.user}"/>-->
-    <!--<property name="password" value="${jdbc.password}"/>-->
-    <!--<property name="maxActive" value="130"/>-->
-    <!--<property name="maxWait" value="3000"/>-->
-    <!--<property name="removeAbandoned" value="true"/>-->
-    <!--<property name="removeAbandonedTimeout" value="180"/>-->
-    <!--</bean>-->
 
     <!-- 配置国际化资源文件 -->
     <bean id="messageSource"
@@ -93,8 +78,7 @@
             base-package="com.hxqh.abb.common.basedao,com.hxqh.abb.dao,com.hxqh.abb.common.util"/>
 
 
-    <bean id="sessionFactory"
-          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource">
             <ref bean="dataSource"/>
         </property>
@@ -122,15 +106,16 @@
     <!-- component-scan自动搜索@Component , @Controller , @Service , @Repository等标注的类 -->
     <context:component-scan base-package="com.hxqh.abb.**.service"/>
 
-    <context:component-scan base-package="com.hxqh.abb.**.webservice.**"/>
+    <import resource="classpath*:META-INF/cxf/cxf.xml"/>
+    <import resource="classpath*:META-INF/cxf/cxf-servlet.xml"/>
 
     <!--配置com.spring.service包下所有类或接口的所有方法 -->
     <!--<aop:config>-->
-        <!--<aop:aspect id="actionAspectId" ref="actionAspect">-->
-            <!--<aop:pointcut id="webServiceMethods"-->
-                          <!--expression="execution(* com.hxqh.abb.webservice.*WebService.*(..)) "/>-->
-            <!--<aop:around pointcut-ref="webServiceMethods" method="doAround"/>-->
-        <!--</aop:aspect>-->
+    <!--<aop:aspect id="actionAspectId" ref="actionAspect">-->
+    <!--<aop:pointcut id="webServiceMethods"-->
+    <!--expression="execution(* com.hxqh.abb.webservice.*WebService.*(..)) "/>-->
+    <!--<aop:around pointcut-ref="webServiceMethods" method="doAround"/>-->
+    <!--</aop:aspect>-->
     <!--</aop:config>-->
 
 
@@ -138,25 +123,66 @@
     <!-- 总管理类，如果lazy-init='false',则容器启动时就会执行调度程序-->
     <!-- 如果lazy-init="true",则需要实例化该bean才能执行调度程序         -->
     <!--<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean" autowire="no">-->
-        <!--<property name="triggers">-->
-            <!--<list>-->
-                <!--<ref bean="cronTrigger"/>-->
-            <!--</list>-->
-        <!--</property>-->
+    <!--<property name="triggers">-->
+    <!--<list>-->
+    <!--<ref bean="cronTrigger"/>-->
+    <!--</list>-->
+    <!--</property>-->
     <!--</bean>-->
     <!--<bean id="jobDetail"-->
-          <!--class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
-        <!--<property name="targetObject" ref="userService"/>-->
-        <!--<property name="targetMethod" value="springResendCallbackMsg"/>-->
-        <!--&lt;!&ndash;<property name="concurrent" value="false" />&ndash;&gt;-->
+    <!--class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
+    <!--<property name="targetObject" ref="userService"/>-->
+    <!--<property name="targetMethod" value="springResendCallbackMsg"/>-->
+    <!--&lt;!&ndash;<property name="concurrent" value="false" />&ndash;&gt;-->
     <!--</bean>-->
     <!--<bean id="cronTrigger"-->
-          <!--class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">-->
-        <!--<property name="jobDetail" ref="jobDetail"/>-->
-        <!--<property name="cronExpression" value="00 00 00 * * ? "/>-->
+    <!--class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">-->
+    <!--<property name="jobDetail" ref="jobDetail"/>-->
+    <!--<property name="cronExpression" value="00 00 00 * * ? "/>-->
+    <!--</bean>-->
+    <!-- XML 手动注解方式（注：注意set方法需要手动写明） <bean name="weixinMsgController" id="weixinMsgController"
+            class="hxqh.eam.abb.istc.controller.weixin.WeixinMsgController"> <property
+            name="queryService"> <ref bean="queryService"></ref> </property> </bean>
+            <bean name="queryService" id="queryService" class="hxqh.eam.abb.istc.service.mobile.QueryServiceImpl">
+            <property name="productDao"> <ref bean="productDao"></ref> </property> </bean>
+            <bean name="productDao" id="productDao" class="hxqh.eam.abb.istc.dao.ProductDaoImpl">
+            </bean> -->
+
+
+    <!--使用spring管理MongoDB -->
+    <!-- 	<mongo:db-factory id="mongoDbFactory" host="${mongo_host}"
+            port="${mongo_port}" dbname="${mongo_dbname}" username="${mongo_username}"
+            password="${mongo_password}" />
+        <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+            <constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
+        </bean>
+     -->
+
+    <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">-->
+    <!--<property name="driverClassName" value="com.ibm.db2.jcc.DB2Driver"/>-->
+    <!--<property name="url"-->
+    <!--value="jdbc:db2://${jdbc.host}:${jdbc.port}/${jdbc.database}"/>-->
+    <!--<property name="username" value="${jdbc.user}"/>-->
+    <!--<property name="password" value="${jdbc.password}"/>-->
+    <!--<property name="maxActive" value="130"/>-->
+    <!--<property name="maxWait" value="3000"/>-->
+    <!--<property name="removeAbandoned" value="true"/>-->
+    <!--<property name="removeAbandonedTimeout" value="180"/>-->
+    <!--</bean>-->
+    <!--
+    MySQL
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"-->
+    <!--destroy-method="close">-->
+    <!--<property name="driverClassName" value="com.mysql.jdbc.Driver"/>-->
+    <!--<property name="url"-->
+    <!--value="jdbc:mysql://${jdbc.host}:${jdbc.port}/${jdbc.database}"/>-->
+    <!--<property name="username" value="${jdbc.user}"/>-->
+    <!--<property name="password" value="${jdbc.password}"/>-->
+    <!--<property name="maxActive" value="130"/>-->
+    <!--<property name="maxWait" value="3000"/>-->
+    <!--<property name="removeAbandoned" value="true"/>-->
+    <!--<property name="removeAbandonedTimeout" value="180"/>-->
     <!--</bean>-->
 
 
-    <import resource="classpath*:META-INF/cxf/cxf.xml"/>
-    <import resource="classpath*:META-INF/cxf/cxf-servlet.xml"/>
 </beans>

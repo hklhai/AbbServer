@@ -106,6 +106,9 @@ public class IndexController {
                     SessionInfo sessionInfo = new SessionInfo(login.getLoginid(), login.getDefsite(), " ", login.getDisplayname());
                     sessionInfo.setLongitude(login.getLongitude());
                     sessionInfo.setDimension(login.getDimension());
+                    //加入location
+                    sessionInfo.setLocation(login.getLocation());
+
                     map.put("sessionInfo", sessionInfo);
                     return success;
                 } else {
@@ -158,7 +161,6 @@ public class IndexController {
         return "login";
     }
 
-
     /**
      * loginWebChat  微信后台开发
      *
@@ -166,12 +168,12 @@ public class IndexController {
      */
     @ResponseBody
     @RequestMapping(value = "/loginWebChat", method = RequestMethod.POST)
-    public ModelAndView loginWebChat(LoginDto loginDto, Map<String, Object> map) {
+    public String loginWebChat(LoginDto loginDto, Map<String, Object> map) {
         List<AbbLogin> loginUserList = systemService.getLoginUserList(loginDto);
         return webChatLogin(loginUserList, loginDto, map);
     }
 
-    private ModelAndView webChatLogin(List<AbbLogin> loginUserList, LoginDto loginDto, Map<String, Object> map) {
+    private String webChatLogin(List<AbbLogin> loginUserList, LoginDto loginDto, Map<String, Object> map) {
         Map<String, Object> result = new HashMap<>();
         if (loginUserList.size() > 0) {
             String password = null;
@@ -185,19 +187,19 @@ public class IndexController {
                     sessionInfo.setLongitude(login.getLongitude());
                     sessionInfo.setDimension(login.getDimension());
                     map.put("sessionInfo", sessionInfo);
-                    return new ModelAndView("index/index");
+                    return "weixin/asset";
                 } else {
                     result.put("message", "密码不正确");
-                    return new ModelAndView("weixin/fail", result);
+                    return "weixin/fail";
                 }
             } catch (MXException e) {
                 result.put("message", "异常，请联系管理员！");
                 e.printStackTrace();
-                return new ModelAndView("weixin/fail", result);
+                return "weixin/fail";
             }
         } else {
             result.put("message", "用户名不存在");
-            return new ModelAndView("weixin/fail", result);
+            return "weixin/fail";
         }
     }
 

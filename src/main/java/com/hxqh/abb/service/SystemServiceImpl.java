@@ -74,11 +74,17 @@ public class SystemServiceImpl implements SystemService {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("siteid", sessionInfo.getSiteid());
         params.put("reportedby", sessionInfo.getDisplayname());
-        String where = "targstartdate is not null and reportedby=:reportedby";
+        if (null != sessionInfo.getLocation())
+            params.put("assigncode", sessionInfo.getLocation());
 
-        List<AbbIndexWorkorder> calendarList = abbindexworkorderDao.findAll(0, 5, where, params, " order by workorderid desc");
+        String workorderWhere = "targstartdate is not null and reportedby=:reportedby";
+        String wfWhere = "startdate is not null and duedate is not null";
+        String wflWhere = wfWhere + " and assigncode=:assigncode";
+        String wfassignmentWhere = null == sessionInfo.getLocation() ? wfWhere : wflWhere;
+
+        List<AbbIndexWorkorder> calendarList = abbindexworkorderDao.findAll(0, 5, workorderWhere, params, " order by workorderid desc");
         List<AbbIndexAsset> assetList = abbindexassetDao.findAll(0, 4, " siteid=:siteid ", params, " order by assetuid desc");
-        List<AbbIndexWfassignment> wfassignmentList = abbindexwfassignmentDao.findAll(0, 5, "startdate is not null and duedate is not null", params, " order by wfassignmentid desc");
+        List<AbbIndexWfassignment> wfassignmentList = abbindexwfassignmentDao.findAll(0, 5, wfassignmentWhere, params, " order by wfassignmentid desc");
         //增加对Calendar处理
         List<Calendar> calendar = process(calendarList);
 

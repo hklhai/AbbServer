@@ -26,7 +26,17 @@ public class AbbIndexWfassignment implements Serializable {
 
 	private Date startdate;
 
+	private String assigncode;
+
 	public AbbIndexWfassignment() {
+	}
+
+	public String getAssigncode() {
+		return assigncode;
+	}
+
+	public void setAssigncode(String assigncode) {
+		this.assigncode = assigncode;
 	}
 
 	public long getWfassignmentid() {

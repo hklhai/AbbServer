@@ -17,6 +17,9 @@ public class SessionInfo {
 
     private String dimension;
 
+    private String location;
+
+
     public SessionInfo() {
     }
 
@@ -25,6 +28,14 @@ public class SessionInfo {
         this.siteid = siteid;
         this.orgid = orgid;
         this.displayname = displayname;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getLongitude() {
