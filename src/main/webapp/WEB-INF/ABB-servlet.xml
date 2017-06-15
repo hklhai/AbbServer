@@ -44,18 +44,18 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
     </bean>
 
     <!-- 拦截器 Session 判断 -->
-    <!--<mvc:interceptors>-->
-        <!--<mvc:interceptor>-->
-            <!--<mvc:mapping path="/**"/>-->
-            <!--<mvc:exclude-mapping path="/indexFirst.jsp"/>-->
-            <!--<mvc:exclude-mapping path="/*/*.css"/>-->
-            <!--<mvc:exclude-mapping path="/*/*.js"/>-->
-            <!--<mvc:exclude-mapping path="/*/*.gif"/>-->
-            <!--<mvc:exclude-mapping path="/*/*/*.gif"/>-->
-            <!--<mvc:exclude-mapping path="/*/*/*.jpg"/>-->
-            <!--<bean id="loginInterceptor" class="com.hxqh.abb.controller.LoginInterceptor"/>-->
-        <!--</mvc:interceptor>-->
-    <!--</mvc:interceptors>-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/indexFirst.jsp"/>
+            <mvc:exclude-mapping path="/*/*.css"/>
+            <mvc:exclude-mapping path="/*/*.js"/>
+            <mvc:exclude-mapping path="/*/*.gif"/>
+            <mvc:exclude-mapping path="/*/*/*.gif"/>
+            <mvc:exclude-mapping path="/*/*/*.jpg"/>
+            <bean id="loginInterceptor" class="com.hxqh.abb.controller.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 
     <!-- 使用自定义视图 -->
