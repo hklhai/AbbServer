@@ -136,30 +136,30 @@
                         <td width="248px" class="data-assetnum"></td>
                         <td width="98px">厂家：</td>
                         <td width="210px" class="data-comName"></td>
-                        <td width="110px">额定分段电流：</td>
-                        <td width="220px" class="data-alnvalue"></td>
+                        <td width="110px">额定分断电流：</td>
+                        <td width="220px" class="data-breaking-current"></td>
                     </tr>
                     <tr>
                         <td>设备描述：</td>
                         <td class="data-asset-description"></td>
                         <td>额定电压:</td>
-                        <td class="data-alnvalue"></td>
+                        <td class="data-voltage"></td>
                         <td>运行年限:</td>
-                        <td></td>
+                        <td class="data-year"></td>
                     </tr>
                     <tr>
                         <td>设备状态：</td>
                         <td></td>
                         <td>额定电流：</td>
-                        <td></td>
-                        <td class="data-status">所处声明周期：</td>
-                        <td></td>
+                        <td class="data-current"></td>
+                        <td>所处声明周期：</td>
+                        <td class="data-status"></td>
                     </tr>
                     <tr>
                         <td>型号:</td>
                         <td class="data-comUdmodel"></td>
                         <td>额定短时冲击电压:</td>
-                        <td class="data-alnvalue"></td>
+                        <td class="data-impulse-voltage"></td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -549,14 +549,15 @@
                     }else{
                         states = '正常';
                     }
-                   /* if(assetList[i].state=='2'){
-                        states = '<img src="${ctx}/img/asset/equip-error.gif">';
-                    }*/
+
+                    //if(assetList[i].state=='2'){
+                    //   states = '<img src="${ctx}/img/asset/equip-error.gif">';
+                    //}
 
                     if(assetList[i].haschild == '0'){
                         equipHtml+='<tr><td width="10%" style="padding-left: 10px;">'+states
                                 +'</td><td width="20%">'+assetList[i].description
-                                +'</td><td width="30%">'+assetList[i].name
+                                +'</td><td width="30%">'+assetList[i].manufacturer
                                 +'</td><td width="20%">'+assetList[i].udmodel
                                 +'</td><td width="20%">'+assetList[i].parent
                                 +'</td></tr>';
@@ -688,6 +689,15 @@
             $(".data-status").text(data.status);
             $(".data-comUdmodel").text(data.udmodel);
             $(".btn-detail").attr("id",data.assetuid);
+
+            //增加显示  lh
+            $(".data-breaking-current").text("41.5KA");     //额定分断电流
+            $(".data-voltage").text("12kV");                //额定电压
+            $(".data-year").text("12");                     //运行年限
+            $(".data-current").text("1250A");               //额定电流
+            $(".data-impulse-voltage").text("31kV");        //额定短时冲击电压
+            $(".data-comName").text(data.manufacturer);     //厂家
+
             //TODO
             //根据设备的报警状态显示不同的信息
             if(data.state == ""){

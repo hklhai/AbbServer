@@ -20,6 +20,7 @@ public class AbbAsset implements Serializable {
 
     private String childname;
 
+    private String manufacturer;
 
     private String description;
 
@@ -56,6 +57,14 @@ public class AbbAsset implements Serializable {
 
 
     public AbbAsset() {
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
     }
 
     public String getLocation() {
