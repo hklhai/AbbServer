@@ -149,11 +149,11 @@
                     </tr>
                     <tr>
                         <td>设备状态：</td>
-                        <td></td>
+                        <td class="data-status"></td>
                         <td>额定电流：</td>
                         <td class="data-current"></td>
                         <td>所处声明周期：</td>
-                        <td class="data-status"></td>
+                        <td ></td>
                     </tr>
                     <tr>
                         <td>型号:</td>
