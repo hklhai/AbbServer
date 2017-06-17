@@ -61,6 +61,9 @@
 	<logger name="org.apache.axiom">
 		<level value="WARN" />
 	</logger>
+	<logger name="com.alibaba.druid.pool.PreparedStatementPool">
+		<level value="WARN"/>
+	</logger>
 
 	<root>
 		<priority value="DEBUG" />
