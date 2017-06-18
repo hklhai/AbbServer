@@ -217,154 +217,82 @@
                 </table>
                 <table class="sth" style="display:none;">
                     <thead>
-                    <tr>
-                        <td width="160px">物资</td>
-                        <td width="260px">描述</td>
-                        <td width="95px">库存余量</td>
-                        <td width="100px">仓库归属</td>
-                    </tr>
+                        <tr>
+                            <td width="160px">物资</td>
+                            <td width="260px">描述</td>
+                            <td width="95px">库存余量</td>
+                            <td width="100px">仓库归属</td>
+                        </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td>物资</td>
-                        <td>描述</td>
-                        <td>库存余量</td>
-                        <td>仓库归属</td>
-                    </tr>
-                    <tr>
-                        <td>物资</td>
-                        <td>描述</td>
-                        <td>库存余量</td>
-                        <td>仓库归属</td>
-                    </tr>
-                    <tr>
-                        <td>物资</td>
-                        <td>描述</td>
-                        <td>库存余量</td>
-                        <td>仓库归属</td>
-                    </tr>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
                 <table class="technology" style="display:none;">
                     <thead>
-                    <tr>
-                        <td width="95px">属性</td>
-                        <td width="160px">描述</td>
-                        <td width="210px">文本及数量</td>
-                        <td width="150px">计量单位</td>
-                    </tr>
+                        <tr>
+                            <td width="95px">属性</td>
+                            <td width="160px">描述</td>
+                            <td width="210px">文本及数量</td>
+                            <td width="150px">计量单位</td>
+                        </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td>物资</td>
-                        <td>描述</td>
-                        <td>库存余量</td>
-                        <td>仓库归属</td>
-                    </tr>
-                    <tr>
-                        <td>物资</td>
-                        <td>描述</td>
-                        <td>库存余量</td>
-                        <td>仓库归属</td>
-                    </tr>
-                    <tr>
-                        <td>物资</td>
-                        <td>描述</td>
-                        <td>库存余量</td>
-                        <td>仓库归属</td>
-                    </tr>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
                 <div class="history" style="display: none;">
                     <div>
-                        <button>工单记录</button>
-                        <button>服务执行记录</button>
-                        <button>设备检测记录</button>
-                        <button>设备维护记录</button>
+                        <button class="workOrder">工单记录</button>
+                        <button class="execution">服务执行记录</button>
+                        <button class="monitor">设备检测记录</button>
+                        <button class="maintain">设备维护记录</button>
                     </div>
-                    <table class="history-table  gongdan" style="display: none;">
+                    <table class="history-table  workOrder-table" style="display: none;">
                         <thead>
-                        <tr>
-                            <td width="87px">工单流水号</td>
-                            <td width="87px">工单描述</td>
-                            <td width="87px">位置描述</td>
-                            <td width="87px">设备描述</td>
-                            <td width="87px">工作负责人</td>
-                            <td width="87px">状态</td>
-                            <td width="87px">所属服务站</td>
-                        </tr>
+                            <tr>
+                                <td width="87px">工单流水号</td>
+                                <td width="87px">工单描述</td>
+                                <td width="87px">位置描述</td>
+                                <td width="87px">设备描述</td>
+                                <td width="87px">工作负责人</td>
+                                <td width="87px">状态</td>
+                                <td width="87px">所属服务站</td>
+                            </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td>物资</td>
-                            <td>描述</td>
-                            <td>库存余量</td>
-                            <td>仓库归属</td>
-                            <td>库存余量</td>
-                            <td>仓库归属</td>
-                            <td>库存余量</td>
-                        </tr>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
-                    <table class="history-table zhixing" style="display: none;">
+                    <table class="history-table execution-table" style="display: none;">
                         <thead>
-                        <tr>
-                            <td width="122px">服务执行号</td>
-                            <td width="122px">描述</td>
-                            <td width="122px">服务合同号</td>
-                            <td width="122px">服务工程师</td>
-                            <td width="122px">工作时间</td>
-                        </tr>
+                            <tr>
+                                <td width="122px">服务执行号</td>
+                                <td width="122px">描述</td>
+                                <td width="122px">服务合同号</td>
+                                <td width="122px">服务工程师</td>
+                                <td width="122px">工作时间</td>
+                            </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td>物资</td>
-                            <td>描述</td>
-                            <td>库存余量</td>
-                            <td>仓库归属</td>
-                            <td>库存余量</td>
-                        </tr>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
-                    <table class="history-table shebeijiance">
+                    <table class="history-table monitor-table">
                         <thead>
-                        <tr>
-                            <td width="122px">计量表</td>
-                            <td width="122px">描述</td>
-                            <td width="122px">计量表类型</td>
-                            <td width="122px">读数/平均值</td>
-                            <td width="122px">读数最大值</td>
-                        </tr>
+                            <tr>
+                                <td width="122px">计量表</td>
+                                <td width="122px">描述</td>
+                                <td width="122px">计量表类型</td>
+                                <td width="122px">读数/平均值</td>
+                                <td width="122px">读数最大值</td>
+                            </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td>物资</td>
-                            <td>描述</td>
-                            <td>库存余量</td>
-                            <td>仓库归属</td>
-                            <td>库存余量</td>
-                        </tr>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
-                    <table class="history-table shebeiweihu">
+                    <table class="history-table maintain-table">
                         <thead>
-                        <tr>
-                            <td width="122px">计量表</td>
-                            <td width="122px">描述</td>
-                            <td width="122px">计量表类型</td>
-                            <td width="122px">读数/平均值</td>
-                            <td width="122px">读数最大值</td>
-                        </tr>
+                            <tr>
+                                <td width="122px">计量表</td>
+                                <td width="122px">描述</td>
+                                <td width="122px">计量表类型</td>
+                                <td width="122px">读数/平均值</td>
+                                <td width="122px">读数最大值</td>
+                            </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td>物资</td>
-                            <td>描述</td>
-                            <td>库存余量</td>
-                            <td>仓库归属</td>
-                            <td>库存余量</td>
-                        </tr>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                 </div>
             </div>
@@ -549,11 +477,6 @@
                     }else{
                         states = '正常';
                     }
-
-                    //if(assetList[i].state=='2'){
-                    //   states = '<img src="${ctx}/img/asset/equip-error.gif">';
-                    //}
-
                     if(assetList[i].haschild == '0'){
                         equipHtml+='<tr><td width="10%" style="padding-left: 10px;">'+states
                                 +'</td><td width="20%">'+assetList[i].description
@@ -676,8 +599,9 @@
                     }
                 });
             }
-        });
+        })
 
+        var classstructureid = "";
         //设备表行点击事件
         $(".equip-table table tbody").delegate("tr","click",function(){
             $(".btn-detail").show();
@@ -689,7 +613,7 @@
             $(".data-status").text(data.status);
             $(".data-comUdmodel").text(data.udmodel);
             $(".btn-detail").attr("id",data.assetuid);
-
+            classstructureid = data.classstructureid;
             //增加显示  lh
             $(".data-breaking-current").text("41.5KA");     //额定分断电流
             $(".data-voltage").text("12kV");                //额定电压
@@ -746,6 +670,7 @@
 
         });
 
+
         $(".equip-detail-form span.close").click(function(){
             $("#mask").hide();
             $(".equip-detail-form").hide();
@@ -756,20 +681,194 @@
             $("table.basic").show().siblings("table").hide();
             $("div.history").hide();
         });
+
+        //设备详情备件信息按钮事件
         $(".sth-info").click(function(){
             $("button.sth-info").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
             $("table.sth").show().siblings("table").hide();
             $("div.history").hide();
+
+            var classstructureids = classstructureid;
+            $.ajax({
+                url: "${ctx}/asset/assetUdspareparts",
+                method: "post",
+                data:{
+                    classstructureid: classstructureids
+                },
+                dataType: "json",
+                success: function(data){
+                    var htmlsth = "";
+                    for(var i=0;i<data.length;i++){
+                        htmlsth +="<tr><td>"+data[i].itemnum
+                                +"</td><td>"+data[i].description
+                                +"</td><td>"
+                                +"</td><td>"
+                                +"</td></tr>";
+                    }
+                    $(".sth table tbody").append(htmlsth);
+                },
+                error: function(){
+                }
+            });
+
         });
+
+        //设备详情技术信息的按钮事件
         $(".tecno-info").click(function(){
             $("button.sth-info").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
             $("table.technology").show().siblings("table").hide();
             $("div.history").hide();
+
+            var classstructureids = classstructureid;
+            $.ajax({
+                url: "${ctx}/asset/assetSpec",
+                method: "POST",
+                data:{
+                    classstructureid: classstructureids
+                },
+                dataType: "json",
+                success: function(data){
+                    var htmltech = "";
+                    for(var i=0;i<data.length;i++){
+                        htmltech +="<tr><td>"+data[i].assetattrid
+                                +"</td><td>"+data[i].description
+                                +"</td><td>"+data[i].alnvalue
+                                +"</td><td>"+data[i].measureunitid
+                                +"</td></tr>";
+                    }
+                    $(".technology table tbody").append(htmltech);
+                },
+                error: function(){
+                }
+            });
         });
+        //历史信息按钮事件的绑定
         $(".history-info").click(function(){
             $("button.history-info").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
             $("div.history").show().siblings("table").hide();
+            workOrder();
         });
+
+
+        //工单记录显示
+        function workOrder(){
+            $(".workOrder-table").show().siblings("table").hide();
+            var classstructureids = classstructureid;
+            $.ajax({
+                url: "${ctx}/asset/historyWork",
+                method: "POST",
+                data:{
+                    classstructureid: classstructureids
+                },
+                dataType: "json",
+                success: function(data){
+                    var tmpHtml = "";
+                    for(var i=0;i<data.length;i++){
+                        tmpHtml +="<tr><td>"+data[i].wonum
+                                +"</td><td>"+data[i].description
+                                +"</td><td>"+data[i].locsdesc
+                                        //TODO 设备描述字段缺失
+                                +"</td><td>"+data[i].description
+                                +"</td><td>"+data[i].status
+                                +"</td><td>"+data[i].siteid
+                                +"</td></tr>";
+                    }
+                    $(".workOrder-table tbody").append(tmpHtml);
+                },
+                error: function(){
+                }
+            });
+        }
+
+        //设备详情历史信息-工单记录-按钮事件绑定
+        $(".workOrder").click(function(){
+            workOrder();
+        });
+        //设备详情历史信息-服务执行记录-按钮事件绑定
+        $(".execution").click(function(){
+            $(".execution-table").show().siblings("table").hide();
+            var classstructureids = classstructureid;
+            $.ajax({
+                url: "${ctx}/asset/historyExecution",
+                method: "POST",
+                data:{
+                    classstructureid: classstructureids
+                },
+                dataType: "json",
+                success: function(data){
+                    var tmpHtml = "";
+                    for(var i=0;i<data.length;i++){
+                        tmpHtml +="<tr><td>"+data[i].udmrecordnum
+                                +"</td><td>"+data[i].description
+                                +"</td><td>"+data[i].contractno
+                                +"</td><td>"+data[i].serviceengineer
+                                +"</td><td>"+data[i].workdate
+                                +"</td></tr>";
+                    }
+                    $(".execution-table tbody").append(tmpHtml);
+                },
+                error: function(){
+                }
+            });
+        });
+
+        //设备详情历史信息-设备监测记录-按钮事件绑定
+        $(".monitor").click(function(){
+            $(".monitor-table").show().siblings("table").hide();
+            var classstructureids = classstructureid;
+            $.ajax({
+                url: "${ctx}/asset/historyMonitor",
+                method: "POST",
+                data:{
+                    classstructureid: classstructureids
+                },
+                dataType: "json",
+                success: function(data){
+                    var tmpHtml = "";
+                    for(var i=0;i<data.length;i++){
+                        tmpHtml +="<tr><td>"+data[i].metername
+                                +"</td><td>"+data[i].description
+                                +"</td><td>"+data[i].metertype
+                                +"</td><td>"+data[i].lastreading
+                                +"</td><td>"+data[i].udmaxreading
+                                +"</td></tr>";
+                    }
+                    $(".monitor-table tbody").append(tmpHtml);
+                },
+                error: function(){
+                }
+            });
+        });
+
+        //TODO 设备维护和设备监测数据一样
+        //设备详情历史信息-设备监测记录-按钮事件绑定
+        $(".maintain").click(function(){
+            $(".maintain-table").show().siblings("table").hide();
+            var classstructureids = classstructureid;
+            $.ajax({
+                url: "${ctx}/asset/historyMonitor",
+                method: "POST",
+                data:{
+                    classstructureid: classstructureids
+                },
+                dataType: "json",
+                success: function(data){
+                    var tmpHtml = "";
+                    for(var i=0;i<data.length;i++){
+                        tmpHtml +="<tr><td>"+data[i].metername
+                                +"</td><td>"+data[i].description
+                                +"</td><td>"+data[i].metertype
+                                +"</td><td>"+data[i].lastreading
+                                +"</td><td>"+data[i].udmaxreading
+                                +"</td></tr>";
+                    }
+                    $(".maintain-table tbody").append(tmpHtml);
+                },
+                error: function(){
+                }
+            });
+        });
+
     });
 
     //设备及位置地图渲染

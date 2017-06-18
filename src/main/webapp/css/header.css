@@ -95,7 +95,7 @@ ul li a.index-a-last{
 	float: right;
 	margin-right: 10px;
 	padding-top: 8px;
-	font-size: 20px;
+	font-size: 18px;
 	height: 49px;
 	line-height: 49px;
 	color: #fff;
@@ -105,14 +105,16 @@ ul li a.index-a-last{
 	float: right;
 	height: 49px;
 	width: 35px;
-	background: url("../img/header/user-logo.gif") no-repeat 0px 15px;
+	background: url("../img/header/user-logo.gif") no-repeat 0px 18px;
+	background-size: 26px;
 }
 .close-icon{
 	display: block;
 	float: right;
 	height: 49px;
 	width: 35px;
-	background: url("../img/header/close-icon.gif") no-repeat 0px 15px;
-	margin-left: 50px;
+	background: url("../img/header/close-icon.gif") no-repeat 0px 18px;
+	background-size: 26px;
+	/*margin-left: 50px;*/
 	cursor: pointer;
 }

@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/WEB-INF/jsp/commons/taglibs.jsp" %>
 <%@ include file="/WEB-INF/jsp/commons/meta.jsp" %>
-<html>
+<!DOCTYPE html>
 <head>
     <meta charset='utf-8'>
     <title>首页</title>
@@ -84,7 +84,8 @@
                                 tmpObj.y=  calendar[i].wonum.join(",");
                                 limitDaysArrs.push(tmpObj);
                             }
-                            var tmpheight = $(window).height()-59;
+                            /*var tmpheight = $(window).height()-59;*/
+                            var tmpheight = document.body.clientHeight-59;
                             $(".index-content").height(tmpheight);
                         },
                         error: function(){
