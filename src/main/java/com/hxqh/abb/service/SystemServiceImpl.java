@@ -41,6 +41,14 @@ public class SystemServiceImpl implements SystemService {
     private AbbLoginDao abbloginDao;
     @Resource
     private AbbAssetSpecDao abbAssetSpecDao;
+    @Resource
+    private  AbbAssetUdsparepartDao assetUdsparepartDao;
+    @Resource
+    private AbbAssetHisMrecordDao abbAssetHisMrecordDao;
+    @Resource
+    private AbbAssetHisAssetmeterDao abbAssetHisAssetmeterDao;
+    @Resource
+    private AbbAssetHisWorkorderDao abbAssetHisWorkorderDao;
 
     @Value(value = "${com.hxqh.abb.websitepath}")
     private String websitepath;
@@ -147,6 +155,38 @@ public class SystemServiceImpl implements SystemService {
         params.put("classstructureid", classstructureid);
         List<AbbAssetSpec> assetSpecList = abbAssetSpecDao.findAll("classstructureid=:classstructureid", params, null);
         return assetSpecList;
+    }
+
+    @Override
+    public List<AbbAssetUdsparepart> getAssetUdspareparts(String classstructureid) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("classstructureid", classstructureid);
+        List<AbbAssetUdsparepart> assetUdsparepartList = assetUdsparepartDao.findAll("classstructureid=:classstructureid", params, null);
+        return assetUdsparepartList;
+    }
+
+    @Override
+    public List<AbbAssetHisMrecord> getAssetHistoryExecution(String classstructureid) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("classstructureid", classstructureid);
+        List<AbbAssetHisMrecord> assetHisWorkorderList = abbAssetHisMrecordDao.findAll("classstructureid=:classstructureid", params, null);
+        return assetHisWorkorderList;
+    }
+
+    @Override
+    public List<AbbAssetHisWorkorder> getAssetHistoryWork(String classstructureid) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("classstructureid", classstructureid);
+        List<AbbAssetHisWorkorder> hisWorkorderList = abbAssetHisWorkorderDao.findAll("classstructureid=:classstructureid", params, null);
+        return hisWorkorderList;
+    }
+
+    @Override
+    public List<AbbAssetHisAssetmeter> getAssetHistoryMonitor(String classstructureid) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("classstructureid", classstructureid);
+        List<AbbAssetHisAssetmeter> assetHisAssetmeterList = abbAssetHisAssetmeterDao.findAll("classstructureid=:classstructureid", params, null);
+        return assetHisAssetmeterList;
     }
 
     @Override

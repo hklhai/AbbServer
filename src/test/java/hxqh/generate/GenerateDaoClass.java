@@ -23,7 +23,7 @@ public class GenerateDaoClass {
 
 		//生成Mbo实体
 		File file = new File("src/test/resources/table.list");
-		String s = FileUtils.txt2String(file);
+		String s = FileUtils.txt2String(file).trim();
 		//        System.out.println(s);
 		String[] mBOName = s.split("\r\n");
 

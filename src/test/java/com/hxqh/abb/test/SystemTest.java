@@ -4,8 +4,7 @@ import com.hxqh.abb.common.util.MXCipherXUtils;
 import com.hxqh.abb.dao.*;
 import com.hxqh.abb.model.*;
 import com.hxqh.abb.model.dto.action.LoginDto;
-import com.hxqh.abb.model.view.AbbAsset;
-import com.hxqh.abb.model.view.AbbAssetSpec;
+import com.hxqh.abb.model.view.*;
 import com.hxqh.abb.service.LocationService;
 import com.hxqh.abb.service.SystemService;
 import org.apache.commons.beanutils.BeanUtils;
@@ -86,14 +85,23 @@ public class SystemTest {
 
     @Test
     public void view() {
-       // AbbAsset assetById = systemService.getAssetById(3255l);
+        List<AbbAssetUdsparepart> assetUdspareparts = systemService.getAssetUdspareparts("2313");
+        Assert.assertTrue(assetUdspareparts.size()>0);
+        List<AbbAssetHisMrecord> assetHisMrecordList = systemService.getAssetHistoryExecution("1365");
+        Assert.assertTrue(assetHisMrecordList.size()>0);
+        List<AbbAssetHisWorkorder> assetHisWorkorderList = systemService.getAssetHistoryWork("1365");
+        Assert.assertTrue(assetHisWorkorderList.size()>0);
+        List<AbbAssetHisAssetmeter> assetHisAssetmeterList = systemService.getAssetHistoryMonitor("1365");
+        Assert.assertTrue(assetHisAssetmeterList.size()>0);
+
+        // AbbAsset assetById = systemService.getAssetById(3255l);
         //System.out.println(assetById);
-
-        List<AbbAsset> assetList = systemService.getAssetByChild("馈线柜");
-        Assert.assertTrue(assetList.size()>0);
-
-        List<AbbAssetSpec> assetSpecList = systemService.getAssetSpec("1001");
-        Assert.assertTrue(assetSpecList.size()>0);
+//
+//        List<AbbAsset> assetList = systemService.getAssetByChild("馈线柜");
+//        Assert.assertTrue(assetList.size()>0);
+//
+//        List<AbbAssetSpec> assetSpecList = systemService.getAssetSpec("1001");
+//        Assert.assertTrue(assetSpecList.size()>0);
 
 //        List<AbbLocation> childLocation = locationService.getChildLocation("HZ-HZ");
 //        for(AbbLocation l :childLocation)

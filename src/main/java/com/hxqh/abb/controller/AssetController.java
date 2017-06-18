@@ -2,9 +2,7 @@ package com.hxqh.abb.controller;
 
 import com.hxqh.abb.common.util.FastJsonTools;
 import com.hxqh.abb.model.dto.action.AssetDto;
-import com.hxqh.abb.model.view.AbbAsset;
-import com.hxqh.abb.model.view.AbbAssetSpec;
-import com.hxqh.abb.model.view.AbbLocation;
+import com.hxqh.abb.model.view.*;
 import com.hxqh.abb.service.LocationService;
 import com.hxqh.abb.service.SystemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,9 +123,8 @@ public class AssetController {
 
 
     /**
-     * 通过classstructureid获取备件信息
+     * 通过classstructureid 获取技术信息
      * 暂时未考虑分页
-     * 22017-6-3 18:57:56
      *
      * @return
      */
@@ -136,6 +133,60 @@ public class AssetController {
     public List<AbbAssetSpec> assetSpec(@RequestParam("classstructureid") String classstructureid) {
         List<AbbAssetSpec> abbAssetList = systemService.getAssetSpec(classstructureid);
         return abbAssetList;
+    }
+
+
+    /**
+     * 通过classstructureid 获取备件信息
+     * 暂时未考虑分页
+     * 2017-6-3 18:57:56
+     *
+     */
+    @ResponseBody
+    @RequestMapping(value = "/assetUdspareparts", method = RequestMethod.POST)
+    public List<AbbAssetUdsparepart> assetUdspareparts(@RequestParam("classstructureid") String classstructureid) {
+        List<AbbAssetUdsparepart> assetUdsparepartList = systemService.getAssetUdspareparts(classstructureid);
+        return assetUdsparepartList;
+    }
+
+    /**
+     * 通过classstructureid 历史信息-工单记录
+     * 暂时未考虑分页
+     * 2017-6-18
+     *
+     */
+    @ResponseBody
+    @RequestMapping(value = "/historyWork", method = RequestMethod.POST)
+    public List<AbbAssetHisWorkorder> historyWork(@RequestParam("classstructureid") String classstructureid) {
+        List<AbbAssetHisWorkorder> assetUdsparepartList = systemService.getAssetHistoryWork(classstructureid);
+        return assetUdsparepartList;
+    }
+
+    /**
+     * 通过classstructureid 历史信息-服务执行记录
+     * 暂时未考虑分页
+     * 2017-6-18
+     *
+     */
+    @ResponseBody
+    @RequestMapping(value = "/historyExecution", method = RequestMethod.POST)
+    public List<AbbAssetHisMrecord> historyExecution(@RequestParam("classstructureid") String classstructureid) {
+        List<AbbAssetHisMrecord>  abbAssetHisMrecordList= systemService.getAssetHistoryExecution(classstructureid);
+        return abbAssetHisMrecordList;
+    }
+
+
+    /**
+     * 通过classstructureid 历史信息-设备监测记录、设备维保记录
+     * 暂时未考虑分页
+     * 2017-6-18
+     *
+     */
+    @ResponseBody
+    @RequestMapping(value = "/historyMonitor", method = RequestMethod.POST)
+    public List<AbbAssetHisAssetmeter> historyMonitor(@RequestParam("classstructureid") String classstructureid) {
+        List<AbbAssetHisAssetmeter>  assetHisAssetmeterList= systemService.getAssetHistoryMonitor(classstructureid);
+        return assetHisAssetmeterList;
     }
 
 }

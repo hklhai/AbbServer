@@ -5,16 +5,14 @@ import com.hxqh.abb.model.base.SessionInfo;
 import com.hxqh.abb.model.dto.action.AssetDto;
 import com.hxqh.abb.model.dto.action.IndexDto;
 import com.hxqh.abb.model.dto.action.LoginDto;
-import com.hxqh.abb.model.view.AbbAsset;
-import com.hxqh.abb.model.view.AbbAssetSpec;
-import com.hxqh.abb.model.view.AbbLogin;
+import com.hxqh.abb.model.view.*;
 
 import java.util.List;
 
 /**
  * Created by lh on 2017/4/14.
  */
-public interface SystemService  {
+public interface SystemService {
 
     /*============================测试开始===========================*/
     public abstract List<Location> getLocationList();
@@ -44,6 +42,14 @@ public interface SystemService  {
 
     public abstract List<AbbAssetSpec> getAssetSpec(String classstructureid);
 
+    public abstract List<AbbAssetUdsparepart> getAssetUdspareparts(String classstructureid);
+
+    public abstract List<AbbAssetHisMrecord> getAssetHistoryExecution(String classstructureid);
+
+    public abstract List<AbbAssetHisWorkorder> getAssetHistoryWork(String classstructureid);
+
+    public abstract List<AbbAssetHisAssetmeter> getAssetHistoryMonitor(String classstructureid);
+
     /*============================现场及设备地图结束 ==================*/
 
 
@@ -52,10 +58,6 @@ public interface SystemService  {
     public abstract String getWebsitPath();
 
     public abstract AbbAsset getAssetById(long assetuid);
-
-
-
-    
 
     /*============================微信==================*/
 
