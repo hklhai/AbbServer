@@ -49,6 +49,8 @@ span.close{
 }
 .tab-content{
 	position: relative;
+	height: 250px;
+	overflow-y: scroll;
 }
 table.basic{
 	position: absolute;
@@ -126,9 +128,21 @@ div.history button{
 }
 .history-table thead tr{
 	border-bottom: 2px solid #dadada;
+	display: table;
+	table-layout: fixed;
+	width:100%;
+}
+.history-table tbody{
+	height:200px;
+	overflow: auto;
+	display: table;
+	width: 100%;
 }
 .history-table tbody tr{
 	border-bottom: 1px solid #dadada;
+	height: 43px;
+	line-height: 43px;
+	color: rgb(70, 70, 70);
 }
 .history-table tr{
 	height: 43px;

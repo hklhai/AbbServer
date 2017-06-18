@@ -70,6 +70,11 @@
                         method: "get",
                         dataType: "json",
                         success: function(data){
+                            //设置日历的高度，适应屏幕
+                            var divHeight = $(".wdayTable").height();
+                            var calendarH = Math.floor((divHeight - 48)/7)-2;
+                            $(".wdayTable").height(calendarH);
+
                             self.assetList = data.assetList;
                             self.calendarList = data.calendarList;
                             self.systemList = data.systemList;
@@ -122,7 +127,7 @@
                         <div id="div1"></div> <input type="hidden" id="index_clander" />
                         <input type="hidden" id="d523_y">
                     </div>
-                    <div class="span7" style="height: 320px;position:absolute;right:0;text-align:center;top:50px;width:290px; display:none;">
+                    <div class="span7" style="height: 100px;position:absolute;right:0;text-align:center;top:50px;width:290px; display:none;">
                         <div class="zAccount5 boxSize no-margin-left">
                             <div class="zAccountPlanRinner zAccountPlanR">
                                 <div class="today"></div>

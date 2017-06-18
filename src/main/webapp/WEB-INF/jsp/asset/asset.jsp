@@ -728,6 +728,7 @@
                 },
                 dataType: "json",
                 success: function(data){
+                    $(".technology table tbody").html("");
                     var htmltech = "";
                     for(var i=0;i<data.length;i++){
                         htmltech +="<tr><td>"+data[i].assetattrid
@@ -762,6 +763,7 @@
                 },
                 dataType: "json",
                 success: function(data){
+                    $(".workOrder-table tbody").html("");
                     var tmpHtml = "";
                     for(var i=0;i<data.length;i++){
                         tmpHtml +="<tr><td>"+data[i].wonum
@@ -796,6 +798,7 @@
                 },
                 dataType: "json",
                 success: function(data){
+                    $(".execution-table tbody").html("");
                     var tmpHtml = "";
                     for(var i=0;i<data.length;i++){
                         tmpHtml +="<tr><td>"+data[i].udmrecordnum
@@ -824,6 +827,7 @@
                 },
                 dataType: "json",
                 success: function(data){
+                    $(".monitor-table tbody").html("");
                     var tmpHtml = "";
                     for(var i=0;i<data.length;i++){
                         tmpHtml +="<tr><td>"+data[i].metername
@@ -853,6 +857,7 @@
                 },
                 dataType: "json",
                 success: function(data){
+                    $(".maintain-table tbody").html("");
                     var tmpHtml = "";
                     for(var i=0;i<data.length;i++){
                         tmpHtml +="<tr><td>"+data[i].metername
