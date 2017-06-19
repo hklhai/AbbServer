@@ -25,12 +25,9 @@
         var loactionData = [];
         var position = [];
         var locastory = [];
+        var assetList = [];
         var tmpLocation = [{
-            position: [116.205467, 39.907761]
-        }, {
-            position: [116.368904, 39.913423]
-        }, {
-            position: [116.305467, 39.807761]
+            position: [120.1551500000, 30.2741500000]
         }];
         var url = [];
         function initData(){
@@ -39,6 +36,7 @@
                     method: "get",
                     dataType: "json",
                     success: function(data){
+                        assetList = data;
                         for(var i=0;i<data.length;i++){
                             var tmpObj = {};
                             var tmpPostion = [];
@@ -68,8 +66,7 @@
             });
         });
     </script>
-    <script type="text/javascript"
-            src="http://webapi.amap.com/maps?v=1.3&key=e4eb9da6d97281e42a0357655570e3ae"></script>
+
 </head>
 <body>
 <div class="layout">
@@ -97,39 +94,44 @@
 </body>
 <script>
     window.onload = function(){
+        console.log(assetList);
         var map = new AMap.Map('container', {
             resizeEnable: true,
-            center: [116.397428, 39.90923],
-            zoom: 13
+            center: [120.155150, 30.274150],
+            zoom: 7
         });
         map.clearMap();  // 清除地图覆盖物
         var marker = new AMap.Marker({
             position: map.getCenter()
         });
         marker.setMap(map);
-        var markers = tmpLocation;
+        var markers = loactionData;
         // 添加一些分布不均的点到地图上,地图上添加三个点标记，作为参照
         markers.forEach(function(marker,index) {
+            if(marker.position[0] == null || marker.position[1] == null){
+                return false;
+            }
             var marker=new AMap.Marker({
                 map: map,
-                position: [marker.position[0], marker.position[1]],
+                position: [marker.position[1], marker.position[0]],
                 offset: new AMap.Pixel(0, 0),
                 clickable: true
             });
             marker.setMap(map);
             // 设置鼠标划过点标记显示的文字提示
-            marker.setTitle('我是marker的title');
+            console.log(assetList[index]);
+            var desc = assetList[index].description
+            marker.setTitle(desc);
             // 设置label标签
             marker.setLabel({//label默认蓝框白底左上角显示，样式className为：amap-marker-label
                 offset: new AMap.Pixel(20, 20),//修改label相对于maker的位置
-                content: "<a href='"+url[index]+"'>我是marker的label标签</a>"
+                content: "<a href='"+url[index]+"'>"+desc+"</a>"
             });
-           /* AMap.event.addDomListener(marker, 'touchend', function() {
-                console.log("aaaa");
-            });*/
         });
     }
 
 </script>
 <script type="text/javascript" src="http://webapi.amap.com/demos/js/liteToolbar.js"></script>
+<script type="text/javascript"
+        src="http://webapi.amap.com/maps?v=1.3&key=e4eb9da6d97281e42a0357655570e3ae"></script>
 </html>

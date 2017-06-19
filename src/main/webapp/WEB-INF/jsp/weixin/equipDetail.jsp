@@ -129,7 +129,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
+       <%-- <tr>
             <td>物资</td>
             <td>描述</td>
             <td>库存余量</td>
@@ -140,7 +140,7 @@
             <td>描述</td>
             <td>库存余量</td>
             <td>仓库归属</td>
-        </tr>
+        </tr>--%>
         </tbody>
     </table>
 </div>
