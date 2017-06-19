@@ -151,13 +151,16 @@
 .WdateDiv .WdayTable2 table{
 	border:0;
 }
-
-.WdateDiv .WdayTable{
-	line-height:38px;
-	color:#333;
-	border-spacing: 1px;
-	background-color:#ececec;
+@media(max-height:1500px){
+	.WdateDiv .WdayTable{
+		line-height:27px;
+		color:#333;
+		border-spacing: 1px;
+		background-color:#ececec;
+		/*border:#BEE9F0 1px solid;*/
+	}
 }
+
 @media(max-height:660px){
 	.WdateDiv .WdayTable{
 		line-height:27px;
