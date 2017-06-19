@@ -180,39 +180,39 @@
                 <table class="basic">
                     <tr>
                         <td>设备编码</td>
-                        <td></td>
+                        <td class="basic-assetnum"></td>
                         <td>合同号</td>
-                        <td></td>
+                        <td class="basic-udcontract"></td>
                     </tr>
                     <tr>
                         <td>设备描述</td>
-                        <td></td>
+                        <td class="basic-description"></td>
                         <td>序列号</td>
-                        <td></td>
+                        <td class="basic-serialnum"></td>
                     </tr>
                     <tr>
                         <td>设备状态</td>
-                        <td></td>
+                        <td class="basic-status"></td>
                         <td>型号</td>
-                        <td></td>
+                        <td class="basic-udmodel"></td>
                     </tr>
                     <tr>
                         <td>制造商</td>
-                        <td></td>
+                        <td class="companies-name"></td>
                         <td>安装日期</td>
-                        <td></td>
+                        <td class="basic-installdate"></td>
                     </tr>
                     <tr>
                         <td>报警</td>
-                        <td></td>
+                        <td class="basic-state"></td>
                         <td>位置</td>
-                        <td></td>
+                        <td class="basic-location"></td>
                     </tr>
                     <tr>
                         <td>归属公司</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td class="basic-company"></td>
+                        <td style="display:none;"></td>
+                        <td style="display:none;"></td>
                     </tr>
                 </table>
                 <table class="sth" style="display:none;">
@@ -754,6 +754,7 @@
         //工单记录显示
         function workOrder(){
             $(".workOrder-table").show().siblings("table").hide();
+            $("button.workOrder").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
             var classstructureids = classstructureid;
             $.ajax({
                 url: "${ctx}/asset/historyWork",
@@ -789,6 +790,7 @@
         //设备详情历史信息-服务执行记录-按钮事件绑定
         $(".execution").click(function(){
             $(".execution-table").show().siblings("table").hide();
+            $("button.execution").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
             var classstructureids = classstructureid;
             $.ajax({
                 url: "${ctx}/asset/historyExecution",
@@ -818,6 +820,7 @@
         //设备详情历史信息-设备监测记录-按钮事件绑定
         $(".monitor").click(function(){
             $(".monitor-table").show().siblings("table").hide();
+            $("button.monitor").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
             var classstructureids = classstructureid;
             $.ajax({
                 url: "${ctx}/asset/historyMonitor",
@@ -848,6 +851,7 @@
         //设备详情历史信息-设备监测记录-按钮事件绑定
         $(".maintain").click(function(){
             $(".maintain-table").show().siblings("table").hide();
+            $("button.maintain").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
             var classstructureids = classstructureid;
             $.ajax({
                 url: "${ctx}/asset/historyMonitor",

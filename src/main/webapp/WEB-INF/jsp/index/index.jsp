@@ -175,7 +175,7 @@
             <div class="equip-info index-div1 bottom-div">
                 <div class="equip-info-layout">
                     <p>设备信息</p>
-                    <table>
+                    <table style="table-layout:fixed;">
                         <thead>
                         <tr>
                             <td width="16%" style="padding-left:4%">状态</td>
@@ -186,8 +186,8 @@
                         <tbody>
                         <tr v-for="asset in assetList">
                             <td>{{asset.state}}</td>
-                            <td>{{asset.description}}</td>
-                            <td>{{asset.locdesc}}</td>
+                            <td v-bind:title="asset.description">{{asset.description}}</td>
+                            <td v-bind:title="asset.locdesc"><div style="white-space: nowrap;overflow:hidden;text-overflow:ellipsis;">{{asset.locdesc}}</div></td>
                         </tr>
                         </tbody>
                     </table>
