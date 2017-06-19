@@ -186,7 +186,7 @@ function createElements(obj,tops,bots){
 	var txts= document.createElement("div");
 	var spans=document.createElement("span");
 	var ems=document.createElement("em");
-	if(topY>206){
+	if(topY>150){
 		ems.className='angleinner  top';
 		spans.className='angle  top';
 		txts.className='txt top';

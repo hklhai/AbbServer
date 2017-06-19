@@ -737,7 +737,7 @@
                                 +"</td><td>"+data[i].measureunitid
                                 +"</td></tr>";
                     }
-                    $(".technology table tbody").append(htmltech);
+                    /*$(".technology table tbody").append(htmltech);*/
                 },
                 error: function(){
                 }
@@ -775,7 +775,7 @@
                                 +"</td><td>"+data[i].siteid
                                 +"</td></tr>";
                     }
-                    $(".workOrder-table tbody").append(tmpHtml);
+                    /*$(".workOrder-table tbody").append(tmpHtml);*/
                 },
                 error: function(){
                 }
@@ -808,7 +808,7 @@
                                 +"</td><td>"+data[i].workdate
                                 +"</td></tr>";
                     }
-                    $(".execution-table tbody").append(tmpHtml);
+                    /*$(".execution-table tbody").append(tmpHtml);*/
                 },
                 error: function(){
                 }
@@ -837,7 +837,7 @@
                                 +"</td><td>"+data[i].udmaxreading
                                 +"</td></tr>";
                     }
-                    $(".monitor-table tbody").append(tmpHtml);
+                    /*$(".monitor-table tbody").append(tmpHtml);*/
                 },
                 error: function(){
                 }
@@ -867,7 +867,7 @@
                                 +"</td><td>"+data[i].udmaxreading
                                 +"</td></tr>";
                     }
-                    $(".maintain-table tbody").append(tmpHtml);
+                    /*$(".maintain-table tbody").append(tmpHtml);*/
                 },
                 error: function(){
                 }
