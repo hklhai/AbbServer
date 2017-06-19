@@ -72,9 +72,7 @@
             <div  class="company-header">
                 <div class="company-location">
                     <h3>地图</h3>
-                    <div id="map-location" style="height: 210px;width: 100%;">
-
-                    </div>
+                    <div id="map-location" style="height: 210px;width: 100%;"></div>
                 </div>
                 <div class="location-info">
                     <h3>位置信息</h3>

@@ -9,6 +9,7 @@
 	background: #246495;
 	padding-top: 16px;
 	height: 100%;
+	min-height: 828px;
 	position: absolute;
 	left: 0px;
 }
