@@ -152,13 +152,13 @@
                         <td class="data-status"></td>
                         <td>额定电流：</td>
                         <td class="data-current"></td>
-                        <td>所处声明周期：</td>
+                        <td>所处生命周期：</td>
                         <td ></td>
                     </tr>
                     <tr>
                         <td>型号:</td>
                         <td class="data-comUdmodel"></td>
-                        <td>额定短时冲击电压:</td>
+                        <td style="width:15%;">额定短时冲击电压:</td>
                         <td class="data-impulse-voltage"></td>
                         <td></td>
                         <td></td>
@@ -715,7 +715,7 @@
 
         //设备详情技术信息的按钮事件
         $(".tecno-info").click(function(){
-            $("button.sth-info").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
+            $("button.tecno-info").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
             $("table.technology").show().siblings("table").hide();
             $("div.history").hide();
 

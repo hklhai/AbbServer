@@ -107,7 +107,7 @@ div.history{
 	margin-right: 27px;
 }
 div.history div{
-	width: 440px;
+	width: 500px;
 	margin: 0 auto;
 }
 div.history button{
@@ -116,7 +116,7 @@ div.history button{
 	/*font-size: 12px;*/
 	background: #EAEAEA;
 	border: 1px solid #dcdcdc;
-	width: 96px;
+	width: 110px;
 	text-align: center;
 	margin-left: 8px;
 }
