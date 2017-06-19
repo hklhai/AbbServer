@@ -125,7 +125,7 @@
             // 设置label标签
             marker.setLabel({//label默认蓝框白底左上角显示，样式className为：amap-marker-label
                 offset: new AMap.Pixel(20, 20),//修改label相对于maker的位置
-                content: "<a href='"+url[index]+"'>"+desc+"</a>"
+                content: "<span><a target='_blank' href='"+url[index]+"'>"+desc+"</a></span>"
             });
         });
     }
