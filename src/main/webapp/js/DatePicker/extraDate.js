@@ -50,9 +50,20 @@ setTimeout(function(){
 	} })
 	//日历自适应大小
 	function changeSize(){
-		var ww=$("#div1").width()
+		/*var ww=$("#div1").width()
 		$('iframe').css({"width":ww+'px'})
-		$(iframe).contents().find('.WdateDiv').css({"width":ww+'px'})
+		$(iframe).contents().find('.WdateDiv').css({"width":ww+'px'})*/
+
+		//宽度和高度都自适应
+		var ww=$("#div1").width();
+		var hh=$(".zAccountInner").height();
+		var tableH=hh-100;
+		$('iframe').css({"width":ww+'px'});
+		$('iframe').css({"height":hh+'px'});
+		$('.WdayTable').css({"height":tableH+'px'});
+		alert(hh);
+		$(iframe).contents().find('.WdateDiv').css({"width":ww+'px'});
+		$(iframe).contents().find('.WdayTable').css({"height":hh+'px'});
 	}
 	$(window).resize(function(){
 		changeSize();
