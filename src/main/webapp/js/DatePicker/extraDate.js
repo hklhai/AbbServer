@@ -61,7 +61,6 @@ setTimeout(function(){
 		$('iframe').css({"width":ww+'px'});
 		$('iframe').css({"height":hh+'px'});
 		$('.WdayTable').css({"height":tableH+'px'});
-		alert(hh);
 		$(iframe).contents().find('.WdateDiv').css({"width":ww+'px'});
 		$(iframe).contents().find('.WdayTable').css({"height":hh+'px'});
 	}

@@ -647,6 +647,9 @@
                     $(".basic-status").text(data.status);
                     $(".basic-udmodel").text(data.udmodel);
                     $(".companies-name").text(data.name);
+                    if(data.installdate==null){
+                        data.installdate="";
+                    }
                     $(".basic-installdate").text(data.installdate);
                     $(".basic-state").text(data.state);
                     $(".basic-location").text(data.location);
