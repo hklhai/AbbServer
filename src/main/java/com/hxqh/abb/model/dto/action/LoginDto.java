@@ -1,9 +1,11 @@
 package com.hxqh.abb.model.dto.action;
 
+import java.io.Serializable;
+
 /**
  * Created by Ocean Lin on 2017/5/7.
  */
-public class LoginDto {
+public class LoginDto implements Serializable{
 
     private String loginid;
     

@@ -53,6 +53,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
             <mvc:exclude-mapping path="/*/*.gif"/>
             <mvc:exclude-mapping path="/*/*/*.gif"/>
             <mvc:exclude-mapping path="/*/*/*.jpg"/>
+            <mvc:exclude-mapping path="/index/loginWebChat"/>
             <bean id="loginInterceptor" class="com.hxqh.abb.controller.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

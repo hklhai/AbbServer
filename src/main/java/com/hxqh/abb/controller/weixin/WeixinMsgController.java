@@ -66,7 +66,9 @@ public class WeixinMsgController extends MsgControllerAdapter {
 		String websitpath = systemService.getWebsitPath();
 		String pic = getPic(websitpath);
 		OutNewsMsg outMsg = new OutNewsMsg(inTextMsg);
-		outMsg.addNews("主页请登录", "点击链接登录", pic, websitpath);
+		//outMsg.addNews("主页请登录", "点击链接登录", pic, websitpath+"index/webChat");
+		outMsg.addNews("主页请登录", "点击链接登录", pic, websitpath+"index/city?location=HZ-HZ");
+
 		render(outMsg);
 //		String websitpath = queryService.getWebsitPath();
 //

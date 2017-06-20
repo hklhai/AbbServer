@@ -166,8 +166,7 @@ public class IndexController {
      *
      * @return
      */
-    @ResponseBody
-    @RequestMapping(value = "/loginWebChat", method = RequestMethod.POST)
+    @RequestMapping(value = "/loginWebChat", method = RequestMethod.GET)
     public String loginWebChat(LoginDto loginDto, Map<String, Object> map) {
         List<AbbLogin> loginUserList = systemService.getLoginUserList(loginDto);
         return webChatLogin(loginUserList, loginDto, map);

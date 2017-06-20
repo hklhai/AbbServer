@@ -55,8 +55,17 @@ public class AbbAsset implements Serializable {
 
     private String classstructureid;
 
+    private String siteid;
 
     public AbbAsset() {
+    }
+
+    public String getSiteid() {
+        return siteid;
+    }
+
+    public void setSiteid(String siteid) {
+        this.siteid = siteid;
     }
 
     public String getManufacturer() {

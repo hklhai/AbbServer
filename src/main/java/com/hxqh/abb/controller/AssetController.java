@@ -1,6 +1,7 @@
 package com.hxqh.abb.controller;
 
 import com.hxqh.abb.common.util.FastJsonTools;
+import com.hxqh.abb.model.base.SessionInfo;
 import com.hxqh.abb.model.dto.action.AssetDto;
 import com.hxqh.abb.model.view.*;
 import com.hxqh.abb.service.LocationService;
@@ -67,8 +68,10 @@ public class AssetController {
 
     //TODO 暂时处理Null
     @RequestMapping(value = "/assetData", method = RequestMethod.POST)
-    public void assetData(@RequestParam("location") String location, HttpServletResponse response) {
-        AssetDto assetData = systemService.getAssetData(location);
+    public void assetData(@RequestParam("location") String location,
+                          HttpServletResponse response,
+                          @ModelAttribute("sessionInfo") SessionInfo sessionInfo) {
+        AssetDto assetData = systemService.getAssetData(location,sessionInfo);
         AbbLocation abbLocation = locationService.getParentLocation(location);
         assetData.setAbbLocation(abbLocation);
         FastJsonTools.writeJsonNullStringAsEmpty(assetData, response);

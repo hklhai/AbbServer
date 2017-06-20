@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 import java.rmi.RemoteException;
+import java.util.Date;
 
 /**
  * Created by dell on 2017-05-16.
@@ -60,7 +61,7 @@ public class Axis2Test {
         wfParam.setKeyValue(String.valueOf(wfassignment.getWfassignmentid()));// 当前表的唯一主键字段名，一般为表名+ID
         wfParam.setKey("WFASSIGNMENTID"); //唯一主键的值
         wfParam.setZx(1);//审批结果，1通过，0不通过
-        wfParam.setDesc("同意调拨申请，lh测试使用");//desc：审批意见
+        wfParam.setDesc("同意调拨申请，lh测试使用"+new Date());//desc：审批意见
         wfParam.setLoginid("MAXADMIN");  //当前登录人的ID
 
         goOnService.setWfservicewfGoOn(wfParam);

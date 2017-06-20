@@ -107,8 +107,6 @@
     <!-- component-scan自动搜索@Component , @Controller , @Service , @Repository等标注的类 -->
     <context:component-scan base-package="com.hxqh.abb.**.service"/>
 
-    <import resource="classpath*:META-INF/cxf/cxf.xml"/>
-    <import resource="classpath*:META-INF/cxf/cxf-servlet.xml"/>
 
     <!--配置com.spring.service包下所有类或接口的所有方法 -->
     <!--<aop:config>-->

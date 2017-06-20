@@ -36,7 +36,7 @@ public interface SystemService {
 
     /*============================现场及设备地图开始===================*/
 
-    public abstract AssetDto getAssetData(String location);
+    public abstract AssetDto getAssetData(String location,SessionInfo sessionInfo);
 
     public abstract List<AbbAsset> getAssetByChild(String childname);
 

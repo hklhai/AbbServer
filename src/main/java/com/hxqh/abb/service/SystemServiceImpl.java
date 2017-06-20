@@ -132,10 +132,12 @@ public class SystemServiceImpl implements SystemService {
 
 
     @Override
-    public AssetDto getAssetData(String location) {
+    public AssetDto getAssetData(String location,SessionInfo sessionInfo) {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("location", location);
-        List<AbbAsset> abbAssetList = abbassetDao.findAll(0, 15, "location=:location", params, " order by assetuid desc");
+        params.put("siteid", sessionInfo.getSiteid());
+        String where = "location=:location and siteid=:siteid";
+        List<AbbAsset> abbAssetList = abbassetDao.findAll(0, 15, where, params, " order by assetuid desc");
         List<AbbAssetLocation> abbAssetLocationList = abbassetlocationDao.findAll(0, 15, "location=:location", params, " order by locationsid desc");
         AssetDto assetDto = new AssetDto(abbAssetList, abbAssetLocationList.get(0));
         return assetDto;
