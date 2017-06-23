@@ -28,8 +28,10 @@
     <div class="header-layout">
         <div class="logo"></div>
         <ul>
-            <li class="li-item"><a href="${ctx}/index/toIndex" class="index-a"><span style="color:#242424; ">首</span><i class="icon-index"></i>首页<span style="color:#242424;">页</span></a></li>
-            <li class="li-item"><a href="${ctx}/location/location" class="index-a"><i class="icon-equip"></i>设备管理</a></li>
+            <li class="li-item"><a href="${ctx}/index/toIndex" class="index-a"><span style="color:#242424; ">首</span><i
+                    class="icon-index"></i>首页<span style="color:#242424;">页</span></a></li>
+            <li class="li-item"><a href="${ctx}/location/location" class="index-a"><i class="icon-equip"></i>设备管理</a>
+            </li>
             <li class="li-item"><a href="${ctx}/inventory/list" class="index-a"><i class="icon-stock"></i>库存管理</a></li>
             <li class="li-item"><a href="${ctx}/tool/list" class="index-a"><i class="icon-tool"></i>工具管理</a></li>
             <li class="li-last"><i class="close-icon"></i></li>
@@ -44,14 +46,15 @@
         <ul class="father-ul">
             <li class="father-ul-a"><a href="javascript:;" class="left-bag">现场及设备地图</a></li>
             <li class="father-ul-li">
-                <a href="javascript:;"  class="left-down">设备及位置</a>
+                <a href="javascript:;" class="left-down">设备及位置</a>
                 <ul class="child-ul" style="display: none;">
-                    <c:forEach var="locationList" items="${abbLocationList}" >
-                        <li><a class="treeShow" id="${locationList.location}"><c:out value="${locationList.description}"/></a></li>
+                    <c:forEach var="locationList" items="${abbLocationList}">
+                        <li><a class="treeShow" id="${locationList.location}"><c:out
+                                value="${locationList.description}"/></a></li>
                     </c:forEach>
                 </ul>
                 <div class="equip-tree-ul equip-company">
-                    <ul  class="equip-tree" style="display:none;z-index: 1000;">
+                    <ul class="equip-tree" style="display:none;z-index: 1000;">
                     </ul>
                 </div>
             </li>
@@ -66,10 +69,11 @@
     <div class="equip-company" style="display: none;">
         <div class="equip-company-layout">
             <div class="company-tit">
-                <h6>设备管理<span class="space"></span>/<span class="space"></span>设备与位置<span class="space"></span>/<span class="space"></span><span class="location-tit"></span></h6>
+                <h6>设备管理<span class="space"></span>/<span class="space"></span>设备与位置<span class="space"></span>/<span
+                        class="space"></span><span class="location-tit"></span></h6>
                 <h3>南京---南京供电公司</h3>
             </div>
-            <div  class="company-header">
+            <div class="company-header">
                 <div class="company-location">
                     <h3>地图</h3>
                     <div id="map-location" style="height: 210px;width: 100%;"></div>
@@ -106,7 +110,8 @@
                 <div class="warn-info">
                     <h3>报警信息</h3>
                     <div class="warn-info-content">
-                        <p class="warn-first-p" style="display: none;"><img src="${ctx}/img/asset/equip-error.gif"/>Warning</p>
+                        <p class="warn-first-p" style="display: none;"><img src="${ctx}/img/asset/equip-error.gif"/>Warning
+                        </p>
                     </div>
                 </div>
             </div>
@@ -115,13 +120,13 @@
                 <h3 class="equip-table-tit">设备表</h3>
                 <table>
                     <thead><%--行的选中样式为tr-selected--%>
-                        <tr>
-                            <td width="10%" style="padding-left: 10px;">状态</td>
-                            <td width="20%">设备名称</td>
-                            <td width="30%">厂家</td>
-                            <td width="20%">型号</td>
-                            <td width="20%">子设备</td>
-                        </tr>
+                    <tr>
+                        <td width="10%" style="padding-left: 10px;">状态</td>
+                        <td width="20%">设备名称</td>
+                        <td width="30%">厂家</td>
+                        <td width="20%">型号</td>
+                        <td width="20%">子设备</td>
+                    </tr>
                     </thead>
                     <tbody></tbody>
                 </table>
@@ -135,7 +140,7 @@
                         <td width="248px" class="data-assetnum"></td>
                         <td width="98px">厂家：</td>
                         <td width="210px" class="data-comName"></td>
-                        <td width="110px">额定分断电流：</td>
+                        <td width="110px">额定短路断开电流：</td>
                         <td width="220px" class="data-breaking-current"></td>
                     </tr>
                     <tr>
@@ -152,12 +157,12 @@
                         <td>额定电流：</td>
                         <td class="data-current"></td>
                         <td>所处生命周期：</td>
-                        <td ></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>型号:</td>
                         <td class="data-comUdmodel"></td>
-                        <td style="width:15%;">额定短时冲击电压:</td>
+                        <td style="width:15%;">额定短时耐受电压:</td>
                         <td class="data-impulse-voltage"></td>
                         <td></td>
                         <td></td>
@@ -216,23 +221,23 @@
                 </table>
                 <table class="sth" style="display:none;">
                     <thead>
-                        <tr>
-                            <td width="160px">物资</td>
-                            <td width="260px">描述</td>
-                            <td width="95px">库存余量</td>
-                            <td width="100px">仓库归属</td>
-                        </tr>
+                    <tr>
+                        <td width="160px">物资</td>
+                        <td width="260px">描述</td>
+                        <td width="95px">库存余量</td>
+                        <td width="100px">仓库归属</td>
+                    </tr>
                     </thead>
                     <tbody></tbody>
                 </table>
                 <table class="technology" style="display:none;">
                     <thead>
-                        <tr>
-                            <td width="95px">属性</td>
-                            <td width="160px">描述</td>
-                            <td width="210px">文本及数量</td>
-                            <td width="150px">计量单位</td>
-                        </tr>
+                    <tr>
+                        <td width="95px">属性</td>
+                        <td width="160px">描述</td>
+                        <td width="210px">文本及数量</td>
+                        <td width="150px">计量单位</td>
+                    </tr>
                     </thead>
                     <tbody></tbody>
                 </table>
@@ -245,51 +250,51 @@
                     </div>
                     <table class="history-table  workOrder-table" style="display: none;">
                         <thead>
-                            <tr>
-                                <td width="87px">工单流水号</td>
-                                <td width="87px">工单描述</td>
-                                <td width="87px">位置描述</td>
-                                <td width="87px">设备描述</td>
-                                <td width="87px">工作负责人</td>
-                                <td width="87px">状态</td>
-                                <td width="87px">所属服务站</td>
-                            </tr>
+                        <tr>
+                            <td width="87px">工单流水号</td>
+                            <td width="87px">工单描述</td>
+                            <td width="87px">位置描述</td>
+                            <td width="87px">设备描述</td>
+                            <td width="87px">工作负责人</td>
+                            <td width="87px">状态</td>
+                            <td width="87px">所属服务站</td>
+                        </tr>
                         </thead>
                         <tbody></tbody>
                     </table>
                     <table class="history-table execution-table" style="display: none;">
                         <thead>
-                            <tr>
-                                <td width="122px">服务执行号</td>
-                                <td width="122px">描述</td>
-                                <td width="122px">服务合同号</td>
-                                <td width="122px">服务工程师</td>
-                                <td width="122px">工作时间</td>
-                            </tr>
+                        <tr>
+                            <td width="122px">服务执行号</td>
+                            <td width="122px">描述</td>
+                            <td width="122px">服务合同号</td>
+                            <td width="122px">服务工程师</td>
+                            <td width="122px">工作时间</td>
+                        </tr>
                         </thead>
                         <tbody></tbody>
                     </table>
                     <table class="history-table monitor-table">
                         <thead>
-                            <tr>
-                                <td width="122px">计量表</td>
-                                <td width="122px">描述</td>
-                                <td width="122px">计量表类型</td>
-                                <td width="122px">读数/平均值</td>
-                                <td width="122px">读数最大值</td>
-                            </tr>
+                        <tr>
+                            <td width="122px">计量表</td>
+                            <td width="122px">描述</td>
+                            <td width="122px">计量表类型</td>
+                            <td width="122px">读数/平均值</td>
+                            <td width="122px">读数最大值</td>
+                        </tr>
                         </thead>
                         <tbody></tbody>
                     </table>
                     <table class="history-table maintain-table">
                         <thead>
-                            <tr>
-                                <td width="122px">计量表</td>
-                                <td width="122px">描述</td>
-                                <td width="122px">计量表类型</td>
-                                <td width="122px">读数/平均值</td>
-                                <td width="122px">读数最大值</td>
-                            </tr>
+                        <tr>
+                            <td width="122px">计量表</td>
+                            <td width="122px">描述</td>
+                            <td width="122px">计量表类型</td>
+                            <td width="122px">读数/平均值</td>
+                            <td width="122px">读数最大值</td>
+                        </tr>
                         </thead>
                         <tbody></tbody>
                     </table>
@@ -316,27 +321,27 @@
     var tmpData = [];
     var lStatus = [];
     <c:forEach items="${mapData}" var="mapData">
-        var tmpObj = {};
-        tmpObj.description = '${mapData.description}';
-        tmpObj.location = '${mapData.location}';
-        tmpObj.locationsid = '${mapData.locationsid}';
-        tmpObj.loccount = '${mapData.loccount}';
-        tmpObj.longitude = '${mapData.longitude}';
-        tmpObj.orgid = '${mapData.orgid}';
-        tmpObj.saddresscode = '${mapData.saddresscode}';
-        tmpObj.status = '${mapData.status}';
-        tmpObj.alertcount = '${mapData.alertcount}';
-        tmpObj.parentdesc = '${mapData.parentdesc}';
+    var tmpObj = {};
+    tmpObj.description = '${mapData.description}';
+    tmpObj.location = '${mapData.location}';
+    tmpObj.locationsid = '${mapData.locationsid}';
+    tmpObj.loccount = '${mapData.loccount}';
+    tmpObj.longitude = '${mapData.longitude}';
+    tmpObj.orgid = '${mapData.orgid}';
+    tmpObj.saddresscode = '${mapData.saddresscode}';
+    tmpObj.status = '${mapData.status}';
+    tmpObj.alertcount = '${mapData.alertcount}';
+    tmpObj.parentdesc = '${mapData.parentdesc}';
 
-        tmpObj.voltage = '${mapData.voltage}';
-        tmpObj.avgasset = '${mapData.avgasset}';
+    tmpObj.voltage = '${mapData.voltage}';
+    tmpObj.avgasset = '${mapData.avgasset}';
 
-        tmpData.push(tmpObj);
-        lStatus.push('${mapData.status}');
-        var tmpLocation = [];
-        tmpLocation.push(${mapData.dimension});
-        tmpLocation.push(${mapData.longitude});
-        tmpLnglats.push(tmpLocation);
+    tmpData.push(tmpObj);
+    lStatus.push('${mapData.status}');
+    var tmpLocation = [];
+    tmpLocation.push(${mapData.dimension});
+    tmpLocation.push(${mapData.longitude});
+    tmpLnglats.push(tmpLocation);
     </c:forEach>
     var lnglats = tmpLnglats;
     //添加marker标记
@@ -346,7 +351,7 @@
 
     }
     function addMarker() {
-        if(lStatus[i] == "ACTIVE"){
+        if (lStatus[i] == "ACTIVE") {
             var marker = new AMap.Marker({
                 map: map,
                 position: lnglats[i],
@@ -355,7 +360,7 @@
                     image: "${ctx}/img/asset/blue-icon.gif",
                 })
             });
-        }else{
+        } else {
             var marker = new AMap.Marker({
                 map: map,
                 position: lnglats[i],
@@ -372,8 +377,12 @@
         //实例化信息窗体
         var title = '<i class="arraw"></i>',
                 content = [];
-        content.push("<table class='locaiton-table'><thead><tr><td width='318px' style='padding-left:18px;'>位置编码</td><td width='218px'>位置描述</td></tr></thead><tbody><tr><td style='padding-left:18px;'>"+tmpData[i].location+"</td><td></td></tr></tbody></table>");
-        content.push("<table class='locaiton-table-info'><thead><tr><td style='padding-left:18px;'>详细信息</td><td></td><td></td><td></td></tr></thead><tbody><tr><td>状<span style='color:#F5F5F5;'>状态</span>态</td><td>"+tmpData[i].status+"</td><td>电压等级</td><td>"+tmpData[i].voltage+"</td></tr><tr><td>位置类型</td><td></td><td>设备数量</td><td>"+tmpData[i].loccount+"</td></tr><tr><td>健康指标</td><td>"+tmpData[i].avgasset+"</td><td>报警数量</td><td>"+tmpData[i].alertcount+"</td></tr><tr><td>地<span style='color:#F5F5F5;'>状态</span>址</td><td></td><td></td><td></td></tr></tbody></table>");
+        content.push("<table class='locaiton-table'><thead><tr><td width='318px' style='padding-left:18px;'>位置编码</td><td width='218px'>位置描述</td></tr></thead><tbody><tr><td style='padding-left:18px;'>" + tmpData[i].location + "</td><td></td></tr></tbody></table>");
+        content.push("<table class='locaiton-table-info'><thead>" +
+                "<tr><td style='padding-left:18px;'>详细信息</td><td></td><td></td><td></td></tr>" +
+                "</thead><tbody>" +
+                "<tr><td>状<span style='color:#F5F5F5;'>状态</span>态</td><td>" + tmpData[i].status + "</td><td>电压等级</td><td>" + tmpData[i].voltage + "</td></tr>" +
+                "<tr><td>位置类型</td><td></td><td>设备数量</td><td>" + tmpData[i].loccount + "</td></tr><tr><td>健康指标</td><td>" + tmpData[i].avgasset + "</td><td>报警数量</td><td>" + tmpData[i].alertcount + "</td></tr><tr><td>地<span style='color:#F5F5F5;'>状态</span>址</td><td></td><td></td><td></td></tr></tbody></table>");
         var infoWindow = new AMap.InfoWindow({
             isCustom: true,  //使用自定义窗体
             content: createInfoWindow(title, content.join("")),
@@ -389,7 +398,6 @@
     }
 
 
-
     //构建自定义信息窗体
     function createInfoWindow(title, content) {
         var info = document.createElement("div");
@@ -401,7 +409,7 @@
         var top = document.createElement("p");
         var closeX = document.createElement("img");
         var titSpan = document.createElement("span");
-        titSpan.innerText = tmpData[i].parentdesc+'--'+tmpData[i].description ;
+        titSpan.innerText = tmpData[i].parentdesc + '--' + tmpData[i].description;
         titSpan.id = tmpData[i].location;
         titSpan.onclick = goto;
         top.className = "location-tree";
@@ -425,7 +433,7 @@
         map.clearInfoWindow();
         return false;
     }
-    function goto(){
+    function goto() {
         var location = $(this).attr("id");
         equipDetail(location);
     }
@@ -433,18 +441,18 @@
 
     //显示设备信息页
     var assetList = [];
-    var locationList =[];
-    var detailLnglats =[];
-    var detailTit ="";
-    function equipDetail(location){
+    var locationList = [];
+    var detailLnglats = [];
+    var detailTit = "";
+    function equipDetail(location) {
         $.ajax({
             url: "${ctx}/asset/assetData",
             method: "post",
-            data:{
+            data: {
                 location: location
             },
             dataType: "json",
-            success: function(data){
+            success: function (data) {
                 $(".equip-company").show();
                 $("#right-content").hide();
                 $(".equip-table table tbody").html("");
@@ -455,9 +463,9 @@
                 $(".data-uphone").text(locationList.udhone);
                 $(".data-contact").text(locationList.udcontact);
 
-                var locationTit = data.abbLocation.description.replace("一级位置","");
-                var tit = data.abbLocation.description+"---"+locationList.description;
-                localStorage.setItem("tit",tit);
+                var locationTit = data.abbLocation.description.replace("一级位置", "");
+                var tit = data.abbLocation.description + "---" + locationList.description;
+                localStorage.setItem("tit", tit);
                 $(".company-tit h3").text(tit);
                 $("span.location-tit").text(locationTit);
                 //具体站点经纬度
@@ -468,117 +476,118 @@
                 detailLnglats.push(tmpdetail);
                 detailTit = locationList.description;
 
-                var equipHtml="";
+                var equipHtml = "";
                 var warnHtmls = "";
-                var toWarnHtmls ="";
-                var testHtmls ="";
-                for(var i=0;i<assetList.length;i++){
+                var toWarnHtmls = "";
+                var testHtmls = "";
+                for (var i = 0; i < assetList.length; i++) {
                     //TODO
                     //设备表状态的图标选择
                     var states = '';
-                    if(assetList[i].state=='报警'){
+                    if (assetList[i].state == '报警') {
                         states = '<img src="${ctx}/img/asset/equip-error.gif">';
-                        warnHtmls += "<p>"+assetList[i].description+"发出警报，请及时处理。</p>";
+                        warnHtmls += "<p>" + assetList[i].description + "发出警报，请及时处理。</p>";
                     }
-                    if(assetList[i].state=='预报警'){
+                    if (assetList[i].state == '预报警') {
                         states = '<img src="${ctx}/img/asset/equip-warn.gif">';
-                        toWarnHtmls += "<p>"+assetList[i].description+"发出警报，请及时处理。</p>";
+                        toWarnHtmls += "<p>" + assetList[i].description + "发出警报，请及时处理。</p>";
                     }
-                    if(assetList[i].state=='正常'){
+                    if (assetList[i].state == '正常') {
                         states = '正常';
                     }
-                    if(assetList[i].state==null){
+                    if (assetList[i].state == null) {
                         states = '';
                     }
                     console.log(states);
-                    if(assetList[i].haschild == '0'){
-                        equipHtml+='<tr><td width="10%" style="padding-left: 10px;">'+states
-                                +'</td><td width="20%">'+assetList[i].description
-                                +'</td><td width="30%">'+assetList[i].manufacturer
-                                +'</td><td width="20%">'+assetList[i].udmodel
-                                +'</td><td width="20%">'+assetList[i].parent
-                                +'</td></tr>';
-                    }else{
-                        equipHtml+='<tr><td width="10%" style="padding-left: 10px;">'+states
-                                +'</td><td width="20%">'+assetList[i].description
-                                +'</td><td width="30%">'+assetList[i].name
-                                +'</td><td width="20%">'+assetList[i].udmodel
-                                +'</td><td width="20%" class="last-td">'+'<img src="${ctx}/img/asset/child-equip.gif" alt="子设备" id="'+assetList[i].childname+'">'
-                                        +'<span class="equip-left"></span>'
-                                +'</td></tr>';
+                    if (assetList[i].haschild == '0') {
+                        equipHtml += '<tr><td width="10%" style="padding-left: 10px;">' + states
+                                + '</td><td width="20%">' + assetList[i].description
+                                + '</td><td width="30%">' + assetList[i].manufacturer
+                                + '</td><td width="20%">' + assetList[i].udmodel
+                                + '</td><td width="20%">' + assetList[i].parent
+                                + '</td></tr>';
+                    } else {
+                        equipHtml += '<tr><td width="10%" style="padding-left: 10px;">' + states
+                                + '</td><td width="20%">' + assetList[i].description
+                                + '</td><td width="30%">' + assetList[i].name
+                                + '</td><td width="20%">' + assetList[i].udmodel
+                                + '</td><td width="20%" class="last-td">' + '<img src="${ctx}/img/asset/child-equip.gif" alt="子设备" id="' + assetList[i].childname + '">'
+                                + '<span class="equip-left"></span>'
+                                + '</td></tr>';
                     }
 
                 }
                 $(".equip-table table tbody").append(equipHtml);
                 console.log(testHtmls);
-                if(warnHtmls == "" && toWarnHtmls == ""){
+                if (warnHtmls == "" && toWarnHtmls == "") {
                     $(".warn-first-p").hide();
-                }else{
+                } else {
                     $(".warn-first-p").show();
                 }
                 $(".warn-info-content").append(warnHtmls);
                 $(".warn-info-content").append(toWarnHtmls);
                 initSmall();
             },
-            error: function(){
+            error: function () {
             }
         });
     }
 
-    $(function(){
-        var cWidth = $(window).width()-267;
+    $(function () {
+        var cWidth = $(window).width() - 267;
         $("#right-content").width(cWidth);
         $("#container").width(cWidth);
 
-        $(".close-icon").click(function(){
+        $(".close-icon").click(function () {
             window.location.href = "${ctx}/index/logout";
         });
-        $(".left-bag").click(function(){
+        $(".left-bag").click(function () {
             $(".equip-company").hide();
             $("#right-content").show();
             $(".child-ul").hide();
             $(".father-ul").find("li").removeClass("father-ul-a");
             $(".father-ul>li:first").addClass("father-ul-a");
         });
-        $(".left-down").click(function(){
+        $(".left-down").click(function () {
             $(".child-ul").toggle();
         });
 
-        var mod_menu=$(".child-ul");//导航模块区
-        var menu=function(){
-            var menuItem=$(".child-ul li");//选择导航列表
-            menuItem.each(function(){
-                var _index=$(this).index();//获取当前选择菜单列表的索引
-                $(this).mouseenter(function(){
+        var mod_menu = $(".child-ul");//导航模块区
+        var menu = function () {
+            var menuItem = $(".child-ul li");//选择导航列表
+            menuItem.each(function () {
+                var _index = $(this).index();//获取当前选择菜单列表的索引
+                $(this).mouseenter(function () {
                     var self = $(this);
                     var location = self.find("a").attr("id");
                     $.ajax({
                         url: "${ctx}/location/child",
                         method: "post",
-                        data:{
+                        data: {
                             location: location
                         },
                         dataType: "json",
-                        success: function(data){
-                            if(data.length>0){
+                        success: function (data) {
+                            if (data.length > 0) {
                                 var html = '';
                                 $("ul.equip-tree").html("");
-                                for(var i=0;i<data.length;i++){
-                                    html+= '<li><a  id="'+data[i].location+'">'+data[i].description+'</a></li>';
+                                for (var i = 0; i < data.length; i++) {
+                                    html += '<li><a  id="' + data[i].location + '">' + data[i].description + '</a></li>';
                                 }
                                 $("ul.equip-tree").append(html);
                                 var y = self.position().top;//获取当前鼠标滑过的列表的顶部坐标
                                 $(".equip-tree-ul").show();
                                 self.addClass("child-ul-hover").siblings().removeClass("child-ul-hover");
-                                $(".equip-tree-ul>ul").show().css("top",y).siblings().hide();
+                                $(".equip-tree-ul>ul").show().css("top", y).siblings().hide();
                             }
                         },
-                        error: function(){
+                        error: function () {
                         }
                     });
                 });
-            });/*导航菜单菜单*/
-            $(".father-ul").mouseleave(function(){
+            });
+            /*导航菜单菜单*/
+            $(".father-ul").mouseleave(function () {
                 $(".equip-tree-ul").hide();
                 menuItem.removeClass("child-ul-hover");
             })
@@ -586,38 +595,38 @@
         menu();//执行展开二级菜单函
 
         //位置树点击事件
-        $("ul.equip-tree").delegate("li","click",function(){
+        $("ul.equip-tree").delegate("li", "click", function () {
             var location = $(this).find("a").attr("id");
             equipDetail(location);
         });
 
         //子设备查看点击事件
-        $(".equip-table table tbody").delegate("tr td.last-td","click",function(){
+        $(".equip-table table tbody").delegate("tr td.last-td", "click", function () {
             var childName = $(this).find("img").attr("id");
             var index = $(this).index();
             var child = ".child-equip" + index;
-            if($(child).exist()){
+            if ($(child).exist()) {
                 $(child).toggle();
-            }else{
+            } else {
                 $.ajax({
                     url: "${ctx}/asset/assetChild",
                     method: "post",
-                    data:{
+                    data: {
                         childname: childName
                     },
                     dataType: "json",
-                    success: function(data){
+                    success: function (data) {
                         var childDom = "";
-                        for(var i=0;i<data.length;i++){
-                            childDom+='<tr class="child-equip'+index+'"><td width="10%" style="padding-left: 10px;">'+data[i].state
-                                    +'</td><td width="20%">'+data[i].description
-                                    +'</td><td width="30%">'+data[i].name
-                                    +'</td><td width="20%">'+data[i].udmodel
-                                    +'</td><td width="20%"></td></tr>';
+                        for (var i = 0; i < data.length; i++) {
+                            childDom += '<tr class="child-equip' + index + '"><td width="10%" style="padding-left: 10px;">' + data[i].state
+                                    + '</td><td width="20%">' + data[i].description
+                                    + '</td><td width="30%">' + data[i].name
+                                    + '</td><td width="20%">' + data[i].udmodel
+                                    + '</td><td width="20%"></td></tr>';
                         }
                         $(this).after(childDom);
                     },
-                    error: function(){
+                    error: function () {
                     }
                 });
             }
@@ -625,39 +634,39 @@
 
         var classstructureid = "";
         //设备表行点击事件
-        $(".equip-table table tbody").delegate("tr","click",function(){
+        $(".equip-table table tbody").delegate("tr", "click", function () {
             $(".btn-detail").show();
-            var index =  $(this).index();
+            var index = $(this).index();
             var data = assetList[index];
             $(".data-assetnum").text(data.assetnum);
             $(".data-comName").text(data.name);
             $(".data-asset-description").text(data.description);
             $(".data-status").text(data.status);
             $(".data-comUdmodel").text(data.udmodel);
-            $(".btn-detail").attr("id",data.assetuid);
+            $(".btn-detail").attr("id", data.assetuid);
             classstructureid = data.classstructureid;
             //增加显示  lh
-            $(".data-breaking-current").text("41.5KA");     //额定分断电流
+            $(".data-breaking-current").text("31.5KA");     //额定分断电流
             $(".data-voltage").text("12kV");                //额定电压
             $(".data-year").text("12");                     //运行年限
             $(".data-current").text("1250A");               //额定电流
-            $(".data-impulse-voltage").text("31kV");        //额定短时冲击电压
+            $(".data-impulse-voltage").text("42kV");        //额定短时冲击电压
             $(".data-comName").text(data.manufacturer);     //厂家
 
         });
 
         //设备详情按钮事件
-        $(".btn-detail").click(function(){
+        $(".btn-detail").click(function () {
             var assetuid = $(this).attr("id");
 
             $.ajax({
                 url: "${ctx}/asset/detail",
                 method: "post",
-                data:{
+                data: {
                     assetuid: assetuid
                 },
                 dataType: "json",
-                success: function(data){
+                success: function (data) {
                     $(".basic-assetnum").text(data.assetnum);
                     $(".basic-udcontract").text(data.udcontract);
                     $(".basic-description").text(data.description);
@@ -665,8 +674,8 @@
                     $(".basic-status").text(data.status);
                     $(".basic-udmodel").text(data.udmodel);
                     $(".companies-name").text(data.name);
-                    if(data.installdate==null){
-                        data.installdate="";
+                    if (data.installdate == null) {
+                        data.installdate = "";
                     }
                     $(".basic-installdate").text(data.installdate);
                     $(".basic-state").text(data.state);
@@ -676,34 +685,34 @@
 
 
                     //显示遮罩层，显示数据
-                    $("#mask").css("height",$(document).height());
-                    $("#mask").css("width",$(document).width());
-                    $("button.basic-info").css("border-color","#0badff");
+                    $("#mask").css("height", $(document).height());
+                    $("#mask").css("width", $(document).width());
+                    $("button.basic-info").css("border-color", "#0badff");
                     $("#mask").show();
                     $(".equip-detail-form").show();
 
                 },
-                error: function(){
+                error: function () {
                 }
             });
 
         });
 
 
-        $(".equip-detail-form span.close").click(function(){
+        $(".equip-detail-form span.close").click(function () {
             $("#mask").hide();
             $(".equip-detail-form").hide();
         });
 
-        $(".basic-info").click(function(){
-            $("button.basic-info").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
+        $(".basic-info").click(function () {
+            $("button.basic-info").css("border-color", "#0badff").siblings("button").css("border-color", "#dcdcdc");
             $("table.basic").show().siblings("table").hide();
             $("div.history").hide();
         });
 
         //设备详情备件信息按钮事件
-        $(".sth-info").click(function(){
-            $("button.sth-info").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
+        $(".sth-info").click(function () {
+            $("button.sth-info").css("border-color", "#0badff").siblings("button").css("border-color", "#dcdcdc");
             $("table.sth").show().siblings("table").hide();
             $("div.history").hide();
 
@@ -711,30 +720,30 @@
             $.ajax({
                 url: "${ctx}/asset/assetUdspareparts",
                 method: "post",
-                data:{
+                data: {
                     classstructureid: classstructureids
                 },
                 dataType: "json",
-                success: function(data){
+                success: function (data) {
                     var htmlsth = "";
-                    for(var i=0;i<data.length;i++){
-                        htmlsth +="<tr><td>"+data[i].itemnum
-                                +"</td><td>"+data[i].description
-                                +"</td><td>"
-                                +"</td><td>"
-                                +"</td></tr>";
+                    for (var i = 0; i < data.length; i++) {
+                        htmlsth += "<tr><td>" + data[i].itemnum
+                                + "</td><td>" + data[i].description
+                                + "</td><td>"
+                                + "</td><td>"
+                                + "</td></tr>";
                     }
                     $(".sth table tbody").append(htmlsth);
                 },
-                error: function(){
+                error: function () {
                 }
             });
 
         });
 
         //设备详情技术信息的按钮事件
-        $(".tecno-info").click(function(){
-            $("button.tecno-info").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
+        $(".tecno-info").click(function () {
+            $("button.tecno-info").css("border-color", "#0badff").siblings("button").css("border-color", "#dcdcdc");
             $("table.technology").show().siblings("table").hide();
             $("div.history").hide();
 
@@ -742,157 +751,157 @@
             $.ajax({
                 url: "${ctx}/asset/assetSpec",
                 method: "POST",
-                data:{
+                data: {
                     classstructureid: classstructureids
                 },
                 dataType: "json",
-                success: function(data){
+                success: function (data) {
                     $(".technology table tbody").html("");
                     var htmltech = "";
-                    for(var i=0;i<data.length;i++){
-                        htmltech +="<tr><td>"+data[i].assetattrid
-                                +"</td><td>"+data[i].description
-                                +"</td><td>"+data[i].alnvalue
-                                +"</td><td>"+data[i].measureunitid
-                                +"</td></tr>";
+                    for (var i = 0; i < data.length; i++) {
+                        htmltech += "<tr><td>" + data[i].assetattrid
+                                + "</td><td>" + data[i].description
+                                + "</td><td>" + data[i].alnvalue
+                                + "</td><td>" + data[i].measureunitid
+                                + "</td></tr>";
                     }
                     /*$(".technology table tbody").append(htmltech);*/
                 },
-                error: function(){
+                error: function () {
                 }
             });
         });
         //历史信息按钮事件的绑定
-        $(".history-info").click(function(){
-            $("button.history-info").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
+        $(".history-info").click(function () {
+            $("button.history-info").css("border-color", "#0badff").siblings("button").css("border-color", "#dcdcdc");
             $("div.history").show().siblings("table").hide();
             workOrder();
         });
 
 
         //工单记录显示
-        function workOrder(){
+        function workOrder() {
             $(".workOrder-table").show().siblings("table").hide();
-            $("button.workOrder").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
+            $("button.workOrder").css("border-color", "#0badff").siblings("button").css("border-color", "#dcdcdc");
             var classstructureids = classstructureid;
             $.ajax({
                 url: "${ctx}/asset/historyWork",
                 method: "POST",
-                data:{
+                data: {
                     classstructureid: classstructureids
                 },
                 dataType: "json",
-                success: function(data){
+                success: function (data) {
                     $(".workOrder-table tbody").html("");
                     var tmpHtml = "";
-                    for(var i=0;i<data.length;i++){
-                        tmpHtml +="<tr><td>"+data[i].wonum
-                                +"</td><td>"+data[i].description
-                                +"</td><td>"+data[i].locsdesc
-                                        //TODO 设备描述字段缺失
-                                +"</td><td>"+data[i].description
-                                +"</td><td>"+data[i].status
-                                +"</td><td>"+data[i].siteid
-                                +"</td></tr>";
+                    for (var i = 0; i < data.length; i++) {
+                        tmpHtml += "<tr><td>" + data[i].wonum
+                                + "</td><td>" + data[i].description
+                                + "</td><td>" + data[i].locsdesc
+                                //TODO 设备描述字段缺失
+                                + "</td><td>" + data[i].description
+                                + "</td><td>" + data[i].status
+                                + "</td><td>" + data[i].siteid
+                                + "</td></tr>";
                     }
                     /*$(".workOrder-table tbody").append(tmpHtml);*/
                 },
-                error: function(){
+                error: function () {
                 }
             });
         }
 
         //设备详情历史信息-工单记录-按钮事件绑定
-        $(".workOrder").click(function(){
+        $(".workOrder").click(function () {
             workOrder();
         });
         //设备详情历史信息-服务执行记录-按钮事件绑定
-        $(".execution").click(function(){
+        $(".execution").click(function () {
             $(".execution-table").show().siblings("table").hide();
-            $("button.execution").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
+            $("button.execution").css("border-color", "#0badff").siblings("button").css("border-color", "#dcdcdc");
             var classstructureids = classstructureid;
             $.ajax({
                 url: "${ctx}/asset/historyExecution",
                 method: "POST",
-                data:{
+                data: {
                     classstructureid: classstructureids
                 },
                 dataType: "json",
-                success: function(data){
+                success: function (data) {
                     $(".execution-table tbody").html("");
                     var tmpHtml = "";
-                    for(var i=0;i<data.length;i++){
-                        tmpHtml +="<tr><td>"+data[i].udmrecordnum
-                                +"</td><td>"+data[i].description
-                                +"</td><td>"+data[i].contractno
-                                +"</td><td>"+data[i].serviceengineer
-                                +"</td><td>"+data[i].workdate
-                                +"</td></tr>";
+                    for (var i = 0; i < data.length; i++) {
+                        tmpHtml += "<tr><td>" + data[i].udmrecordnum
+                                + "</td><td>" + data[i].description
+                                + "</td><td>" + data[i].contractno
+                                + "</td><td>" + data[i].serviceengineer
+                                + "</td><td>" + data[i].workdate
+                                + "</td></tr>";
                     }
                     /*$(".execution-table tbody").append(tmpHtml);*/
                 },
-                error: function(){
+                error: function () {
                 }
             });
         });
 
         //设备详情历史信息-设备监测记录-按钮事件绑定
-        $(".monitor").click(function(){
+        $(".monitor").click(function () {
             $(".monitor-table").show().siblings("table").hide();
-            $("button.monitor").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
+            $("button.monitor").css("border-color", "#0badff").siblings("button").css("border-color", "#dcdcdc");
             var classstructureids = classstructureid;
             $.ajax({
                 url: "${ctx}/asset/historyMonitor",
                 method: "POST",
-                data:{
+                data: {
                     classstructureid: classstructureids
                 },
                 dataType: "json",
-                success: function(data){
+                success: function (data) {
                     $(".monitor-table tbody").html("");
                     var tmpHtml = "";
-                    for(var i=0;i<data.length;i++){
-                        tmpHtml +="<tr><td>"+data[i].metername
-                                +"</td><td>"+data[i].description
-                                +"</td><td>"+data[i].metertype
-                                +"</td><td>"+data[i].lastreading
-                                +"</td><td>"+data[i].udmaxreading
-                                +"</td></tr>";
+                    for (var i = 0; i < data.length; i++) {
+                        tmpHtml += "<tr><td>" + data[i].metername
+                                + "</td><td>" + data[i].description
+                                + "</td><td>" + data[i].metertype
+                                + "</td><td>" + data[i].lastreading
+                                + "</td><td>" + data[i].udmaxreading
+                                + "</td></tr>";
                     }
                     /*$(".monitor-table tbody").append(tmpHtml);*/
                 },
-                error: function(){
+                error: function () {
                 }
             });
         });
 
         //TODO 设备维护和设备监测数据一样
         //设备详情历史信息-设备监测记录-按钮事件绑定
-        $(".maintain").click(function(){
+        $(".maintain").click(function () {
             $(".maintain-table").show().siblings("table").hide();
-            $("button.maintain").css("border-color","#0badff").siblings("button").css("border-color","#dcdcdc");
+            $("button.maintain").css("border-color", "#0badff").siblings("button").css("border-color", "#dcdcdc");
             var classstructureids = classstructureid;
             $.ajax({
                 url: "${ctx}/asset/historyMonitor",
                 method: "POST",
-                data:{
+                data: {
                     classstructureid: classstructureids
                 },
                 dataType: "json",
-                success: function(data){
+                success: function (data) {
                     $(".maintain-table tbody").html("");
                     var tmpHtml = "";
-                    for(var i=0;i<data.length;i++){
-                        tmpHtml +="<tr><td>"+data[i].metername
-                                +"</td><td>"+data[i].description
-                                +"</td><td>"+data[i].metertype
-                                +"</td><td>"+data[i].lastreading
-                                +"</td><td>"+data[i].udmaxreading
-                                +"</td></tr>";
+                    for (var i = 0; i < data.length; i++) {
+                        tmpHtml += "<tr><td>" + data[i].metername
+                                + "</td><td>" + data[i].description
+                                + "</td><td>" + data[i].metertype
+                                + "</td><td>" + data[i].lastreading
+                                + "</td><td>" + data[i].udmaxreading
+                                + "</td></tr>";
                     }
                     /*$(".maintain-table tbody").append(tmpHtml);*/
                 },
-                error: function(){
+                error: function () {
                 }
             });
         });
@@ -900,7 +909,7 @@
     });
 
     //设备及位置地图渲染
-    function  initSmall(){
+    function initSmall() {
         var map = new AMap.Map("map-location", {
             resizeEnable: true,
             center: detailLnglats[0],
@@ -915,7 +924,7 @@
         function addMarker() {
             var marker = new AMap.Marker({
                 map: map,
-                position:  lnglats[i]
+                position: lnglats[i]
             });
 
             marker.setLabel({//label默认蓝框白底左上角显示，样式className为：amap-marker-label
@@ -924,9 +933,9 @@
             });
         }
     }
-    (function($) {
-        $.fn.exist = function(){
-            if($(this).length>=1){
+    (function ($) {
+        $.fn.exist = function () {
+            if ($(this).length >= 1) {
                 return true;
             }
             return false;
