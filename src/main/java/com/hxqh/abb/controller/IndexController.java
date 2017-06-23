@@ -140,7 +140,6 @@ public class IndexController {
     }
 
 
-
     /**
      * 登录成功后跳转至index
      *
@@ -185,6 +184,8 @@ public class IndexController {
                     //增加经纬度信息
                     sessionInfo.setLongitude(login.getLongitude());
                     sessionInfo.setDimension(login.getDimension());
+                    //加入location
+                    sessionInfo.setLocation(login.getLocation());
                     map.put("sessionInfo", sessionInfo);
                     return "weixin/asset";
                 } else {
@@ -349,8 +350,6 @@ public class IndexController {
 
         return null;
     }
-
-
 
 
 }

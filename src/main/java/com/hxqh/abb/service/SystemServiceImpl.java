@@ -42,7 +42,7 @@ public class SystemServiceImpl implements SystemService {
     @Resource
     private AbbAssetSpecDao abbAssetSpecDao;
     @Resource
-    private  AbbAssetUdsparepartDao assetUdsparepartDao;
+    private AbbAssetUdsparepartDao assetUdsparepartDao;
     @Resource
     private AbbAssetHisMrecordDao abbAssetHisMrecordDao;
     @Resource
@@ -82,16 +82,20 @@ public class SystemServiceImpl implements SystemService {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("siteid", sessionInfo.getSiteid());
         params.put("reportedby", sessionInfo.getDisplayname());
+        params.put("stateWarn", "报警");
+        params.put("stateProWarn", "预报警");
+
         if (null != sessionInfo.getLocation())
             params.put("assigncode", sessionInfo.getLocation());
 
         String workorderWhere = "targstartdate is not null and reportedby=:reportedby";
         String wfWhere = "startdate is not null and duedate is not null";
         String wflWhere = wfWhere + " and assigncode=:assigncode";
+        String assetWhere = "siteid=:siteid and (state=:stateWarn or state=:stateProWarn)";
         String wfassignmentWhere = null == sessionInfo.getLocation() ? wfWhere : wflWhere;
 
         List<AbbIndexWorkorder> calendarList = abbindexworkorderDao.findAll(0, 5, workorderWhere, params, " order by workorderid desc");
-        List<AbbIndexAsset> assetList = abbindexassetDao.findAll(0, 4, " siteid=:siteid ", params, " order by assetuid desc");
+        List<AbbIndexAsset> assetList = abbindexassetDao.findAll(0, 4, assetWhere, params, " order by assetuid desc");
         List<AbbIndexWfassignment> wfassignmentList = abbindexwfassignmentDao.findAll(0, 5, wfassignmentWhere, params, " order by wfassignmentid desc");
         //增加对Calendar处理
         List<Calendar> calendar = process(calendarList);
@@ -132,7 +136,7 @@ public class SystemServiceImpl implements SystemService {
 
 
     @Override
-    public AssetDto getAssetData(String location,SessionInfo sessionInfo) {
+    public AssetDto getAssetData(String location, SessionInfo sessionInfo) {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("location", location);
         params.put("siteid", sessionInfo.getSiteid());
