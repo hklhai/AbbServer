@@ -327,6 +327,10 @@
         tmpObj.status = '${mapData.status}';
         tmpObj.alertcount = '${mapData.alertcount}';
         tmpObj.parentdesc = '${mapData.parentdesc}';
+
+        tmpObj.voltage = '${mapData.voltage}';
+        tmpObj.avgasset = '${mapData.avgasset}';
+
         tmpData.push(tmpObj);
         lStatus.push('${mapData.status}');
         var tmpLocation = [];
@@ -368,8 +372,8 @@
         //实例化信息窗体
         var title = '<i class="arraw"></i>',
                 content = [];
-        content.push("<table class='locaiton-table'><thead><tr><td width='318px' style='padding-left:18px;'>位置编码</td><td width='218px'>位置描述</td></tr></thead><tbody><tr><td style='padding-left:18px;'>"+tmpData[i].location+"</td><td>位置描述</td></tr></tbody></table>");
-        content.push("<table class='locaiton-table-info'><thead><tr><td style='padding-left:18px;'>详细信息</td><td></td><td></td><td></td></tr></thead><tbody><tr><td>状<span style='color:#F5F5F5;'>状态</span>态</td><td>tmpData[i].status</td><td>电压等级</td><td></td></tr><tr><td>位置类型</td><td></td><td>设备数量</td><td></td></tr><tr><td>健康指标</td><td></td><td>报警数量</td><td>状态</td></tr><tr><td>地<span style='color:#F5F5F5;'>状态</span>址</td><td></td><td></td><td></td></tr></tbody></table>");
+        content.push("<table class='locaiton-table'><thead><tr><td width='318px' style='padding-left:18px;'>位置编码</td><td width='218px'>位置描述</td></tr></thead><tbody><tr><td style='padding-left:18px;'>"+tmpData[i].location+"</td><td></td></tr></tbody></table>");
+        content.push("<table class='locaiton-table-info'><thead><tr><td style='padding-left:18px;'>详细信息</td><td></td><td></td><td></td></tr></thead><tbody><tr><td>状<span style='color:#F5F5F5;'>状态</span>态</td><td>"+tmpData[i].status+"</td><td>电压等级</td><td>"+tmpData[i].voltage+"</td></tr><tr><td>位置类型</td><td></td><td>设备数量</td><td>"+tmpData[i].loccount+"</td></tr><tr><td>健康指标</td><td>"+tmpData[i].avgasset+"</td><td>报警数量</td><td>"+tmpData[i].alertcount+"</td></tr><tr><td>地<span style='color:#F5F5F5;'>状态</span>址</td><td></td><td></td><td></td></tr></tbody></table>");
         var infoWindow = new AMap.InfoWindow({
             isCustom: true,  //使用自定义窗体
             content: createInfoWindow(title, content.join("")),
