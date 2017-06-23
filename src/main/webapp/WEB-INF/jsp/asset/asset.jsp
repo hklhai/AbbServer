@@ -483,9 +483,10 @@
                     if(assetList[i].state=='正常'){
                         states = '正常';
                     }
-                    else{
+                    if(assetList[i].state==null){
                         states = '';
                     }
+                    console.log(states);
                     if(assetList[i].haschild == '0'){
                         equipHtml+='<tr><td width="10%" style="padding-left: 10px;">'+states
                                 +'</td><td width="20%">'+assetList[i].description
