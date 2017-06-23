@@ -42,26 +42,26 @@ public class AbbMap implements Serializable {
 
     private String parentdesc;
 
-    private Integer voltage;
+    private String voltage;
 
-    private String avgasset;
+    private Double avgasset;
 
     public AbbMap() {
     }
 
-    public String getAvgasset() {
+    public Double getAvgasset() {
         return avgasset;
     }
 
-    public void setAvgasset(String avgasset) {
+    public void setAvgasset(Double avgasset) {
         this.avgasset = avgasset;
     }
 
-    public Integer getVoltage() {
+    public String getVoltage() {
         return voltage;
     }
 
-    public void setVoltage(Integer voltage) {
+    public void setVoltage(String voltage) {
         this.voltage = voltage;
     }
 
