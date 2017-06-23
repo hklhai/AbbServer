@@ -27,7 +27,7 @@ public class AbbMap implements Serializable {
     @Id
     private long locationsid;
 
-    private Integer loccount;
+    private String loccount;
 
     private String longitude;
 
@@ -42,7 +42,7 @@ public class AbbMap implements Serializable {
 
     private String parentdesc;
 
-    private String voltage;
+    private Integer voltage;
 
     private String avgasset;
 
@@ -57,11 +57,11 @@ public class AbbMap implements Serializable {
         this.avgasset = avgasset;
     }
 
-    public String getVoltage() {
+    public Integer getVoltage() {
         return voltage;
     }
 
-    public void setVoltage(String voltage) {
+    public void setVoltage(Integer voltage) {
         this.voltage = voltage;
     }
 
@@ -121,11 +121,11 @@ public class AbbMap implements Serializable {
         this.locationsid = locationsid;
     }
 
-    public Integer getLoccount() {
+    public String getLoccount() {
         return this.loccount;
     }
 
-    public void setLoccount(Integer loccount) {
+    public void setLoccount(String loccount) {
         this.loccount = loccount;
     }
 
