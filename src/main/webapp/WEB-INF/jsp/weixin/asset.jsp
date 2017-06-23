@@ -22,13 +22,10 @@
     <script src="${ctx}/scripts/rem.js"></script>
     <script src="${ctx}/scripts/jquery-1.8.3.min.js"></script>
     <script type="text/javascript">
-        var loactionData = [];
+        var locationData = [];
         var position = [];
         var locastory = [];
         var assetList = [];
-        var tmpLocation = [{
-            position: [120.1551500000, 30.2741500000]
-        }];
         var url = [];
         function initData(){
                 $.ajax({
@@ -38,18 +35,20 @@
                     success: function(data){
                         assetList = data;
                         for(var i=0;i<data.length;i++){
-                            var tmpObj = {};
-                            var tmpPostion = [];
-                            var tmpLocation = {};
-                            tmpLocation.description = data[i].description;
-                            tmpLocation.location = data[i].location;
-                            locastory.push(tmpLocation);
-                            tmpPostion.push(data[i].longitude);
-                            tmpPostion.push(data[i].dimension);
-                            tmpObj.position = tmpPostion;
-                            loactionData.push(tmpObj);
-                            var urls = "${ctx}/index/city?location="+data[i].location;
-                            url.push(urls);
+                            if(data[i].dimension!=null&&data[i].longitude!=null){
+                                var tmpObj = {};
+                                var tmpPostion = [];
+                                var tmpLocation = {};
+                                tmpLocation.description = data[i].description;
+                                tmpLocation.location = data[i].location;
+                                locastory.push(tmpLocation);
+                                tmpPostion.push(data[i].dimension);
+                                tmpPostion.push(data[i].longitude);
+                                /*tmpObj.position = tmpPostion;*/
+                                locationData.push(tmpPostion);
+                                var urls = "${ctx}/index/city?location="+data[i].location;
+                                url.push(urls);
+                            }
                         }
                         localStorage.removeItem("siteId");
                         localStorage.setItem("siteId",locastory);
@@ -94,26 +93,18 @@
 </body>
 <script>
     window.onload = function(){
-        console.log(assetList);
         var map = new AMap.Map('container', {
             resizeEnable: true,
-            center: [120.155150, 30.274150],
+            center: locationData[0],
             zoom: 7
         });
         map.clearMap();  // 清除地图覆盖物
-        var marker = new AMap.Marker({
-            position: map.getCenter()
-        });
-        marker.setMap(map);
-        var markers = loactionData;
+        var markers = locationData;
         // 添加一些分布不均的点到地图上,地图上添加三个点标记，作为参照
         markers.forEach(function(marker,index) {
-            if(marker.position[0] == null || marker.position[1] == null){
-                return false;
-            }
             var marker=new AMap.Marker({
                 map: map,
-                position: [marker.position[1], marker.position[0]],
+                position: locationData[index],
                 offset: new AMap.Pixel(0, 0),
                 clickable: true
             });
@@ -127,7 +118,7 @@
                 offset: new AMap.Pixel(20, 20),//修改label相对于maker的位置
                 content: "<div style='z-index:90000;'><a style='z-index:100000;' target='_blank' href='"+url[index]+"'>"+desc+"</a></div>"
             });
-            marker.addEventListener(marker,function(){
+            marker.on("click",function(){
                  location.href = url[index];
             });
         });

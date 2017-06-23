@@ -24,9 +24,43 @@
     <script type="text/javascript"
             src="http://webapi.amap.com/maps?v=1.3&key=e4eb9da6d97281e42a0357655570e3ae"></script>
     <script>
+        //渲染高德地图底图
+
+
+        var assetList=[];
+        var locationObj;
+        var deitailDec = "";
         $(function(){
-            var assetList=[];
-            var locationList = [];
+
+            function initSmall(){
+                var tmpData =[];
+                var tmp = [];
+                tmp.push(locationObj.dimension);
+                tmp.push(locationObj.longitude);
+                tmpData.push(tmp);
+                var map = new AMap.Map("map-location", {
+                    resizeEnable: true,
+                    center:  tmpData[0],
+                    zoom: 7
+                });
+                map.setZoomAndCenter(7,  tmpData[0]);
+                var lnglats = tmpData;
+                //添加marker标记
+                for (var i = 0, marker; i < lnglats.length; i++) {
+                    addMarker();
+                }
+                function addMarker() {
+                    var marker = new AMap.Marker({
+                        map: map,
+                        position:  lnglats[i]
+                    });
+                   marker.setLabel({//label默认蓝框白底左上角显示，样式className为：amap-marker-label
+                        offset: new AMap.Pixel(-60, -30),//修改label相对于maker的位置
+                        content: deitailDec
+                    });
+
+                }
+            }
             function initData(){
                 var location = localStorage.getItem("location");
                 $.ajax({
@@ -38,10 +72,13 @@
                     dataType: "json",
                     success: function(data){
                         assetList = data.abbAssetList;
-                        locationList = data.abbAssetLocationList;
-                        $(".data-location").text(locationList.location);
-                        $(".data-description").text(locationList.description);
-                        $(".layout-tit").text(locationList.description);
+                        locationObj = data.abbAssetLocationList;
+                        deitailDec= data.abbAssetLocationList.description;
+                        initSmall();
+
+                        $(".data-location").text(locationObj.location);
+                        $(".data-description").text(locationObj.description);
+                        $(".layout-tit").text(locationObj.description);
                         var equipHtml="";
                         for(var i=0;i<assetList.length;i++){
                             equipHtml+='<tr><td>'+assetList[i].state
@@ -84,7 +121,7 @@
 </head>
 <body>
 <div class="layout">
-    <div class="layout-tit">南京江苏核电有限公司</div>
+    <div class="layout-tit"></div>
     <div id="map-location"></div>
     <div class="location">
         <h4>位置信息</h4>
@@ -203,26 +240,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    var map = new AMap.Map("map-location", {
-        resizeEnable: true,
-        center: [116.481181, 39.989792],
-        zoom: 16
-    });
-    var lnglats = [
-        [116.368904, 39.923423]
-    ];
-    //添加marker标记
-    for (var i = 0, marker; i < lnglats.length; i++) {
-        addMarker();
-    }
-    function addMarker() {
-        var marker = new AMap.Marker({
-            map: map,
-            position:  lnglats[i]
-        });
-    }
-</script>
 <script type="text/javascript" src="http://webapi.amap.com/demos/js/liteToolbar.js"></script>
 </body>
 </html>
