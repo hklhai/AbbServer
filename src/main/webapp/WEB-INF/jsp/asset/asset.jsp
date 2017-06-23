@@ -148,7 +148,7 @@
                     </tr>
                     <tr>
                         <td>设备状态：</td>
-                        <td class="data-state"></td>
+                        <td class="data-status"></td>
                         <td>额定电流：</td>
                         <td class="data-current"></td>
                         <td>所处生命周期：</td>
@@ -627,7 +627,7 @@
             $(".data-assetnum").text(data.assetnum);
             $(".data-comName").text(data.name);
             $(".data-asset-description").text(data.description);
-            $(".data-state").text(data.state);
+            $(".data-status").text(data.status);
             $(".data-comUdmodel").text(data.udmodel);
             $(".btn-detail").attr("id",data.assetuid);
             classstructureid = data.classstructureid;
