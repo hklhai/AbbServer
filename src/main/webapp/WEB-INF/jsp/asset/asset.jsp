@@ -105,8 +105,9 @@
                 </div>
                 <div class="warn-info">
                     <h3>报警信息</h3>
-                     <p class="warn-first-p"></p>
-                     <p class="warn-sec-p"></p>
+                    <div class="warn-info-content">
+                        <p class="warn-first-p" style="display: none;"><img src="${ctx}/img/asset/equip-error.gif"/>Warning</p>
+                    </div>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -464,17 +465,26 @@
                 detailTit = locationList.description;
 
                 var equipHtml="";
+                var warnHtmls = "";
+                var toWarnHtmls ="";
+                var testHtmls ="";
                 for(var i=0;i<assetList.length;i++){
                     //TODO
                     //设备表状态的图标选择
                     var states = '';
-                    if(assetList[i].state=='0'){
+                    if(assetList[i].state=='报警'){
                         states = '<img src="${ctx}/img/asset/equip-error.gif">';
+                        warnHtmls += "<p>"+assetList[i].description+"发出警报，请及时处理。</p>";
                     }
-                    if(assetList[i].state=='1'){
+                    if(assetList[i].state=='预报警'){
                         states = '<img src="${ctx}/img/asset/equip-warn.gif">';
-                    }else{
+                        toWarnHtmls += "<p>"+assetList[i].description+"发出警报，请及时处理。</p>";
+                    }
+                    if(assetList[i].state=='正常'){
                         states = '正常';
+                    }
+                    else{
+                        states = '';
                     }
                     if(assetList[i].haschild == '0'){
                         equipHtml+='<tr><td width="10%" style="padding-left: 10px;">'+states
@@ -495,6 +505,14 @@
 
                 }
                 $(".equip-table table tbody").append(equipHtml);
+                console.log(testHtmls);
+                if(warnHtmls == "" && toWarnHtmls == ""){
+                    $(".warn-first-p").hide();
+                }else{
+                    $(".warn-first-p").show();
+                }
+                $(".warn-info-content").append(warnHtmls);
+                $(".warn-info-content").append(toWarnHtmls);
                 initSmall();
             },
             error: function(){
@@ -621,12 +639,6 @@
             $(".data-impulse-voltage").text("31kV");        //额定短时冲击电压
             $(".data-comName").text(data.manufacturer);     //厂家
 
-            //TODO
-            //根据设备的报警状态显示不同的信息
-            if(data.state == ""){
-                $(".warn-first-p").text();
-                $(".warn-sec-p").text();
-            }
         });
 
         //设备详情按钮事件

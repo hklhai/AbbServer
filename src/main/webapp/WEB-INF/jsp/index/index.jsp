@@ -185,7 +185,8 @@
                         </thead>
                         <tbody>
                         <tr v-for="asset in assetList">
-                            <td>{{asset.state}}</td>
+                            <td v-if="asset.state=='报警'"><img src="${ctx}/img/asset/equip-error.gif"></td>
+                            <td v-if="asset.state=='预报警'"><img src="${ctx}/img/asset/equip-warn.gif"></td>
                             <td v-bind:title="asset.description">{{asset.description}}</td>
                             <td v-bind:title="asset.locdesc"><div style="white-space: nowrap;overflow:hidden;text-overflow:ellipsis;">{{asset.locdesc}}</div></td>
                         </tr>
