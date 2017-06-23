@@ -377,7 +377,7 @@
         //实例化信息窗体
         var title = '<i class="arraw"></i>',
                 content = [];
-        content.push("<table class='locaiton-table'><thead><tr><td width='318px' style='padding-left:18px;'>位置编码</td><td width='218px'>位置描述</td></tr></thead><tbody><tr><td style='padding-left:18px;'>" + tmpData[i].location + "</td><td></td></tr></tbody></table>");
+        content.push("<table class='locaiton-table'><thead><tr><td width='318px' style='padding-left:18px;'>位置编码</td><td width='218px'>位置描述</td></tr></thead><tbody><tr><td style='padding-left:18px;'>" + tmpData[i].location + "</td><td>"+ tmpData[i].description + "</td></tr></tbody></table>");
         content.push("<table class='locaiton-table-info'><thead>" +
                 "<tr><td style='padding-left:18px;'>详细信息</td><td></td><td></td><td></td></tr>" +
                 "</thead><tbody>" +
