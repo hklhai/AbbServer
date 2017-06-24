@@ -479,7 +479,6 @@
                 var equipHtml = "";
                 var warnHtmls = "";
                 var toWarnHtmls = "";
-                var testHtmls = "";
                 for (var i = 0; i < assetList.length; i++) {
                     //TODO
                     //设备表状态的图标选择
@@ -498,7 +497,6 @@
                     if (assetList[i].state == null) {
                         states = '';
                     }
-                    console.log(states);
                     if (assetList[i].haschild == '0') {
                         equipHtml += '<tr><td width="10%" style="padding-left: 10px;">' + states
                                 + '</td><td width="20%">' + assetList[i].description
@@ -518,7 +516,6 @@
 
                 }
                 $(".equip-table table tbody").append(equipHtml);
-                console.log(testHtmls);
                 if (warnHtmls == "" && toWarnHtmls == "") {
                     $(".warn-first-p").hide();
                 } else {

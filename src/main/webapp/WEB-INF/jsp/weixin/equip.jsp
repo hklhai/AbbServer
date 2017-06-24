@@ -75,19 +75,51 @@
                         locationObj = data.abbAssetLocationList;
                         deitailDec= data.abbAssetLocationList.description;
                         initSmall();
-
+                        console.log(locationObj);
+                        //位置树的数据渲染
                         $(".data-location").text(locationObj.location);
                         $(".data-description").text(locationObj.description);
                         $(".layout-tit").text(locationObj.description);
+                        $(".data-state").text(locationObj.status);
+                        $(".data-avgasset").text(locationObj.avgasset);
+                        $(".data-volm").text(locationObj.voltage);
+                        $(".equip-count").text(locationObj.loccount);
+                        $(".data-alertcount").text(locationObj.alertcount);
+                        //设备表的数据渲染
                         var equipHtml="";
+                        var warnHtmls = "";
+                        var toWarnHtmls = "";
                         for(var i=0;i<assetList.length;i++){
-                            equipHtml+='<tr><td>'+assetList[i].state
+                            var states = '';
+                            if (assetList[i].state == '报警') {
+                                states = '<img src="${ctx}/img/asset/equip-error.gif">';
+                                warnHtmls += "<p>" + assetList[i].description + "发出警报，请及时处理。</p>";
+                            }
+                            if (assetList[i].state == '预报警') {
+                                states = '<img src="${ctx}/img/asset/equip-warn.gif">';
+                                toWarnHtmls += "<p>" + assetList[i].description + "发出警报，请及时处理。</p>";
+                            }
+                            if (assetList[i].state == '正常') {
+                                states = '正常';
+                            }
+                            if (assetList[i].state == null) {
+                                states = '';
+                            }
+                            equipHtml+='<tr><td>'+states
                                     +'</td><td>'+assetList[i].description
                                     +'</td><td>'+assetList[i].name
                                     +'</td><td>'+assetList[i].udmodel
                                     +'</td><td>'+assetList[i].parent
                                     +'</td></tr>';
                         }
+
+                        if (warnHtmls == "" && toWarnHtmls == "") {
+                            $(".warn-first-p").hide();
+                        } else {
+                            $(".warn-first-p").show();
+                        }
+                        $("div.warning-info").append(warnHtmls);
+                        $("div.warning-info").append(toWarnHtmls);
                         $("table.equip-table tbody").append(equipHtml);
                     },
                     error: function(){
@@ -133,11 +165,11 @@
                 </tr>
                 <tr>
                     <td>位置描述：</td>
-                    <td class="data-description">JSHD</td>
+                    <td class="data-description"></td>
                 </tr>
                 <tr>
                     <td>状<span style="color: #fff;">状态</span>态：</td>
-                    <td class=""></td>
+                    <td class="data-state"></td>
                 </tr>
                 <tr>
                     <td>位置类型：</td>
@@ -145,22 +177,22 @@
                 </tr>
                 <tr>
                     <td>健康指标：</td>
-                    <td>JSHD</td>
+                    <td class="data-avgasset"></td>
                 </tr>
-                <td>地<span style="color: #fff;">状态</span>址：</td>
-                <td class="data-address"></td>
+                    <td>地<span style="color: #fff;">状态</span>址：</td>
+                    <td class="data-address"></td>
                 </tr>
                 <tr>
                     <td>电压等级：</td>
-                    <td></td>
+                    <td class="data-volm"></td>
                 </tr>
                 <tr>
                     <td>设备数量：</td>
-                    <td></td>
+                    <td class="equip-count"></td>
                 </tr>
                 <tr>
                     <td>报警数量：</td>
-                    <td></td>
+                    <td class="data-alertcount"></td>
                 </tr>
             </table>
         </div>
@@ -168,8 +200,7 @@
     <div class="warning">
         <h4>报警信息</h4>
         <div class="warning-info">
-            <p>warning</p>
-            <p>馈线柜 发出报警，请及时处理</p>
+            <p class="warn-first-p">warning</p>
         </div>
     </div>
     <div class="equip">
