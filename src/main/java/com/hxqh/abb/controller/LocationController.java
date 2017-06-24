@@ -70,16 +70,7 @@ public class LocationController {
         for (AbbMap abbMap : mapData) {
             if (abbMap.getParentdesc() != null)
                 abbMap.setParentdesc(abbMap.getParentdesc().substring(0, 2));
-//            if(abbMap.getAvgasset()!=null)
-//            {
-//                abbMap.getAvgasset()
-//                abbMap.setAvgasset(abbMap.getAvgasset().);
-//            }
-
         }
-
-
-
 
         result.put("abbLocationList", abbLocationList);
         result.put("mapData", mapData);

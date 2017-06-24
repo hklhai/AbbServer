@@ -103,7 +103,7 @@ public class IndexController {
                 if (loginUserList.get(0).getPassword().toUpperCase().equals(password)) {
                     //加入Session中
                     AbbLogin login = loginUserList.get(0);
-                    SessionInfo sessionInfo = new SessionInfo(login.getLoginid(), login.getDefsite(), " ", login.getDisplayname());
+                    SessionInfo sessionInfo = new SessionInfo(login.getLoginid(), login.getSiteid(), " ", login.getDisplayname());
                     sessionInfo.setLongitude(login.getLongitude());
                     sessionInfo.setDimension(login.getDimension());
                     //加入location
@@ -180,7 +180,7 @@ public class IndexController {
                 if (loginUserList.get(0).getPassword().toUpperCase().equals(password)) {
                     //加入Session中
                     AbbLogin login = loginUserList.get(0);
-                    SessionInfo sessionInfo = new SessionInfo(login.getLoginid(), login.getDefsite(), " ", login.getDisplayname());
+                    SessionInfo sessionInfo = new SessionInfo(login.getLoginid(), login.getSiteid(), " ", login.getDisplayname());
                     //增加经纬度信息
                     sessionInfo.setLongitude(login.getLongitude());
                     sessionInfo.setDimension(login.getDimension());
