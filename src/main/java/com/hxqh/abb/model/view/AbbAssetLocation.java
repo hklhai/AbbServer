@@ -40,7 +40,18 @@ public class AbbAssetLocation implements Serializable {
 
     private String loccount;
 
+    @Column(name = "\"STATUS\"")
+    private String status;
+
     public AbbAssetLocation() {
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getVoltage() {
