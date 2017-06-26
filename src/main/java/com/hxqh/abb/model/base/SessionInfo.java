@@ -4,7 +4,6 @@ package com.hxqh.abb.model.base;
  * Created by dell on 2017-05-24.
  */
 public class SessionInfo {
-
     private String loginId;
 
     private String siteid;

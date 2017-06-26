@@ -6,106 +6,145 @@ import javax.persistence.*;
 
 /**
  * The persistent class for the ABB_ASSET_LOCATION database table.
- * 
  */
 @Entity
-@Table(name="ABB_ASSET_LOCATION")
+@Table(name = "ABB_ASSET_LOCATION")
 public class AbbAssetLocation implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private String adddesc;
+    private String adddesc;
 
-	private String description;
+    private String description;
 
-	private String dimension;
+    private String dimension;
 
-	@Column(name="\"LOCATION\"")
-	private String location;
+    @Column(name = "\"LOCATION\"")
+    private String location;
 
-	@Id
-	private long locationsid;
+    @Id
+    private long locationsid;
 
-	private String longitude;
+    private String longitude;
 
-	private String orgid;
+    private String orgid;
 
-	private String udcontact;
+    private String udcontact;
 
-	private String udphone;
+    private String udphone;
 
-	public AbbAssetLocation() {
-	}
+    private String voltage;
 
-	public String getAdddesc() {
-		return this.adddesc;
-	}
+    private Double avgasset;
 
-	public void setAdddesc(String adddesc) {
-		this.adddesc = adddesc;
-	}
+    private Integer alertcount;
 
-	public String getDescription() {
-		return this.description;
-	}
+    private String loccount;
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public AbbAssetLocation() {
+    }
 
-	public String getDimension() {
-		return this.dimension;
-	}
+    public String getVoltage() {
+        return voltage;
+    }
 
-	public void setDimension(String dimension) {
-		this.dimension = dimension;
-	}
+    public void setVoltage(String voltage) {
+        this.voltage = voltage;
+    }
 
-	public String getLocation() {
-		return this.location;
-	}
+    public Double getAvgasset() {
+        return avgasset;
+    }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    public void setAvgasset(Double avgasset) {
+        this.avgasset = avgasset;
+    }
 
-	public long getLocationsid() {
-		return this.locationsid;
-	}
+    public Integer getAlertcount() {
+        return alertcount;
+    }
 
-	public void setLocationsid(long locationsid) {
-		this.locationsid = locationsid;
-	}
+    public void setAlertcount(Integer alertcount) {
+        this.alertcount = alertcount;
+    }
 
-	public String getLongitude() {
-		return this.longitude;
-	}
+    public String getLoccount() {
+        return loccount;
+    }
 
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
-	}
+    public void setLoccount(String loccount) {
+        this.loccount = loccount;
+    }
 
-	public String getOrgid() {
-		return this.orgid;
-	}
+    public String getAdddesc() {
+        return this.adddesc;
+    }
 
-	public void setOrgid(String orgid) {
-		this.orgid = orgid;
-	}
+    public void setAdddesc(String adddesc) {
+        this.adddesc = adddesc;
+    }
 
-	public String getUdcontact() {
-		return this.udcontact;
-	}
+    public String getDescription() {
+        return this.description;
+    }
 
-	public void setUdcontact(String udcontact) {
-		this.udcontact = udcontact;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public String getUdphone() {
-		return this.udphone;
-	}
+    public String getDimension() {
+        return this.dimension;
+    }
 
-	public void setUdphone(String udphone) {
-		this.udphone = udphone;
-	}
+    public void setDimension(String dimension) {
+        this.dimension = dimension;
+    }
+
+    public String getLocation() {
+        return this.location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public long getLocationsid() {
+        return this.locationsid;
+    }
+
+    public void setLocationsid(long locationsid) {
+        this.locationsid = locationsid;
+    }
+
+    public String getLongitude() {
+        return this.longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getOrgid() {
+        return this.orgid;
+    }
+
+    public void setOrgid(String orgid) {
+        this.orgid = orgid;
+    }
+
+    public String getUdcontact() {
+        return this.udcontact;
+    }
+
+    public void setUdcontact(String udcontact) {
+        this.udcontact = udcontact;
+    }
+
+    public String getUdphone() {
+        return this.udphone;
+    }
+
+    public void setUdphone(String udphone) {
+        this.udphone = udphone;
+    }
 
 }
