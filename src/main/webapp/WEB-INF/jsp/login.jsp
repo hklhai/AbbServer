@@ -29,15 +29,28 @@
                 $("#pwd").removeClass("input-blue");
                 $("#userName").addClass("input-blue");
             });
+            $("#userName").on("keypress",function(event){
+                if(event.keyCode == 13){
+                    loginAction();
+                }
+            });
             $("#pwd").click(function(){
                 $("#userName").removeClass("input-blue");
                 $("#pwd").addClass("input-blue");
             });
+            $("#pwd").on("keypress",function(event){
+                if(event.keyCode == 13){
+                    loginAction();
+                }
+            });
             $("#login").click(function(){
+                loginAction();
+            });
+            function loginAction(){
                 var username = $("#userName").val().trim();
                 var pwd = $("#pwd").val().trim();
                 if(username.length==0||pwd.length==0){
-                     $("#tip").text("用户名或者密码不能为空");
+                    $("#tip").text("用户名或者密码不能为空");
                 }else{
                     $.ajax({
                         url: "${ctx}/index/login",
@@ -62,7 +75,7 @@
                         }
                     })
                 }
-            });
+            }
         });
     </script>
 </head>

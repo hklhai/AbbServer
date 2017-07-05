@@ -1,8 +1,8 @@
 .equip-layout{
 	width: 100%;
 	min-width: 1280px;
-	height: 828px;
-	min-height: 800px;
+	min-height: 828px;
+	height:100%;
 }
 .equip-nav{
 	width: 267px;
@@ -99,6 +99,7 @@ ul.child-ul li:hover{
 #right-content{
 	width:100%;
 	margin-left: 267px;
-	height: 828px;
+	min-height: 828px;
+	height:100%;
 	position: relative;
 }
