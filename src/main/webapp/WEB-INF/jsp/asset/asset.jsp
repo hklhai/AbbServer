@@ -44,7 +44,7 @@
 <div class="equip-layout">
     <div class="equip-nav">
         <ul class="father-ul">
-            <li class="father-ul-a"><a href="javascript:;" class="left-bag">现场及设备地图</a></li>
+            <li class="father-ul-a" style="margin-top: 16px;"><a href="javascript:;" class="left-bag">现场及设备地图</a></li>
             <li class="father-ul-li">
                 <a href="javascript:;" class="left-down">设备及位置</a>
                 <ul class="child-ul" style="display: none;">
@@ -63,7 +63,6 @@
     <%--地图显示--%>
     <div id="right-content">
         <div id="container"></div>
-        <div id="tip">点击地图上的点标记，打开所添加的自定义信息窗体</div>
     </div>
     <%--内容显示--%>
     <div class="equip-company" style="display: none;">
