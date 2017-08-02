@@ -15,7 +15,7 @@ import java.net.URLConnection;
  */
 public class HttpRequest {
 
-    @Test
+//    @Test
     public void test() {
         //发送 POST 请求
         String sr = HttpRequest.sendPost("http://ngork.com.viphk.ngrok.org/index/loginWebChat", "loginid=maxadmin&password=maxadmin");

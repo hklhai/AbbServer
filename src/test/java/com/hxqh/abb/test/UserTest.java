@@ -1,6 +1,7 @@
 package com.hxqh.abb.test;
 
 import com.alibaba.fastjson.JSON;
+import com.hxqh.abb.hello.GreetingInScala;
 import com.hxqh.abb.model.User;
 import com.hxqh.abb.model.assist.InterfaceMessage;
 import com.hxqh.abb.service.UserService;
@@ -26,6 +27,12 @@ import java.util.List;
 public class UserTest {
     @Resource
     private UserService userService;
+
+    @Test
+    public void bootstrap () {
+        GreetingInScala scala = new GreetingInScala();
+        Assert.assertEquals("Hello World!",scala.greet());
+    }
 
     @Test
     public void json() {

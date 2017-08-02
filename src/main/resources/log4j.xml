@@ -18,7 +18,9 @@
 		</layout>
 	</appender>
 
-
+	<logger name="org.hibernate.engine.jdbc.spi.SqlExceptionHelper">
+		<level value="ERROR" />
+	</logger>
 	<logger name="org.springframework.data.mongodb.core.convert.CustomConversions">
 		<level value="ERROR" />
 	</logger>
