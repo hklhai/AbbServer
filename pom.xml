@@ -4,7 +4,7 @@
     <groupId>com.hxqh.abb</groupId>
     <artifactId>hxqh-abb</artifactId>
     <packaging>war</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>2.0-SNAPSHOT</version>
     <name>hxqh-abb Maven Webapp</name>
     <url>http://maven.apache.org</url>
 
@@ -568,7 +568,7 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>AbbServer</finalName>
+        <finalName>Abb2Server</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
