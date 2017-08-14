@@ -8,7 +8,7 @@ import scala.io.Source
 /**
   * Created by Ocean Lin on 2017/6/8.
   */
-object FileUtil {
+object FileUtilScala {
     /*
       * 往文件里写入字符串
       */

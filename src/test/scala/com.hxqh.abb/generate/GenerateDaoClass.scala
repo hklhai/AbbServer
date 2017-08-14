@@ -1,6 +1,6 @@
 package com.hxqh.abb.generate
 
-import com.hxqh.abb.common.FileUtil
+import com.hxqh.abb.common.FileUtilScala
 import org.junit.Test
 import java.io.IOException
 
@@ -46,18 +46,18 @@ class GenerateDaoClass {
     val daoImpl = "D:\\HXQH\\CompanyProject\\AbbServer\\src\\test\\resources\\scala\\daoImpl.property"
     //生成Mbo实体
 
-    val s = FileUtil.txt2String(file)
+    val s = FileUtilScala.txt2String(file)
     //        System.out.println(s);
     val mBOName = s.split("\t")
     for (string <- mBOName) {
       if (string.length > 0) {
-        val mboStr = FileUtil.txt2String(mboFile).replaceAll("XXXXX", string + "Dao").replaceAll("YYYYY", string)
-        FileUtil.WriteStringToFile("src/" + string + "Dao" + ".scala", mboStr)
+        val mboStr = FileUtilScala.txt2String(mboFile).replaceAll("XXXXX", string + "Dao").replaceAll("YYYYY", string)
+        FileUtilScala.WriteStringToFile("src/" + string + "Dao" + ".scala", mboStr)
         //daoImpl
         val sb = new StringBuilder(string)
         sb.setCharAt(0, Character.toLowerCase(sb.charAt(0)))
-        val daoImplStr = FileUtil.txt2String(daoImpl).replaceAll("XXXX", string + "Dao").replaceAll("YYYY", string).replaceAll("ZZZZ", string + "DaoImpl").replaceAll("WWWW", sb.toString + "Dao")
-        FileUtil.WriteStringToFile("src/" + string + "DaoImpl" + ".scala", daoImplStr)
+        val daoImplStr = FileUtilScala.txt2String(daoImpl).replaceAll("XXXX", string + "Dao").replaceAll("YYYY", string).replaceAll("ZZZZ", string + "DaoImpl").replaceAll("WWWW", sb.toString + "Dao")
+        FileUtilScala.WriteStringToFile("src/" + string + "DaoImpl" + ".scala", daoImplStr)
       }
     }
     System.out.println("Generate Success!")
