@@ -1,9 +1,6 @@
 package com.hxqh.abb.service
 
-import java.util
-
-import com.hxqh.abb.dao.SiteDao
-import com.hxqh.abb.model.Site
+import com.hxqh.abb.dao.UdvehicleDao
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -15,7 +12,11 @@ import org.springframework.transaction.annotation.Transactional
 
 @Transactional
 @Service("stationService") class StationServiceImpl extends StationService {
-  @Autowired private val  siteDao:SiteDao = null
+  //  @Autowired private val siteDao: SiteDao = null
+  @Autowired private val udvehicleDao: UdvehicleDao = null
 
-  override def getSiteList: util.List[Site] = siteDao.findAll
+  override def vehicleListData = {
+    udvehicleDao.findAll()
+  }
+
 }
