@@ -1,12 +1,14 @@
 package com.hxqh.abb.controller
 
 import java.util
+import java.util.{HashMap, Map}
 
+import com.hxqh.abb.model.searchdto.Page
 import com.hxqh.abb.model.version2.Udvehicle
 import com.hxqh.abb.service.StationService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.ComponentScan
-import org.springframework.web.bind.annotation.{RequestMapping, RequestMethod, ResponseBody, RestController}
+import org.springframework.web.bind.annotation._
 import org.springframework.web.servlet.ModelAndView
 
 /**
@@ -15,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView
 @ResponseBody
 @ComponentScan
 @RestController
-@RequestMapping(Array("/station")) class StationController @Autowired()
+@RequestMapping(Array("/common")) class StationController @Autowired()
 (private val stationService: StationService) {
 
   /**
@@ -23,8 +25,14 @@ import org.springframework.web.servlet.ModelAndView
     *
     * @return
     */
-  @RequestMapping(value = Array("/vehicleList"), method = Array(RequestMethod.GET))
-  def vehicleList: ModelAndView = new ModelAndView("vehicle/vehicleList")
+  @RequestMapping(value = Array("/list"), method = Array(RequestMethod.GET))
+  def vehicleList(@RequestParam("func") func: String): ModelAndView = {
+    val result = new util.HashMap[String, AnyRef]
+    var titles= stationService.getAppInfo()
+    result.put("titles", titles)
+    result.put("urls", "/common/list")
+    new ModelAndView("commonFunc/commonlist")
+  }
 
   /**
     * 车辆台账  数据接口
@@ -33,7 +41,9 @@ import org.springframework.web.servlet.ModelAndView
     */
   @ResponseBody
   @RequestMapping(value = Array("/vehicleListData"), method = Array(RequestMethod.GET))
-  def vehicleListData: util.List[Udvehicle] = {
-    stationService.vehicleListData
+  def vehicleListData(page: Page): util.List[Udvehicle] = {
+    stationService.vehicleListData(page)
   }
+
+
 }
