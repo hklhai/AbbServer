@@ -17,12 +17,14 @@ import java.util.List;
 public interface ToolService {
 
 
-    public abstract ToolDto getListData(Page page) throws Exception;
+    ToolDto getListData(Page page) throws Exception;
 
-    public abstract ToolDto getToolData(UdtoolDto udtoolDto, Page page) throws Exception;
+    ToolDto getToolData(UdtoolDto udtoolDto, Page page) throws Exception;
     /***************************************/
     /**
+     *
      * 工具借还
+     *
      **/
 
     List<UdtoolLend> getUdtoolLendList();

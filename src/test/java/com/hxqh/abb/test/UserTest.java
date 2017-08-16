@@ -83,8 +83,8 @@ public class UserTest {
                         if (name == null) {
                             Method mtd = classz.getMethod("set"
                                             + change(field.getName()),
-                                    new Class[]{String.class});// 取得所需类的方法对象
-                            mtd.invoke(obj, new Object[]{""});// 执行相应赋值方法
+                                    String.class);// 取得所需类的方法对象
+                            mtd.invoke(obj, "");// 执行相应赋值方法
                         }
                     }
 
@@ -142,7 +142,11 @@ public class UserTest {
             e.printStackTrace();
         }
     }
-
+    /*****************************************************/
+    /**update by wkl
+     * 2017-8-16
+     * CRUD
+     **/
     @Test
     public void testShowUdtoolApply() {
         List<UdtoolApply> udtoolApplyList = udtoolapplydao.findAll(0, 15, null, null, " order by udtoolid desc");

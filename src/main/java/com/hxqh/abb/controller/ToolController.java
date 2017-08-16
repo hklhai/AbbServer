@@ -84,7 +84,7 @@ public class ToolController {
     /**
      * 工具借还列表跳转
      * 2017-8-14
-     *
+     * update by wkl
      * @return
      */
     @RequestMapping(value = "/lendlist", method = RequestMethod.GET)
@@ -95,7 +95,7 @@ public class ToolController {
     /**
      * 工具借还页面数据项接口
      * 2017-8-14
-     *
+     *update by wkl
      * @return
      */
     @ResponseBody
@@ -108,7 +108,7 @@ public class ToolController {
     /**
      * 工具借还页面跳转
      * 2017-8-14
-     *
+     *update by wkl
      * @return
      */
     @RequestMapping(value = "/lenddetail", method = RequestMethod.GET)
@@ -120,7 +120,7 @@ public class ToolController {
     /**
      * 工具借还页面数据接口
      * 2017-8-14
-     *
+     *update by wkl
      * @return
      */
     @ResponseBody
@@ -133,7 +133,7 @@ public class ToolController {
     /**
      * 工具修丢废列表跳转
      * 2017-8-14
-     *
+     *update by wkl
      * @return
      */
     @RequestMapping(value = "/applylist", method = RequestMethod.GET)
@@ -144,7 +144,7 @@ public class ToolController {
     /**
      * 工修丢废列表数据项接口
      * 2017-8-14
-     *
+     *update by wkl
      * @return
      */
     @ResponseBody
@@ -157,7 +157,7 @@ public class ToolController {
     /**
      * 工具修丢废页面跳转
      * 2017-8-14
-     *
+     *update by wkl
      * @return
      */
     @RequestMapping(value = "/applydetail", method = RequestMethod.GET)
@@ -168,7 +168,7 @@ public class ToolController {
     /**
      * 工具修丢废页面数据接口
      * 2017-8-14
-     *
+     *update by wkl
      * @return
      */
     @ResponseBody
@@ -181,7 +181,7 @@ public class ToolController {
     /**
      * 工具台账列表数据接口
      * 2017-8-15
-     *
+     *update by wkl
      * @return
      */
     @ResponseBody
@@ -193,7 +193,7 @@ public class ToolController {
     /**
      * 工具台账页面数据接口
      * 2017-8-15
-     *
+     *update by wkl
      * @return
      */
     @ResponseBody
@@ -206,7 +206,7 @@ public class ToolController {
     /**
      * 工具校准单列表数据接口
      * 2017-8-15
-     *
+     *update by wkl
      * @return
      */
     @ResponseBody
@@ -218,7 +218,7 @@ public class ToolController {
     /**
      * 工具校准单页面数据接口
      * 2017-8-15
-     *
+     *update by wkl
      * @return
      */
 

@@ -38,7 +38,8 @@ public class ToolServiceImpl implements ToolService {
 
 
     /**************************************/
-    /**
+    /**update by wkl
+     * 2017-8-16
      * 工具台账
      **/
 
@@ -120,7 +121,7 @@ public class ToolServiceImpl implements ToolService {
     public ToolDto getListData(Page page) throws Exception {
         List<AbbUdtool> udtoolList = udtoolDao.findAll(0, 15, null, null, " order by udtoolid desc");
         List<AbbInventorySite> siteList = siteDao.findAll();
-        List<String> statusList = Arrays.asList(new String[]{"完好", "维修"});
+        List<String> statusList = Arrays.asList("完好", "维修");
         page.setTotalPageNum((int) udtoolDao.getCount());
         ToolDto toolDto = new ToolDto(udtoolList, siteList, statusList, page);
         return toolDto;

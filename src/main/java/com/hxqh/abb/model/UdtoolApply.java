@@ -1,7 +1,5 @@
 package com.hxqh.abb.model;
 
-import com.hxqh.abb.model.assist.Time;
-import com.hxqh.abb.model.base.SessionInfo;
 
 import javax.persistence.*;
 import java.io.Serializable;
