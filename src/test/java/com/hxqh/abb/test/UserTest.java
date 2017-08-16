@@ -147,77 +147,77 @@ public class UserTest {
      * 2017-8-16
      * CRUD
      **/
-    @Test
-    public void testShowUdtoolApply() {
-        List<UdtoolApply> udtoolApplyList = udtoolapplydao.findAll(0, 15, null, null, " order by udtoolid desc");
-        for (UdtoolApply u : udtoolApplyList) {
-            System.out.println(u.toString());
-        }
-    }
-
-    @Test
-    public void testAddUdtoolApply() {
-        UdtoolApply udtoolApply = new UdtoolApply();
-        udtoolApply.setDescription("sssssssssssssssssssss");
-        udtoolApply.setHasld(0);
-        udtoolApply.setRowstamp(123l);
-        udtoolApply.setIsperson(1);
-        toolService.addUdtoolApply(udtoolApply);
-    }
-
-
-    @Test
-    public void testDelUdtoolApply() {
-         toolService.delUdtoolApply(61l);
-    }
-
-    @Test
-    public void testUpadteUdtoolApply(){
-        UdtoolApply udtoolApply = new UdtoolApply();
-        udtoolApply.setUdtoolapplyid(60l);
-        udtoolApply.setDescription("ssxxxxss");
-        udtoolApply.setHasld(0);
-        udtoolApply.setRowstamp(113l);
-        udtoolApply.setIsperson(1);
-        toolService.updateUdtoolApply(udtoolApply);
-    }
-
-    @Test
-    public void testShowUdtoolLend() {
-        List<UdtoolLend> udtoolLendList = udtoolLendDao.findAll(0, 15, null, null, " order by udtoolid desc");
-        for (UdtoolLend u : udtoolLendList) {
-            System.out.println(u.toString());
-        }
-    }
-
-    @Test
-    public void testAddUdtoolLend(){
-        UdtoolLend udtoolLend=new UdtoolLend();
-        udtoolLend.setDescription("qwer");
-        udtoolLend.setHasld(0);
-        udtoolLend.setRowstamp(111l);
-        udtoolLend.setIsarea(1223);
-        udtoolLend.setIssiteout(33321);
-        toolService.addUdtoolLend(udtoolLend);
-    }
-
-    @Test
-    public void testUpdateUdtoolLend(){
-        UdtoolLend udtoolLend=new UdtoolLend();
-        udtoolLend.setUdtoollendid(199l);
-        udtoolLend.setDescription("qwer");
-        udtoolLend.setHasld(0);
-        udtoolLend.setRowstamp(111l);
-        udtoolLend.setIsarea(0);
-        udtoolLend.setIssiteout(0);
-        toolService.updateUdtoolLend(udtoolLend);
-    }
-
-    @Test
-    public void testDelUdtoolLend() {
-        toolService.delUdtoolLend(198l);
-    }
-
+//    @Test
+//    public void testShowUdtoolApply() {
+//        List<UdtoolApply> udtoolApplyList = udtoolapplydao.findAll(0, 15, null, null, " order by udtoolid desc");
+//        for (UdtoolApply u : udtoolApplyList) {
+//            System.out.println(u.toString());
+//        }
+//    }
+//
+//    @Test
+//    public void testAddUdtoolApply() {
+//        UdtoolApply udtoolApply = new UdtoolApply();
+//        udtoolApply.setDescription("sssssssssssssssssssss");
+//        udtoolApply.setHasld(0);
+//        udtoolApply.setRowstamp(123l);
+//        udtoolApply.setIsperson(1);
+//        toolService.addUdtoolApply(udtoolApply);
+//    }
+//
+//
+//    @Test
+//    public void testDelUdtoolApply() {
+//         toolService.delUdtoolApply(61l);
+//    }
+//
+//    @Test
+//    public void testUpadteUdtoolApply(){
+//        UdtoolApply udtoolApply = new UdtoolApply();
+//        udtoolApply.setUdtoolapplyid(60l);
+//        udtoolApply.setDescription("ssxxxxss");
+//        udtoolApply.setHasld(0);
+//        udtoolApply.setRowstamp(113l);
+//        udtoolApply.setIsperson(1);
+//        toolService.updateUdtoolApply(udtoolApply);
+//    }
+//
+//    @Test
+//    public void testShowUdtoolLend() {
+//        List<UdtoolLend> udtoolLendList = udtoolLendDao.findAll(0, 15, null, null, " order by udtoolid desc");
+//        for (UdtoolLend u : udtoolLendList) {
+//            System.out.println(u.toString());
+//        }
+//    }
+//
+//    @Test
+//    public void testAddUdtoolLend(){
+//        UdtoolLend udtoolLend=new UdtoolLend();
+//        udtoolLend.setDescription("qwer");
+//        udtoolLend.setHasld(0);
+//        udtoolLend.setRowstamp(111l);
+//        udtoolLend.setIsarea(1223);
+//        udtoolLend.setIssiteout(33321);
+//        toolService.addUdtoolLend(udtoolLend);
+//    }
+//
+//    @Test
+//    public void testUpdateUdtoolLend(){
+//        UdtoolLend udtoolLend=new UdtoolLend();
+//        udtoolLend.setUdtoollendid(199l);
+//        udtoolLend.setDescription("qwer");
+//        udtoolLend.setHasld(0);
+//        udtoolLend.setRowstamp(111l);
+//        udtoolLend.setIsarea(0);
+//        udtoolLend.setIssiteout(0);
+//        toolService.updateUdtoolLend(udtoolLend);
+//    }
+//
+//    @Test
+//    public void testDelUdtoolLend() {
+//        toolService.delUdtoolLend(198l);
+//    }
+//
 
 }
 
