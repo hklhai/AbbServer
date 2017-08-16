@@ -568,7 +568,7 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>Abb2Server</finalName>
+        <finalName>AbbServer</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -147,6 +147,11 @@ public class IndexController {
      */
     @RequestMapping(value = "/toIndex", method = RequestMethod.GET)
     public String goToIndex() {
+        return "index/nav";
+    }
+
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String index() {
         return "index/index";
     }
 

@@ -1,0 +1,82 @@
+package com.hxqh.abb.model;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+
+/**
+ * The persistent class for the TB_APP database table.
+ * 
+ */
+@Entity
+@Table(name="TB_APP")
+public class TbApp implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@SequenceGenerator(name="TB_APP_APPID_GENERATOR", sequenceName="TB_APPSEQ")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TB_APP_APPID_GENERATOR")
+	private long appid;
+
+	private String appchname;
+
+	private String appcontent;
+
+	private String appfield;
+
+	private String appname;
+
+	private String apptable;
+
+	public TbApp() {
+	}
+
+	public long getAppid() {
+		return this.appid;
+	}
+
+	public void setAppid(long appid) {
+		this.appid = appid;
+	}
+
+	public String getAppchname() {
+		return this.appchname;
+	}
+
+	public void setAppchname(String appchname) {
+		this.appchname = appchname;
+	}
+
+	public String getAppcontent() {
+		return this.appcontent;
+	}
+
+	public void setAppcontent(String appcontent) {
+		this.appcontent = appcontent;
+	}
+
+	public String getAppfield() {
+		return this.appfield;
+	}
+
+	public void setAppfield(String appfield) {
+		this.appfield = appfield;
+	}
+
+	public String getAppname() {
+		return this.appname;
+	}
+
+	public void setAppname(String appname) {
+		this.appname = appname;
+	}
+
+	public String getApptable() {
+		return this.apptable;
+	}
+
+	public void setApptable(String apptable) {
+		this.apptable = apptable;
+	}
+
+}

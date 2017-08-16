@@ -16,7 +16,7 @@ public class GenerateDaoResource {
     //        System.out.println(s);
     String[] mBOName = s.split("\r\n");
 
-    @Test
+//    @Test
     public void genResource() {
         for (int i = 0; i < mBOName.length; i++) {
             StringBuilder builder = new StringBuilder();
@@ -27,7 +27,7 @@ public class GenerateDaoResource {
         }
     }
 
-    @Test
+//    @Test
     public void genFindAll() {
         for (int i = 0; i < mBOName.length; i++) {
             StringBuilder builder = new StringBuilder();

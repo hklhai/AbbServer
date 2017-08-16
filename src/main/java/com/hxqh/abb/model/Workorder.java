@@ -15,7 +15,7 @@ public class Workorder implements Serializable {
     private static final Long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name = "WORKORDER_WORKORDERID_GENERATOR", sequenceName = "$TBALE_ID")
+    @SequenceGenerator(name = "WORKORDER_WORKORDERID_GENERATOR", sequenceName = "WORKORDERSEQ")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WORKORDER_WORKORDERID_GENERATOR")
     private Long workorderid;
 

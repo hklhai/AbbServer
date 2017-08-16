@@ -1,0 +1,15 @@
+package com.hxqh.abb.dao
+
+import com.hxqh.abb.common.basedao.DaoSupport
+import com.hxqh.abb.model.version2.YYYY
+import org.springframework.stereotype.Repository
+
+/**
+  * Created by Ocean lin
+  */
+@Repository("WWWW")
+class ZZZZ extends DaoSupport[YYYY]  with  XXXX {
+}
+
+
+

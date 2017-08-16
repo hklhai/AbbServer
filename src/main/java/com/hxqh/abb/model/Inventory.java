@@ -16,7 +16,7 @@ public class Inventory implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="INVENTORY_INVENTORYID_GENERATOR", sequenceName="$TBALE_ID")
+	@SequenceGenerator(name="INVENTORY_INVENTORYID_GENERATOR", sequenceName="INVENTORYSEQ")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="INVENTORY_INVENTORYID_GENERATOR")
 	private long inventoryid;
 

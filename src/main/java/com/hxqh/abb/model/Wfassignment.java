@@ -15,7 +15,7 @@ public class Wfassignment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="WFASSIGNMENT_WFASSIGNMENTID_GENERATOR", sequenceName="$TBALE_ID")
+	@SequenceGenerator(name="WFASSIGNMENT_WFASSIGNMENTID_GENERATOR", sequenceName="WFASSIGNMENTSEQ")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="WFASSIGNMENT_WFASSIGNMENTID_GENERATOR")
 	private long wfassignmentid;
 
