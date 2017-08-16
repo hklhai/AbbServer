@@ -42,7 +42,7 @@
     <ul>
         <li style="margin-top: 30px;">
             <i class="home nav-icon"></i>
-            <a href="javascript:;" target="content">首页</a>
+            <a href="${ctx}/index/index" target="menuFrame">首页</a>
         <li>
             <i class="equip nav-icon"></i>
             <a href="javascript:;">设备管理</a>

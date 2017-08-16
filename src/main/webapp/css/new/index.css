@@ -92,6 +92,12 @@ i.down-icon{
 	background: #2b6ea2 url('../../img/new/index/left-show.png')  no-repeat center right;
 	cursor: pointer;
 }
+.left-bg-show{
+	background: #2b6ea2 url('../../img/new/index/left-show.png')  no-repeat center right;
+}
+.left-bg-hide{
+	background: #2b6ea2 url('../../img/new/index/left-hide.png')  no-repeat center right;
+}
 .left-nav>ul>li{
 	display: block;
 	float: left;
@@ -138,7 +144,7 @@ ul.sec-ul>li>a{
 	height: 47px;
 	line-height: 47px;
 	padding-left: 121px;
-	background: url('../../img/new/index/home-icon.png') no-repeat 78px 16px;
+	background: url('../../img/new/index/sec-ul.png') no-repeat 78px 16px;
 }
 ul.sec-ul>li:hover{
 	background: #1f5986;
