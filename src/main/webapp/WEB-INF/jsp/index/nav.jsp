@@ -17,9 +17,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <script src="${ctx}/scripts/jquery-1.8.3.min.js"></script>
     <script src="${ctx}/scripts/vue.js"></script>
-    <script src="${ctx}/js/new/index.js"></script>
     <link rel="stylesheet" href="${ctx}/css/reset.css">
     <link rel="stylesheet" href="${ctx}/css/new/index.css">
+    <script>
+        var _ctx = "${ctx}";
+    </script>
 </head>
 <body>
 <div class="header">
@@ -34,7 +36,7 @@
             <a href="">用户中心</a>
         </li>
         <li>
-            <a href="">注销</a>
+            <a href="javascript:;" class="close">注销</a>
         </li>
     </ul>
 </div>
@@ -55,7 +57,7 @@
             <i class="tool nav-icon"></i>
             <a href="javascript:;">工具管理</a>
             <ul class="sec-ul">
-                <li><a href="http://www.baidu.com" target="menuFrame">工具校准单</a></li>
+                <li><a href="${ctx}/common/list?func=" target="menuFrame">工具校准单</a></li>
                 <li><a href="http://www.baidu.com" target="menuFrame">工具借还</a></li>
                 <li><a href="http://www.baidu.com" target="menuFrame">工具修丢弃</a></li>
             </ul>
@@ -71,6 +73,9 @@
         <li>
             <i class="site nav-icon"></i>
             <a href="javascript:;">站点管理</a>
+            <ul class="sec-ul">
+                <li><a href="${ctx}/common/list?func=" target="menuFrame">车辆台账</a></li>
+            </ul>
         </li>
     </ul>
     <span class="left-show"></span>
@@ -79,5 +84,6 @@
     <iframe src="${ctx}/index/index" frameborder="0" id="menuFrame" name="menuFrame">
     </iframe>
 </div>
+<script src="${ctx}/js/new/index.js"></script>
 </body>
 </html>

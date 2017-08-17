@@ -1,4 +1,5 @@
 $(function() {
+    var ctx = _ctx;
     var contentW = document.body.clientWidth-258;
     var contentH = document.body.clientHeihght-30;
     var contentWH = document.body.clientWidth-84;
@@ -43,4 +44,7 @@ $(function() {
             $("span.left-show").addClass("left-bg-hide");
         }
     });
+    $(".close").click(function(){
+        window.location.href = _ctx+"/index/logout";
+    })
 });
