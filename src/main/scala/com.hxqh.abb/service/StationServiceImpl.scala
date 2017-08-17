@@ -1,7 +1,9 @@
 package com.hxqh.abb.service
 
+import java.util
+import javax.annotation.Resource
+
 import com.hxqh.abb.dao.{TbAppDao, UdvehicleDao}
-import com.hxqh.abb.model.searchdto.Page
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -13,22 +15,27 @@ import org.springframework.transaction.annotation.Transactional
 
 @Transactional
 @Service("stationService") class StationServiceImpl extends StationService {
-  //  @Autowired private val siteDao: SiteDao = null
   @Autowired private val udvehicleDao: UdvehicleDao = null
   @Autowired private val tbAppDao: TbAppDao = null
 
-  override def vehicleListData(page: Page) = {
-    //    val udtoolList: util.List[AbbUdtool] = udtoolDao.findAll(0, 15, null, null, " order by udtoolid desc")
-    //    val siteList: util.List[AbbInventorySite] = siteDao.findAll
-    //    val statusList: util.List[String] = util.Arrays.asList(Array[String]("完好", "维修"))
-    //    page.setTotalPageNum(udtoolDao.getCount.toInt)
-    //    val toolDto: ToolDto = new ToolDto(udtoolList, siteList, statusList, page)
-    //    return toolDto
+  override def getAppInfo(apptable: String) = {
+    //    val orderby = new util.LinkedHashMap[String, String]
+    //    orderby.put("slaId", "asc")
 
-    udvehicleDao.findAll()
+    val params = new util.HashMap[String, AnyRef]
+    params.put("APPNAME", apptable)
+    params.put("APPCONTENT", "LIST")
+    val where = "APPNAME=:APPNAME and  APPCONTENT=:APPCONTENT"
+    tbAppDao.findAll(where, params, null)
   }
 
-  override def getAppInfo() = {
-    tbAppDao.findAll()
-  }
+//  override def vehicleListData(page: Page,
+//                               apptable: String,
+//                               pkid: String,
+//                               fields: String,
+//                               searchs: String) = {
+//
+//    val x:VehicleDto
+//    x
+//  }
 }
