@@ -6,77 +6,95 @@ import javax.persistence.*;
 
 /**
  * The persistent class for the TB_APP database table.
- * 
  */
 @Entity
-@Table(name="TB_APP")
+@Table(name = "TB_APP")
 public class TbApp implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@SequenceGenerator(name="TB_APP_APPID_GENERATOR", sequenceName="TB_APPSEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TB_APP_APPID_GENERATOR")
-	private long appid;
+    @Id
+    @SequenceGenerator(name = "TB_APP_APPID_GENERATOR", sequenceName = "TB_APPSEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TB_APP_APPID_GENERATOR")
+    private long appid;
 
-	private String appchname;
+    private String appchname;
 
-	private String appcontent;
+    private String appcontent;
 
-	private String appfield;
+    private String appfield;
 
-	private String appname;
+    private String appname;
 
-	private String apptable;
+    private String apptable;
 
-	public TbApp() {
-	}
+    private String fieldtype;
 
-	public long getAppid() {
-		return this.appid;
-	}
+    private Integer ordernum;
 
-	public void setAppid(long appid) {
-		this.appid = appid;
-	}
+    public TbApp() {
+    }
 
-	public String getAppchname() {
-		return this.appchname;
-	}
+    public long getAppid() {
+        return this.appid;
+    }
 
-	public void setAppchname(String appchname) {
-		this.appchname = appchname;
-	}
+    public void setAppid(long appid) {
+        this.appid = appid;
+    }
 
-	public String getAppcontent() {
-		return this.appcontent;
-	}
+    public String getAppchname() {
+        return this.appchname;
+    }
 
-	public void setAppcontent(String appcontent) {
-		this.appcontent = appcontent;
-	}
+    public void setAppchname(String appchname) {
+        this.appchname = appchname;
+    }
 
-	public String getAppfield() {
-		return this.appfield;
-	}
+    public String getAppcontent() {
+        return this.appcontent;
+    }
 
-	public void setAppfield(String appfield) {
-		this.appfield = appfield;
-	}
+    public void setAppcontent(String appcontent) {
+        this.appcontent = appcontent;
+    }
 
-	public String getAppname() {
-		return this.appname;
-	}
+    public String getAppfield() {
+        return this.appfield;
+    }
 
-	public void setAppname(String appname) {
-		this.appname = appname;
-	}
+    public void setAppfield(String appfield) {
+        this.appfield = appfield;
+    }
 
-	public String getApptable() {
-		return this.apptable;
-	}
+    public String getAppname() {
+        return this.appname;
+    }
 
-	public void setApptable(String apptable) {
-		this.apptable = apptable;
-	}
+    public void setAppname(String appname) {
+        this.appname = appname;
+    }
 
+    public String getApptable() {
+        return this.apptable;
+    }
+
+    public void setApptable(String apptable) {
+        this.apptable = apptable;
+    }
+
+    public String getFieldtype() {
+        return fieldtype;
+    }
+
+    public void setFieldtype(String fieldtype) {
+        this.fieldtype = fieldtype;
+    }
+
+    public Integer getOrdernum() {
+        return ordernum;
+    }
+
+    public void setOrdernum(Integer ordernum) {
+        this.ordernum = ordernum;
+    }
 }
