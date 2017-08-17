@@ -1,7 +1,9 @@
 $(function() {
     var ctx = _ctx;
     var contentW = document.body.clientWidth-258;
-    var contentH = document.body.clientHeihght-30;
+    var contentH=window.innerHeight
+        || document.documentElement.clientHeight
+        || document.body.clientHeight;
     var contentWH = document.body.clientWidth-84;
     $(".content").width(contentW);
     $(".content").height(contentH);
