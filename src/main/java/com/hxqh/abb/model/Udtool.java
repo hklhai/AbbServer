@@ -16,7 +16,7 @@ public class Udtool implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="UDTOOL_UDTOOLID_GENERATOR", sequenceName="$TBALE_ID")
+	@SequenceGenerator(name="UDTOOL_UDTOOLID_GENERATOR", sequenceName="UDTOOLSEQ")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="UDTOOL_UDTOOLID_GENERATOR")
 	private long udtoolid;
 
@@ -89,13 +89,11 @@ public class Udtool implements Serializable {
 	public Udtool() {
 	}
 
-	public long getUdtoolid() {
-		return this.udtoolid;
-	}
 
 	public void setUdtoolid(long udtoolid) {
 		this.udtoolid = udtoolid;
 	}
+
 
 	public String getArea() {
 		return this.area;

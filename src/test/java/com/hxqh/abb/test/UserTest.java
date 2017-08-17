@@ -1,13 +1,21 @@
 package com.hxqh.abb.test;
 
 import com.alibaba.fastjson.JSON;
-import com.hxqh.abb.hello.GreetingInScala;
+//import com.hxqh.abb.hello.GreetingInScala;
+import com.hxqh.abb.dao.UdtoolApplyDao;
+import com.hxqh.abb.dao.UdtoolLendDao;
+import com.hxqh.abb.model.UdtoolApply;
+import com.hxqh.abb.model.UdtoolLend;
 import com.hxqh.abb.model.User;
 import com.hxqh.abb.model.assist.InterfaceMessage;
+import com.hxqh.abb.service.ToolService;
 import com.hxqh.abb.service.UserService;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.omg.CORBA.portable.ApplicationException;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Field;
@@ -22,17 +30,22 @@ import java.util.List;
  * Created by lenovo on 2017/4/14.
  */
 
-//@ContextConfiguration(locations = "classpath:spring/applicationContext.xml")
-//@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:spring/applicationContext.xml")
+@RunWith(SpringJUnit4ClassRunner.class)
 public class UserTest {
     @Resource
     private UserService userService;
-
-    @Test
-    public void bootstrap () {
-        GreetingInScala scala = new GreetingInScala();
-        Assert.assertEquals("Hello World!",scala.greet());
-    }
+    @Resource
+    private UdtoolApplyDao udtoolapplydao;
+    @Resource
+    private UdtoolLendDao udtoolLendDao;
+    @Resource
+    private ToolService toolService;
+//    @Test
+//    public void bootstrap () {
+//        GreetingInScala scala = new GreetingInScala();
+//        Assert.assertEquals("Hello World!",scala.greet());
+//    }
 
     @Test
     public void json() {
@@ -56,10 +69,10 @@ public class UserTest {
         if (obj != null) {
 
             Class classz = obj.getClass();
-        // 获取所有该对象的属性值
+            // 获取所有该对象的属性值
             Field fields[] = classz.getDeclaredFields();
 
-        // 遍历属性值，取得所有属性为 null 值的
+            // 遍历属性值，取得所有属性为 null 值的
             for (Field field : fields) {
                 try {
                     Type t = field.getGenericType();
@@ -70,8 +83,8 @@ public class UserTest {
                         if (name == null) {
                             Method mtd = classz.getMethod("set"
                                             + change(field.getName()),
-                                    new Class[]{String.class});// 取得所需类的方法对象
-                            mtd.invoke(obj, new Object[]{""});// 执行相应赋值方法
+                                    String.class);// 取得所需类的方法对象
+                            mtd.invoke(obj, "");// 执行相应赋值方法
                         }
                     }
 
@@ -129,5 +142,82 @@ public class UserTest {
             e.printStackTrace();
         }
     }
+    /*****************************************************/
+    /**update by wkl
+     * 2017-8-16
+     * CRUD
+     **/
+//    @Test
+//    public void testShowUdtoolApply() {
+//        List<UdtoolApply> udtoolApplyList = udtoolapplydao.findAll(0, 15, null, null, " order by udtoolid desc");
+//        for (UdtoolApply u : udtoolApplyList) {
+//            System.out.println(u.toString());
+//        }
+//    }
+//
+//    @Test
+//    public void testAddUdtoolApply() {
+//        UdtoolApply udtoolApply = new UdtoolApply();
+//        udtoolApply.setDescription("sssssssssssssssssssss");
+//        udtoolApply.setHasld(0);
+//        udtoolApply.setRowstamp(123l);
+//        udtoolApply.setIsperson(1);
+//        toolService.addUdtoolApply(udtoolApply);
+//    }
+//
+//
+//    @Test
+//    public void testDelUdtoolApply() {
+//         toolService.delUdtoolApply(61l);
+//    }
+//
+//    @Test
+//    public void testUpadteUdtoolApply(){
+//        UdtoolApply udtoolApply = new UdtoolApply();
+//        udtoolApply.setUdtoolapplyid(60l);
+//        udtoolApply.setDescription("ssxxxxss");
+//        udtoolApply.setHasld(0);
+//        udtoolApply.setRowstamp(113l);
+//        udtoolApply.setIsperson(1);
+//        toolService.updateUdtoolApply(udtoolApply);
+//    }
+//
+//    @Test
+//    public void testShowUdtoolLend() {
+//        List<UdtoolLend> udtoolLendList = udtoolLendDao.findAll(0, 15, null, null, " order by udtoolid desc");
+//        for (UdtoolLend u : udtoolLendList) {
+//            System.out.println(u.toString());
+//        }
+//    }
+//
+//    @Test
+//    public void testAddUdtoolLend(){
+//        UdtoolLend udtoolLend=new UdtoolLend();
+//        udtoolLend.setDescription("qwer");
+//        udtoolLend.setHasld(0);
+//        udtoolLend.setRowstamp(111l);
+//        udtoolLend.setIsarea(1223);
+//        udtoolLend.setIssiteout(33321);
+//        toolService.addUdtoolLend(udtoolLend);
+//    }
+//
+//    @Test
+//    public void testUpdateUdtoolLend(){
+//        UdtoolLend udtoolLend=new UdtoolLend();
+//        udtoolLend.setUdtoollendid(199l);
+//        udtoolLend.setDescription("qwer");
+//        udtoolLend.setHasld(0);
+//        udtoolLend.setRowstamp(111l);
+//        udtoolLend.setIsarea(0);
+//        udtoolLend.setIssiteout(0);
+//        toolService.updateUdtoolLend(udtoolLend);
+//    }
+//
+//    @Test
+//    public void testDelUdtoolLend() {
+//        toolService.delUdtoolLend(198l);
+//    }
+//
 
 }
+

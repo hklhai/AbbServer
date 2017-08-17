@@ -63,13 +63,9 @@ public class ToolDto {
         return udtoolList;
     }
 
-    public void setUdtoolList(List<AbbUdtool> udtoolList) {
-        this.udtoolList = udtoolList;
-    }
+    public void setUdtoolList(List<AbbUdtool> udtoolList) { this.udtoolList = udtoolList; }
 
-    public List<AbbInventorySite> getSiteList() {
-        return siteList;
-    }
+    public List<AbbInventorySite> getSiteList() { return siteList; }
 
     public void setSiteList(List<AbbInventorySite> siteList) {
         this.siteList = siteList;
