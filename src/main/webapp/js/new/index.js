@@ -1,10 +1,10 @@
 $(function() {
     var ctx = _ctx;
-    var contentW = document.body.clientWidth-258;
+    var contentW = document.body.clientWidth-210;
     var contentH=window.innerHeight
         || document.documentElement.clientHeight
         || document.body.clientHeight;
-    var contentWH = document.body.clientWidth-84;
+    var contentWH = document.body.clientWidth-64;
     $(".content").width(contentW);
     $(".content").height(contentH);
     $(".left-nav").height(contentH);
@@ -26,19 +26,18 @@ $(function() {
         $(".sec-ul").hide();
         $('.left-nav>ul>li>a').toggle();
         if ($('.left-nav>ul>li>a').first().css('display') == 'block') {
-            $('.left-nav ul').width('248');
-            $('.left-nav').width('258');
+            $('.left-nav ul').width('200');
+            $('.left-nav').width('210');
             $(".content").width(contentW);
             $(".content").height(contentH);
             $(".left-nav").height(contentH);
-            $(".content").css("marginLeft",'258px');
+            $(".content").css("marginLeft",'210px');
             $("span.left-show").removeClass("left-bg-hide");
             $("span.left-show").addClass("left-bg-show");
         } else {
-            $('.left-nav ul').width('74');
-            $('.left-nav').width('84');
-            $(".content").css("marginLeft",'84px');
-            $(".content").css("marginLeft",'84px');
+            $('.left-nav ul').width('54');
+            $('.left-nav').width('64');
+            $(".content").css("marginLeft",'64px');
             $(".content").width(contentWH);
             $(".left-nav>ul>li>a").removeClass('left');
             $(".left-nav>ul>li>a").addClass('down');
