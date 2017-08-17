@@ -52,11 +52,15 @@
         <li>
             <i class="stock nav-icon"></i>
             <a href="javascript:;">库存管理</a>
+            <ul class="sec-ul">
+                <li><a href="${ctx}/inventory/list" target="menuFrame">库存管理</a></li>
+            </ul>
         </li>
         <li>
             <i class="tool nav-icon"></i>
             <a href="javascript:;">工具管理</a>
             <ul class="sec-ul">
+                <li><a href="${ctx}/tool/list" target="menuFrame">工具台账</a></li>
                 <li><a href="${ctx}/common/list?func=" target="menuFrame">工具校准单</a></li>
                 <li><a href="http://www.baidu.com" target="menuFrame">工具借还</a></li>
                 <li><a href="http://www.baidu.com" target="menuFrame">工具修丢弃</a></li>

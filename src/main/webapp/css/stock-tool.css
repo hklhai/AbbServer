@@ -3,10 +3,10 @@
 	padding-right: 2%;
 	margin: 0 auto;
 	background: #EBEBEB;
-    min-height: 890px;
+	min-height: 890px;
 }
 .index-content-tit{
-	height: 91px;
+	height: 89px;
 	font-size: 24px;
 	color: rgb(36, 36, 36);
 }
@@ -67,6 +67,7 @@
 }
 .stock-table{
 	width:100%;
+	table-layout:fixed;
 	border-top: 1px solid #DADADA;
 	margin-top: 15px;
 }
@@ -79,6 +80,11 @@
 }
 .stock-table tr td:first-child{
 	padding-left: 20px;
+}
+.stock-content .stock-layout .stock-content-show .stock-table tr td{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 .tool-num{
 	margin-right: 4%;
