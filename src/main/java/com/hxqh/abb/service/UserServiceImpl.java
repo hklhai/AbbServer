@@ -16,10 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by lh on 2017/4/14.
@@ -27,6 +24,9 @@ import java.util.Map;
 @Transactional
 @Service("userService")
 public class UserServiceImpl implements UserService {
+
+    static Map<String, TbApp> appMap = new HashMap<>();
+
     @Autowired
     private UserDao userDao;
 
@@ -36,11 +36,20 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private TbAppDao appDao;
 
+//    public UserServiceImpl() {
+//        Map<String, Object> params = new HashMap<>();
+//        params.put("ispk", 1);
+//        String where = "ispk=:ispk ";
+//
+//        List<TbApp> tbApps = appDao.findAll(where, params, null);
+//        for (TbApp e : tbApps) {
+//            appMap.put(e.getAppname(), e);
+//        }
+//    }
 
     public List<User> getUserList() {
         return userDao.findAll();
     }
-
 
     @Override
     public ListDto vehicleListData(Page page, String apptname, String apptable, String pkid, String fieldsx, String searchs) throws Exception {
@@ -48,7 +57,7 @@ public class UserServiceImpl implements UserService {
 
         //动态生成类
         List<TbApp> appList = getAppInfo(apptname);
-        Map propertyMap = new HashMap();
+        Map propertyMap = new LinkedHashMap();
         for (TbApp app : appList) {
             //设置值
             propertyMap.put(app.getAppfield(), Class.forName(app.getFieldtype()));
@@ -56,6 +65,8 @@ public class UserServiceImpl implements UserService {
             fs.append(app.getAppfield()).append(",");
             apptable = app.getApptable();
         }
+//        propertyMap.put("rownumber_", Class.forName("java.lang.Integer"));
+
 
         CglibUtil bean1 = new CglibUtil(propertyMap);
         Field[] declaredFields = bean1.getObject().getClass().getDeclaredFields();
@@ -79,25 +90,27 @@ public class UserServiceImpl implements UserService {
 
         stringBuilder.append(noPageBuilder);
         stringBuilder.append(" order by ").append(pkid).append(" desc ");//排序
-        stringBuilder.append("FETCH FIRST ").append(page.getThisPageLastElementNumber()).append("rows only");
+        stringBuilder.append("FETCH FIRST ").append(30).append(" rows only");
         stringBuilder.append(") AS inner2_ ) AS inner1_ WHERE rownumber_ > ");
         stringBuilder.append(page.getThisPageFirstElementNumber() - 1);
-        stringBuilder.append("ORDER BY rownumber_");
+        stringBuilder.append(" ORDER BY rownumber_");
 
         //查询条件判断是否是空字符串，如果是空字符串不做拼接操作
         String[] strings = searchs.split(",");
         String[] splitFileds = fields.split(",");
         SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery(stringBuilder.toString());
 
-        for (int i = 0; i < strings.length; i++) {
-            if (!"".equals(strings[i])) {
-                noPageBuilder.append(" and ").append(splitFileds[i]).append("=:").append(splitFileds[i]);
-                sqlQuery.setString(splitFileds[i], strings[i]);
+        if (strings.length > 0 && !strings[0].equals("")) {
+            for (int i = 0; i < strings.length; i++) {
+                if (!"".equals(strings[i])) {
+                    noPageBuilder.append(" and ").append(splitFileds[i]).append("=:").append(splitFileds[i]);
+                    sqlQuery.setString(splitFileds[i], strings[i]);
+                }
             }
         }
-
         List list = new LinkedList<>();
         List<Object[]> nameList = sqlQuery.list();
+
         for (Object[] o : nameList) {
             CglibUtil bean = new CglibUtil(propertyMap);
 
@@ -131,13 +144,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<TbApp> getAppInfo(String apptname) {
         Map<String, Object> params = new HashMap<>();
-        params.put("APPTNAME", apptname);
+        params.put("APPNAME", apptname);
         params.put("APPCONTENT", "LIST");
-        String where = "APPNAME=:APPNAME and  APPCONTENT=:APPCONTENT";
-
+        String where = "APPNAME=:APPNAME and APPCONTENT=:APPCONTENT";
+        List<TbApp> appList = appDao.findAll(where, params, null);
         //TODO 可以把主键初始化
-        return appDao.findAll(where, params, null);
-//        return null;
+        return appList;
     }
 
 }
