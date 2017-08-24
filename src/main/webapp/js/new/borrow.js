@@ -11,7 +11,11 @@ $(function() {
         },
         dataType: "json",
         success: function (data) {
-
+            var listData =  data.list;
+            var tmpHtml = "";
+            for(var i = 0;i<listData.length;i++){
+                
+            }
         },
         error: function () {
 

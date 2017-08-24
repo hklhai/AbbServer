@@ -44,6 +44,9 @@
             </thead>
             <tbody>
                 <tr>
+                    <c:forEach  items="${titles}" var="item">
+                        <td><input type="text"/></td>
+                    </c:forEach>
                     <td ><input type="text" class="width1"/></td>
                     <td><input type="text"/></td>
                     <td><input type="text"/></td>

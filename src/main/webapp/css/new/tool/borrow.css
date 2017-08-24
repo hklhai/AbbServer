@@ -137,11 +137,9 @@ border-radius:2px;
     cursor:pointer;
 }
 
-.mytable tbody tr td input.width1{
+.mytable tbody tr td input:first-child{
 	width: 97px;
- 
 }
-.mytable tbody tr td input.width2{
+.mytable tbody tr td input:last-child{
 	width: 62px;
- 
 }
