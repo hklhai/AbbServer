@@ -91,6 +91,7 @@ i.down-icon{
 	width: 248px;
 	height: 700px;
 	overflow-y: auto;
+	overflow-x: hidden;
 	background: #246495;
 }
 .left-show{
@@ -112,6 +113,7 @@ i.down-icon{
 	float: left;
 	clear: both;
 	position: relative;
+	width: 258px;
 }
 .left-nav>ul>li i.nav-icon{
 	display: block;
