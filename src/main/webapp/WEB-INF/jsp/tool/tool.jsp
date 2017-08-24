@@ -151,6 +151,7 @@
     <div class="stock-layout">
         <div class="index-content-tit">
             <span class="stock-tit">工具台账</span>
+
             <span class="stock-time">{{time.time}}</span>
         </div>
         <div class="stock-content-show">
