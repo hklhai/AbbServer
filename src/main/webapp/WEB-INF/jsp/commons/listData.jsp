@@ -21,13 +21,15 @@
     <link rel="stylesheet" href="${ctx}/css/new/tool/borrow.css">
 </head>
 <script>
-    var _ctx = ${ctx};
+    var _ctx = "${ctx}";
+    var urls  = "${result.urls}";
+    var apptname = "${apptname}";
 </script>
 <body>
 <div class="borrow-body">
     <div class="layout">
         <p id="timedis"></p>
-        <h6 id="mytitle">工具借还</h6>
+        <h6 id="mytitle">${apptname}</h6>
         <div class="mylable">
             <button type="button" id="mycollect">我的收藏</button>
             <button type="button" id="myform">创建表单</button>
@@ -35,14 +37,9 @@
         <table class="mytable">
             <thead>
                 <tr>
-                    <th>借用/归还单</th>
-                    <th>描述</th>
-                    <th>工具编号</th>
-                    <th>使用类型</th>
-                    <th>申请人</th>
-                    <th>录入时间</th>
-                    <th>状态</th>
-                    <th></th>
+                    <c:forEach  items="${titles}" var="item">
+                        <th>${item.appchname}</th>
+                    </c:forEach>
                 </tr>
             </thead>
             <tbody>
@@ -55,7 +52,6 @@
                     <td><input type="text"/></td>
                     <td><input type="text" class="width2"/></td>
                     <td id="bs"><button type="button" id="bt" /></td>
-
                 </tr>
                 <tr>
                     <td >1111</td>

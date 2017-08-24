@@ -61,6 +61,7 @@
             <a href="javascript:;">工具管理</a>
             <ul class="sec-ul">
                 <li><a href="${ctx}/tool/list" target="menuFrame">工具台账</a></li>
+                <li><a href="${ctx}/common/list?apptname=VEHICLEACCOUNT" target="menuFrame">工具借还</a></li>
                 <%--<li><a href="${ctx}/common/list?func=" target="menuFrame">工具校准单</a></li>
                 <li><a href="http://www.baidu.com" target="menuFrame">工具借还</a></li>
                 <li><a href="http://www.baidu.com" target="menuFrame">工具修丢弃</a></li>--%>

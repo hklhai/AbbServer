@@ -46,7 +46,7 @@ public class UserController {
         result.put("titles", titles);
         result.put("apptname", apptname);
         result.put("urls", "/common/listData");
-        return new ModelAndView("commonFunc/commonlist", result);
+        return new ModelAndView("commons/listData", result);
     }
 
     /**
