@@ -16,9 +16,13 @@
     <meta name="keywords" content="">
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
     <script src="${ctx}/scripts/vue.js"></script>
+    <script src="${ctx}/js/new/borrow.js"></script>
     <link rel="stylesheet" href="${ctx}/css/reset.css">
     <link rel="stylesheet" href="${ctx}/css/new/tool/borrow.css">
 </head>
+<script>
+    var _ctx = ${ctx};
+</script>
 <body>
 <div class="borrow-body">
     <div class="layout">
