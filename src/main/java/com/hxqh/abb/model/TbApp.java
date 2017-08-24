@@ -31,6 +31,11 @@ public class TbApp implements Serializable {
 
     private Integer ordernum;
 
+    public TbApp(String appfield, String fieldtype) {
+        this.appfield = appfield;
+        this.fieldtype = fieldtype;
+    }
+
     public TbApp() {
     }
 

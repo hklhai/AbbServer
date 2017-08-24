@@ -57,30 +57,33 @@ public class UserServiceImpl implements UserService {
 
         //动态生成类
         List<TbApp> appList = getAppInfo(apptname);
+        appList.add(new TbApp("ROWNUMBER", "java.lang.Object"));
         Map propertyMap = new LinkedHashMap();
+
         for (TbApp app : appList) {
             //设置值
             propertyMap.put(app.getAppfield(), Class.forName(app.getFieldtype()));
             //获取字段集合
-            fs.append(app.getAppfield()).append(",");
-            apptable = app.getApptable();
+            if (!app.getAppfield().equals("ROWNUMBER")) {
+                fs.append(app.getAppfield()).append(",");
+                apptable = app.getApptable();
+            }
         }
-//        propertyMap.put("rownumber_", Class.forName("java.lang.Integer"));
 
 
         CglibUtil bean1 = new CglibUtil(propertyMap);
         Field[] declaredFields = bean1.getObject().getClass().getDeclaredFields();
         Class clazz = bean1.getObject().getClass();
-        System.out.println(clazz.getSimpleName());
+        //System.out.println(clazz.getSimpleName());
         Method[] methods = clazz.getDeclaredMethods();
-        for (int i = 0; i < methods.length; i++) {
-            System.out.println(methods[i].getName());
-        }
+//        for (int i = 0; i < methods.length; i++) {
+//            System.out.println(methods[i].getName());
+//        }
 
         String fields = fs.substring(0, fs.length() - 1);
         //查询语句拼接
         StringBuilder stringBuilder = new StringBuilder("");
-        stringBuilder.append("SELECT * FROM (SELECT inner2_.*, rownumber () over (ORDER BY ORDER of inner2_) AS rownumber_ FROM(");
+        stringBuilder.append("SELECT * FROM (SELECT rownumber () over (ORDER BY ORDER of inner2_) AS rownumber,inner2_.*  FROM(");
         stringBuilder.append("select ").append(fields);
 
         StringBuilder noPageBuilder = new StringBuilder("");
@@ -91,9 +94,9 @@ public class UserServiceImpl implements UserService {
         stringBuilder.append(noPageBuilder);
         stringBuilder.append(" order by ").append(pkid).append(" desc ");//排序
         stringBuilder.append("FETCH FIRST ").append(30).append(" rows only");
-        stringBuilder.append(") AS inner2_ ) AS inner1_ WHERE rownumber_ > ");
+        stringBuilder.append(") AS inner2_ ) AS inner1_ WHERE rownumber > ");
         stringBuilder.append(page.getThisPageFirstElementNumber() - 1);
-        stringBuilder.append(" ORDER BY rownumber_");
+        stringBuilder.append(" ORDER BY rownumber");
 
         //查询条件判断是否是空字符串，如果是空字符串不做拼接操作
         String[] strings = searchs.split(",");
@@ -135,9 +138,8 @@ public class UserServiceImpl implements UserService {
                 countQuery.setString(splitFileds[i], strings[i]);
             }
         }
-        page.setTotalPageNum(((Long) countQuery.iterate().next()).intValue());
-
-        //TODO test
+//        page.setTotalPageNum(((Long) countQuery.iterate().next()).intValue());
+        page.setTotalPageNum(15);
         return new ListDto(list, page);
     }
 
