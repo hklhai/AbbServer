@@ -14,16 +14,14 @@
     <meta charset='utf-8'>
     <title>工具台账</title>
     <meta name="keywords" content="">
-    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
-    <script src="${ctx}/scripts/vue.js"></script>
-    <script src="${ctx}/js/new/borrow.js"></script>
     <link rel="stylesheet" href="${ctx}/css/reset.css">
+    <link rel="stylesheet" href="${ctx}/css/page.css">
     <link rel="stylesheet" href="${ctx}/css/new/tool/borrow.css">
 </head>
 <script>
     var _ctx = "${ctx}";
     var urls  = "${result.urls}";
-    var apptname = "${apptname}";
+    var apptnames = "${apptname}";
 </script>
 <body>
 <div class="borrow-body">
@@ -31,8 +29,8 @@
         <p id="timedis"></p>
         <h6 id="mytitle">${apptname}</h6>
         <div class="mylable">
-            <button type="button" id="mycollect">我的收藏</button>
-            <button type="button" id="myform">创建表单</button>
+            <button type="button" class="btn myform">创建表单</button>
+            <button type="button" class="btn mycollect">我的收藏</button>
         </div>
         <table class="mytable">
             <thead>
@@ -45,23 +43,28 @@
             <tbody>
                 <tr>
                     <c:forEach  items="${titles}" var="item">
-                        <td><input type="text" name="${item.appfield}"/></td>
+                        <td><input type="text" name="${item.appfield}" class="${item.appfield}"/></td>
                     </c:forEach>
                     <td id="bs"><button type="button" id="bt" /></td>
                 </tr>
-                <tr id="stock-data">
-                    <td>1111</td>
-                    <td>工具借还测试</td>
-                    <td>TEST001</td>
-                    <td>借用</td>
-                    <td>test</td>
-                    <td>2017-08-14 12:35 pm</td>
-                    <td >APPR</td>
-                    <td class="reimags"></td>
-                </tr>
             </tbody>
         </table>
+        <div id="page_control">
+            <span class="prePage" style="line-height: 21px;"><a href="javascript:;">上一页</a></span>
+            <span class="s_space"></span>
+            <span class="nextPage" style="line-height: 21px;"><a href="javascript:;">下一页</a></span>
+            <span class="s_space"></span>
+            第<span class="pageNo">{{currentPage}}</span>
+            页/共<span class="totalPage">{{totalPage}}</span>页
+            <span class="s_space"></span>
+            到第<input name="curPage" id="curPage" type="text"/>页
+            <span class="s_space"></span>
+            <span class="gotoPage" style="line-height: 21px;"><a href="javascript:;">跳转</a></span>
+        </div>
     </div>
 </div>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+<script src="${ctx}/scripts/vue.js"></script>
+<script src="${ctx}/js/new/borrow.js"></script>
 </body>
 </html>

@@ -1,38 +1,64 @@
 $(function() {
     function commonList(){
         this.names = [];
+        //page的信息
+        this.pageSize = "";
+        this.pageNumber = "";
+        //search的信息
+        this.search = "";
+
+        //ajax交换的数据
+        this.initAjax = {};
     }
     commonList.prototype = {
         constructor: commonList,
         initData: function(){
             var self = this;
+            self.initAjaxData();
             $.ajax({
                 url: _ctx + "/common/listData",
                 method: "get",
-                data: {
-                    apptname: apptname,
-                    apptable: 'UDVEHICLE',
-                    pkid: 'UDVEHICLEID',
-                    fields: 'LICENSE,DESCRIPTION,MODEL,FACTORY,SITEID,UDVEHICLEID' ,
-                    searchs: ''
-                },
+                data: self.initAjax,
                 dataType: "json",
                 success: function (data) {
                     self.initNames();
                     self.initDom(data.list);
+                    self.initPage(data.page);
                 },
                 error: function () {
 
                 }
             });
         },
+        initAjaxData:function(){
+            var self = this;
+            self.initSearch();
+            self.initAjax =  {
+                apptname: apptnames,
+                fields: self.names.join(",").toUpperCase() ,
+                searchs: self.search,
+                pageSize: self.pageSize,
+                pageNumber: self.pageNumber
+            }
+        },
         initNames:function(){
             var self = this;
+            var arr = [];
             var namesDom = $(".mytable tbody tr:nth-child(1)").find("td");
             for(var i = 0;i<namesDom.length-1;i++){
                 var val = namesDom.eq(i).find('input').first().attr("name").toLowerCase();
-                self.names.push(val);
+                arr.push(val);
             }
+            self.names = arr;
+        },
+        initSearch:function(){
+            var self = this;
+            var arr = [];
+            for(var i=0;i<self.names.length;i++){
+                 var tmpName = "."+self.names[i];
+                arr.push($(tmpName).val());
+            }
+            self.search = arr.join(",");
         },
         initDom:function(listData){
             var self = this;
@@ -48,6 +74,43 @@ $(function() {
             }
             $(".mytable tbody tr").remove(":not(:first)");
             $(".mytable tbody").append(tmpHtml);
+        },
+        initPage:function(pageData){
+            var self = this;
+            $(".pageNo").text(pageData.pageNumber);
+            $(".totalPage").text(pageData.totalPageNum);
+            self.pageNumber = pageData.pageNumber;
+            self.pageSize = pageData.pageSize;
+            self.totalPageNum = pageData.totalPageNum;
+            $(".prePage").click(function(){
+                var prepage = self.pageNumber - 1;
+                if (prepage < 1) {
+                    alert("已是第一页！");
+                } else {
+                    self.pageNumber = prepage;
+                    self.initData();
+                }
+            });
+            $(".nextPage").click(function(){
+                var nextpage = self.pageNumber + 1;
+                var totalPage = self.totalPageNum;
+                if (nextpage > totalPage) {
+                    alert("已是最后一页！");
+                } else {
+                    self.pageNumber = nextpage;
+                    self.initData();
+                }
+            });
+            $(".gotoPage").click(function(){
+                var totalPage = self.totalPageNum;
+                var gotoPage = $("#curPage").val();
+                if (gotoPage < 1 || gotoPage > totalPage) {
+                    alert("请输入正确的页数！")
+                } else {
+                    self.pageNumber = gotoPage;
+                    self.initData();
+                }
+            });
         }
     }
     new commonList().initData();
