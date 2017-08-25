@@ -1,5 +1,4 @@
 $(function() {
-    var ctx = _ctx;
     var contentW = document.body.clientWidth-258;
     var contentH=window.innerHeight
         || document.documentElement.clientHeight

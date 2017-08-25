@@ -54,8 +54,8 @@
             <span class="s_space"></span>
             <span class="nextPage" style="line-height: 21px;"><a href="javascript:;">下一页</a></span>
             <span class="s_space"></span>
-            第<span class="pageNo">{{currentPage}}</span>
-            页/共<span class="totalPage">{{totalPage}}</span>页
+            第<span class="pageNo"></span>
+            页/共<span class="totalPage"></span>页
             <span class="s_space"></span>
             到第<input name="curPage" id="curPage" type="text"/>页
             <span class="s_space"></span>

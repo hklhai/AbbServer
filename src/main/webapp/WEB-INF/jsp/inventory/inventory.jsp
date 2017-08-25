@@ -142,7 +142,6 @@
 </head>
 <body>
 <div id="stock-data">
-    
     <div class="stock-content">
         <div class="stock-layout">
             <div class="index-content-tit">

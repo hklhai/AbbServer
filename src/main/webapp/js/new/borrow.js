@@ -70,6 +70,7 @@ $(function() {
                     thisName = self.names[j];
                     tmpHtml+="<td>"+listData[i][thisName]+"</td>";
                 };
+                tmpHtml+="<td class='reimags'></td>";
                 tmpHtml+="</tr>";
             }
             $(".mytable tbody tr").remove(":not(:first)");

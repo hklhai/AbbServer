@@ -24,7 +24,7 @@
     <script src="${ctx}/scripts/vue.js"></script>
 </head>
 <body>
-<div class="header">
+<%--<div class="header">
     <div class="header-layout">
         <div class="logo"></div>
         <ul>
@@ -39,7 +39,7 @@
 
         </ul>
     </div>
-</div>
+</div>--%>
 <div id="mask"></div>
 <div class="equip-layout">
     <div class="equip-nav">
@@ -307,8 +307,10 @@
 <script type="text/javascript">
     //地图初始化时，在地图上添加一个marker标记,鼠标点击marker可弹出自定义的信息窗体
     var locationCenter = [];
-    locationCenter.push(${sessionInfo.dimension});
-    locationCenter.push(${sessionInfo.longitude});
+    var centerD = "${sessionInfo.dimension}" || "116.397428";
+    var centerL = "${sessionInfo.longitude}" || "39.90923";
+    locationCenter.push(centerD);
+    locationCenter.push(centerL);
     var map = new AMap.Map("container", {
         resizeEnable: true,
         center: locationCenter,

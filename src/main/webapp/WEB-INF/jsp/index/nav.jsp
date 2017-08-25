@@ -45,16 +45,15 @@
         <li style="margin-top: 30px;">
             <i class="home nav-icon"></i>
             <a href="${ctx}/index/index" target="menuFrame">首页</a>
-        <li>
+        <%--<li>
             <i class="equip nav-icon"></i>
             <a href="javascript:;">设备管理</a>
-        <ul class="sec-ul">
-            <li><a href="http://www.baidu.com" target="menuFrame">现场及设备地图</a></li>
-            <li><a href="http://www.baidu.com" target="menuFrame">设备与位置</a>
-            </li>
-        </ul>
-
-        </li>
+            <ul class="sec-ul">
+                <li><a href="http://www.baidu.com" target="menuFrame">现场及设备地图</a></li>
+                <li><a href="http://www.baidu.com" target="menuFrame">设备与位置</a>
+                </li>
+            </ul>
+        </li>--%>
         <li>
             <i class="stock nav-icon"></i>
             <a href="javascript:;">库存管理</a>
@@ -103,9 +102,9 @@
             <a href="javascript:;">站点管理</a>
             <ul class="sec-ul">
                 <li><a href="${ctx}/common/list?func=" target="menuFrame">车辆台账</a></li>
-                <li><a href="http://www.baidu.com" target="menuFrame">车辆申请</a></li>
-                <li><a href="http://www.baidu.com" target="menuFrame">住宿台账</a></li>
-                <li><a href="http://www.baidu.com" target="menuFrame">住宿申请</a></li>
+                <li><a href="${ctx}/common/list?apptname=VEHICLEACAPPLY " target="menuFrame">车辆申请</a></li>
+                <li><a href="${ctx}/common/list?apptname=BEDACCOUNT" target="menuFrame">住宿台账</a></li>
+                <li><a href="${ctx}/common/list?apptname=BEDAPPLY" target="menuFrame">住宿申请</a></li>
             </ul>
         </li>
     </ul>
