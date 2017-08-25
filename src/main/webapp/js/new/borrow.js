@@ -2,11 +2,10 @@ $(function() {
     function commonList(){
         this.names = [];
         //page的信息
-        this.pageSize = "";
-        this.pageNumber = "";
+        this.pageSize = 15;
+        this.pageNumber = 1;
         //search的信息
         this.search = "";
-
         //ajax交换的数据
         this.initAjax = {};
     }
@@ -39,6 +38,7 @@ $(function() {
                 searchs: self.search,
                 pageSize: self.pageSize,
                 pageNumber: self.pageNumber
+
             }
         },
         initNames:function(){
