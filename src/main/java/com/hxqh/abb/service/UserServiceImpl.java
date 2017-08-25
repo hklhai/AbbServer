@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ListDto vehicleListData(Page page, String apptname, String apptable, String pkid, String fieldsx, String searchs) throws Exception {
+    public ListDto vehicleListData(Page page, String apptname, String fieldsx, String searchs) throws Exception {
         StringBuilder fs = new StringBuilder("");
 
         //动态生成类
@@ -60,25 +60,29 @@ public class UserServiceImpl implements UserService {
         appList.add(new TbApp("ROWNUMBER", "java.lang.Object"));
         Map propertyMap = new LinkedHashMap();
 
+        String apptable = new String();
+        String pkid = new String();
         for (TbApp app : appList) {
             //设置值
             propertyMap.put(app.getAppfield(), Class.forName(app.getFieldtype()));
             //获取字段集合
             if (!app.getAppfield().equals("ROWNUMBER")) {
                 fs.append(app.getAppfield()).append(",");
+            }
+            if (app.getIspk() == 1) {
                 apptable = app.getApptable();
+                pkid = app.getAppfield();
             }
         }
-
 
         CglibUtil bean1 = new CglibUtil(propertyMap);
         Field[] declaredFields = bean1.getObject().getClass().getDeclaredFields();
         Class clazz = bean1.getObject().getClass();
         //System.out.println(clazz.getSimpleName());
         Method[] methods = clazz.getDeclaredMethods();
-//        for (int i = 0; i < methods.length; i++) {
-//            System.out.println(methods[i].getName());
-//        }
+        //for (int i = 0; i < methods.length; i++) {
+        //System.out.println(methods[i].getName());
+        //}
 
         String fields = fs.substring(0, fs.length() - 1);
         //查询语句拼接

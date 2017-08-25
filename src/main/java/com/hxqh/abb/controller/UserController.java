@@ -81,26 +81,19 @@ public class UserController {
      * List公用数据接口
      *
      * @param apptname 传入VEHICLEACCOUNT,VEHICLEACAPPLY etc.
-     * @param apptable 表名
-     * @param pkid     主键名
      * @param fields   字段名
      * @param searchs  查询列
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/listData", method = RequestMethod.GET)
-    public ListDto data(
+    public ListDto data(Page page,
                         @RequestParam("apptname") String apptname,
-                        @RequestParam("apptable") String apptable,
-                        @RequestParam("pkid") String pkid,
                         @RequestParam("fields") String fields,
                         @RequestParam("searchs") String searchs) {
         ListDto listData = null;
-        Page page = new Page();
-        page.setPageNumber(1);
-        page.setPageSize(15);
         try {
-            listData = userService.vehicleListData(page, apptname, apptable, pkid, fields, searchs);
+            listData = userService.vehicleListData(page, apptname, fields, searchs);
         } catch (Exception e) {
             e.printStackTrace();
         }

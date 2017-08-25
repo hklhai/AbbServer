@@ -14,7 +14,7 @@ public interface UserService {
 
     List<User> getUserList();
 
-    ListDto vehicleListData(Page page, String apptname, String apptable, String pkid, String fields, String searchs) throws Exception;
+    ListDto vehicleListData(Page page, String apptname, String fields, String searchs) throws Exception;
 
     List<TbApp> getAppInfo(String apptname);
 

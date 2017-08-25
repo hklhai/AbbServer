@@ -31,12 +31,22 @@ public class TbApp implements Serializable {
 
     private Integer ordernum;
 
+    private Integer ispk;
+
     public TbApp(String appfield, String fieldtype) {
         this.appfield = appfield;
         this.fieldtype = fieldtype;
     }
 
     public TbApp() {
+    }
+
+    public Integer getIspk() {
+        return ispk;
+    }
+
+    public void setIspk(Integer ispk) {
+        this.ispk = ispk;
     }
 
     public long getAppid() {
