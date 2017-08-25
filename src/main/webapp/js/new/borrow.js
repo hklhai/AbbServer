@@ -13,6 +13,7 @@ $(function() {
         constructor: commonList,
         initData: function(){
             var self = this;
+            self.initNames();
             self.initAjaxData();
             $.ajax({
                 url: _ctx + "/common/listData",
@@ -20,7 +21,6 @@ $(function() {
                 data: self.initAjax,
                 dataType: "json",
                 success: function (data) {
-                    self.initNames();
                     self.initDom(data.list);
                     self.initPage(data.page);
                 },

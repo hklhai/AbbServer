@@ -1,9 +1,8 @@
 .borrow-body {
     width: 100%;
-    min-width: 1289px;
 }
 .layout {
-    width: 1289px;
+    width: 100%;
     margin: 0 auto;
     background-color: #ffffff;
 }
