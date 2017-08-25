@@ -74,10 +74,10 @@
             <i class="tool nav-icon"></i>
             <a href="javascript:;">工具管理</a>
             <ul class="sec-ul">
-                <li><a href="${ctx}/tool/list" target="menuFrame">工具台账</a></li>
-                <li><a href="${ctx}/common/list?func=" target="menuFrame">工具校准单</a></li>
-                <li><a href="${ctx}/common/list?apptname=VEHICLEACCOUNT" target="menuFrame">工具借还</a></li>
-                <li><a href="http://www.baidu.com" target="menuFrame">工具修丢弃</a></li>
+                <li><a href="${ctx}/common/list?apptname=TOOLACCOUNT" target="menuFrame">工具台账</a></li>
+                <li><a href="${ctx}/common/list?apptname=TOOLCHK" target="menuFrame">工具校准单</a></li>
+                <li><a href="${ctx}/common/list?apptname=TOOLlEND" target="menuFrame">工具借还</a></li>
+                <li><a href="${ctx}/common/list?apptname=TOOLAPPLY" target="menuFrame">工具修丢弃</a></li>
                 <%--<li><a href="${ctx}/common/list?func=" target="menuFrame">工具校准单</a></li>
                 <li><a href="http://www.baidu.com" target="menuFrame">工具借还</a></li>
                 <li><a href="http://www.baidu.com" target="menuFrame">工具修丢弃</a></li>--%>
@@ -101,8 +101,8 @@
             <i class="site nav-icon"></i>
             <a href="javascript:;">站点管理</a>
             <ul class="sec-ul">
-                <li><a href="${ctx}/common/list?func=" target="menuFrame">车辆台账</a></li>
-                <li><a href="${ctx}/common/list?apptname=VEHICLEACAPPLY " target="menuFrame">车辆申请</a></li>
+                <li><a href="${ctx}/common/list?apptname=VEHICLEACCOUNT" target="menuFrame">车辆台账</a></li>
+                <li><a href="${ctx}/common/list?apptname=VEHICLEACAPPLY" target="menuFrame">车辆申请</a></li>
                 <li><a href="${ctx}/common/list?apptname=BEDACCOUNT" target="menuFrame">住宿台账</a></li>
                 <li><a href="${ctx}/common/list?apptname=BEDAPPLY" target="menuFrame">住宿申请</a></li>
             </ul>
