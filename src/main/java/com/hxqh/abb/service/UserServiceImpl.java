@@ -7,8 +7,10 @@ import com.hxqh.abb.model.TbApp;
 import com.hxqh.abb.model.User;
 import com.hxqh.abb.model.dto.action.ListDto;
 import com.hxqh.abb.model.searchdto.Page;
+import org.hibernate.Hibernate;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
+import org.hibernate.type.StandardBasicTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,15 +56,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public ListDto vehicleListData(Page page, String apptname, String fieldsx, String searchs) throws Exception {
         StringBuilder fs = new StringBuilder("");
+        Map propertyMap = new LinkedHashMap();
 
         //动态生成类
-        List<TbApp> appList = getAppInfo(apptname);
-        appList.add(new TbApp("ROWNUMBER", "java.lang.Object"));
-        Map propertyMap = new LinkedHashMap();
+        List<TbApp> dbList = getAppInfo(apptname);
 
         String apptable = new String();
         String pkid = new String();
-        for (TbApp app : appList) {
+        for (TbApp app : dbList) {
             //设置值
             propertyMap.put(app.getAppfield(), Class.forName(app.getFieldtype()));
             //获取字段集合
@@ -72,17 +73,19 @@ public class UserServiceImpl implements UserService {
             if (app.getIspk() == 1) {
                 apptable = app.getApptable();
                 pkid = app.getAppfield();
+                propertyMap.put("ROWNUMBER", Class.forName("java.lang.Object"));
             }
         }
 
         CglibUtil bean1 = new CglibUtil(propertyMap);
         Field[] declaredFields = bean1.getObject().getClass().getDeclaredFields();
-        Class clazz = bean1.getObject().getClass();
+        //Class clazz = bean1.getObject().getClass();
         //System.out.println(clazz.getSimpleName());
-        Method[] methods = clazz.getDeclaredMethods();
+        //Method[] methods = clazz.getDeclaredMethods();
         //for (int i = 0; i < methods.length; i++) {
         //System.out.println(methods[i].getName());
         //}
+
 
         String fields = fs.substring(0, fs.length() - 1);
         //查询语句拼接
@@ -97,7 +100,7 @@ public class UserServiceImpl implements UserService {
 
         stringBuilder.append(noPageBuilder);
         stringBuilder.append(" order by ").append(pkid).append(" desc ");//排序
-        stringBuilder.append("FETCH FIRST ").append(30).append(" rows only");
+        stringBuilder.append("FETCH FIRST ").append(page.getThisPageLastElementNumber()).append(" rows only");
         stringBuilder.append(") AS inner2_ ) AS inner1_ WHERE rownumber > ");
         stringBuilder.append(page.getThisPageFirstElementNumber() - 1);
         stringBuilder.append(" ORDER BY rownumber");
@@ -131,9 +134,10 @@ public class UserServiceImpl implements UserService {
             list.add(bean.getObject());
         }
 
+
         //获取总行数
         StringBuilder countSQL = new StringBuilder("");
-        countSQL.append("select count(1) ").append(noPageBuilder);
+        countSQL.append("select count(1) as c ").append(noPageBuilder);
 
         SQLQuery countQuery = sessionFactory.getCurrentSession().createSQLQuery(countSQL.toString());
         for (int i = 0; i < strings.length; i++) {
@@ -142,8 +146,10 @@ public class UserServiceImpl implements UserService {
                 countQuery.setString(splitFileds[i], strings[i]);
             }
         }
-//        page.setTotalPageNum(((Long) countQuery.iterate().next()).intValue());
-        page.setTotalPageNum(15);
+        Object score = countQuery.addScalar("c", StandardBasicTypes.INTEGER).uniqueResult();
+        Integer size = Integer.parseInt(score.toString());
+        page.setTotalPageNum(size);
+
         return new ListDto(list, page);
     }
 

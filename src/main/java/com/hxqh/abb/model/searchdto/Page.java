@@ -126,7 +126,13 @@ public class Page {
      */
     public int getThisPageLastElementNumber() {
         int fullPage = getThisPageFirstElementNumber() + getPageSize() - 1;
-        return getTotalCount() < fullPage ? getTotalCount() : fullPage;
+        if (!(getTotalCount() == 0)) {
+            int i = getTotalCount() < fullPage ? getTotalCount() : fullPage;
+            return i;
+        } else {
+            return 15;
+        }
+
     }
 
     /**
@@ -179,9 +185,8 @@ public class Page {
      *
      * @return
      */
-    public void setTotalPageNum(int totalRecord)
-    {
-        totalPageNum = (totalRecord  +  pageSize  - 1) / pageSize;
+    public void setTotalPageNum(int totalRecord) {
+        totalPageNum = (totalRecord + pageSize - 1) / pageSize;
     }
 
 
