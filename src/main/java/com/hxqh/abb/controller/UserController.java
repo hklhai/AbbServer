@@ -100,5 +100,9 @@ public class UserController {
         return listData;
     }
 
-
+    @RequestMapping(value = "/detail", method = RequestMethod.GET)
+    public String detail() {
+        Map<String, Object> result = new HashMap<>();
+        return "tool/lenddetail";
+    }
 }

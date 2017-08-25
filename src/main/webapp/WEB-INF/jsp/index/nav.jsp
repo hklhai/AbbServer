@@ -44,7 +44,7 @@
     <ul>
         <li style="margin-top: 30px;">
             <i class="home nav-icon"></i>
-            <a href="${ctx}/index/index" target="menuFrame">首页</a>
+            <a href="${ctx}/index/toIndex" target="menuFrame">首页</a>
         <%--<li>
             <i class="equip nav-icon"></i>
             <a href="javascript:;">设备管理</a>
@@ -60,14 +60,14 @@
 
             <ul class="sec-ul">
                 <li><a href="${ctx}/inventory/list" target="menuFrame">库存管理</a></li>
-                <li><a href="http://www.baidu.com" target="menuFrame">物资发放</a></li>
-                <li><a href="http://www.baidu.com" target="menuFrame">备件调拨</a></li>
-                <li><a href="http://www.baidu.com" target="menuFrame">库存盘点</a></li>
-                <li><a href="http://www.baidu.com" target="menuFrame">采购清单</a></li>
-                <li><a href="http://www.baidu.com" target="menuFrame">接收</a></li>
-                <li><a href="http://www.baidu.com" target="menuFrame">旧料回收</a></li>
-                <li><a href="http://www.baidu.com" target="menuFrame">废料回收</a></li>
-                <li><a href="http://www.baidu.com" target="menuFrame">物资退库</a></li>
+                <li><a href="${ctx}/common/list?apptname=INVENTORYGRANT" target="menuFrame">物资发放</a></li>
+                <li><a href="${ctx}/common/list?apptname=INVENTORYALLOCATE" target="menuFrame">备件调拨</a></li>
+                <li><a href="${ctx}/common/list?apptname=INVENTORYCHK" target="menuFrame">库存盘点</a></li>
+                <li><a href="${ctx}/common/list?apptname=PURCHASEODER" target="menuFrame">采购清单</a></li>
+                <li><a href="${ctx}/common/list?apptname=PORECEIVE" target="menuFrame">接收</a></li>
+                <li><a href="${ctx}/common/list?apptname=OLDRECOVERY" target="menuFrame">旧料回收</a></li>
+                <li><a href="${ctx}/common/list?apptname=WASTERECOVERY" target="menuFrame">废料回收</a></li>
+                <li><a href="${ctx}/common/list?apptname=INVENTORYREFUND" target="menuFrame">物资退库</a></li>
             </ul>
         </li>
         <li>
@@ -78,23 +78,20 @@
                 <li><a href="${ctx}/common/list?apptname=TOOLCHK" target="menuFrame">工具校准单</a></li>
                 <li><a href="${ctx}/common/list?apptname=TOOLlEND" target="menuFrame">工具借还</a></li>
                 <li><a href="${ctx}/common/list?apptname=TOOLAPPLY" target="menuFrame">工具修丢弃</a></li>
-                <%--<li><a href="${ctx}/common/list?func=" target="menuFrame">工具校准单</a></li>
-                <li><a href="http://www.baidu.com" target="menuFrame">工具借还</a></li>
-                <li><a href="http://www.baidu.com" target="menuFrame">工具修丢弃</a></li>--%>
             </ul>
         </li>
         <li>
             <i class="secrity nav-icon"></i>
             <a href="javascript:;">安全性</a>
             <ul class="sec-ul">
-                <li><a href="http://www.baidu.com" target="menuFrame">微信用户申请</a></li>
+                <li><a href="${ctx}/common/list?apptname=WXAPPLY" target="menuFrame">微信用户申请</a></li>
             </ul>
         </li>
         <li>
             <i class="done nav-icon"></i>
             <a href="javascript:;">执行管理</a>
             <ul class="sec-ul">
-                <li><a href="http://www.baidu.com" target="menuFrame">工单管理</a></li>
+                <li><a href="javascript:;" target="menuFrame">工单管理</a></li>
             </ul>
         </li>
         <li>

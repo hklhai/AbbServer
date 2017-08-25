@@ -13,6 +13,7 @@ $(function() {
         constructor: commonList,
         initData: function(){
             var self = this;
+            self.initBind();
             self.initNames();
             self.initAjaxData();
             $.ajax({
@@ -111,6 +112,11 @@ $(function() {
                     self.pageNumber = gotoPage;
                     self.initData();
                 }
+            });
+        },
+        initBind:function(){
+            $(".myform").click(function(){
+                window.location.href =  _ctx + "/common/detail";
             });
         }
     }

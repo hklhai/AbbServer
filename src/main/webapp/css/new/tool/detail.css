@@ -2,6 +2,7 @@
   width: 96%;
   padding-left: 2%;
   padding-right: 2%;
+  padding-bottom:60px;
 }
 .borrow-detail h4{
   width: 100%;
@@ -38,7 +39,7 @@
   text-align: right;
 }
 .detail-info p.item input[type='text']{
-  width: 214px;
+  width: 180px;
   height: 22px;
   border: 1px solid #dfdfdf;
   margin-top: 7px;
