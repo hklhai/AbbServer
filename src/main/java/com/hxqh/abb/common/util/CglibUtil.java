@@ -1,6 +1,7 @@
 package com.hxqh.abb.common.util;
 
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -59,12 +60,17 @@ public class CglibUtil {
     }
 
     @SuppressWarnings("unchecked")
-    private Object generateBean(Map propertyMap) {
+    private Object generateBean(Map<String,Object> propertyMap) {
         BeanGenerator generator = new BeanGenerator();
-        Set keySet = propertyMap.keySet();
-        for (Iterator i = keySet.iterator(); i.hasNext(); ) {
-            String key = (String) i.next();
-            generator.addProperty(key, (Class) propertyMap.get(key));
+//        Set keySet = new LinkedHashSet();
+//        keySet = propertyMap.keySet();
+//        for (Iterator i = keySet.iterator(); i.hasNext(); ) {
+//            String key = (String) i.next();
+//            generator.addProperty(key, (Class) propertyMap.get(key));
+//        }
+        for(Map.Entry<String,Object> map :propertyMap.entrySet())
+        {
+            generator.addProperty(map.getKey(), (Class) map.getValue());
         }
         return generator.create();
     }

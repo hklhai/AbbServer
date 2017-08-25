@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public ListDto vehicleListData(Page page, String apptname, String fieldsx, String searchs) throws Exception {
         StringBuilder fs = new StringBuilder("");
-        Map propertyMap = new LinkedHashMap();
+        Map<String,Object> propertyMap = new LinkedHashMap();
 
         //动态生成类
         List<TbApp> dbList = getAppInfo(apptname);
@@ -128,8 +128,11 @@ public class UserServiceImpl implements UserService {
             for (int j = 0; j < len; j++) {
                 String fieldName = declaredFields[j].getName().replace("$cglib_prop_", "");
                 String setMethodName = "set" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
-                Method setMethod = bean.getObject().getClass().getDeclaredMethod(setMethodName, new Class[]{declaredFields[j].getType()});
-                setMethod.invoke(bean.getObject(), o[j]);
+                Object object = bean.getObject();
+                Method setMethod = object.getClass().getDeclaredMethod(setMethodName, new Class[]{declaredFields[j].getType()});
+
+
+                setMethod.invoke(object, o[j]);
             }
             list.add(bean.getObject());
         }
