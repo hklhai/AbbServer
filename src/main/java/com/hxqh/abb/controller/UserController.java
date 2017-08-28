@@ -41,7 +41,7 @@ public class UserController {
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ModelAndView list(@RequestParam("apptname") String apptname) {
-        Map<String, Object> result = new HashMap<String, Object>();
+        Map<String, Object> result = new HashMap<>();
         List<TbApp> titles = userService.getAppInfo(apptname);
         result.put("titles", titles);
         result.put("apptname", apptname);

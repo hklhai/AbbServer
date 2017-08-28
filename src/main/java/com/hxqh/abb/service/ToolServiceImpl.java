@@ -1,7 +1,6 @@
 package com.hxqh.abb.service;
 
 import com.hxqh.abb.dao.*;
-import com.hxqh.abb.model.Udtool;
 import com.hxqh.abb.model.UdtoolApply;
 import com.hxqh.abb.model.UdtoolChk;
 import com.hxqh.abb.model.UdtoolLend;
