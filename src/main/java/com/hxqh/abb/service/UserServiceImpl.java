@@ -43,15 +43,6 @@ public class UserServiceImpl implements UserService {
 
     @PostConstruct
     public void init() {
-        //主键
-//        Map<String, Object> params = new HashMap<>();
-//        params.put("ispk", 1);
-//        String where = "ispk=:ispk ";
-//
-//        List<TbApp> tbApps = appDao.findAll(where, params, null);
-//        for (TbApp e : tbApps) {
-//            appMap.put(e.getAppname(), e);
-//        }
 
         //属性
         Map<String, Object> fieldParams = new HashMap<>();
@@ -185,12 +176,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<TbApp> getAppInfo(String apptname) {
-//        Map<String, Object> params = new HashMap<>();
-//        params.put("APPNAME", apptname);
-//        params.put("APPCONTENT", "LIST");
-//        String where = "APPNAME=:APPNAME and APPCONTENT=:APPCONTENT";
-//        List<TbApp> appList = appDao.findAll(where, params, null);
         return fieldsMap.get(apptname);
+    }
+
+    @Override
+    public TbApp getAppName(String apptname) {
+        return appMap.get(apptname);
     }
 
 }

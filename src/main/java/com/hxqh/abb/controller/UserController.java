@@ -43,7 +43,9 @@ public class UserController {
     public ModelAndView list(@RequestParam("apptname") String apptname) {
         Map<String, Object> result = new HashMap<>();
         List<TbApp> titles = userService.getAppInfo(apptname);
+        String title = userService.getAppName(apptname).getAppchname().replaceAll("列表主键","");
         result.put("titles", titles);
+        result.put("title", title);
         result.put("apptname", apptname);
         result.put("urls", "/common/listData");
         return new ModelAndView("commons/listData", result);

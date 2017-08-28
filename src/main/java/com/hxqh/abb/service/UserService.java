@@ -18,4 +18,6 @@ public interface UserService {
 
     List<TbApp> getAppInfo(String apptname);
 
+    TbApp getAppName(String apptname);
+
 }
