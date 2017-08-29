@@ -2,6 +2,8 @@ package com.hxqh.abb.service;
 
 import com.hxqh.abb.model.TbApp;
 import com.hxqh.abb.model.User;
+import com.hxqh.abb.model.base.SessionInfo;
+import com.hxqh.abb.model.dto.action.DetailDto;
 import com.hxqh.abb.model.dto.action.ListDto;
 import com.hxqh.abb.model.searchdto.Page;
 
@@ -20,5 +22,7 @@ public interface UserService {
 
     TbApp getAppName(String apptname);
 
-    Object detailData(String apptname, String pkid) throws Exception;
+    DetailDto detailData(String apptname, String pkid) throws Exception;
+
+    void favorites(String apptname, String favorites, SessionInfo sessionInfo) throws Exception;
 }
