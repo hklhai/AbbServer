@@ -2,10 +2,14 @@ package com.hxqh.abb.service;
 
 import com.hxqh.abb.common.util.CglibUtil;
 import com.hxqh.abb.common.util.GroupListUtil;
+import com.hxqh.abb.dao.PersonDao;
 import com.hxqh.abb.dao.TbAppDao;
 import com.hxqh.abb.dao.UserDao;
+import com.hxqh.abb.model.Person;
 import com.hxqh.abb.model.TbApp;
 import com.hxqh.abb.model.User;
+import com.hxqh.abb.model.base.SessionInfo;
+import com.hxqh.abb.model.dto.action.DetailDto;
 import com.hxqh.abb.model.dto.action.ListDto;
 import com.hxqh.abb.model.searchdto.Page;
 import org.hibernate.SQLQuery;
@@ -30,6 +34,7 @@ import java.util.*;
 public class UserServiceImpl implements UserService {
 
     static Map<String, TbApp> appListMap = new HashMap<>();
+    static Map<String, TbApp> appDetailMap = new HashMap<>();
     static Map<String, List<TbApp>> fieldsMap = new LinkedHashMap<>();
     static Map<String, List<TbApp>> detailMap = new LinkedHashMap<>();
 
@@ -42,6 +47,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private TbAppDao appDao;
 
+    @Autowired
+    private PersonDao personDao;
 
     @PostConstruct
     public void init() {
@@ -75,8 +82,10 @@ public class UserServiceImpl implements UserService {
         });
 
         for (TbApp e : appList) {
-            if (e.getIspk() == 1&&e.getAppcontent().equals("LIST")) {
+            if (e.getIspk() == 1 && e.getAppcontent().equals("LIST")) {
                 appListMap.put(e.getAppname(), e);
+            } else if (e.getIspk() == 1 && e.getAppcontent().equals("DETAIL")) {
+                appDetailMap.put(e.getAppname(), e);
             }
         }
     }
@@ -114,6 +123,7 @@ public class UserServiceImpl implements UserService {
             }
             if (app.getIspk() == 1) {
                 propertyMap.put("ROWNUMBER", Class.forName("java.lang.Object"));
+                propertyMap.put("FAVORITES", Class.forName("java.lang.Object"));
             }
         }
 
@@ -129,7 +139,7 @@ public class UserServiceImpl implements UserService {
         String fields = fs.substring(0, fs.length() - 1);
         //查询语句拼接
         StringBuilder stringBuilder = new StringBuilder("");
-        stringBuilder.append("SELECT * FROM (SELECT rownumber () over (ORDER BY ORDER of inner2_) AS rownumber,inner2_.*  FROM(");
+        stringBuilder.append("SELECT * FROM (SELECT rownumber () over (ORDER BY ORDER of inner2_) AS rownumber,inner2_.*,rownumber () over (ORDER BY ORDER of inner2_) as FAVORITES FROM(");
         stringBuilder.append("select ").append(fields);
 
         StringBuilder noPageBuilder = new StringBuilder("");
@@ -145,7 +155,7 @@ public class UserServiceImpl implements UserService {
         stringBuilder.append(" ORDER BY rownumber");
 
         //查询条件判断是否是空字符串，如果是空字符串不做拼接操作
-        String[] strings = searchs.split(",");
+        String[] searchsStrings = searchs.split(",");
         String[] splitFileds = fields.split(",");
         //拼接
         String initString = "ROWNUMBER," + fields;
@@ -153,11 +163,11 @@ public class UserServiceImpl implements UserService {
 
         SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery(stringBuilder.toString());
 
-        if (strings.length > 0 && !strings[0].equals("")) {
-            for (int i = 0; i < strings.length; i++) {
-                if (!"".equals(strings[i])) {
+        if (searchsStrings.length > 0 && !searchsStrings[0].equals("")) {
+            for (int i = 0; i < searchsStrings.length; i++) {
+                if (!"".equals(searchsStrings[i])) {
                     noPageBuilder.append(" and ").append(splitFileds[i]).append("=:").append(splitFileds[i]);
-                    sqlQuery.setString(splitFileds[i], strings[i]);
+                    sqlQuery.setString(splitFileds[i], searchsStrings[i]);
                 }
             }
         }
@@ -167,7 +177,15 @@ public class UserServiceImpl implements UserService {
         for (Object[] o : nameList) {
             CglibUtil bean = new CglibUtil(propertyMap);
             for (int j = 0; j < splitFileds.length; j++) {
-                objectConstructor(declaredFields[j], split[j], o[j], bean);
+                String field = split[j];
+                String setMethodName = "set" + field;
+                Object object = bean.getObject();
+                Method setMethod = object.getClass().getDeclaredMethod(setMethodName, new Class[]{declaredFields[j].getType()});
+                if (field.equals("FAVORITES")) {
+                    setMethod.invoke(object, "0");
+                } else {
+                    setMethod.invoke(object, o[j]);
+                }
             }
             list.add(bean.getObject());
         }
@@ -177,15 +195,16 @@ public class UserServiceImpl implements UserService {
         countSQL.append("select count(1) as c ").append(noPageBuilder);
 
         SQLQuery countQuery = sessionFactory.getCurrentSession().createSQLQuery(countSQL.toString());
-        for (int i = 0; i < strings.length; i++) {
-            if (!"".equals(strings[i])) {
+        for (int i = 0; i < searchsStrings.length; i++) {
+            if (!"".equals(searchsStrings[i])) {
                 noPageBuilder.append(" and ").append(splitFileds[i]).append("=:").append(splitFileds[i]);
-                countQuery.setString(splitFileds[i], strings[i]);
+                countQuery.setString(splitFileds[i], searchsStrings[i]);
             }
         }
         Object score = countQuery.addScalar("c", StandardBasicTypes.INTEGER).uniqueResult();
         Integer size = Integer.parseInt(score.toString());
         page.setTotalPageNum(size);
+
 
         return new ListDto(list, page);
     }
@@ -200,12 +219,12 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public Object detailData(String apptname, String pkid) throws Exception {
+    public DetailDto detailData(String apptname, String pkid) throws Exception {
         Map<String, Object> propertyMap = new LinkedHashMap();
 
         //获取表名与主键名称
-        String tableName = appListMap.get(apptname).getApptable();
-        String pkName = appListMap.get(apptname).getAppfield();
+        String tableName = appDetailMap.get(apptname).getApptable();
+        String pkName = appDetailMap.get(apptname).getAppfield();
         //属性值
         List<TbApp> appList = fieldsMap.get(apptname);
         StringBuilder fieldBuilder = new StringBuilder("");
@@ -227,7 +246,19 @@ public class UserServiceImpl implements UserService {
         List<Object[]> nameList = list;
 
         constructorObject(bean, declaredFields, split, nameList);
-        return bean.getObject();
+        DetailDto detailDto = new DetailDto(bean.getObject());
+        return detailDto;
+    }
+
+    @Override
+    public void favorites(String apptname, String favorites, SessionInfo sessionInfo) throws Exception {
+        //查询Person表
+        List<Person> personList = personDao.findAll("personid=" + sessionInfo.getLoginId(), null, null);
+        Person person = personList.get(0);
+        person.setFavorites(apptname+":"+favorites);
+        //TODO 新增是逻辑判断
+
+        personDao.update(person);
     }
 
     private void constructorObject(CglibUtil bean, Field[] declaredFields, String[] split, List<Object[]> nameList) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {

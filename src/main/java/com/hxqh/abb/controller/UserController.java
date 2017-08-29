@@ -1,16 +1,15 @@
 package com.hxqh.abb.controller;
 
 import com.hxqh.abb.model.TbApp;
+import com.hxqh.abb.model.base.SessionInfo;
+import com.hxqh.abb.model.dto.action.DetailDto;
 import com.hxqh.abb.model.dto.action.ListDto;
+import com.hxqh.abb.model.dto.action.Message;
 import com.hxqh.abb.model.searchdto.Page;
-import com.hxqh.abb.service.StationService;
 import com.hxqh.abb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
@@ -93,8 +92,8 @@ public class UserController {
      */
     @ResponseBody
     @RequestMapping(value = "/detailData", method = RequestMethod.GET)
-    public Object detailData(@RequestParam("apptname") String apptname, @RequestParam("pkid") String pkid) {
-        Object data = null;
+    public DetailDto detailData(@RequestParam("apptname") String apptname, @RequestParam("pkid") String pkid) {
+        DetailDto data = null;
         try {
             data = userService.detailData( apptname, pkid );
         } catch (Exception e) {
@@ -103,5 +102,21 @@ public class UserController {
         return data;
     }
 
+
+    @ResponseBody
+    @RequestMapping(value = "/favorites", method = RequestMethod.POST)
+    public Message favorites(@RequestParam("apptname") String apptname,
+                             @RequestParam("favorites") String favorites,
+                             @ModelAttribute("sessionInfo") SessionInfo sessionInfo) {
+        Message message = new Message(1, "Success", true);
+
+        try {
+            userService.favorites(apptname,favorites,sessionInfo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Message(0, "Fail", false);
+        }
+        return message;
+    }
 
 }

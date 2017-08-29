@@ -157,6 +157,9 @@ public class Person implements Serializable {
 
 	private Integer wopriority;
 
+	private String favorites;
+
+
 	public Person() {
 	}
 
@@ -664,4 +667,11 @@ public class Person implements Serializable {
 		this.wopriority = wopriority;
 	}
 
+	public String getFavorites() {
+		return favorites;
+	}
+
+	public void setFavorites(String favorites) {
+		this.favorites = favorites;
+	}
 }
