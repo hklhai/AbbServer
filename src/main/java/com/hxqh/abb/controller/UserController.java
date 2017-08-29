@@ -41,41 +41,15 @@ public class UserController {
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ModelAndView list(@RequestParam("apptname") String apptname) {
-        Map<String, Object> result = new HashMap<String, Object>();
+        Map<String, Object> result = new HashMap<>();
         List<TbApp> titles = userService.getAppInfo(apptname);
+        String title = userService.getAppName(apptname).getAppchname().replaceAll("列表主键", "");
         result.put("titles", titles);
+        result.put("title", title);
         result.put("apptname", apptname);
         result.put("urls", "/common/listData");
         return new ModelAndView("commons/listData", result);
     }
-
-    /**
-     * List公用数据接口
-     *
-     * @param page     分页参数
-     * @param apptname 传入VEHICLEACCOUNT,VEHICLEACAPPLY etc.
-     * @param apptable 表名
-     * @param pkid     主键名
-     * @param fields   字段名
-     * @param searchs  查询列
-     * @return
-     */
-//    @ResponseBody
-//    @RequestMapping(value = "/listData", method = RequestMethod.POST)
-//    public ListDto data(Page page,
-//                     @RequestParam("apptname") String apptname,
-//                     @RequestParam("apptable") String apptable,
-//                     @RequestParam("pkid") String pkid,
-//                     @RequestParam("fields") String fields,
-//                     @RequestParam("searchs") String searchs) {
-//        ListDto listData = null;
-//        try {
-//            listData = userService.vehicleListData(page, apptname, apptable, pkid, fields, searchs);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return listData;
-//    }
 
     /**
      * List公用数据接口
@@ -97,12 +71,37 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        listData.setApptname(apptname);
         return listData;
     }
 
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
-    public String detail() {
+    public ModelAndView detail(@RequestParam("apptname") String apptname, @RequestParam("pkid") String pkid) {
         Map<String, Object> result = new HashMap<>();
-        return "tool/lenddetail";
+        result.put("apptname", apptname);
+        result.put("pkid", pkid);
+        return new ModelAndView("tool/lenddetail", result);
     }
+
+
+    /**
+     * List公用数据接口
+     *
+     * @param apptname 传入VEHICLEACCOUNT,VEHICLEACAPPLY etc.
+     * @param pkid 传入主键信息 etc.
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/detailData", method = RequestMethod.GET)
+    public Object detailData(@RequestParam("apptname") String apptname, @RequestParam("pkid") String pkid) {
+        Object data = null;
+        try {
+            data = userService.detailData( apptname, pkid );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+
+
 }

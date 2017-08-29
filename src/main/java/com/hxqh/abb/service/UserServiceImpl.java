@@ -1,13 +1,13 @@
 package com.hxqh.abb.service;
 
 import com.hxqh.abb.common.util.CglibUtil;
+import com.hxqh.abb.common.util.GroupListUtil;
 import com.hxqh.abb.dao.TbAppDao;
 import com.hxqh.abb.dao.UserDao;
 import com.hxqh.abb.model.TbApp;
 import com.hxqh.abb.model.User;
 import com.hxqh.abb.model.dto.action.ListDto;
 import com.hxqh.abb.model.searchdto.Page;
-import org.hibernate.Hibernate;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.type.StandardBasicTypes;
@@ -15,8 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
@@ -27,7 +29,9 @@ import java.util.*;
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
-    static Map<String, TbApp> appMap = new HashMap<>();
+    static Map<String, TbApp> appListMap = new HashMap<>();
+    static Map<String, List<TbApp>> fieldsMap = new LinkedHashMap<>();
+    static Map<String, List<TbApp>> detailMap = new LinkedHashMap<>();
 
     @Autowired
     private UserDao userDao;
@@ -38,16 +42,54 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private TbAppDao appDao;
 
-//    public UserServiceImpl() {
-//        Map<String, Object> params = new HashMap<>();
-//        params.put("ispk", 1);
-//        String where = "ispk=:ispk ";
-//
-//        List<TbApp> tbApps = appDao.findAll(where, params, null);
-//        for (TbApp e : tbApps) {
-//            appMap.put(e.getAppname(), e);
-//        }
-//    }
+
+    @PostConstruct
+    public void init() {
+
+        List<TbApp> appList = appDao.findAll();
+        //对appList按照APPCONTENT分组
+        Map<String, List<TbApp>> allMap = GroupListUtil.group(appList, new GroupListUtil.GroupBy<String>() {
+            @Override
+            public String groupby(Object obj) {
+                TbApp d = (TbApp) obj;
+                return d.getAppcontent();    // 分组依据为Appcontent
+            }
+        });
+
+        //属性
+        fieldsMap = GroupListUtil.group(allMap.get("LIST"), new GroupListUtil.GroupBy<String>() {
+            @Override
+            public String groupby(Object obj) {
+                TbApp d = (TbApp) obj;
+                return d.getAppname();    // 分组依据为Appname
+            }
+        });
+
+        //详情
+        detailMap = GroupListUtil.group(allMap.get("DETAIL"), new GroupListUtil.GroupBy<String>() {
+            @Override
+            public String groupby(Object obj) {
+                TbApp d = (TbApp) obj;
+                return d.getAppname();    // 分组依据为Appname
+            }
+        });
+
+        for (TbApp e : appList) {
+            if (e.getIspk() == 1&&e.getAppcontent().equals("LIST")) {
+                appListMap.put(e.getAppname(), e);
+            }
+        }
+    }
+
+    @Override
+    public List<TbApp> getAppInfo(String apptname) {
+        return fieldsMap.get(apptname);
+    }
+
+    @Override
+    public TbApp getAppName(String apptname) {
+        return appListMap.get(apptname);
+    }
 
     public List<User> getUserList() {
         return userDao.findAll();
@@ -56,13 +98,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public ListDto vehicleListData(Page page, String apptname, String fieldsx, String searchs) throws Exception {
         StringBuilder fs = new StringBuilder("");
-        Map<String,Object> propertyMap = new LinkedHashMap();
+        Map<String, Object> propertyMap = new LinkedHashMap();
 
         //动态生成类
-        List<TbApp> dbList = getAppInfo(apptname);
+        List<TbApp> dbList = fieldsMap.get(apptname);
 
-        String apptable = new String();
-        String pkid = new String();
+        String apptable = appListMap.get(apptname).getApptable();
+        String pkid = appListMap.get(apptname).getAppfield();
         for (TbApp app : dbList) {
             //设置值
             propertyMap.put(app.getAppfield(), Class.forName(app.getFieldtype()));
@@ -71,8 +113,6 @@ public class UserServiceImpl implements UserService {
                 fs.append(app.getAppfield()).append(",");
             }
             if (app.getIspk() == 1) {
-                apptable = app.getApptable();
-                pkid = app.getAppfield();
                 propertyMap.put("ROWNUMBER", Class.forName("java.lang.Object"));
             }
         }
@@ -85,7 +125,6 @@ public class UserServiceImpl implements UserService {
         //for (int i = 0; i < methods.length; i++) {
         //System.out.println(methods[i].getName());
         //}
-
 
         String fields = fs.substring(0, fs.length() - 1);
         //查询语句拼接
@@ -100,14 +139,18 @@ public class UserServiceImpl implements UserService {
 
         stringBuilder.append(noPageBuilder);
         stringBuilder.append(" order by ").append(pkid).append(" desc ");//排序
-        stringBuilder.append("FETCH FIRST ").append(page.getThisPageLastElementNumber()).append(" rows only");
+        stringBuilder.append("FETCH FIRST ").append(page.getlastResultNumber(page.getPageNumber(), page.getPageSize())).append(" rows only");
         stringBuilder.append(") AS inner2_ ) AS inner1_ WHERE rownumber > ");
-        stringBuilder.append(page.getThisPageFirstElementNumber() - 1);
+        stringBuilder.append(page.getfirstResultNumber(page.getPageNumber(), page.getPageSize()));
         stringBuilder.append(" ORDER BY rownumber");
 
         //查询条件判断是否是空字符串，如果是空字符串不做拼接操作
         String[] strings = searchs.split(",");
         String[] splitFileds = fields.split(",");
+        //拼接
+        String initString = "ROWNUMBER," + fields;
+        String[] split = initString.split(",");
+
         SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery(stringBuilder.toString());
 
         if (strings.length > 0 && !strings[0].equals("")) {
@@ -123,20 +166,11 @@ public class UserServiceImpl implements UserService {
 
         for (Object[] o : nameList) {
             CglibUtil bean = new CglibUtil(propertyMap);
-
-            int len = o.length;
-            for (int j = 0; j < len; j++) {
-                String fieldName = declaredFields[j].getName().replace("$cglib_prop_", "");
-                String setMethodName = "set" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
-                Object object = bean.getObject();
-                Method setMethod = object.getClass().getDeclaredMethod(setMethodName, new Class[]{declaredFields[j].getType()});
-
-
-                setMethod.invoke(object, o[j]);
+            for (int j = 0; j < splitFileds.length; j++) {
+                objectConstructor(declaredFields[j], split[j], o[j], bean);
             }
             list.add(bean.getObject());
         }
-
 
         //获取总行数
         StringBuilder countSQL = new StringBuilder("");
@@ -156,15 +190,52 @@ public class UserServiceImpl implements UserService {
         return new ListDto(list, page);
     }
 
+    private void objectConstructor(Field declaredField, String field1, Object o, CglibUtil bean) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        String field = field1;
+        String setMethodName = "set" + field;
+        Object object = bean.getObject();
+        Method setMethod = object.getClass().getDeclaredMethod(setMethodName, new Class[]{declaredField.getType()});
+        setMethod.invoke(object, o);
+    }
+
+
     @Override
-    public List<TbApp> getAppInfo(String apptname) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("APPNAME", apptname);
-        params.put("APPCONTENT", "LIST");
-        String where = "APPNAME=:APPNAME and APPCONTENT=:APPCONTENT";
-        List<TbApp> appList = appDao.findAll(where, params, null);
-        //TODO 可以把主键初始化
-        return appList;
+    public Object detailData(String apptname, String pkid) throws Exception {
+        Map<String, Object> propertyMap = new LinkedHashMap();
+
+        //获取表名与主键名称
+        String tableName = appListMap.get(apptname).getApptable();
+        String pkName = appListMap.get(apptname).getAppfield();
+        //属性值
+        List<TbApp> appList = fieldsMap.get(apptname);
+        StringBuilder fieldBuilder = new StringBuilder("");
+        for (TbApp e : appList) {
+            fieldBuilder.append(e.getAppfield()).append(",");
+            propertyMap.put(e.getAppfield(), Class.forName(e.getFieldtype()));
+        }
+        String fields = fieldBuilder.substring(0, fieldBuilder.length() - 1);
+
+        StringBuilder sql = new StringBuilder("");
+        sql.append("select ").append(fields).append(" from ").append(tableName).append(" where ").append(pkName).append("=").append(":PKNAME");
+        List list = sessionFactory.getCurrentSession().createSQLQuery(sql.toString()).setString("PKNAME", pkid).list();
+//        Object obj = list.get(0);
+        //动态生成类
+        CglibUtil bean = new CglibUtil(propertyMap);
+        Field[] declaredFields = bean.getObject().getClass().getDeclaredFields();
+        String[] split = fields.split(",");
+
+        List<Object[]> nameList = list;
+
+        constructorObject(bean, declaredFields, split, nameList);
+        return bean.getObject();
+    }
+
+    private void constructorObject(CglibUtil bean, Field[] declaredFields, String[] split, List<Object[]> nameList) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        for (Object[] o : nameList) {
+            for (int j = 0; j < split.length; j++) {
+                objectConstructor(declaredFields[j], split[j], o[j], bean);
+            }
+        }
     }
 
 }

@@ -1,10 +1,7 @@
 package com.hxqh.abb.service;
 
-import com.hxqh.abb.dao.*;
-import com.hxqh.abb.model.Udtool;
-import com.hxqh.abb.model.UdtoolApply;
-import com.hxqh.abb.model.UdtoolChk;
-import com.hxqh.abb.model.UdtoolLend;
+import com.hxqh.abb.dao.AbbInventorySiteDao;
+import com.hxqh.abb.dao.AbbUdtoolDao;
 import com.hxqh.abb.model.dto.action.ToolDto;
 import com.hxqh.abb.model.searchdto.Page;
 import com.hxqh.abb.model.searchdto.UdtoolDto;
@@ -29,94 +26,7 @@ public class ToolServiceImpl implements ToolService {
     private AbbUdtoolDao udtoolDao;
     @Autowired
     private AbbInventorySiteDao siteDao;
-    @Autowired
-    private UdtoolApplyDao udtoolApplyDao;
-    @Autowired
-    private UdtoolLendDao udtoolLendDao;
-    @Autowired
-    private UdtoolChkDao udtoolChkDao;
 
-
-    /**************************************/
-    /**update by wkl
-     * 2017-8-16
-     * 工具台账
-     **/
-
-    @Override
-    public List<AbbUdtool> getUdtoolList() {
-        return udtoolDao.findAll();
-    }
-
-    @Override
-    public AbbUdtool getAbbUdtoolId(Long udtoolid) {
-        return udtoolDao.find(udtoolid);
-    }
-    /**************************************/
-    /**
-     * 工具校准
-     **/
-    @Override
-    public List<UdtoolChk> getUdtoolChkList() {
-        return udtoolChkDao.findAll();
-    }
-
-    @Override
-    public UdtoolChk getUdtoolChkId(Long udtoolchkid) {
-        return udtoolChkDao.find(udtoolchkid);
-    }
-    /***************************************/
-    /**
-     * 工具借还
-     **/
-    @Override
-    public UdtoolLend getUdtoolLendId(Long udtoollendid) { return udtoolLendDao.find(udtoollendid); }
-
-    @Override
-    public List<UdtoolLend> getUdtoolLendList() {
-        return udtoolLendDao.findAll();
-    }
-
-    @Override
-    public void addUdtoolLend(UdtoolLend udtoolLend) {
-        udtoolLendDao.save(udtoolLend);
-    }
-
-    @Override
-    public void updateUdtoolLend(UdtoolLend ul) { udtoolLendDao.update(ul); }
-
-    @Override
-    public void delUdtoolLend(long l) { udtoolLendDao.delete(l); }
-
-
-    /**************************************/
-    /**
-     * 工具修丢废
-     **/
-
-    @Override
-    public List<UdtoolApply> getUdtoolApplyList() {
-        return udtoolApplyDao.findAll();
-    }
-
-    @Override
-    public UdtoolApply getUdtoolApplyId(Long udtoolapplyid) { return udtoolApplyDao.find(udtoolapplyid); }
-
-    @Override
-    public void addUdtoolApply(UdtoolApply udtoolApply) {
-        udtoolApplyDao.save(udtoolApply);
-    }
-
-    @Override
-    public void updateUdtoolApply(UdtoolApply ua) { udtoolApplyDao.update(ua); }
-
-    @Override
-    public void delUdtoolApply(long l) {
-        udtoolApplyDao.delete(l);
-    }
-
-
-    /*******************************************************/
     @Override
     public ToolDto getListData(Page page) throws Exception {
         List<AbbUdtool> udtoolList = udtoolDao.findAll(0, 15, null, null, " order by udtoolid desc");

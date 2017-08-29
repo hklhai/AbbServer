@@ -18,4 +18,7 @@ public interface UserService {
 
     List<TbApp> getAppInfo(String apptname);
 
+    TbApp getAppName(String apptname);
+
+    Object detailData(String apptname, String pkid) throws Exception;
 }

@@ -11,6 +11,7 @@ public class ListDto {
 
     private List list;
     private Page page;
+    private String apptname;
 
     public ListDto(List list, Page page) {
         this.list = list;
@@ -34,5 +35,13 @@ public class ListDto {
 
     public void setPage(Page page) {
         this.page = page;
+    }
+
+    public String getApptname() {
+        return apptname;
+    }
+
+    public void setApptname(String apptname) {
+        this.apptname = apptname;
     }
 }
