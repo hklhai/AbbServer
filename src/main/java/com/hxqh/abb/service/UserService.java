@@ -20,4 +20,5 @@ public interface UserService {
 
     TbApp getAppName(String apptname);
 
+    Object detailData(String apptname, String pkid) throws Exception;
 }

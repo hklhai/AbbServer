@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
@@ -30,6 +31,7 @@ public class UserServiceImpl implements UserService {
 
     static Map<String, TbApp> appMap = new HashMap<>();
     static Map<String, List<TbApp>> fieldsMap = new LinkedHashMap<>();
+    static Map<String, List<TbApp>> detailMap = new LinkedHashMap<>();
 
     @Autowired
     private UserDao userDao;
@@ -44,17 +46,31 @@ public class UserServiceImpl implements UserService {
     @PostConstruct
     public void init() {
 
-        //属性
-        Map<String, Object> fieldParams = new HashMap<>();
-        fieldParams.put("APPCONTENT", "LIST");
-        String fieldWhere = " APPCONTENT=:APPCONTENT ";
-        List<TbApp> appList = appDao.findAll(fieldWhere, fieldParams, null);
-        //对appList
-        fieldsMap = GroupListUtil.group(appList, new GroupListUtil.GroupBy<String>() {
+        List<TbApp> appList = appDao.findAll();
+        //对appList按照APPCONTENT分组
+        Map<String, List<TbApp>> allMap = GroupListUtil.group(appList, new GroupListUtil.GroupBy<String>() {
             @Override
             public String groupby(Object obj) {
                 TbApp d = (TbApp) obj;
-                return d.getAppname();    // 分组依据为getAppname
+                return d.getAppcontent();    // 分组依据为Appcontent
+            }
+        });
+
+        //属性
+        fieldsMap = GroupListUtil.group(allMap.get("LIST"), new GroupListUtil.GroupBy<String>() {
+            @Override
+            public String groupby(Object obj) {
+                TbApp d = (TbApp) obj;
+                return d.getAppname();    // 分组依据为Appname
+            }
+        });
+
+        //详情
+        detailMap = GroupListUtil.group(allMap.get("DETAIL"), new GroupListUtil.GroupBy<String>() {
+            @Override
+            public String groupby(Object obj) {
+                TbApp d = (TbApp) obj;
+                return d.getAppname();    // 分组依据为Appname
             }
         });
 
@@ -63,7 +79,16 @@ public class UserServiceImpl implements UserService {
                 appMap.put(e.getAppname(), e);
             }
         }
+    }
 
+    @Override
+    public List<TbApp> getAppInfo(String apptname) {
+        return fieldsMap.get(apptname);
+    }
+
+    @Override
+    public TbApp getAppName(String apptname) {
+        return appMap.get(apptname);
     }
 
     public List<User> getUserList() {
@@ -88,8 +113,6 @@ public class UserServiceImpl implements UserService {
                 fs.append(app.getAppfield()).append(",");
             }
             if (app.getIspk() == 1) {
-//                apptable = app.getApptable();
-//                pkid = app.getAppfield();
                 propertyMap.put("ROWNUMBER", Class.forName("java.lang.Object"));
             }
         }
@@ -102,7 +125,6 @@ public class UserServiceImpl implements UserService {
         //for (int i = 0; i < methods.length; i++) {
         //System.out.println(methods[i].getName());
         //}
-
 
         String fields = fs.substring(0, fs.length() - 1);
         //查询语句拼接
@@ -145,13 +167,7 @@ public class UserServiceImpl implements UserService {
         for (Object[] o : nameList) {
             CglibUtil bean = new CglibUtil(propertyMap);
             for (int j = 0; j < splitFileds.length; j++) {
-//                String fieldName = declaredFields[j].getName().replace("$cglib_prop_", "");
-//                String field = fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
-                String field = split[j];
-                String setMethodName = "set" + field;
-                Object object = bean.getObject();
-                Method setMethod = object.getClass().getDeclaredMethod(setMethodName, new Class[]{declaredFields[j].getType()});
-                setMethod.invoke(object, o[j]);
+                objectConstructor(declaredFields[j], split[j], o[j], bean);
             }
             list.add(bean.getObject());
         }
@@ -174,14 +190,52 @@ public class UserServiceImpl implements UserService {
         return new ListDto(list, page);
     }
 
-    @Override
-    public List<TbApp> getAppInfo(String apptname) {
-        return fieldsMap.get(apptname);
+    private void objectConstructor(Field declaredField, String field1, Object o, CglibUtil bean) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        String field = field1;
+        String setMethodName = "set" + field;
+        Object object = bean.getObject();
+        Method setMethod = object.getClass().getDeclaredMethod(setMethodName, new Class[]{declaredField.getType()});
+        setMethod.invoke(object, o);
     }
 
+
     @Override
-    public TbApp getAppName(String apptname) {
-        return appMap.get(apptname);
+    public Object detailData(String apptname, String pkid) throws Exception {
+        Map<String, Object> propertyMap = new LinkedHashMap();
+
+        //获取表名与主键名称
+        String tableName = appMap.get(apptname).getApptable();
+        String pkName = appMap.get(apptname).getAppfield();
+        //属性值
+        List<TbApp> appList = fieldsMap.get(apptname);
+        StringBuilder fieldBuilder = new StringBuilder("");
+        for (TbApp e : appList) {
+            fieldBuilder.append(e.getAppfield()).append(",");
+            propertyMap.put(e.getAppfield(), Class.forName(e.getFieldtype()));
+        }
+        String fields = fieldBuilder.substring(0, fieldBuilder.length() - 1);
+
+        StringBuilder sql = new StringBuilder("");
+        sql.append("select ").append(fields).append(" from ").append(tableName).append(" where ").append(pkName).append("=").append(":PKNAME");
+        List list = sessionFactory.getCurrentSession().createSQLQuery(sql.toString()).setString("PKNAME", pkid).list();
+//        Object obj = list.get(0);
+        //动态生成类
+        CglibUtil bean = new CglibUtil(propertyMap);
+        Field[] declaredFields = bean.getObject().getClass().getDeclaredFields();
+        String[] split = fields.split(",");
+
+        List<Object[]> nameList = list;
+
+        constructorObject(bean, declaredFields, split, nameList);
+        return bean.getObject();
+    }
+
+    private void constructorObject(CglibUtil bean, Field[] declaredFields, String[] split, List<Object[]> nameList) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        for (Object[] o : nameList) {
+            for (int j = 0; j < split.length; j++) {
+                objectConstructor(declaredFields[j], split[j], o[j], bean);
+            }
+        }
     }
 
 }
