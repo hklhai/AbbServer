@@ -29,7 +29,7 @@ import java.util.*;
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
-    static Map<String, TbApp> appMap = new HashMap<>();
+    static Map<String, TbApp> appListMap = new HashMap<>();
     static Map<String, List<TbApp>> fieldsMap = new LinkedHashMap<>();
     static Map<String, List<TbApp>> detailMap = new LinkedHashMap<>();
 
@@ -75,8 +75,8 @@ public class UserServiceImpl implements UserService {
         });
 
         for (TbApp e : appList) {
-            if (e.getIspk() == 1) {
-                appMap.put(e.getAppname(), e);
+            if (e.getIspk() == 1&&e.getAppcontent().equals("LIST")) {
+                appListMap.put(e.getAppname(), e);
             }
         }
     }
@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public TbApp getAppName(String apptname) {
-        return appMap.get(apptname);
+        return appListMap.get(apptname);
     }
 
     public List<User> getUserList() {
@@ -103,8 +103,8 @@ public class UserServiceImpl implements UserService {
         //动态生成类
         List<TbApp> dbList = fieldsMap.get(apptname);
 
-        String apptable = appMap.get(apptname).getApptable();
-        String pkid = appMap.get(apptname).getAppfield();
+        String apptable = appListMap.get(apptname).getApptable();
+        String pkid = appListMap.get(apptname).getAppfield();
         for (TbApp app : dbList) {
             //设置值
             propertyMap.put(app.getAppfield(), Class.forName(app.getFieldtype()));
@@ -204,8 +204,8 @@ public class UserServiceImpl implements UserService {
         Map<String, Object> propertyMap = new LinkedHashMap();
 
         //获取表名与主键名称
-        String tableName = appMap.get(apptname).getApptable();
-        String pkName = appMap.get(apptname).getAppfield();
+        String tableName = appListMap.get(apptname).getApptable();
+        String pkName = appListMap.get(apptname).getAppfield();
         //属性值
         List<TbApp> appList = fieldsMap.get(apptname);
         StringBuilder fieldBuilder = new StringBuilder("");
