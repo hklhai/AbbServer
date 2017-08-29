@@ -256,6 +256,9 @@ public class UserServiceImpl implements UserService {
         List<Person> personList = personDao.findAll("personid=" + sessionInfo.getLoginId(), null, null);
         Person person = personList.get(0);
         person.setFavorites(apptname+":"+favorites);
+        //TODO 新增是逻辑判断
+
+        personDao.update(person);
     }
 
     private void constructorObject(CglibUtil bean, Field[] declaredFields, String[] split, List<Object[]> nameList) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
