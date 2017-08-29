@@ -8,13 +8,16 @@ $(function() {
         this.search = "";
         //ajax交换的数据
         this.initAjax = {};
+        this.isFirstLoad = true;
     }
     commonList.prototype = {
         constructor: commonList,
         initData: function(){
             var self = this;
-            self.initBind();
-            self.initNames();
+            if(self.isFirstLoad){
+                self.initBind();
+                self.initNames();
+            }
             self.initAjaxData();
             $.ajax({
                 url: _ctx + "/common/listData",
@@ -39,7 +42,6 @@ $(function() {
                 searchs: self.search,
                 pageSize: self.pageSize,
                 pageNumber: self.pageNumber
-
             }
         },
         initNames:function(){
@@ -84,6 +86,21 @@ $(function() {
             self.pageNumber = pageData.pageNumber;
             self.pageSize = pageData.pageSize;
             self.totalPageNum = pageData.totalPageNum;
+
+        },
+        initBind:function(){
+            var self = this;
+            $("table.mytable tbody tr:nth-child(1) td input").keyup(function(event){
+                if(event.keyCode ==13){
+                    alert("aaaaaaaa");
+                    self.initData();
+                    return false;
+                }
+            });
+            $(".myform").click(function(){
+                window.location.href =  _ctx + "/common/detail";
+            });
+            //page按钮事件绑定
             $(".prePage").click(function(){
                 var prepage = self.pageNumber - 1;
                 if (prepage < 1) {
@@ -112,11 +129,6 @@ $(function() {
                     self.pageNumber = gotoPage;
                     self.initData();
                 }
-            });
-        },
-        initBind:function(){
-            $(".myform").click(function(){
-                window.location.href =  _ctx + "/common/detail";
             });
         }
     }

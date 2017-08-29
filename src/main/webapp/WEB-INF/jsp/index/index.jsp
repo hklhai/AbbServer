@@ -208,7 +208,7 @@
         </div>
     </div>
 </div>
-<script src="${ctx}/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="${ctx}/js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="${ctx}/js/DatePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="${ctx}/js/DatePicker/extraDate.js"></script>
 </body>

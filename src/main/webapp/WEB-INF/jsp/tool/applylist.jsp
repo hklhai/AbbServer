@@ -17,11 +17,6 @@
     <link rel="stylesheet" href="${ctx}/css/stock-tool.css">
     <link rel="stylesheet" href="${ctx}/css/header.css">
     <link rel="stylesheet" href="${ctx}/css/page.css">
-    <script type="text/javascript">
-
-
-    </script>
-
 </head>
 <body>
 <div class="stock-content">

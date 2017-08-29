@@ -112,20 +112,20 @@
         <h5>下一个审批人</h5>
         <table>
             <thead>
-            <tr>
-                <td width="20%">人员</td>
-                <td width="20%">名称</td>
-                <td width="20%">描述</td>
-                <td width="40%">过程</td>
-            </tr>
+                <tr>
+                    <td width="20%">人员</td>
+                    <td width="20%">名称</td>
+                    <td width="20%">描述</td>
+                    <td width="40%">过程</td>
+                </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1323323</td>
-                <td>冯辉</td>
-                <td>请审批工具报告申请1020</td>
-                <td>WTODLAPPL</td>
-            </tr>
+                <tr>
+                    <td>1323323</td>
+                    <td>冯辉</td>
+                    <td>请审批工具报告申请1020</td>
+                    <td>WTODLAPPL</td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -133,50 +133,50 @@
         <h5>审批记录</h5>
         <table>
             <thead>
-            <tr>
-                <td width="20%">人员</td>
-                <td width="20%">名称</td>
-                <td width="20%">描述</td>
-                <td width="15%">交易日期</td>
-                <td width="25%">备忘录</td>
-            </tr>
+                <tr>
+                    <td width="20%">人员</td>
+                    <td width="20%">名称</td>
+                    <td width="20%">描述</td>
+                    <td width="15%">交易日期</td>
+                    <td width="25%">备忘录</td>
+                </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
+                <tr>
+                    <td>MAXADIN</td>
+                    <td>MAXADIN</td>
+                    <td>确定操作</td>
+                    <td>2012-02-39</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>MAXADIN</td>
+                    <td>MAXADIN</td>
+                    <td>确定操作</td>
+                    <td>2012-02-39</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>MAXADIN</td>
+                    <td>MAXADIN</td>
+                    <td>确定操作</td>
+                    <td>2012-02-39</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>MAXADIN</td>
+                    <td>MAXADIN</td>
+                    <td>确定操作</td>
+                    <td>2012-02-39</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>MAXADIN</td>
+                    <td>MAXADIN</td>
+                    <td>确定操作</td>
+                    <td>2012-02-39</td>
+                    <td></td>
+                </tr>
             </tbody>
         </table>
     </div>
