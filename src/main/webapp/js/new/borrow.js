@@ -86,21 +86,49 @@ $(function() {
             self.pageNumber = pageData.pageNumber;
             self.pageSize = pageData.pageSize;
             self.totalPageNum = pageData.totalPageNum;
-
         },
         initBind:function(){
             var self = this;
+            //搜索
             $("table.mytable tbody tr:nth-child(1) td input").keyup(function(event){
                 if(event.keyCode ==13){
-                    alert("aaaaaaaa");
                     self.initData();
                     return false;
                 }
             });
+            $("table.mytable tbody tr:nth-child(1) td:last-child button").click(function(){
+                self.initData();
+            });
+            //创建表单
             $(".myform").click(function(){
                 window.location.href =  _ctx + "/common/detail";
             });
-            //page按钮事件绑定
+            //收藏
+            $(".mycollect").click(function(){
+
+            });
+            //单个数据收藏
+            $("table.mytable tbody tr:not(:nth-child(1)) td:last-child").click(function(){
+                var beforState = this.favorites ;
+                $.ajax({
+                    url: _ctx + "/common/favorites",
+                    method: "get",
+                    data: {
+                        apptname: apptnames,
+                        favorites:beforState,
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if(data.success){
+
+                        }
+                    },
+                    error: function () {
+
+                    }
+                });
+            });
+            //page按钮
             $(".prePage").click(function(){
                 var prepage = self.pageNumber - 1;
                 if (prepage < 1) {
