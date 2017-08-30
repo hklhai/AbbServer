@@ -116,7 +116,8 @@ $(function() {
                     },
                     dataType: "json",
                     success: function (data) {
-
+                        self.initDom();
+                        self.initPage();
                     },
                     error: function () {
 
