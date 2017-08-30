@@ -79,7 +79,7 @@ public class SystemServiceImpl implements SystemService {
      */
     @Override
     public IndexDto getSystemMessage(SessionInfo sessionInfo) throws Exception {
-        Map<String, Object> params = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<>();
         params.put("siteid", sessionInfo.getSiteid());
         params.put("reportedby", sessionInfo.getDisplayname());
         params.put("stateWarn", "报警");

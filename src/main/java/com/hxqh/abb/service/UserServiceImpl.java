@@ -12,6 +12,7 @@ import com.hxqh.abb.model.base.SessionInfo;
 import com.hxqh.abb.model.dto.action.DetailDto;
 import com.hxqh.abb.model.dto.action.ListDto;
 import com.hxqh.abb.model.searchdto.Page;
+import org.apache.xpath.functions.FuncStartsWith;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.type.StandardBasicTypes;
@@ -175,7 +176,7 @@ public class UserServiceImpl implements UserService {
         //list遍历，每个对象通过反射调用get得到主键值，判断主键值是否存在，若存在，调用通过反射调用set favorites方法设置值
         //获取该appname下的收藏的ID
 
-        Map<String, Object> params = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<>();
         params.put("personid", loginId.toUpperCase());
         String where = "personid=:personid ";
         List<Person> personList = personDao.findAll(where, params, null);
@@ -286,10 +287,33 @@ public class UserServiceImpl implements UserService {
         //查询Person表
         List<Person> personList = personDao.findAll("personid=" + sessionInfo.getLoginId(), null, null);
         Person person = personList.get(0);
-        person.setFavorites(apptname + ":" + favorites);
-        //TODO 新增是逻辑判断
+        //判断Favorites字段是否为空
+        if (person.getFavorites() == null) {
+            person.setFavorites(apptname + ":" + favorites);
+            personDao.update(person);
+        } else {
+            String f = person.getFavorites();
+            String[] strings = f.split(";");
+            List<String> list = new ArrayList<>();
+            Collections.addAll(list, strings);
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).contains(apptname)) {
+                    List<String> funcs = new ArrayList<>();
+                    String[] s = list.get(i).split(":")[1].split(",");
+                    Collections.addAll(funcs, s);
 
-        personDao.update(person);
+                    if (list.get(i).split(":")[1].contains(favorites)) {
+                        funcs.remove(favorites);
+                    } else {
+                        funcs.add(favorites);
+                    }
+                    list.remove(list.get(i));
+                    list.add(apptname+":"+funcs.toString());
+                }
+            }
+            person.setFavorites(list.toString());
+            personDao.update(person);
+        }
     }
 
     private void constructorObject(CglibUtil bean, Field[] declaredFields, String[] split, List<Object[]> nameList) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
