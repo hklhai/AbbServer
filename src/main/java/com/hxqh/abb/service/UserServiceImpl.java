@@ -2,19 +2,11 @@ package com.hxqh.abb.service;
 
 import com.hxqh.abb.common.util.CglibUtil;
 import com.hxqh.abb.common.util.GroupListUtil;
-import com.hxqh.abb.dao.FavoriteDao;
-import com.hxqh.abb.dao.PersonDao;
-import com.hxqh.abb.dao.TbAppDao;
-import com.hxqh.abb.dao.UserDao;
-import com.hxqh.abb.model.Favorite;
-import com.hxqh.abb.model.Person;
-import com.hxqh.abb.model.TbApp;
-import com.hxqh.abb.model.User;
-import com.hxqh.abb.model.base.SessionInfo;
+import com.hxqh.abb.dao.*;
+import com.hxqh.abb.model.*;
 import com.hxqh.abb.model.dto.action.DetailDto;
 import com.hxqh.abb.model.dto.action.ListDto;
 import com.hxqh.abb.model.searchdto.Page;
-import com.sun.xml.xsom.impl.ListSimpleTypeImpl;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.type.StandardBasicTypes;
@@ -41,21 +33,21 @@ public class UserServiceImpl implements UserService {
     static Map<String, TbApp> appDetailMap = new HashMap<>();
     static Map<String, List<TbApp>> fieldsMap = new LinkedHashMap<>();
     static Map<String, List<TbApp>> detailMap = new LinkedHashMap<>();
-
-    @Autowired
-    private UserDao userDao;
-
-    @Resource
-    protected SessionFactory sessionFactory;
-
-    @Autowired
-    private TbAppDao appDao;
+    static Map<String, List<Relation>> relativeMap = new LinkedHashMap<>();
 
     @Autowired
     private PersonDao personDao;
 
     @Autowired
+    private UserDao userDao;
+    @Resource
+    protected SessionFactory sessionFactory;
+    @Autowired
+    private TbAppDao appDao;
+    @Autowired
     private FavoriteDao favoriteDao;
+    @Autowired
+    private RelationDao relationDao;
 
     @PostConstruct
     public void init() {
@@ -95,6 +87,16 @@ public class UserServiceImpl implements UserService {
                 appDetailMap.put(e.getAppname(), e);
             }
         }
+        /**************************初始化Detail详情关系****************************/
+        List<Relation> relationList = relationDao.findAll();
+        //对relationList按照APPCONTENT分组
+        Map<String, List<Relation>> relativeMap = GroupListUtil.group(relationList, new GroupListUtil.GroupBy<String>() {
+            @Override
+            public String groupby(Object obj) {
+                Relation d = (Relation) obj;
+                return d.getAppname();    // 分组依据为Appname
+            }
+        });
     }
 
     @Override
@@ -285,8 +287,9 @@ public class UserServiceImpl implements UserService {
         List<Object[]> nameList = list;
 
         constructorObject(bean, declaredFields, split, nameList);
+        //TODO
         //增加子表关系
-
+        relativeMap.get(apptname);
 
         //增加审核与下一审批人关系
 
@@ -323,6 +326,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ListDto favoritesData(Page page, String apptname, String loginId) throws Exception {
+        //TODO  改造
         StringBuilder fs = new StringBuilder("");
         Map<String, Object> propertyMap = new LinkedHashMap();
 
