@@ -22,6 +22,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/common")
+@SessionAttributes(value = "sessionInfo")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -63,10 +64,11 @@ public class UserController {
     public ListDto data(Page page,
                         @RequestParam("apptname") String apptname,
                         @RequestParam("fields") String fields,
-                        @RequestParam("searchs") String searchs) {
+                        @RequestParam("searchs") String searchs,
+                        @ModelAttribute("sessionInfo") SessionInfo sessionInfo) {
         ListDto listData = null;
         try {
-            listData = userService.vehicleListData(page, apptname, fields, searchs);
+            listData = userService.vehicleListData(page, apptname, fields, searchs,sessionInfo.getLoginId());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -87,7 +89,7 @@ public class UserController {
      * List公用数据接口
      *
      * @param apptname 传入VEHICLEACCOUNT,VEHICLEACAPPLY etc.
-     * @param pkid 传入主键信息 etc.
+     * @param pkid     传入主键信息 etc.
      * @return
      */
     @ResponseBody
@@ -95,7 +97,7 @@ public class UserController {
     public DetailDto detailData(@RequestParam("apptname") String apptname, @RequestParam("pkid") String pkid) {
         DetailDto data = null;
         try {
-            data = userService.detailData( apptname, pkid );
+            data = userService.detailData(apptname, pkid);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -111,7 +113,7 @@ public class UserController {
         Message message = new Message(1, "Success", true);
 
         try {
-            userService.favorites(apptname,favorites,sessionInfo);
+            userService.favorites(apptname, favorites, sessionInfo);
         } catch (Exception e) {
             e.printStackTrace();
             return new Message(0, "Fail", false);

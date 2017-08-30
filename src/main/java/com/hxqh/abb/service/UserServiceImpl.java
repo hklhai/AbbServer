@@ -24,6 +24,7 @@ import javax.annotation.Resource;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.math.BigInteger;
 import java.util.*;
 
 /**
@@ -105,7 +106,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ListDto vehicleListData(Page page, String apptname, String fieldsx, String searchs) throws Exception {
+    public ListDto vehicleListData(Page page, String apptname, String fieldsx, String searchs, String loginId) throws Exception {
         StringBuilder fs = new StringBuilder("");
         Map<String, Object> propertyMap = new LinkedHashMap();
 
@@ -123,7 +124,6 @@ public class UserServiceImpl implements UserService {
             }
             if (app.getIspk() == 1) {
                 propertyMap.put("ROWNUMBER", Class.forName("java.lang.Object"));
-                propertyMap.put("FAVORITES", Class.forName("java.lang.Object"));
             }
         }
 
@@ -139,7 +139,7 @@ public class UserServiceImpl implements UserService {
         String fields = fs.substring(0, fs.length() - 1);
         //查询语句拼接
         StringBuilder stringBuilder = new StringBuilder("");
-        stringBuilder.append("SELECT * FROM (SELECT rownumber () over (ORDER BY ORDER of inner2_) AS rownumber,inner2_.*,rownumber () over (ORDER BY ORDER of inner2_) as FAVORITES FROM(");
+        stringBuilder.append("SELECT * FROM (SELECT inner2_.*,rownumber () over (ORDER BY ORDER of inner2_) AS ROWNUMBER FROM(");
         stringBuilder.append("select ").append(fields);
 
         StringBuilder noPageBuilder = new StringBuilder("");
@@ -150,15 +150,15 @@ public class UserServiceImpl implements UserService {
         stringBuilder.append(noPageBuilder);
         stringBuilder.append(" order by ").append(pkid).append(" desc ");//排序
         stringBuilder.append("FETCH FIRST ").append(page.getlastResultNumber(page.getPageNumber(), page.getPageSize())).append(" rows only");
-        stringBuilder.append(") AS inner2_ ) AS inner1_ WHERE rownumber > ");
+        stringBuilder.append(") AS inner2_ ) AS inner1_ WHERE ROWNUMBER > ");
         stringBuilder.append(page.getfirstResultNumber(page.getPageNumber(), page.getPageSize()));
-        stringBuilder.append(" ORDER BY rownumber");
+        stringBuilder.append(" ORDER BY ROWNUMBER");
 
         //查询条件判断是否是空字符串，如果是空字符串不做拼接操作
         String[] searchsStrings = searchs.split(",");
         String[] splitFileds = fields.split(",");
         //拼接
-        String initString = "ROWNUMBER," + fields;
+        String initString = fields + ",ROWNUMBER";
         String[] split = initString.split(",");
 
         SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery(stringBuilder.toString());
@@ -171,24 +171,56 @@ public class UserServiceImpl implements UserService {
                 }
             }
         }
+
+        //list遍历，每个对象通过反射调用get得到主键值，判断主键值是否存在，若存在，调用通过反射调用set favorites方法设置值
+        //获取该appname下的收藏的ID
+
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("personid", loginId.toUpperCase());
+        String where = "personid=:personid ";
+        List<Person> personList = personDao.findAll(where, params, null);
+        Person person = personList.get(0);
+        String favor = person.getFavorites();
+        String[] strings = favor.split(";");
+        String[] ids = new String[30];
+        for (int i = 0; i < strings.length; i++) {
+            if (strings[i].contains(apptname)) {
+                ids = strings[i].split(":")[1].split(",");
+            }
+        }
+
         List list = new LinkedList<>();
         List<Object[]> nameList = sqlQuery.list();
-
         for (Object[] o : nameList) {
             CglibUtil bean = new CglibUtil(propertyMap);
-            for (int j = 0; j < splitFileds.length; j++) {
+            String id = null;
+            for (int j = 0; j < split.length; j++) {
                 String field = split[j];
+
                 String setMethodName = "set" + field;
                 Object object = bean.getObject();
-                Method setMethod = object.getClass().getDeclaredMethod(setMethodName, new Class[]{declaredFields[j].getType()});
-                if (field.equals("FAVORITES")) {
-                    setMethod.invoke(object, "0");
+                Class[] classes = {declaredFields[j].getType()};
+                Method setMethod = object.getClass().getDeclaredMethod(setMethodName, classes);
+                //保存当前主键
+                if (field.equals(pkid)) {
+                    BigInteger bigInteger = (BigInteger) o[j];
+                    id = bigInteger.toString();
+                }
+                if (setMethodName.contains("ROWNUMBER")) {
+                    //判断是否存在主键，存在设置为1；否则设置为0
+                    for (int u = 0; u < ids.length; u++) {
+                        if (id.equals(ids[u]))
+                            setMethod.invoke(object, 1);
+                        else
+                            setMethod.invoke(object, 0);
+                    }
                 } else {
                     setMethod.invoke(object, o[j]);
                 }
             }
             list.add(bean.getObject());
         }
+
 
         //获取总行数
         StringBuilder countSQL = new StringBuilder("");
@@ -204,7 +236,6 @@ public class UserServiceImpl implements UserService {
         Object score = countQuery.addScalar("c", StandardBasicTypes.INTEGER).uniqueResult();
         Integer size = Integer.parseInt(score.toString());
         page.setTotalPageNum(size);
-
 
         return new ListDto(list, page);
     }
@@ -255,7 +286,7 @@ public class UserServiceImpl implements UserService {
         //查询Person表
         List<Person> personList = personDao.findAll("personid=" + sessionInfo.getLoginId(), null, null);
         Person person = personList.get(0);
-        person.setFavorites(apptname+":"+favorites);
+        person.setFavorites(apptname + ":" + favorites);
         //TODO 新增是逻辑判断
 
         personDao.update(person);
