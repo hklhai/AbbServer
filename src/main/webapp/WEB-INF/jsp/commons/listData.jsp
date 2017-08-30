@@ -27,7 +27,7 @@
 <div class="borrow-body">
     <div class="layout">
         <p id="timedis"></p>
-        <h6 id="mytitle">${apptname}</h6>
+        <h6 id="mytitle">${title}</h6>
         <div class="mylable">
             <button type="button" class="btn myform">创建表单</button>
             <button type="button" class="btn mycollect">我的收藏</button>
