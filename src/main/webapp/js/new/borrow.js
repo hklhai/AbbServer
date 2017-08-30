@@ -111,20 +111,26 @@ $(function() {
                 alert("aaaaaa");
             });
             //单个数据收藏
-            $("table.mytable tbody tr:not(:nth-child(1)) td:last-child").click(function(){
-                alert('aaaaaaaaaa');
-                var beforState = this.favorites ;
+            $("table.mytable tbody").on("click","tr:not(:nth-child(1)) td:last-child",function(){
+                var className = this.className;
+                var dataId = $(this).siblings().last().text();
                 $.ajax({
                     url: _ctx + "/common/favorites",
-                    method: "get",
+                    method: "post",
                     data: {
                         apptname: apptnames,
-                        favorites:beforState,
+                        favorites: dataId,
                     },
                     dataType: "json",
                     success: function (data) {
                         if(data.success){
-
+                            if(className=='reimags'){
+                                $(this).removeClass("reimags").addClass("unimags");
+                            }else{
+                                $(this).removeClass("unimags").addClass("reimags");
+                            }
+                        }else{
+                            alert("操作失败！");
                         }
                     },
                     error: function () {
