@@ -2,9 +2,11 @@ package com.hxqh.abb.service;
 
 import com.hxqh.abb.common.util.CglibUtil;
 import com.hxqh.abb.common.util.GroupListUtil;
+import com.hxqh.abb.dao.FavoriteDao;
 import com.hxqh.abb.dao.PersonDao;
 import com.hxqh.abb.dao.TbAppDao;
 import com.hxqh.abb.dao.UserDao;
+import com.hxqh.abb.model.Favorite;
 import com.hxqh.abb.model.Person;
 import com.hxqh.abb.model.TbApp;
 import com.hxqh.abb.model.User;
@@ -12,6 +14,7 @@ import com.hxqh.abb.model.base.SessionInfo;
 import com.hxqh.abb.model.dto.action.DetailDto;
 import com.hxqh.abb.model.dto.action.ListDto;
 import com.hxqh.abb.model.searchdto.Page;
+import com.sun.xml.xsom.impl.ListSimpleTypeImpl;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.type.StandardBasicTypes;
@@ -50,6 +53,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private PersonDao personDao;
+
+    @Autowired
+    private FavoriteDao favoriteDao;
 
     @PostConstruct
     public void init() {
@@ -154,7 +160,7 @@ public class UserServiceImpl implements UserService {
 
         SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery(stringBuilder.toString());
 
-        if (searchsStrings.length > 0 ) {
+        if (searchsStrings.length > 0) {
             for (int i = 0; i < searchsStrings.length; i++) {
                 if (!"".equals(searchsStrings[i])) {
                     sqlQuery.setString(splitFileds[i], searchsStrings[i]);
@@ -166,14 +172,14 @@ public class UserServiceImpl implements UserService {
         //list遍历，每个对象通过反射调用get得到主键值，判断主键值是否存在，若存在，调用通过反射调用set favorites方法设置值
         //获取该appname下的收藏的ID
 
-        Person person = getPersonFavorites(loginId);
-        String favor = person.getFavorites();
-        String[] strings = favor.split(";");
-        String[] ids = new String[30];
-        for (int i = 0; i < strings.length; i++) {
-            if (strings[i].contains(apptname)) {
-                ids = strings[i].split(":")[1].split(",");
-            }
+        Map<String, Object> params = new HashMap<>();
+        params.put("personid", loginId.toUpperCase());
+        params.put("appname", apptname);
+        String where = "personid=:personid and appname=:appname";
+        List<Favorite> favoriteList = favoriteDao.findAll(where, params, null);
+        List<String> listFavorite = new ArrayList<>();
+        for (Favorite favorite : favoriteList) {
+            listFavorite.add(favorite.getPkid().toString());
         }
 
         List list = new LinkedList<>();
@@ -195,8 +201,10 @@ public class UserServiceImpl implements UserService {
                 }
                 if (setMethodName.contains("ROWNUMBER")) {
                     //判断是否存在主键，存在设置为1；否则设置为0
-                    for (int u = 0; u < ids.length; u++) {
-                        if (id.equals(ids[u]))
+                    if (favoriteList.size() == 0) {
+                        setMethod.invoke(object, 0);
+                    } else {
+                        if (listFavorite.contains(id))
                             setMethod.invoke(object, 1);
                         else
                             setMethod.invoke(object, 0);
@@ -269,7 +277,6 @@ public class UserServiceImpl implements UserService {
         StringBuilder sql = new StringBuilder("");
         sql.append("select ").append(fields).append(" from ").append(tableName).append(" where ").append(pkName).append("=").append(":PKNAME");
         List list = sessionFactory.getCurrentSession().createSQLQuery(sql.toString()).setString("PKNAME", pkid).list();
-//        Object obj = list.get(0);
         //动态生成类
         CglibUtil bean = new CglibUtil(propertyMap);
         Field[] declaredFields = bean.getObject().getClass().getDeclaredFields();
@@ -278,41 +285,39 @@ public class UserServiceImpl implements UserService {
         List<Object[]> nameList = list;
 
         constructorObject(bean, declaredFields, split, nameList);
+        //增加子表关系
+
+
+        //增加审核与下一审批人关系
+
+
         DetailDto detailDto = new DetailDto(bean.getObject());
         return detailDto;
     }
 
     @Override
-    public void favorites(String apptname, String favorites, SessionInfo sessionInfo) throws Exception {
-        //查询Person表
-        List<Person> personList = personDao.findAll("personid=" + sessionInfo.getLoginId(), null, null);
-        Person person = personList.get(0);
-        //判断Favorites字段是否为空
-        if (person.getFavorites() == null) {
-            person.setFavorites(apptname + ":" + favorites);
-            personDao.update(person);
-        } else {
-            String f = person.getFavorites();
-            String[] strings = f.split(";");
-            List<String> list = new ArrayList<>();
-            Collections.addAll(list, strings);
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).contains(apptname)) {
-                    List<String> funcs = new ArrayList<>();
-                    String[] s = list.get(i).split(":")[1].split(",");
-                    Collections.addAll(funcs, s);
+    public void favorites(String apptname, String favorites, String loginId) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("personid", loginId.toUpperCase());
+        params.put("appname", apptname);
+        String where = "personid=:personid and appname=:appname";
 
-                    if (list.get(i).split(":")[1].contains(favorites)) {
-                        funcs.remove(favorites);
-                    } else {
-                        funcs.add(favorites);
-                    }
-                    list.remove(list.get(i));
-                    list.add(apptname + ":" + funcs.toString());
+        List<Favorite> favoriteList = favoriteDao.findAll(where, params, null);
+        if (favoriteList.size() == 0) {
+            Favorite favorite = new Favorite(apptname, loginId.toUpperCase(), Long.valueOf(favorites));
+            favoriteDao.save(favorite);
+        } else {
+            int flag = 0;
+            for (Favorite favorite : favoriteList) {
+                if (favorite.getPkid().toString().equals(favorites)) {
+                    favoriteDao.delete(favoriteList.get(0).getFavoritesid());
+                    flag = 1;
                 }
             }
-            person.setFavorites(list.toString());
-            personDao.update(person);
+            if (flag == 0) {
+                Favorite favorite = new Favorite(apptname, loginId.toUpperCase(), Long.valueOf(favorites));
+                favoriteDao.save(favorite);
+            }
         }
     }
 
@@ -330,8 +335,7 @@ public class UserServiceImpl implements UserService {
             if (strings[i].contains(apptname)) {
                 ids = strings[i].split(":")[1];
                 break;
-            }
-            else
+            } else
                 ids = "0";
         }
 

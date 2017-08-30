@@ -1,12 +1,9 @@
 package com.hxqh.abb.common.util;
 
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
-
 import net.sf.cglib.beans.BeanGenerator;
 import net.sf.cglib.beans.BeanMap;
+
+import java.util.Map;
 
 /**
  * Created by Ocean lin on 2017/8/16.

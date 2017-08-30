@@ -16,7 +16,7 @@ public interface UserService {
 
     List<User> getUserList();
 
-    ListDto vehicleListData(Page page, String apptname, String fields, String searchs,String loginId) throws Exception;
+    ListDto vehicleListData(Page page, String apptname, String fields, String searchs, String loginId) throws Exception;
 
     List<TbApp> getAppInfo(String apptname);
 
@@ -24,7 +24,7 @@ public interface UserService {
 
     DetailDto detailData(String apptname, String pkid) throws Exception;
 
-    void favorites(String apptname, String favorites, SessionInfo sessionInfo) throws Exception;
+    void favorites(String apptname, String favorites, String loginId) throws Exception;
 
     ListDto favoritesData(Page page, String apptname, String loginId) throws Exception;
 }
