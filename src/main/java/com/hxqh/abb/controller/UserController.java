@@ -68,7 +68,7 @@ public class UserController {
                         @ModelAttribute("sessionInfo") SessionInfo sessionInfo) {
         ListDto listData = null;
         try {
-            listData = userService.vehicleListData(page, apptname, fields, searchs,sessionInfo.getLoginId());
+            listData = userService.vehicleListData(page, apptname, fields, searchs, sessionInfo.getLoginId());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -119,6 +119,28 @@ public class UserController {
             return new Message(0, "Fail", false);
         }
         return message;
+    }
+
+
+    /**
+     * List公用数据接口
+     *
+     * @param apptname 传入VEHICLEACCOUNT,VEHICLEACAPPLY etc.
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/favoritesData", method = RequestMethod.GET)
+    public ListDto favoritesData(Page page,
+                                 @RequestParam("apptname") String apptname,
+                                 @ModelAttribute("sessionInfo") SessionInfo sessionInfo) {
+        ListDto listData = null;
+        try {
+            listData = userService.favoritesData(page, apptname, sessionInfo.getLoginId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        listData.setApptname(apptname);
+        return listData;
     }
 
 }

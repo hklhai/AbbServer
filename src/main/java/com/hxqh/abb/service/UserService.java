@@ -25,4 +25,6 @@ public interface UserService {
     DetailDto detailData(String apptname, String pkid) throws Exception;
 
     void favorites(String apptname, String favorites, SessionInfo sessionInfo) throws Exception;
+
+    ListDto favoritesData(Page page, String apptname, String loginId) throws Exception;
 }
