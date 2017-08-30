@@ -113,7 +113,7 @@ public class UserController {
         Message message = new Message(1, "Success", true);
 
         try {
-            userService.favorites(apptname, favorites, sessionInfo);
+            userService.favorites(apptname, favorites, sessionInfo.getLoginId());
         } catch (Exception e) {
             e.printStackTrace();
             return new Message(0, "Fail", false);
