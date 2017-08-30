@@ -21,7 +21,7 @@ $(function() {
             self.initAjaxData();
             $.ajax({
                 url: _ctx + "/common/listData",
-                method: "get",
+                method: "post",
                 data: self.initAjax,
                 dataType: "json",
                 success: function (data) {
@@ -73,7 +73,11 @@ $(function() {
                     thisName = self.names[j];
                     tmpHtml+="<td>"+listData[i][thisName]+"</td>";
                 };
-                tmpHtml+="<td class='reimags'></td>";
+                if(listData[i].rownumber==0){
+                    tmpHtml+="<td class='unimags'></td>";
+                }else{
+                    tmpHtml+="<td class='reimags'></td>";
+                }
                 tmpHtml+="</tr>";
             }
             $(".mytable tbody tr").remove(":not(:first)");
@@ -93,7 +97,6 @@ $(function() {
             $("table.mytable tbody tr:nth-child(1) td input").keyup(function(event){
                 if(event.keyCode ==13){
                     self.initData();
-                    return false;
                 }
             });
             $("table.mytable tbody tr:nth-child(1) td:last-child button").click(function(){
@@ -105,10 +108,11 @@ $(function() {
             });
             //收藏
             $(".mycollect").click(function(){
-
+                alert("aaaaaa");
             });
             //单个数据收藏
             $("table.mytable tbody tr:not(:nth-child(1)) td:last-child").click(function(){
+                alert('aaaaaaaaaa');
                 var beforState = this.favorites ;
                 $.ajax({
                     url: _ctx + "/common/favorites",

@@ -91,7 +91,7 @@
             <i class="done nav-icon"></i>
             <a href="javascript:;">执行管理</a>
             <ul class="sec-ul">
-                <li><a href="javascript:;" target="menuFrame">工单管理</a></li>
+                <li><a href="${ctx}/common/list?apptname=WORKORDERMANAGEMENT" target="menuFrame">工单管理</a></li>
             </ul>
         </li>
         <li>
