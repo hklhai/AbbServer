@@ -108,7 +108,20 @@ $(function() {
             });
             //收藏
             $(".mycollect").click(function(){
-                alert("aaaaaa");
+                $.ajax({
+                    url: _ctx + "/common/favoritesData",
+                    method: "get",
+                    data: {
+                        apptname: apptnames,
+                    },
+                    dataType: "json",
+                    success: function (data) {
+
+                    },
+                    error: function () {
+
+                    }
+                });
             });
             //单个数据收藏
             $("table.mytable tbody").on("click","tr:not(:nth-child(1)) td:last-child",function(){
