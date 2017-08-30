@@ -126,6 +126,7 @@ $(function() {
             });
             //单个数据收藏
             $("table.mytable tbody").on("click","tr:not(:nth-child(1)) td:last-child",function(){
+                var _this = this;
                 var className = this.className;
                 var dataId = $(this).siblings().last().text();
                 $.ajax({
@@ -139,9 +140,9 @@ $(function() {
                     success: function (data) {
                         if(data.success){
                             if(className=='reimags'){
-                                $(this).removeClass("reimags").addClass("unimags");
+                                $(_this).removeClass("reimags").addClass("unimags");
                             }else{
-                                $(this).removeClass("unimags").addClass("reimags");
+                                $(_this).removeClass("unimags").addClass("reimags");
                             }
                         }else{
                             alert("操作失败！");
