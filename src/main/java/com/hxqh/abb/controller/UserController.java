@@ -60,7 +60,7 @@ public class UserController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/listData", method = RequestMethod.GET)
+    @RequestMapping(value = "/listData", method = RequestMethod.POST)
     public ListDto data(Page page,
                         @RequestParam("apptname") String apptname,
                         @RequestParam("fields") String fields,

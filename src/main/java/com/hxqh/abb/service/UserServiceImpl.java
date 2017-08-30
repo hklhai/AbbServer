@@ -131,6 +131,19 @@ public class UserServiceImpl implements UserService {
         noPageBuilder.append(" from ").append(apptable);
         noPageBuilder.append(" where 1=1 ");
 
+        //查询条件判断是否是空字符串，如果是空字符串不做拼接操作
+        String[] searchsStrings = searchs.split(",");
+        String[] splitFileds = fields.split(",");
+        //拼接
+        String initString = fields + ",ROWNUMBER";
+        String[] split = initString.split(",");
+        if (searchsStrings.length > 0) {
+            for (int i = 0; i < searchsStrings.length; i++) {
+                if (!"".equals(searchsStrings[i])) {
+                    noPageBuilder.append(" and ").append(splitFileds[i]).append("=:").append(splitFileds[i]);
+                }
+            }
+        }
 
         stringBuilder.append(noPageBuilder);
         stringBuilder.append(" order by ").append(pkid).append(" desc ");//排序
@@ -139,23 +152,16 @@ public class UserServiceImpl implements UserService {
         stringBuilder.append(page.getfirstResultNumber(page.getPageNumber(), page.getPageSize()));
         stringBuilder.append(" ORDER BY ROWNUMBER");
 
-        //查询条件判断是否是空字符串，如果是空字符串不做拼接操作
-        String[] searchsStrings = searchs.split(",");
-        String[] splitFileds = fields.split(",");
-        //拼接
-        String initString = fields + ",ROWNUMBER";
-        String[] split = initString.split(",");
-
         SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery(stringBuilder.toString());
 
-        if (searchsStrings.length > 0 && !searchsStrings[0].equals("")) {
+        if (searchsStrings.length > 0 ) {
             for (int i = 0; i < searchsStrings.length; i++) {
                 if (!"".equals(searchsStrings[i])) {
-                    noPageBuilder.append(" and ").append(splitFileds[i]).append("=:").append(splitFileds[i]);
                     sqlQuery.setString(splitFileds[i], searchsStrings[i]);
                 }
             }
         }
+
 
         //list遍历，每个对象通过反射调用get得到主键值，判断主键值是否存在，若存在，调用通过反射调用set favorites方法设置值
         //获取该appname下的收藏的ID
