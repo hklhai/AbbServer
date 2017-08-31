@@ -55,7 +55,7 @@ public class UserController {
      * List公用数据接口
      *
      * @param apptname 传入VEHICLEACCOUNT,VEHICLEACAPPLY etc.
-     * @param fields   字段名
+     * @param isFavorite   字段名
      * @param searchs  查询列
      * @return
      */
@@ -63,12 +63,12 @@ public class UserController {
     @RequestMapping(value = "/listData", method = RequestMethod.POST)
     public ListDto data(Page page,
                         @RequestParam("apptname") String apptname,
-                        @RequestParam("fields") String fields,
+                        @RequestParam("isFavorite") String isFavorite,
                         @RequestParam("searchs") String searchs,
                         @ModelAttribute("sessionInfo") SessionInfo sessionInfo) {
         ListDto listData = null;
         try {
-            listData = userService.vehicleListData(page, apptname, fields, searchs, sessionInfo.getLoginId());
+            listData = userService.vehicleListData(page, apptname, isFavorite, searchs, sessionInfo.getLoginId());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -89,7 +89,7 @@ public class UserController {
      * List公用数据接口
      *
      * @param apptname 传入VEHICLEACCOUNT,VEHICLEACAPPLY etc.
-     * @param pkid     传入主键信息 etc.
+     * @param pkid     传入主键信息
      * @return
      */
     @ResponseBody
@@ -105,6 +105,13 @@ public class UserController {
     }
 
 
+    /**
+     *
+     * @param apptname 传入VEHICLEACCOUNT,VEHICLEACAPPLY etc.
+     * @param favorites 传入将要搜藏或取消搜藏的主键
+     * @param sessionInfo session信息
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/favorites", method = RequestMethod.POST)
     public Message favorites(@RequestParam("apptname") String apptname,
@@ -122,25 +129,5 @@ public class UserController {
     }
 
 
-    /**
-     * List公用数据接口
-     *
-     * @param apptname 传入VEHICLEACCOUNT,VEHICLEACAPPLY etc.
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping(value = "/favoritesData", method = RequestMethod.GET)
-    public ListDto favoritesData(Page page,
-                                 @RequestParam("apptname") String apptname,
-                                 @ModelAttribute("sessionInfo") SessionInfo sessionInfo) {
-        ListDto listData = null;
-        try {
-            listData = userService.favoritesData(page, apptname, sessionInfo.getLoginId());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        listData.setApptname(apptname);
-        return listData;
-    }
 
 }
