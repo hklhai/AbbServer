@@ -303,37 +303,77 @@ public class UserServiceImpl implements UserService {
         List<Relation> childList = new ArrayList<>();
         Relation audit = new Relation();
         //判断是否有子表
-        for (Relation e : relationList) {
-            if (e.getIschild() == 1)
-                childList.add(e);
-            if (e.getIschild() == 2)
-                audit = e;
+        if (relationList != null) {
+            for (Relation e : relationList) {
+                if (e.getIschild() == 1)
+                    childList.add(e);
+                if (e.getIschild() == 2)
+                    audit = e;
+            }
         }
+        /*****************************************子表**************************************************/
         //增加子表数据
         if (childList.size() > 0) {
+            for (Relation child : childList) {
 
+            }
         }
+        /*****************************************子表***************************************************/
 
+        /*****************************************下一审批人*********************************************/
+        List<Object[]> auditList = new LinkedList();
+        List aList = new LinkedList<>();
 
-        List auditList = new LinkedList();
         //增加审核与下一审批人关系
         if (audit != null) {
-            String str = "t1.PERSONID,t2.DISPLAYNAME AS DISPLAYNAME,t1.TRANSDATE,t1.MEMO,t1.ownertable,t1.OWNERID";
+            String str = "T1.PERSONID,T2.DISPLAYNAME AS DISPLAYNAME,T1.TRANSDATE,T1.MEMO,T1.OWNERTABLE,T1.OWNERID,T1.TRANSID";
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("SELECT ").append(str);
             stringBuilder.append(" FROM WFTRANSACTION t1 LEFT JOIN PERSON t2 ON t1.PERSONID = t2.PERSONID where ");
             //ownertable = 'UDTOOLAPPLY' and ownerid = :udtoolapplyid
-            stringBuilder.append("ownertable=:ownertable and ownerid=:ownerid");
+            stringBuilder.append("ownertable=:ownertable and ownerid=:ownerid ");
             auditList = sessionFactory.getCurrentSession().createSQLQuery(stringBuilder.toString())
                     .setString("ownertable", audit.getApptable()).setString("ownerid", pkid).list();
+
             //构造类 反射设置值
-            //TODO 抽出公共方法
+            Map<String, Object> auditPropertyMap = new LinkedHashMap();
+
+            List<String> pList = new LinkedList() {{
+                add("PERSONID");
+                add("DISPLAYNAME");
+                add("TRANSDATE");
+                add("MEMO");
+                add("OWNERTABLE");
+                add("OWNERID");
+                add("TRANSID");
+            }};
+            StringBuilder auditBuilder = new StringBuilder("");
+            for (String e : pList) {
+                auditBuilder.append(e).append(",");
+                auditPropertyMap.put(e, Class.forName("java.lang.Object"));
+            }
+            String auditFields = auditBuilder.substring(0, auditBuilder.length() - 1);
+            String[] auditSplit = auditFields.split(",");
 
 
-            System.out.println(auditList);
+            for (Object[] o : auditList) {
+                CglibUtil auditBean = new CglibUtil(auditPropertyMap);
+                Field[] auditDeclaredFields = auditBean.getObject().getClass().getDeclaredFields();
+
+                for (int j = 0; j < auditSplit.length; j++) {
+                    String field = auditSplit[j];
+                    String setMethodName = "set" + field;
+                    Object object = auditBean.getObject();
+                    Class[] classes = {auditDeclaredFields[j].getType()};
+                    Method setMethod = object.getClass().getDeclaredMethod(setMethodName, classes);
+                    setMethod.invoke(object, o[j]);
+                }
+                aList.add(auditBean.getObject());
+            }
         }
+        /*****************************************下一审批人*********************************************/
 
-        DetailDto detailDto = new DetailDto(bean.getObject());
+        DetailDto detailDto = new DetailDto(bean.getObject(), aList);
         return detailDto;
     }
 
