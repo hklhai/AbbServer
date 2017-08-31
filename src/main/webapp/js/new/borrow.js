@@ -9,6 +9,7 @@ $(function() {
         //ajax交换的数据
         this.initAjax = {};
         this.isFirstLoad = true;
+        this.favorite = "";
     }
     commonList.prototype = {
         constructor: commonList,
@@ -38,8 +39,8 @@ $(function() {
             self.initSearch();
             self.initAjax =  {
                 apptname: apptnames,
-                fields: self.names.join(",").toUpperCase() ,
                 searchs: self.search,
+                isFavorite: self.favorite,
                 pageSize: self.pageSize,
                 pageNumber: self.pageNumber
             }
@@ -96,6 +97,7 @@ $(function() {
             //搜索
             $("table.mytable tbody tr:nth-child(1) td input").keyup(function(event){
                 if(event.keyCode ==13){
+                    self.favorite = "";
                     self.initData();
                 }
             });
@@ -108,21 +110,8 @@ $(function() {
             });
             //收藏
             $(".mycollect").click(function(){
-                $.ajax({
-                    url: _ctx + "/common/favoritesData",
-                    method: "get",
-                    data: {
-                        apptname: apptnames,
-                    },
-                    dataType: "json",
-                    success: function (data) {
-                        self.initDom();
-                        self.initPage();
-                    },
-                    error: function () {
-
-                    }
-                });
+                self.favorite = "favorite";
+                self.initData();
             });
             //单个数据收藏
             $("table.mytable tbody").on("click","tr:not(:nth-child(1)) td:last-child",function(){
