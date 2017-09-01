@@ -9,13 +9,15 @@ public class DetailDto {
 
     private Object object;
     private List aList;
+    private List nAuditList;
 
     public DetailDto() {
     }
 
-    public DetailDto(Object object, List aList) {
+    public DetailDto(Object object, List aList, List nAuditList) {
         this.object = object;
         this.aList = aList;
+        this.nAuditList = nAuditList;
     }
 
     public List getaList() {
@@ -32,5 +34,13 @@ public class DetailDto {
 
     public void setObject(Object object) {
         this.object = object;
+    }
+
+    public List getnAuditList() {
+        return nAuditList;
+    }
+
+    public void setnAuditList(List nAuditList) {
+        this.nAuditList = nAuditList;
     }
 }

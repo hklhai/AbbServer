@@ -36,9 +36,6 @@ public class UserServiceImpl implements UserService {
     static Map<String, List<Relation>> relativeMap = new LinkedHashMap<>();
 
     @Autowired
-    private PersonDao personDao;
-
-    @Autowired
     private UserDao userDao;
     @Resource
     protected SessionFactory sessionFactory;
@@ -274,7 +271,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public DetailDto detailData(String apptname, String pkid) throws Exception {
-        Map<String, Object> propertyMap = new LinkedHashMap();
+        Map<String, Object> propertyMap = new LinkedHashMap<>();
 
         //获取表名与主键名称
         String tableName = appDetailMap.get(apptname).getApptable();
@@ -311,16 +308,83 @@ public class UserServiceImpl implements UserService {
                     audit = e;
             }
         }
-        /*****************************************子表**************************************************/
+        /*****************************************子表************************************************/
         //增加子表数据
         if (childList.size() > 0) {
             for (Relation child : childList) {
 
             }
         }
-        /*****************************************子表***************************************************/
+        /*****************************************子表*************************************************/
 
-        /*****************************************下一审批人*********************************************/
+
+        //审批记录
+        List aList = auditRecord(pkid, audit);
+        /*****************************************下一审批人*******************************************/
+
+        List<Object[]> nextAuditList = new LinkedList();
+        List nAuditList = new LinkedList<>();
+
+        //t2 where t1.WFASSIGNMENTID = t2.PERSONUID and ownertable = 'UDTOOLAPPLY' and t1.ownerid = 41 and assignstatus
+        //in (select value from synonymdomain where domainid='WFASGNSTATUS' and maxvalue='ACTIVE')
+        if (audit != null) {
+            String str = "T1.ASSIGNCODE,T2.DISPLAYNAME,T1.DESCRIPTION,T1.PROCESSNAME,T1.OWNERTABLE,T1.OWNERID,T1.WFASSIGNMENTID";
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("SELECT ").append(str);
+            stringBuilder.append(" from WFASSIGNMENT t1,PERSON t2 where t1.WFASSIGNMENTID = t2.PERSONUID and ");
+            //ownertable = 'UDTOOLAPPLY' and t1.ownerid = 41
+            stringBuilder.append("ownertable=:ownertable and ownerid=:ownerid ");
+            nextAuditList = sessionFactory.getCurrentSession().createSQLQuery(stringBuilder.toString())
+                    .setString("ownertable", audit.getApptable()).setString("ownerid", pkid).list();
+
+            //构造类 反射设置值
+            Map<String, Object> auditPropertyMap = new LinkedHashMap();
+
+            List<String> pList = new LinkedList() {{
+                add("ASSIGNCODE");
+                add("DISPLAYNAME");
+                add("DESCRIPTION");
+                add("PROCESSNAME");
+                add("OWNERTABLE");
+                add("OWNERID");
+                add("WFASSIGNMENTID");
+            }};
+            StringBuilder nextAuditBuilder = new StringBuilder("");
+            for (String e : pList) {
+                nextAuditBuilder.append(e).append(",");
+                auditPropertyMap.put(e, Class.forName("java.lang.Object"));
+            }
+            String auditFields = nextAuditBuilder.substring(0, nextAuditBuilder.length() - 1);
+            String[] auditSplit = auditFields.split(",");
+
+            dealList(nextAuditList, nAuditList, auditPropertyMap, auditSplit);
+        }
+
+
+        /*****************************************下一审批人*******************************************/
+
+        DetailDto detailDto = new DetailDto(bean.getObject(), aList,nAuditList);
+        return detailDto;
+    }
+
+    private void dealList(List<Object[]> nextAuditList, List nAuditList, Map<String, Object> auditPropertyMap, String[] auditSplit) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        for (Object[] o : nextAuditList) {
+            CglibUtil auditBean = new CglibUtil(auditPropertyMap);
+            Field[] auditDeclaredFields = auditBean.getObject().getClass().getDeclaredFields();
+
+            for (int j = 0; j < auditSplit.length; j++) {
+                String field = auditSplit[j];
+                String setMethodName = "set" + field;
+                Object object = auditBean.getObject();
+                Class[] classes = {auditDeclaredFields[j].getType()};
+                Method setMethod = object.getClass().getDeclaredMethod(setMethodName, classes);
+                setMethod.invoke(object, o[j]);
+            }
+            nAuditList.add(auditBean.getObject());
+        }
+    }
+
+    private List auditRecord(String pkid, Relation audit) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         List<Object[]> auditList = new LinkedList();
         List aList = new LinkedList<>();
 
@@ -355,26 +419,9 @@ public class UserServiceImpl implements UserService {
             String auditFields = auditBuilder.substring(0, auditBuilder.length() - 1);
             String[] auditSplit = auditFields.split(",");
 
-
-            for (Object[] o : auditList) {
-                CglibUtil auditBean = new CglibUtil(auditPropertyMap);
-                Field[] auditDeclaredFields = auditBean.getObject().getClass().getDeclaredFields();
-
-                for (int j = 0; j < auditSplit.length; j++) {
-                    String field = auditSplit[j];
-                    String setMethodName = "set" + field;
-                    Object object = auditBean.getObject();
-                    Class[] classes = {auditDeclaredFields[j].getType()};
-                    Method setMethod = object.getClass().getDeclaredMethod(setMethodName, classes);
-                    setMethod.invoke(object, o[j]);
-                }
-                aList.add(auditBean.getObject());
-            }
+            dealList(auditList, aList, auditPropertyMap, auditSplit);
         }
-        /*****************************************下一审批人*********************************************/
-
-        DetailDto detailDto = new DetailDto(bean.getObject(), aList);
-        return detailDto;
+        return aList;
     }
 
     @Override
