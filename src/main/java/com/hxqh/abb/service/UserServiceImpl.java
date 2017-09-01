@@ -2,8 +2,14 @@ package com.hxqh.abb.service;
 
 import com.hxqh.abb.common.util.CglibUtil;
 import com.hxqh.abb.common.util.GroupListUtil;
-import com.hxqh.abb.dao.*;
-import com.hxqh.abb.model.*;
+import com.hxqh.abb.dao.FavoriteDao;
+import com.hxqh.abb.dao.RelationDao;
+import com.hxqh.abb.dao.TbAppDao;
+import com.hxqh.abb.dao.UserDao;
+import com.hxqh.abb.model.Favorite;
+import com.hxqh.abb.model.Relation;
+import com.hxqh.abb.model.TbApp;
+import com.hxqh.abb.model.User;
 import com.hxqh.abb.model.dto.action.DetailDto;
 import com.hxqh.abb.model.dto.action.ListDto;
 import com.hxqh.abb.model.searchdto.Page;
@@ -33,6 +39,7 @@ public class UserServiceImpl implements UserService {
     static Map<String, TbApp> appDetailMap = new HashMap<>();
     static Map<String, List<TbApp>> fieldsMap = new LinkedHashMap<>();
     static Map<String, List<TbApp>> detailMap = new LinkedHashMap<>();
+    static Map<String, List<TbApp>> childMap = new LinkedHashMap<>();
     static Map<String, List<Relation>> relativeMap = new LinkedHashMap<>();
 
     @Autowired
@@ -74,6 +81,15 @@ public class UserServiceImpl implements UserService {
             public String groupby(Object obj) {
                 TbApp d = (TbApp) obj;
                 return d.getAppname();    // 分组依据为Appname
+            }
+        });
+
+        //子表
+        childMap = GroupListUtil.group(allMap.get("CHILD"), new GroupListUtil.GroupBy<String>() {
+            @Override
+            public String groupby(Object obj) {
+                TbApp d = (TbApp) obj;
+                return d.getChildtablename();    // 分组依据为Childtablename
             }
         });
 
@@ -309,19 +325,53 @@ public class UserServiceImpl implements UserService {
             }
         }
         /*****************************************子表************************************************/
-        //增加子表数据
-        if (childList.size() > 0) {
-            for (Relation child : childList) {
-
-            }
-        }
+//        //增加子表数据
+//        if (childList.size() > 0) {
+//            Map<String, List> map = new LinkedHashMap<>();
+//            for (Relation child : childList) {
+//                List<Object[]> cList = new LinkedList();
+//                List nAuditList = new LinkedList<>();
+//                Map<String, Object> cMap = new LinkedHashMap<>();
+//
+//                //现获取field
+//                List<TbApp> tbApps = childMap.get(child.getRelationtable());
+//
+//                StringBuilder cBuilder = new StringBuilder("");
+//                for (TbApp e : tbApps) {
+//                    cBuilder.append(e.getAppfield()).append(",");
+//                    cMap.put(e.getAppfield(), Class.forName(e.getFieldtype()));
+//                }
+//                String str = cBuilder.toString().substring(0, cBuilder.length() - 1);
+//                String childTabName = child.getRelationtable();
+//                String where = child.getWherestatement();
+//                String[] wherefField = child.getWherefield().split(",");
+//                //获取表名
+//
+//                StringBuilder stringBuilder = new StringBuilder();
+//                stringBuilder.append("SELECT ").append(str).append(" FROM ").append(childTabName);
+//                stringBuilder.append(" WHERE ").append(where);
+//                Query query = sessionFactory.getCurrentSession().createSQLQuery(stringBuilder.toString());
+//                for (int y = 0; y < wherefField.length; y++) {
+//                    query.setString(wherefField[y], );
+//                }
+////                cList =       .list();
+//
+//            }
+//        }
         /*****************************************子表*************************************************/
 
 
         //审批记录
         List aList = auditRecord(pkid, audit);
-        /*****************************************下一审批人*******************************************/
+        //下一审批人
+        List nAuditList = getNextAuditList(pkid, audit);
 
+
+        DetailDto detailDto = new DetailDto(bean.getObject(), aList, nAuditList);
+        return detailDto;
+    }
+
+    private List getNextAuditList(String pkid, Relation audit) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         List<Object[]> nextAuditList = new LinkedList();
         List nAuditList = new LinkedList<>();
 
@@ -359,12 +409,7 @@ public class UserServiceImpl implements UserService {
 
             dealList(nextAuditList, nAuditList, auditPropertyMap, auditSplit);
         }
-
-
-        /*****************************************下一审批人*******************************************/
-
-        DetailDto detailDto = new DetailDto(bean.getObject(), aList,nAuditList);
-        return detailDto;
+        return nAuditList;
     }
 
     private void dealList(List<Object[]> nextAuditList, List nAuditList, Map<String, Object> auditPropertyMap, String[] auditSplit) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
