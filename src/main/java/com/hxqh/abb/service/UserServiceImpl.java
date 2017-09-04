@@ -7,8 +7,11 @@ import com.hxqh.abb.model.*;
 import com.hxqh.abb.model.dto.action.DetailDto;
 import com.hxqh.abb.model.dto.action.ListDto;
 import com.hxqh.abb.model.searchdto.Page;
+import com.hxqh.abb.model.version2.Invuse;
 import com.hxqh.abb.model.version2.Udinvcheckline;
+import com.hxqh.abb.model.version2.Udwoline;
 import com.hxqh.abb.model.view.VUdtoolchkline;
+import com.hxqh.abb.model.view.VUdwoline;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.type.StandardBasicTypes;
@@ -53,6 +56,13 @@ public class UserServiceImpl implements UserService {
     private UdtoolChkDao udtoolChkDao;
     @Autowired
     private VUdtoolchklineDao vUdtoolchklineDao;
+    @Autowired
+    private InvuseDao invuseDao;
+    @Autowired
+    private VUdwolineDao vUdwolineDao;
+    @Autowired
+    private WorkorderDao workorderDao;
+
 
 
     @PostConstruct
@@ -347,6 +357,8 @@ public class UserServiceImpl implements UserService {
         Map<String, List> map = new LinkedHashMap<>();
 
         UdtoolChk udtoolChk = udtoolChkDao.find(Long.valueOf(pkid));
+        Invuse invuse = invuseDao.find(Long.valueOf(pkid));
+        Workorder workorder = workorderDao.find(Long.valueOf(pkid));
 
         //工具校准行页面 信息
         if (apptname.equals("TOOLCHK")) {
@@ -358,19 +370,37 @@ public class UserServiceImpl implements UserService {
             orderby.put("udtoolchklineid", "asc");
             List<VUdtoolchkline> udtoolchklineList = vUdtoolchklineDao.findAll(where, params, orderby);
             map.put("UDTOOLCHKLINE", udtoolchklineList);
-        } else if (apptname.equals("XXX"))  //XXX信息{
-        {
-
-
-
-        }else if (apptname.equals("YYY"))  //YYY信息
-        {
-
-
-
         }
 
 
+//        else if (apptname.equals("INVUSE"))  //物资发放页面 信息
+//        {
+//            Map<String, Object> params = new HashMap<>();
+//            params.put("invusenum", invuse.getInvusenum());
+//            params.put("siteid", invuse.getSiteid());
+//            String where = "invusenum=:invusenum and siteid=:siteid";
+//
+//            LinkedHashMap<String, String> orderby = new LinkedHashMap<>();
+//            orderby.put("invuseid", "asc");
+//        }
+
+
+        else if (apptname.equals("WORKORDERMANAGEMENT"))//执行管理
+        {
+            //V_UDWOLINE表  设备信息
+            Map<String, Object> params = new HashMap<>();
+            params.put("wonum", workorder.getWonum());
+            params.put("siteid", workorder.getSiteid());
+            String where = "wonum=:wonum and siteid=:siteid";
+
+            LinkedHashMap<String, String> orderby = new LinkedHashMap<>();
+            orderby.put("udwolineid", "asc");
+            List<VUdwoline> udwolineList = vUdwolineDao.findAll(where, params, orderby);
+            map.put("UDWOLINE", udwolineList);
+
+            //
+
+        }
         return map;
     }
 
