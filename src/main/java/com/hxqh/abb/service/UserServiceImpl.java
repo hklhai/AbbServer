@@ -12,6 +12,7 @@ import com.hxqh.abb.model.version2.Udinvcheckline;
 import com.hxqh.abb.model.version2.Udwoline;
 import com.hxqh.abb.model.view.VUdtoolchkline;
 import com.hxqh.abb.model.view.VUdwoline;
+import com.hxqh.abb.model.view.VUdwoqualification;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.type.StandardBasicTypes;
@@ -62,6 +63,8 @@ public class UserServiceImpl implements UserService {
     private VUdwolineDao vUdwolineDao;
     @Autowired
     private WorkorderDao workorderDao;
+    @Autowired
+    private VUdwoqualificationDao vUdwoqualificationDao;
 
 
 
@@ -397,10 +400,20 @@ public class UserServiceImpl implements UserService {
             orderby.put("udwolineid", "asc");
             List<VUdwoline> udwolineList = vUdwolineDao.findAll(where, params, orderby);
             map.put("UDWOLINE", udwolineList);
-
-            //
-
         }
+
+            // V_UDWOQUALIFICATION表  资质
+            Map<String, Object> params = new HashMap<>();
+            params.put("wonum", workorder.getWonum());
+            params.put("siteid", workorder.getSiteid());
+            String where = "wonum=:wonum and siteid=:siteid";
+
+            LinkedHashMap<String, String> orderby = new LinkedHashMap<>();
+            orderby.put("udwoqualificationid","asc");
+            List<VUdwoqualification> udwoqualificationList = vUdwoqualificationDao.findAll(where, params, orderby);
+            map.put("UDWOQUALIFICATION", udwoqualificationList);
+
+
         return map;
     }
 
