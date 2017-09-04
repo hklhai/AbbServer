@@ -2,17 +2,13 @@ package com.hxqh.abb.service;
 
 import com.hxqh.abb.common.util.CglibUtil;
 import com.hxqh.abb.common.util.GroupListUtil;
-import com.hxqh.abb.dao.FavoriteDao;
-import com.hxqh.abb.dao.RelationDao;
-import com.hxqh.abb.dao.TbAppDao;
-import com.hxqh.abb.dao.UserDao;
-import com.hxqh.abb.model.Favorite;
-import com.hxqh.abb.model.Relation;
-import com.hxqh.abb.model.TbApp;
-import com.hxqh.abb.model.User;
+import com.hxqh.abb.dao.*;
+import com.hxqh.abb.model.*;
 import com.hxqh.abb.model.dto.action.DetailDto;
 import com.hxqh.abb.model.dto.action.ListDto;
 import com.hxqh.abb.model.searchdto.Page;
+import com.hxqh.abb.model.version2.Udinvcheckline;
+import com.hxqh.abb.model.view.VUdtoolchkline;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.type.StandardBasicTypes;
@@ -52,6 +48,12 @@ public class UserServiceImpl implements UserService {
     private FavoriteDao favoriteDao;
     @Autowired
     private RelationDao relationDao;
+
+    @Autowired
+    private UdtoolChkDao udtoolChkDao;
+    @Autowired
+    private VUdtoolchklineDao vUdtoolchklineDao;
+
 
     @PostConstruct
     public void init() {
@@ -325,39 +327,9 @@ public class UserServiceImpl implements UserService {
             }
         }
         /*****************************************子表************************************************/
-//        //增加子表数据
-//        if (childList.size() > 0) {
-//            Map<String, List> map = new LinkedHashMap<>();
-//            for (Relation child : childList) {
-//                List<Object[]> cList = new LinkedList();
-//                List nAuditList = new LinkedList<>();
-//                Map<String, Object> cMap = new LinkedHashMap<>();
-//
-//                //现获取field
-//                List<TbApp> tbApps = childMap.get(child.getRelationtable());
-//
-//                StringBuilder cBuilder = new StringBuilder("");
-//                for (TbApp e : tbApps) {
-//                    cBuilder.append(e.getAppfield()).append(",");
-//                    cMap.put(e.getAppfield(), Class.forName(e.getFieldtype()));
-//                }
-//                String str = cBuilder.toString().substring(0, cBuilder.length() - 1);
-//                String childTabName = child.getRelationtable();
-//                String where = child.getWherestatement();
-//                String[] wherefField = child.getWherefield().split(",");
-//                //获取表名
-//
-//                StringBuilder stringBuilder = new StringBuilder();
-//                stringBuilder.append("SELECT ").append(str).append(" FROM ").append(childTabName);
-//                stringBuilder.append(" WHERE ").append(where);
-//                Query query = sessionFactory.getCurrentSession().createSQLQuery(stringBuilder.toString());
-//                for (int y = 0; y < wherefField.length; y++) {
-//                    query.setString(wherefField[y], );
-//                }
-////                cList =       .list();
-//
-//            }
-//        }
+        Map<String, List> map = getChildMapInfo(apptname, pkid);
+
+
         /*****************************************子表*************************************************/
 
 
@@ -367,8 +339,39 @@ public class UserServiceImpl implements UserService {
         List nAuditList = getNextAuditList(pkid, audit);
 
 
-        DetailDto detailDto = new DetailDto(bean.getObject(), aList, nAuditList);
+        DetailDto detailDto = new DetailDto(bean.getObject(), aList, nAuditList, map);
         return detailDto;
+    }
+
+    private Map<String, List> getChildMapInfo(String apptname, String pkid) {
+        Map<String, List> map = new LinkedHashMap<>();
+
+        UdtoolChk udtoolChk = udtoolChkDao.find(Long.valueOf(pkid));
+
+        //工具校准行页面 信息
+        if (apptname.equals("TOOLCHK")) {
+            Map<String, Object> params = new HashMap<>();
+            params.put("tcnum", udtoolChk.getTcnum());
+            String where = "tcnum=:tcnum";
+
+            LinkedHashMap<String, String> orderby = new LinkedHashMap<>();
+            orderby.put("udtoolchklineid", "asc");
+            List<VUdtoolchkline> udtoolchklineList = vUdtoolchklineDao.findAll(where, params, orderby);
+            map.put("UDTOOLCHKLINE", udtoolchklineList);
+        } else if (apptname.equals("XXX"))  //XXX信息{
+        {
+
+
+
+        }else if (apptname.equals("YYY"))  //YYY信息
+        {
+
+
+
+        }
+
+
+        return map;
     }
 
     private List getNextAuditList(String pkid, Relation audit) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
