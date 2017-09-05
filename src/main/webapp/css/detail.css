@@ -78,6 +78,9 @@
 .next-apply table thead tr,.apply-record table thead tr{
   font-weight: bold;
 }
+table tbody tr td{
+  width: 20%;
+}
 .next-apply table tr,.apply-record table tr{
   height: 43px;
   line-height: 43px;
@@ -95,5 +98,53 @@
 }
 .next-apply,.apply-record{
   padding-bottom: 15px;
-}
+} 
 
+
+.next-apply p.item{
+  width: 33%;
+  float: left;
+}
+.next-apply p.item label,span,input{
+  display: block;
+  float: left;
+  font-size: 12px;
+  color: rgb(37, 37, 37);
+}
+.next-apply p.item label,span{
+  height: 38px;
+  line-height: 38px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+.next-apply p.item label{
+  width: 98px;
+  padding-right: 8px;
+  text-align: right;
+}
+.next-apply p.item input[type='text']{
+  width: 214px;
+  height: 22px;
+  border: 1px solid #dfdfdf;
+  margin-top: 7px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.next-apply p.item input[type='checkbox']{
+  width: 21px;
+  height: 21px;
+  border: 1px solid #dfdfdf;
+  margin-top: 7px;
+}
+.next-apply p.item select{
+  padding-left: 6px;
+  padding-right: 6px;
+  height: 22px;
+  border: 1px solid #dfdfdf;
+  margin-top: 7px;
+  min-width: 100px;
+}
+.next-apply p.item textarea{
+  margin-top: 7px;
+  border: 1px solid #dfdfdf;
+}
