@@ -35,6 +35,10 @@ public class Relation implements Serializable {
 
     private String relationtableseq;
 
+    private String wherestatement;
+
+    private String wherefield;
+
     public Relation() {
     }
 
@@ -119,4 +123,19 @@ public class Relation implements Serializable {
         this.relationtableseq = relationtableseq;
     }
 
+    public String getWherestatement() {
+        return wherestatement;
+    }
+
+    public void setWherestatement(String wherestatement) {
+        this.wherestatement = wherestatement;
+    }
+
+    public String getWherefield() {
+        return wherefield;
+    }
+
+    public void setWherefield(String wherefield) {
+        this.wherefield = wherefield;
+    }
 }

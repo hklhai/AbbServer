@@ -1,7 +1,6 @@
 package com.hxqh.abb.service
 
 import java.util
-import javax.annotation.Resource
 
 import com.hxqh.abb.dao.{TbAppDao, UdvehicleDao}
 import org.springframework.beans.factory.annotation.Autowired

@@ -33,6 +33,8 @@ public class TbApp implements Serializable {
 
     private Integer ispk;
 
+    private String childtablename;
+
     public TbApp(String appfield, String fieldtype) {
         this.appfield = appfield;
         this.fieldtype = fieldtype;
@@ -111,5 +113,13 @@ public class TbApp implements Serializable {
 
     public void setOrdernum(Integer ordernum) {
         this.ordernum = ordernum;
+    }
+
+    public String getChildtablename() {
+        return childtablename;
+    }
+
+    public void setChildtablename(String childtablename) {
+        this.childtablename = childtablename;
     }
 }

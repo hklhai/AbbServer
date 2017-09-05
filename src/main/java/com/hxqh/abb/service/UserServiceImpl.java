@@ -6,7 +6,10 @@ import com.hxqh.abb.dao.*;
 import com.hxqh.abb.model.*;
 import com.hxqh.abb.model.dto.action.DetailDto;
 import com.hxqh.abb.model.dto.action.ListDto;
+import com.hxqh.abb.model.dto.action.WplaborDto;
 import com.hxqh.abb.model.searchdto.Page;
+import com.hxqh.abb.model.version2.*;
+import com.hxqh.abb.model.view.*;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.type.StandardBasicTypes;
@@ -33,10 +36,8 @@ public class UserServiceImpl implements UserService {
     static Map<String, TbApp> appDetailMap = new HashMap<>();
     static Map<String, List<TbApp>> fieldsMap = new LinkedHashMap<>();
     static Map<String, List<TbApp>> detailMap = new LinkedHashMap<>();
+    static Map<String, List<TbApp>> childMap = new LinkedHashMap<>();
     static Map<String, List<Relation>> relativeMap = new LinkedHashMap<>();
-
-    @Autowired
-    private PersonDao personDao;
 
     @Autowired
     private UserDao userDao;
@@ -48,6 +49,29 @@ public class UserServiceImpl implements UserService {
     private FavoriteDao favoriteDao;
     @Autowired
     private RelationDao relationDao;
+
+    @Autowired
+    private UdtoolChkDao udtoolChkDao;
+    @Autowired
+    private VUdtoolchklineDao vUdtoolchklineDao;
+    @Autowired
+    private InvuseDao invuseDao;
+    @Autowired
+    private VUdwolineDao vUdwolineDao;
+    @Autowired
+    private WorkorderDao workorderDao;
+    @Autowired
+    private VUdwoqualificationDao vUdwoqualificationDao;
+    @Autowired
+    private UdinvcheckDao udinvcheckDao;
+    @Autowired
+    private PoDao poDao;
+    @Autowired
+    private VUdinvchecklineDao vUdinvchecklineDao;
+    @Autowired
+    private VPolineDao vPolineDao;
+    @Autowired
+    private WoactivityDao woactivityDao;
 
     @PostConstruct
     public void init() {
@@ -77,6 +101,15 @@ public class UserServiceImpl implements UserService {
             public String groupby(Object obj) {
                 TbApp d = (TbApp) obj;
                 return d.getAppname();    // 分组依据为Appname
+            }
+        });
+
+        //子表
+        childMap = GroupListUtil.group(allMap.get("CHILD"), new GroupListUtil.GroupBy<String>() {
+            @Override
+            public String groupby(Object obj) {
+                TbApp d = (TbApp) obj;
+                return d.getChildtablename();    // 分组依据为Childtablename
             }
         });
 
@@ -274,7 +307,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public DetailDto detailData(String apptname, String pkid) throws Exception {
-        Map<String, Object> propertyMap = new LinkedHashMap();
+        Map<String, Object> propertyMap = new LinkedHashMap<>();
 
         //获取表名与主键名称
         String tableName = appDetailMap.get(apptname).getApptable();
@@ -311,16 +344,218 @@ public class UserServiceImpl implements UserService {
                     audit = e;
             }
         }
-        /*****************************************子表**************************************************/
-        //增加子表数据
-        if (childList.size() > 0) {
-            for (Relation child : childList) {
+        /*****************************************子表************************************************/
+        Map<String, List> map = getChildMapInfo(apptname, pkid);
 
-            }
+
+        /*****************************************子表*************************************************/
+
+
+        //审批记录
+        List aList = auditRecord(pkid, audit);
+        //下一审批人
+        List nAuditList = getNextAuditList(pkid, audit);
+
+
+        DetailDto detailDto = new DetailDto(bean.getObject(), aList, nAuditList, map);
+        return detailDto;
+    }
+
+    private Map<String, List> getChildMapInfo(String apptname, String pkid) {
+        Map<String, List> map = new LinkedHashMap<>();
+
+        Workorder workorder = workorderDao.find(Long.valueOf(pkid));
+
+
+        if (apptname.equals("TOOLCHK")) { //工具校准行页面 信息
+            UdtoolChk udtoolChk = udtoolChkDao.find(Long.valueOf(pkid));
+
+            Map<String, Object> params = new HashMap<>();
+            params.put("tcnum", udtoolChk.getTcnum());
+            String where = "tcnum=:tcnum";
+
+            LinkedHashMap<String, String> orderby = new LinkedHashMap<>();
+            orderby.put("udtoolchklineid", "asc");
+            List<VUdtoolchkline> udtoolchklineList = vUdtoolchklineDao.findAll(where, params, orderby);
+            map.put("UDTOOLCHKLINE", udtoolchklineList);
+        } else if (apptname.equals("INVUSE"))  //物资发放页面 信息
+        {
+            Invuse invuse = invuseDao.find(Long.valueOf(pkid));
+            //TODO
+//            Map<String, Object> params = new HashMap<>();
+//            params.put("invusenum", invuse.getInvusenum());
+//            params.put("siteid", invuse.getSiteid());
+//            String where = "invusenum=:invusenum and siteid=:siteid";
+//
+//            LinkedHashMap<String, String> orderby = new LinkedHashMap<>();
+//            orderby.put("invuseid", "asc");
+
+
+        } else if (apptname.equals("INVENTORYCHK"))  //盘点清单信息
+        {
+            Udinvcheck udinvcheck = udinvcheckDao.find(Long.valueOf(pkid));
+            Map<String, Object> params = new HashMap<>();
+            params.put("invchecknum", udinvcheck.getInvchecknum());
+            params.put("siteid", udinvcheck.getSiteid());
+            params.put("storeloc", udinvcheck.getStoreloc());
+            String where = "invchecknum=:invchecknum and siteid=:siteid and storeloc=:storeloc";
+
+            LinkedHashMap<String, String> orderby = new LinkedHashMap<>();
+            orderby.put("udinvchecklineid", "asc");
+
+            List<VUdinvcheckline> udinvchecklineList = vUdinvchecklineDao.findAll(where, params, orderby);
+            map.put("UDINVCHECKLINE", udinvchecklineList);
+        } else if (apptname.equals("PURCHASEODER") || apptname.equals("PORECEIVE") || apptname.equals("WASTERECOVERY")) {          //采购清单信息、旧料回收清单、废料回收清单
+            Po po = poDao.find(Long.valueOf(pkid));
+            Map<String, Object> params = new HashMap<>();
+            params.put("ponum", po.getPonum());
+            params.put("revisionnum", po.getRevisionnum());
+            params.put("siteid", po.getSiteid());
+            String where = "ponum=:ponum and revisionnum=:revisionnum and siteid=:siteid";
+
+            LinkedHashMap<String, String> orderby = new LinkedHashMap<>();
+            orderby.put("polineid", "asc");
+
+            List<VPoline> polineList = vPolineDao.findAll(where, params, orderby);
+            //旧料回收清单 多余字段UNITCOST、LINECOST
+            map.put("POLINE", polineList);
+        } else if (apptname.equals("PORECEIVE"))  // 接收清单
+        {
+            Po po = poDao.find(Long.valueOf(pkid));
+
+            Map<String, Object> params = new HashMap<>();
+            params.put("ponum", po.getPonum());
+            params.put("positeid", po.getSiteid());
+            String where = "ponum = :ponum and positeid=:positeid";
+
+            LinkedHashMap<String, String> orderby = new LinkedHashMap<>();
+            orderby.put("polineid", "asc");
+            //TODO 缺少字段
+            //.findAll(where, params, orderby);
+        } else if (apptname.equals("WORKORDERMANAGEMENT"))//执行管理
+        {
+            //V_UDWOLINE表  设备信息
+            Map<String, Object> params = new HashMap<>();
+            params.put("wonum", workorder.getWonum());
+            params.put("siteid", workorder.getSiteid());
+            String where = "wonum=:wonum and siteid=:siteid";
+
+            LinkedHashMap<String, String> orderby = new LinkedHashMap<>();
+            orderby.put("udwolineid", "asc");
+            List<VUdwoline> udwolineList = vUdwolineDao.findAll(where, params, orderby);
+            map.put("UDWOLINE", udwolineList);
+
+            // V_UDWOQUALIFICATION表  资质
+            LinkedHashMap<String, String> orderbyUdwoqualification = new LinkedHashMap<>();
+            orderbyUdwoqualification.put("udwoqualificationid", "asc");
+            List<VUdwoqualification> udwoqualificationList = vUdwoqualificationDao.findAll(where, params, orderbyUdwoqualification);
+            map.put("UDWOQUALIFICATION", udwoqualificationList);
+
+            //WOACTIVITY
+            LinkedHashMap<String, String> orderbyWoactivity = new LinkedHashMap<>();
+            orderbyUdwoqualification.put("workorderid", "asc");
+            List<Woactivity> woactivityList = woactivityDao.findAll(where, params, orderbyWoactivity);
+            map.put("WOACTIVITY", woactivityList);
+
+
+            //WPLABOR
+            String sqlWplabor = "SELECT WPLABORUID, LABORCODE, LABORHRS, TASKID, WONUM,SITEID\n" +
+                    "  FROM WPLABOR\n" +
+                    " WHERE wonum IN\n" +
+                    "       (SELECT wonum\n" +
+                    "          FROM workorder\n" +
+                    "         WHERE (wonum = :wonum OR (parent = :wonum AND istask = 1))\n" +
+                    "           AND siteid = :siteid)\n";
+            List<WplaborDto> wplaborlist = sessionFactory.getCurrentSession().createSQLQuery(sqlWplabor)
+                    .addEntity(WplaborDto.class).setString("wonum", workorder.getWonum())
+                    .setString("siteid", workorder.getSiteid()).list();
+            map.put("WPLABOR", wplaborlist);
+
+            //WPMATERIAL
+            //TODO 建议增加WPMATERIAL主键
+//            String sqlWpmaterial =  "select ITEMNUM,\n" +
+//                    "       DESCRIPTION,\n" +
+//                    "       ITEMQTY,\n" +
+//                    "       UNITCOST,\n" +
+//                    "       LINECOST,\n" +
+//                    "       LOCATION,\n" +
+//                    "       STORELOCSITE,\n" +
+//                    "       ISSUETO,\n" +
+//                    "       REQUESTBY\n" +
+//                    "  from WPMATERIAL\n" +
+//                    " where wonum IN\n" +
+//                    "       (SELECT wonum\n" +
+//                    "          FROM workorder\n" +
+//                    "         WHERE (wonum = :wonum OR (parent = :wonum AND istask = 1))\n" +
+//                    "           AND siteid = :siteid)";
+//            sessionFactory.getCurrentSession().createSQLQuery(sqlWpmaterial)
+//                    .addEntity(.class).setString("wonum", workorder.getWonum())
+//                    .setString("siteid", workorder.getSiteid()).list();
         }
-        /*****************************************子表***************************************************/
 
-        /*****************************************下一审批人*********************************************/
+
+        return map;
+    }
+
+    private List getNextAuditList(String pkid, Relation audit) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        List<Object[]> nextAuditList = new LinkedList();
+        List nAuditList = new LinkedList<>();
+
+        //t2 where t1.WFASSIGNMENTID = t2.PERSONUID and ownertable = 'UDTOOLAPPLY' and t1.ownerid = 41 and assignstatus
+        //in (select value from synonymdomain where domainid='WFASGNSTATUS' and maxvalue='ACTIVE')
+        if (audit != null) {
+            String str = "T1.ASSIGNCODE,T2.DISPLAYNAME,T1.DESCRIPTION,T1.PROCESSNAME,T1.OWNERTABLE,T1.OWNERID,T1.WFASSIGNMENTID";
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("SELECT ").append(str);
+            stringBuilder.append(" from WFASSIGNMENT t1,PERSON t2 where t1.WFASSIGNMENTID = t2.PERSONUID and ");
+            //ownertable = 'UDTOOLAPPLY' and t1.ownerid = 41
+            stringBuilder.append("ownertable=:ownertable and ownerid=:ownerid ");
+            nextAuditList = sessionFactory.getCurrentSession().createSQLQuery(stringBuilder.toString())
+                    .setString("ownertable", audit.getApptable()).setString("ownerid", pkid).list();
+
+            //构造类 反射设置值
+            Map<String, Object> auditPropertyMap = new LinkedHashMap();
+
+            List<String> pList = new LinkedList() {{
+                add("ASSIGNCODE");
+                add("DISPLAYNAME");
+                add("DESCRIPTION");
+                add("PROCESSNAME");
+                add("OWNERTABLE");
+                add("OWNERID");
+                add("WFASSIGNMENTID");
+            }};
+            StringBuilder nextAuditBuilder = new StringBuilder("");
+            for (String e : pList) {
+                nextAuditBuilder.append(e).append(",");
+                auditPropertyMap.put(e, Class.forName("java.lang.Object"));
+            }
+            String auditFields = nextAuditBuilder.substring(0, nextAuditBuilder.length() - 1);
+            String[] auditSplit = auditFields.split(",");
+
+            dealList(nextAuditList, nAuditList, auditPropertyMap, auditSplit);
+        }
+        return nAuditList;
+    }
+
+    private void dealList(List<Object[]> nextAuditList, List nAuditList, Map<String, Object> auditPropertyMap, String[] auditSplit) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        for (Object[] o : nextAuditList) {
+            CglibUtil auditBean = new CglibUtil(auditPropertyMap);
+            Field[] auditDeclaredFields = auditBean.getObject().getClass().getDeclaredFields();
+
+            for (int j = 0; j < auditSplit.length; j++) {
+                String field = auditSplit[j];
+                String setMethodName = "set" + field;
+                Object object = auditBean.getObject();
+                Class[] classes = {auditDeclaredFields[j].getType()};
+                Method setMethod = object.getClass().getDeclaredMethod(setMethodName, classes);
+                setMethod.invoke(object, o[j]);
+            }
+            nAuditList.add(auditBean.getObject());
+        }
+    }
+
+    private List auditRecord(String pkid, Relation audit) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         List<Object[]> auditList = new LinkedList();
         List aList = new LinkedList<>();
 
@@ -355,26 +590,9 @@ public class UserServiceImpl implements UserService {
             String auditFields = auditBuilder.substring(0, auditBuilder.length() - 1);
             String[] auditSplit = auditFields.split(",");
 
-
-            for (Object[] o : auditList) {
-                CglibUtil auditBean = new CglibUtil(auditPropertyMap);
-                Field[] auditDeclaredFields = auditBean.getObject().getClass().getDeclaredFields();
-
-                for (int j = 0; j < auditSplit.length; j++) {
-                    String field = auditSplit[j];
-                    String setMethodName = "set" + field;
-                    Object object = auditBean.getObject();
-                    Class[] classes = {auditDeclaredFields[j].getType()};
-                    Method setMethod = object.getClass().getDeclaredMethod(setMethodName, classes);
-                    setMethod.invoke(object, o[j]);
-                }
-                aList.add(auditBean.getObject());
-            }
+            dealList(auditList, aList, auditPropertyMap, auditSplit);
         }
-        /*****************************************下一审批人*********************************************/
-
-        DetailDto detailDto = new DetailDto(bean.getObject(), aList);
-        return detailDto;
+        return aList;
     }
 
     @Override

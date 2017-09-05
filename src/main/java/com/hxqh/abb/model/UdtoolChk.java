@@ -13,7 +13,6 @@ public class UdtoolChk implements Serializable {
     @Id
     @SequenceGenerator(name = "UDTOOLCHK_UDTOOLCHKID_GENERATOR", sequenceName = "UDTOOLCHKIDSEQ")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UDTOOLCHK_UDTOOLCHKID_GENERATOR")
-
     private Long udtoolchkid;
 
     private String description;
