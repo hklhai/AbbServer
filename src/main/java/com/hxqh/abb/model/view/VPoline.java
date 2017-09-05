@@ -27,6 +27,7 @@ public class VPoline implements Serializable {
 
     private String persondisplayname;
 
+    @Id
     private Long polineid;
 
     private Integer polinenum;
