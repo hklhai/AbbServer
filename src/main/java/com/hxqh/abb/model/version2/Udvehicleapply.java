@@ -1,8 +1,11 @@
 package com.hxqh.abb.model.version2;
 
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 
 /**

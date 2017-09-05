@@ -6,13 +6,10 @@ import com.hxqh.abb.dao.*;
 import com.hxqh.abb.model.*;
 import com.hxqh.abb.model.dto.action.DetailDto;
 import com.hxqh.abb.model.dto.action.ListDto;
+import com.hxqh.abb.model.dto.action.WplaborDto;
 import com.hxqh.abb.model.searchdto.Page;
-import com.hxqh.abb.model.version2.Invuse;
-import com.hxqh.abb.model.version2.Udinvcheckline;
-import com.hxqh.abb.model.version2.Udwoline;
-import com.hxqh.abb.model.view.VUdtoolchkline;
-import com.hxqh.abb.model.view.VUdwoline;
-import com.hxqh.abb.model.view.VUdwoqualification;
+import com.hxqh.abb.model.version2.*;
+import com.hxqh.abb.model.view.*;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.type.StandardBasicTypes;
@@ -65,8 +62,16 @@ public class UserServiceImpl implements UserService {
     private WorkorderDao workorderDao;
     @Autowired
     private VUdwoqualificationDao vUdwoqualificationDao;
-
-
+    @Autowired
+    private UdinvcheckDao udinvcheckDao;
+    @Autowired
+    private PoDao poDao;
+    @Autowired
+    private VUdinvchecklineDao vUdinvchecklineDao;
+    @Autowired
+    private VPolineDao vPolineDao;
+    @Autowired
+    private WoactivityDao woactivityDao;
 
     @PostConstruct
     public void init() {
@@ -359,12 +364,12 @@ public class UserServiceImpl implements UserService {
     private Map<String, List> getChildMapInfo(String apptname, String pkid) {
         Map<String, List> map = new LinkedHashMap<>();
 
-        UdtoolChk udtoolChk = udtoolChkDao.find(Long.valueOf(pkid));
-        Invuse invuse = invuseDao.find(Long.valueOf(pkid));
         Workorder workorder = workorderDao.find(Long.valueOf(pkid));
 
-        //工具校准行页面 信息
-        if (apptname.equals("TOOLCHK")) {
+
+        if (apptname.equals("TOOLCHK")) { //工具校准行页面 信息
+            UdtoolChk udtoolChk = udtoolChkDao.find(Long.valueOf(pkid));
+
             Map<String, Object> params = new HashMap<>();
             params.put("tcnum", udtoolChk.getTcnum());
             String where = "tcnum=:tcnum";
@@ -373,11 +378,10 @@ public class UserServiceImpl implements UserService {
             orderby.put("udtoolchklineid", "asc");
             List<VUdtoolchkline> udtoolchklineList = vUdtoolchklineDao.findAll(where, params, orderby);
             map.put("UDTOOLCHKLINE", udtoolchklineList);
-        }
-
-
-//        else if (apptname.equals("INVUSE"))  //物资发放页面 信息
-//        {
+        } else if (apptname.equals("INVUSE"))  //物资发放页面 信息
+        {
+            Invuse invuse = invuseDao.find(Long.valueOf(pkid));
+            //TODO
 //            Map<String, Object> params = new HashMap<>();
 //            params.put("invusenum", invuse.getInvusenum());
 //            params.put("siteid", invuse.getSiteid());
@@ -385,10 +389,50 @@ public class UserServiceImpl implements UserService {
 //
 //            LinkedHashMap<String, String> orderby = new LinkedHashMap<>();
 //            orderby.put("invuseid", "asc");
-//        }
 
 
-        else if (apptname.equals("WORKORDERMANAGEMENT"))//执行管理
+        } else if (apptname.equals("INVENTORYCHK"))  //盘点清单信息
+        {
+            Udinvcheck udinvcheck = udinvcheckDao.find(Long.valueOf(pkid));
+            Map<String, Object> params = new HashMap<>();
+            params.put("invchecknum", udinvcheck.getInvchecknum());
+            params.put("siteid", udinvcheck.getSiteid());
+            params.put("storeloc", udinvcheck.getStoreloc());
+            String where = "invchecknum=:invchecknum and siteid=:siteid and storeloc=:storeloc";
+
+            LinkedHashMap<String, String> orderby = new LinkedHashMap<>();
+            orderby.put("udinvchecklineid", "asc");
+
+            List<VUdinvcheckline> udinvchecklineList = vUdinvchecklineDao.findAll(where, params, orderby);
+            map.put("UDINVCHECKLINE", udinvchecklineList);
+        } else if (apptname.equals("PURCHASEODER") || apptname.equals("PORECEIVE") || apptname.equals("WASTERECOVERY")) {          //采购清单信息、旧料回收清单、废料回收清单
+            Po po = poDao.find(Long.valueOf(pkid));
+            Map<String, Object> params = new HashMap<>();
+            params.put("ponum", po.getPonum());
+            params.put("revisionnum", po.getRevisionnum());
+            params.put("siteid", po.getSiteid());
+            String where = "ponum=:ponum and revisionnum=:revisionnum and siteid=:siteid";
+
+            LinkedHashMap<String, String> orderby = new LinkedHashMap<>();
+            orderby.put("polineid", "asc");
+
+            List<VPoline> polineList = vPolineDao.findAll(where, params, orderby);
+            //旧料回收清单 多余字段UNITCOST、LINECOST
+            map.put("POLINE", polineList);
+        } else if (apptname.equals("PORECEIVE"))  // 接收清单
+        {
+            Po po = poDao.find(Long.valueOf(pkid));
+
+            Map<String, Object> params = new HashMap<>();
+            params.put("ponum", po.getPonum());
+            params.put("positeid", po.getSiteid());
+            String where = "ponum = :ponum and positeid=:positeid";
+
+            LinkedHashMap<String, String> orderby = new LinkedHashMap<>();
+            orderby.put("polineid", "asc");
+            //TODO 缺少字段
+            //.findAll(where, params, orderby);
+        } else if (apptname.equals("WORKORDERMANAGEMENT"))//执行管理
         {
             //V_UDWOLINE表  设备信息
             Map<String, Object> params = new HashMap<>();
@@ -400,18 +444,54 @@ public class UserServiceImpl implements UserService {
             orderby.put("udwolineid", "asc");
             List<VUdwoline> udwolineList = vUdwolineDao.findAll(where, params, orderby);
             map.put("UDWOLINE", udwolineList);
-        }
 
             // V_UDWOQUALIFICATION表  资质
-            Map<String, Object> params = new HashMap<>();
-            params.put("wonum", workorder.getWonum());
-            params.put("siteid", workorder.getSiteid());
-            String where = "wonum=:wonum and siteid=:siteid";
-
-            LinkedHashMap<String, String> orderby = new LinkedHashMap<>();
-            orderby.put("udwoqualificationid","asc");
-            List<VUdwoqualification> udwoqualificationList = vUdwoqualificationDao.findAll(where, params, orderby);
+            LinkedHashMap<String, String> orderbyUdwoqualification = new LinkedHashMap<>();
+            orderbyUdwoqualification.put("udwoqualificationid", "asc");
+            List<VUdwoqualification> udwoqualificationList = vUdwoqualificationDao.findAll(where, params, orderbyUdwoqualification);
             map.put("UDWOQUALIFICATION", udwoqualificationList);
+
+            //WOACTIVITY
+            LinkedHashMap<String, String> orderbyWoactivity = new LinkedHashMap<>();
+            orderbyUdwoqualification.put("workorderid", "asc");
+            List<Woactivity> woactivityList = woactivityDao.findAll(where, params, orderbyWoactivity);
+            map.put("WOACTIVITY", woactivityList);
+
+
+            //WPLABOR
+            String sqlWplabor = "SELECT WPLABORUID, LABORCODE, LABORHRS, TASKID, WONUM,SITEID\n" +
+                    "  FROM WPLABOR\n" +
+                    " WHERE wonum IN\n" +
+                    "       (SELECT wonum\n" +
+                    "          FROM workorder\n" +
+                    "         WHERE (wonum = :wonum OR (parent = :wonum AND istask = 1))\n" +
+                    "           AND siteid = :siteid)\n";
+            List<WplaborDto> wplaborlist = sessionFactory.getCurrentSession().createSQLQuery(sqlWplabor)
+                    .addEntity(WplaborDto.class).setString("wonum", workorder.getWonum())
+                    .setString("siteid", workorder.getSiteid()).list();
+            map.put("WPLABOR", wplaborlist);
+
+            //WPMATERIAL
+            //TODO 建议增加WPMATERIAL主键
+//            String sqlWpmaterial =  "select ITEMNUM,\n" +
+//                    "       DESCRIPTION,\n" +
+//                    "       ITEMQTY,\n" +
+//                    "       UNITCOST,\n" +
+//                    "       LINECOST,\n" +
+//                    "       LOCATION,\n" +
+//                    "       STORELOCSITE,\n" +
+//                    "       ISSUETO,\n" +
+//                    "       REQUESTBY\n" +
+//                    "  from WPMATERIAL\n" +
+//                    " where wonum IN\n" +
+//                    "       (SELECT wonum\n" +
+//                    "          FROM workorder\n" +
+//                    "         WHERE (wonum = :wonum OR (parent = :wonum AND istask = 1))\n" +
+//                    "           AND siteid = :siteid)";
+//            sessionFactory.getCurrentSession().createSQLQuery(sqlWpmaterial)
+//                    .addEntity(.class).setString("wonum", workorder.getWonum())
+//                    .setString("siteid", workorder.getSiteid()).list();
+        }
 
 
         return map;
