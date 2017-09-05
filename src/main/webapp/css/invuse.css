@@ -1,0 +1,212 @@
+.left {
+  display: block;
+  float: left; }
+
+.fixed-width {
+  display: block;
+  width: 94px; }
+
+.row {
+  border: 1px solid #d3d3d3;
+  padding-top: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 30px; }
+  .row h5 {
+    color: #252525;
+    height: 29px; }
+    .row h5 span {
+      font-size: 16px;
+      height: 29px;
+      line-height: 29px;
+      display: block;
+      float: left; }
+    .row h5 button {
+      font-size: 12px;
+      height: 28px;
+      border: 1px solid #dadada;
+      color: #fff;
+      text-align: center;
+      display: block;
+      float: right;
+      background-image: url("../../imgs/details/save.png");
+      background-repeat: no-repeat;
+      background-position: 6px center;
+      padding-left: 25px;
+      cursor: pointer; }
+  .row .page {
+    height: 48px; }
+  .row .row-info {
+    display: none; }
+    .row .row-info .layout {
+      padding-left: 10px;
+      padding-right: 10px; }
+    .row .row-info .bg {
+      background: #eeeeee; }
+    .row .row-info h5 {
+      height: 34px;
+      line-height: 34px;
+      font-size: 14px;
+      color: #252525;
+      padding-left: 12px;
+      background: #eeeeee;
+      font-weight: normal; }
+    .row .row-info p.item {
+      width: 50%;
+      float: left;
+      height: 34px;
+      line-height: 34px;
+      font-size: 12px;
+      color: #252525;
+      position: relative; }
+      .row .row-info p.item input {
+        width: 180px;
+        height: 24px;
+        line-height: 24px;
+        border: 1px solid #dfdfdf;
+        margin-top: 5px;
+        padding-left: 5px; }
+      .row .row-info p.item label {
+        display: block;
+        float: left;
+        width: 60px; }
+      .row .row-info p.item select {
+        width: 120px;
+        height: 24px;
+        line-height: 24px;
+        margin-top: 5px; }
+      .row .row-info p.item span {
+        display: block;
+        float: left; }
+      .row .row-info p.item span.input-mock {
+        display: block;
+        float: left;
+        width: 100px;
+        height: 22px;
+        border: 1px solid #dfdfdf;
+        margin-top: 6px;
+        padding-right: 0px; }
+      .row .row-info p.item i.search {
+        display: block;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+        background-image: url("../../imgs/details/search.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        position: absolute;
+        left: 210px;
+        top: 8px; }
+
+.detail table {
+  width: 100%;
+  table-layout: fixed; }
+  .detail table thead tr {
+    font-weight: bold; }
+  .detail table tr:hover {
+    background: #ebebeb; }
+  .detail table tr.active {
+    background: #e7f7fe;
+    border: 1px solid #74d0fd; }
+  .detail table tr {
+    height: 43px;
+    line-height: 43px;
+    border-bottom: 1px solid #dadada;
+    font-size: 12px;
+    color: #252525;
+    display: table;
+    width: 100%;
+    table-layout: fixed; }
+    .detail table tr td i.del {
+      display: block;
+      float: right;
+      width: 16px;
+      height: 20px;
+      background-image: url("../../imgs/details/del.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      margin-top: 10px;
+      cursor: pointer; }
+    .detail table tr td:nth-child(1) i {
+      display: block;
+      float: left;
+      width: 10px;
+      height: 43px;
+      cursor: pointer; }
+    .detail table tr td:nth-child(1) i.down-arrow {
+      background-image: url("../../imgs/details/arrow-down.png");
+      background-repeat: no-repeat;
+      background-position: center; }
+    .detail table tr td:nth-child(1) i.left-arrow {
+      background-image: url("../../imgs/details/arrow-left.png");
+      background-repeat: no-repeat;
+      background-position: center; }
+
+.mask {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: black;
+  opacity: 0.5;
+  -moz-opacity: 0.5;
+  filter: alpha(opacity=60); }
+
+.open-option {
+  width: 524px;
+  height: 444px;
+  border-radius: 5px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -262px;
+  margin-top: -222px;
+  z-index: 23;
+  background: #fefefe; }
+  .open-option p {
+    padding-left: 23px;
+    border-bottom: #0096e0 2px solid;
+    height: 54px;
+    line-height: 54px;
+    font-size: 14px;
+    color: #020202; }
+  .open-option table {
+    width: 477px;
+    margin-left: 23px;
+    margin-right: 23px;
+    height: 307px; }
+    .open-option table tr {
+      border-bottom: 1px solid #dadada;
+      height: 32px;
+      line-height: 32px;
+      font-size: 12px;
+      color: #1d1d1e; }
+      .open-option table tr td:nth-child(1) {
+        width: 10%; }
+      .open-option table tr td:nth-child(2), .open-option table tr td:nth-child(3) {
+        width: 45%; }
+      .open-option table tr input[type='text'] {
+        width: 190px;
+        height: 26px;
+        border: 1px solid #dadada; }
+  .open-option .btn {
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 23px;
+    margin-bottom: 23px;
+    float: right;
+    border: none;
+    cursor: pointer; }
+  .open-option .reset {
+    color: #0096e0;
+    background: #eaeaea;
+    margin-right: 10px; }
+  .open-option .save {
+    color: #eaeaea;
+    background: #0096e0;
+    margin-right: 23px; }

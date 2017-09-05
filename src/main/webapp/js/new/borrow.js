@@ -106,7 +106,7 @@ $(function() {
             });
             //创建表单
             $(".myform").click(function(){
-                window.location.href =  _ctx + "/common/detail";
+                window.location.href =  _ctx + "/common/detail?apptname="+apptnames+"pkid=";
             });
             //收藏
             $(".mycollect").click(function(){
