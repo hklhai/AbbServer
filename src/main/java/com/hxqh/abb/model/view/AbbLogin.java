@@ -23,6 +23,8 @@ public class AbbLogin implements Serializable {
     private String longitude;
     private String dimension;
     private String location;
+    private String orgid;
+
 
     public String getLocation() {
         return location;
@@ -102,5 +104,13 @@ public class AbbLogin implements Serializable {
 
     public void setDisplayname(String displayname) {
         this.displayname = displayname;
+    }
+
+    public String getOrgid() {
+        return orgid;
+    }
+
+    public void setOrgid(String orgid) {
+        this.orgid = orgid;
     }
 }

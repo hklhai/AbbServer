@@ -103,7 +103,7 @@ public class IndexController {
                 if (loginUserList.get(0).getPassword().toUpperCase().equals(password)) {
                     //加入Session中
                     AbbLogin login = loginUserList.get(0);
-                    SessionInfo sessionInfo = new SessionInfo(login.getLoginid(), login.getSiteid(), " ", login.getDisplayname());
+                    SessionInfo sessionInfo = new SessionInfo(login.getLoginid(), login.getSiteid(), login.getOrgid(), login.getDisplayname());
                     sessionInfo.setLongitude(login.getLongitude());
                     sessionInfo.setDimension(login.getDimension());
                     //加入location
