@@ -313,7 +313,7 @@ public class UserServiceImpl implements UserService {
         String tableName = appDetailMap.get(apptname).getApptable();
         String pkName = appDetailMap.get(apptname).getAppfield();
         //属性值
-        List<TbApp> appList = fieldsMap.get(apptname);
+        List<TbApp> appList = detailMap.get(apptname);
         StringBuilder fieldBuilder = new StringBuilder("");
         for (TbApp e : appList) {
             fieldBuilder.append(e.getAppfield()).append(",");
