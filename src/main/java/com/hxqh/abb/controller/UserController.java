@@ -54,9 +54,9 @@ public class UserController {
     /**
      * List公用数据接口
      *
-     * @param apptname 传入VEHICLEACCOUNT,VEHICLEACAPPLY etc.
-     * @param isFavorite   字段名
-     * @param searchs  查询列
+     * @param apptname   传入VEHICLEACCOUNT,VEHICLEACAPPLY etc.
+     * @param isFavorite 字段名
+     * @param searchs    查询列
      * @return
      */
     @ResponseBody
@@ -79,9 +79,27 @@ public class UserController {
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public ModelAndView detail(@RequestParam("apptname") String apptname, @RequestParam("pkid") String pkid) {
         Map<String, Object> result = new HashMap<>();
+        String url = new String();
         result.put("apptname", apptname);
         result.put("pkid", pkid);
-        return new ModelAndView("tool/borrowDetail", result);
+        switch (apptname) {
+            case "BEDACCOUNT":
+                url = "site/bedAccount";
+                break;
+            case "BEDAPPLY":
+                url = "site/bedRequest";
+                break;
+            case "VEHICLEACCOUNT":
+                url = "site/carAccount";
+                break;
+            case "VEHICLEACAPPLY":
+                url = "site/carRequest";
+                break;
+            default:
+                System.out.println("打印默认值");
+                break;
+        }
+        return new ModelAndView(url, result);
     }
 
 
@@ -106,9 +124,8 @@ public class UserController {
 
 
     /**
-     *
-     * @param apptname 传入VEHICLEACCOUNT,VEHICLEACAPPLY etc.
-     * @param favorites 传入将要搜藏或取消搜藏的主键
+     * @param apptname    传入VEHICLEACCOUNT,VEHICLEACAPPLY etc.
+     * @param favorites   传入将要搜藏或取消搜藏的主键
      * @param sessionInfo session信息
      * @return
      */
@@ -127,7 +144,6 @@ public class UserController {
         }
         return message;
     }
-
 
 
 }
