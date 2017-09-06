@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="/WEB-INF/jsp/commons/taglibs.jsp" %>
+<%@ include file="/WEB-INF/jsp/commons/meta.jsp" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -13,6 +15,11 @@
     <link rel="stylesheet" type="text/css" href="${ctx}/css/reset.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/css/detail.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/css/date/jquery.datetimepicker.css"/>
+    <script>
+        var _ctx = '${ctx}';
+        var _apptname = '${apptname}';
+        var _pkid = '${pkid}';
+    </script>
 </head>
 <body>
 <div class="borrow-detail">
@@ -190,6 +197,6 @@
 <script src="${ctx}/js/date/jquery.js"></script>
 <script src="${ctx}/js/date/jquery.datetimepicker.js"></script>
 <script src="${ctx}/js/date/jquerytime.js"></script>
+<script src="${ctx}/js/borrowDetail.js"></script>
 </body>
-
 </html>

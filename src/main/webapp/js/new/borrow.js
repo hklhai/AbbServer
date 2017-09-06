@@ -144,7 +144,8 @@ $(function() {
             });
             //行点击详情页
             $("table.mytable tbody").on("click","tr",function(){
-                var dataId = $(this).find("td").last().text();
+                var dataId = $(this).find("td").last().prev().text();
+                console.log(dataId);
                 window.location.href =  _ctx + "/common/detail?apptname="+apptnames+"&pkid="+dataId;
             });
             //page按钮

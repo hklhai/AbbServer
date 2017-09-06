@@ -81,7 +81,7 @@ public class UserController {
         Map<String, Object> result = new HashMap<>();
         result.put("apptname", apptname);
         result.put("pkid", pkid);
-        return new ModelAndView("tool/lenddetail", result);
+        return new ModelAndView("tool/borrowDetail", result);
     }
 
 
