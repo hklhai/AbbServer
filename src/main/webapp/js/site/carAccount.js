@@ -9,14 +9,19 @@
             },
             dataType: "json",
             success: function (data) {
-
-                $(".carNum").val("123");
-
+                //详情页渲染
+                initInfo(data.object);
             },
             error: function () {
 
             }
         });
+    }
+    function initInfo(data){
+       for(var key in data){
+           var className = "."+key;
+           $(className).text(data[key]);
+       }
     }
     init();
 })();

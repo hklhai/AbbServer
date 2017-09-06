@@ -31,16 +31,16 @@
     <div class="detail-info">
         <p class="item" style="width: 40%;">
             <label for="">申请编号:</label>
-            <span>1100</span>
-            <input type="text" placeholder="描述">
+            <span class="applynum">1100</span>
+            <input type="text" placeholder="描述" class="description">
         </p>
         <p class="item" style="width: 30%;">
             <label for="">状态:</label>
-            <span>APE</span>
+            <span class="status"></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">创建人:</label>
-            <span>AADMIN</span>
+            <span></span>
         </p>
         <p class="item" style="width: 40%;">
             <label for="">申请人:</label>
@@ -50,7 +50,7 @@
 
         <p class="item" style="width: 30%;">
             <label for="">状态日期:</label>
-            <span>2017-03-07 10:03 AM</span>
+            <span></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">创建时间:</label>
@@ -62,20 +62,20 @@
         </p>
         <p class="item" style="width: 30%;">
             <label for="">组织:</label>
-            <span>MAX</span>
+            <span class="orgid"></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">更改人:</label>
-            <span>AADMIN</span>
+            <span></span>
         </p>
 
         <p class="item" style="width: 40%;">
             <label for="">申请原因:</label>
-            <span>wwwwww</span>
+            <span class="reason"></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">地点:</label>
-            <span>M</span>
+            <span></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">更改时间:</label>
@@ -84,12 +84,12 @@
 
         <p class="item" style="width: 40%;">
             <label for="">站长:</label>
-            <input type="text" placeholder="搜索" class="mysearch" style="width: 100px;">
-            <input type="text" placeholder="描述" style="width: 140px;margin-left: 7px;">
+            <input type="text" placeholder="搜索" class="mysearch" style="width: 100px;" class="stationhead">
+            <input type="text" placeholder="描述" style="width: 140px;margin-left: 7px;" class="displayname">
         </p>
         <p class="item" style="width: 30%;">
             <label for="">开始时间:</label>
-            <input type="text" class="datetimepicker7 date"/>
+            <input type="text" class="datetimepicker7 date" class="starttime"/>
         </p>
         <p class="item back-up" style="width: 30%;">
             <label for="">备注:</label>
@@ -98,7 +98,7 @@
         </p>
         <p class="item up" style="width: 40%;">
             <label for="">床位编号:</label>
-            <select name="" id="">
+            <select name="" id="" class="bednum">
                 <option value="" selected="selected">A</option>
                 <option value="">B</option>
                 <option value="">C</option>
@@ -106,15 +106,15 @@
         </p>
         <p class="item right-up" style="width: 30%;">
             <label for="">结束时间:</label>
-            <input type="text" class="datetimepicker7 date"/>
+            <input type="text" class="datetimepicker7 date" class="endtime"/>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">主要电话号码:</label>
-            <span>sss</span>
+            <span class="primaryphone"></span>
         </p>
         <p class="item left-down" style="width: 40%;">
             <label for="">主要电子邮件:</label>
-            <span>12346</span>
+            <span class="primaryemail"></span>
         </p>
 
         <div class="clearfix"></div>
@@ -195,5 +195,6 @@
 <script src="${ctx}/scripts/jquery-1.9.1.min.js"></script>
 <script src="${ctx}/scripts/jquery.datetimepicker.js"></script>
 <script src="${ctx}/js/date/jquerytime.js"></script>
+<script src="${ctx}/js/initDetail.js"></script>
 </body>
 </html>

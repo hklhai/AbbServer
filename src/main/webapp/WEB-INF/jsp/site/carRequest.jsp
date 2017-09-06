@@ -31,16 +31,16 @@
     <div class="detail-info">
         <p class="item" style="width: 40%;">
             <label for="">申请单:</label>
-            <span>1102</span>
-            <input type="text" placeholder="">
+            <span class="applynum">1102</span>
+            <input type="text" placeholder="" class="description">
         </p>
         <p class="item" style="width: 30%;">
             <label for="">创建人:</label>
-            <span>AADMIN</span>
+            <span></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">状  态:</label>
-            <span>APE</span>
+            <span class="status"></span>
         </p>
         <p class="item" style="width: 40%;">
             <label for="">申请人:</label>
@@ -53,23 +53,23 @@
         </p>
         <p class="item" style="width: 30%;">
             <label for="">状态日期:</label>
-            <span>2017-03-07 10:03 AM</span>
+            <span></span>
         </p>
         <p class="item" style="width: 40%;">
             <label for="">申请时间:</label>
-            <span>2017-03-07 10:03 AM</span>
+            <span></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">更改人:</label>
-            <span>AADMIN</span>
+            <span></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">组织:</label>
-            <span>MAX</span>
+            <span></span>
         </p>
         <p class="item" style="width: 40%;">
             <label for="">申请理由:</label>
-            <span>wwwwww</span>
+            <span></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">更改时间:</label>
@@ -81,12 +81,12 @@
         </p>
         <p class="item" style="width: 40%;">
             <label for="">站长:</label>
-            <input type="text" placeholder="搜索" class="mysearch"  style="width: 120px;">
-            <input type="text" placeholder="描述" style="width: 170px;margin-left: 8px;">
+            <input type="text" placeholder="搜索" class="mysearch"  style="width: 120px;" class="stationhead">
+            <input type="text" placeholder="描述" style="width: 170px;margin-left: 8px;" class="displayname">
         </p>
         <p class="item" style="width: 30%;">
             <label for="">车牌号:</label>
-            <select name="" id="">
+            <select name="" id="" class="licence">
                 <option value="" selected="selected">AAA</option>
                 <option value="">BBB</option>
                 <option value="">CCC</option>
@@ -95,27 +95,27 @@
         </p>
         <p class="item" style="width: 30%;">
             <label for="">开始时间:</label>
-            <input type="text" class="datetimepicker7"  style="width: 120px;"/>
+            <input type="text" class="datetimepicker7"  style="width: 120px;" class="starttime"/>
         </p>
         <p class="item" style="width: 40%;">
             <label for="">主要电话号码:</label>
-            <span>12346</span>
+            <span class="primaryphone"></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">出发地:</label>
-            <span>wwwwww</span>
+            <span class="origin"></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">结束时间:</label>
-            <input type="text" class="datetimepicker7"  style="width: 120px;"/>
+            <input type="text" class="datetimepicker7"  style="width: 120px;" class="endtime"/>
         </p>
         <p class="item" style="width: 40%;">
             <label for="">主要电子邮件:</label>
-            <span>12346</span>
+            <span class="primaryemail"></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">目的地:</label>
-            <span>sss</span>
+            <span class="destination"></span>
         </p>
         <div class="clearfix"></div>
     </div>
@@ -195,6 +195,6 @@
 <script src="${ctx}/scripts/jquery-1.9.1.min.js"></script>
 <script src="${ctx}/scripts/jquery.datetimepicker.js"></script>
 <script src="${ctx}/js/date/jquerytime.js"></script>
-<script src="${ctx}/js/site/carRequest.js"></script>
+<script src="${ctx}/js/initDetail.js"></script>
 </body>
 </html>

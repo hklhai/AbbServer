@@ -31,82 +31,81 @@
     <div class="detail-info">
         <p class="item">
             <label for="">车牌号:</label>
-            <span>K888</span>
-            <input type="text" placeholder="描述" style="width: 190px;" class="carNum">
+            <span class="license">K888</span>
+            <input type="text" placeholder="描述" style="width: 190px;" class="desc">
         </p>
         <p class="item">
             <label for="">状态:</label>
-            <span>AADMIN</span>
+            <span class="status"></span>
         </p>
         <p class="item">
             <label for="">状态日期:</label>
-            <span>2014/03/15 05:06</span>
+            <span></span>
         </p>
         <p class="item">
             <label for="">车辆型号:</label>
-            <span>AADMIN</span>
+            <span class="model"></span>
         </p>
         <p class="item">
             <label for="">核定载客:</label>
-            <span>7</span>
+            <span class="seats"></span>
         </p>
-        <p class="item">
+        <p class="it em">
             <label for="">所属站点:</label>
-            <span>GZ</span>
+            <span class="siteid"></span>
         </p>
         <p class="item">
             <label for="">厂牌型号:</label>
-            <span>AADMIN</span>
+            <span></span>
         </p>
         <p class="item">
             <label for="">登记日期:</label>
-            <input type="text" class="datetimepicker7"/>
+            <input type="text" class="datetimepicker7" class="registerDate"/>
         </p>
         <p class="item">
             <label for="">创建人:</label>
-            <span>MAX</span>
+            <span></span>
         </p>
         <p class="item">
             <label for="">车属部门:</label>
-            <span>AADMIN</span>
+            <span class="department"></span>
         </p>
         <p class="item">
             <label for="">出厂日期:</label>
-            <input type="text" class="datetimepicker7"/>
+            <input type="text" class="datetimepicker7" class="factoryDate"/>
         </p>
         <p class="item">
             <label for="">创建时间:</label>
-            <span>2014/03/15 05:06</span>
+            <span></span>
         </p>
 
         <p class="item">
             <label for="">车辆颜色:</label>
-            <span>AADMIN</span>
+            <span class="color"></span>
         </p>
         <p class="item">
             <label for="">重量（KG）:</label>
-            <span>AADMIN</span>
+            <span class="weight"></span>
         </p>
         <p class="item">
             <label for="">更改人:</label>
-            <span>AADMIN</span>
+            <span></span>
         </p>
         <p class="item">
             <label for="">排量（ML）:</label>
-            <span>AADMIN</span>
+            <span class="displacement"></span>
         </p>
         <p class="item">
             <label for="">燃油类型:</label>
-            <select name="" id="">
+            <select name="" id="" class="fueltype">
                 <option value="" selected="selected">汽油</option>
                 <option value="">柴油</option>
                 <option value="">机油</option>
-
             </select>
         </p>
         <p class="item">
             <label for="">更改时间:</label>
-            <span>2014/03/15 05:06</span>
+            <span></span>
         </p>
 
         <div class="clearfix"></div>
@@ -187,6 +186,6 @@
 <script src="${ctx}/scripts/jquery-1.9.1.min.js"></script>
 <script src="${ctx}/scripts/jquery.datetimepicker.js"></script>
 <script src="${ctx}/js/date/jquerytime.js"></script>
-<script src="${ctx}/js/site/carAccount.js"></script>
+<script src="${ctx}/js/initDetail.js"></script>
 </body>
 </html>
