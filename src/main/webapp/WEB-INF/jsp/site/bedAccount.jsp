@@ -30,60 +30,60 @@
     </div>
     <div class="detail-info">
         <p class="item">
-            <label for="">住宿编号:</label>
-            <span>1014</span>
-            <input type="text" placeholder="描述" style="width: 190px;">
+            <label for="BEDNUM">住宿编号:</label>
+            <span class="BEDNUM">1014</span>
+            <input type="text" placeholder="描述" style="width: 190px;" class="DESCRIPTION">
         </p>
 
         <p class="item">
-            <label for="">状态:</label>
-            <span>APE</span>
+            <label for="STATUS">状态:</label>
+            <span class="STATUS">APE</span>
         </p>
         <p class="item">
-            <label for="">创建人:</label>
-            <span>AADMIN</span>
+            <label for="CREATEDBY">创建人:</label>
+            <span class="CREATEDBY">AADMIN</span>
         </p>
         <p class="item">
-            <label for="">建筑:</label>
-            <span>AADMIN</span>
+            <label for="BUILDING">建筑:</label>
+            <span class="BUILDING">AADMIN</span>
         </p>
         <p class="item">
-            <label for="">状态时间:</label>
-            <span>2017-03-07 10:03 AM</span>
+            <label for="STATUSDATE">状态时间:</label>
+            <span >2017-03-07 10:03 AM</span>
         </p>
         <p class="item">
-            <label for="">创建时间:</label>
+            <label for="CREATEDDATE">创建时间:</label>
             <input type="text" value="2014/03/15 05:06" class="datetimepicker7"/><br><br>
         </p>
 
         <p class="item">
-            <label for="">房号:</label>
-            <span>503</span>
+            <label for="FLOOR">房号:</label>
+            <span class="FLOOR">503</span>
         </p>
         <p class="item">
-            <label for="">组织:</label>
-            <span>MAX</span>
+            <label for="ORGID">组织:</label>
+            <span class="ORGID">MAX</span>
         </p>
         <p class="item">
-            <label for="">更改人:</label>
-            <span>wwwwww</span>
+            <label for="CHANGEBY">更改人:</label>
+            <span class="CHANGEBY">wwwwww</span>
         </p>
         <p class="item">
-            <label for="">床号:</label>
-            <span>1</span>
+            <label for="ROOM">床号:</label>
+            <span class="ROOM">1</span>
         </p>
         <p class="item">
-            <label for="">地点:</label>
-            <span>M</span>
+            <label for="SITEID">地点:</label>
+            <span class="SITEID">M</span>
         </p>
         <p class="item">
-            <label for="">更改时间:</label>
+            <label for="CHANGEDATE">更改时间:</label>
             <input type="text" class="datetimepicker7"/>
         </p>
 
         <p class="item">
-            <label for="">位置:</label>
-            <span>wwwwww</span>
+            <label for="LOCATION">位置:</label>
+            <span class="LOCATION">wwwwww</span>
         </p>
 
         <div class="clearfix"></div>
@@ -164,6 +164,6 @@
 <script src="${ctx}/scripts/jquery-1.9.1.min.js"></script>
 <script src="${ctx}/scripts/jquery.datetimepicker.js"></script>
 <script src="${ctx}/js/date/jquerytime.js"></script>
-<script src="${ctx}/js/initDetail.js"></script>
+<script src="${ctx}/js/site/bedAccount.js"></script>
 </body>
 </html>
