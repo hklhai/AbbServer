@@ -17,6 +17,11 @@
     <link rel="stylesheet" type="text/css" href="${ctx}/css/detail.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/css/invuse.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/css/date/jquery.datetimepicker.css">
+    <script>
+        var _ctx = '${ctx}';
+        var _apptname = '${apptname}';
+        var _pkid = '${pkid}';
+    </script>
 </head>
 <body>
 <div class="borrow-detail">
@@ -229,6 +234,7 @@
 </div>
 <script src="${ctx}/scripts/jquery-1.9.1.min.js"></script>
 <script src="${ctx}/scripts/jquery.datetimepicker.js"></script>
+<script src="${ctx}/js/invuse.js"></script>
 <script src="${ctx}/js/initDetail.js"></script>
 <script>
     var logic = function( currentDateTime ){

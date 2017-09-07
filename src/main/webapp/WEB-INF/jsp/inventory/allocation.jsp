@@ -17,6 +17,11 @@
     <link rel="stylesheet" type="text/css" href="${ctx}/css/detail.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/css/invuse.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/css/date/jquery.datetimepicker.css">
+    <script>
+        var _ctx = '${ctx}';
+        var _apptname = '${apptname}';
+        var _pkid = '${pkid}';
+    </script>
 </head>
 <body>
 <div class="borrow-detail">
@@ -24,34 +29,34 @@
     <div class="detail-info">
         <p class="item" style="width: 50%;">
             <label for="">调拨编码/描述:</label>
-            <span class="fixed-width">1020</span>
-            <input type="text" placeholder="描述">
+            <span class="INVUSENUM fixed-width">1020</span>
+            <input type="text" placeholder="描述" class="DESCRIPTION">
         </p>
         <p class="item" style="width: 25%;">
             <label for="">服务站点:</label>
-            <span>GZ</span>
+            <span class="SITEID">GZ</span>
         </p>
         <p class="item" style="width: 25%;">
             <label for="">状态:</label>
-            <span>APE</span>
+            <span class="STATUS">APE</span>
         </p>
         <p class="item" style="width: 50%;">
             <label class="left" for="">仓库编码/描述:</label>
             <select name="" id="" class="left">
-                <option value="" selected="selected">GZ-APP</option>
+                <option value="" selected="selected" class="FROMSTORELOC">GZ-APP</option>
                 <option value="">w</option>
                 <option value="">3</option>
                 <option value="">4</option>
             </select>
-            <input type="text" placeholder="描述" class="left" style="margin-left: 7px;">
+            <input type="text" placeholder="描述" class="LOCATIONS.DESCRIPTION left" style="margin-left: 7px;">
         </p>
         <p class="item" style="width: 25%;">
             <label for="">是否跨站？</label>
-            <input type="checkbox" name="">
+            <input type="checkbox" name="" class="ISSITE">
         </p>
         <p class="item" style="width: 25%;">
             <label for="">附件:</label>
-            <span>标志</span>
+            <span class="">标志</span>
         </p>
         <div class="clearfix"></div>
     </div>
@@ -63,46 +68,17 @@
         <table class="details">
             <thead>
             <tr>
-                <td style="padding-left: 10px;">行号</td>
-                <td>物资</td>
-                <td>描述</td>
-                <td>型号类别</td>
-                <td>原货柜</td>
-                <td>当前数量</td>
-                <td>交易数量</td>
+                <td style="padding-left: 10px;" class="">行号</td>
+                <td class="INVUSENUM">物资</td>
+                <td class="ITEM.DESCRIPTION">描述</td>
+                <td class="ITEM.UDMODEL">型号类别</td>
+                <td class="INVUSELINE">原货柜</td>
+                <td class="INVENTORY.CURBALTOTAL">当前数量</td>
+                <td class="QUANTITY">交易数量</td>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>
-                    <i class="down-arrow"></i>
-                    <span>1</span>
-                </td>
-                <td>1vcr009</td>
-                <td>合闸闭锁电磁铁</td>
-                <td>APPL-RL1110 AC/DC</td>
-                <td></td>
-                <td>0.00</td>
-                <td>
-                    <span>1</span>
-                    <i class="del"></i>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <i class="left-arrow"></i>
-                    <span>1</span>
-                </td>
-                <td>1vcr009</td>
-                <td>合闸闭锁电磁铁</td>
-                <td>APPL-RL1110 AC/DC</td>
-                <td></td>
-                <td>0.00</td>
-                <td>
-                    <span>1</span>
-                    <i class="del"></i>
-                </td>
-            </tr>
+
             </tbody>
         </table>
         <div class="page">
@@ -118,32 +94,32 @@
             <div class="layout">
                 <p class="item">
                     <label for="">物资:</label>
-                    <span>1vvR0030310</span>
+                    <span class="INVUSENUM">1vvR0030310</span>
                 </p>
                 <p class="item">
                     <label for="">交易成本:</label>
-                    <span>1vvR0030310</span>
+                    <span class="">1vvR0030310</span>
                 </p>
                 <p class="item">
                     <label for="">型号类别:</label>
-                    <span>1vvR0030310</span>
+                    <span class="ITEM.UDMODEL">1vvR0030310</span>
                 </p>
                 <p class="item">
                     <label for="">单位成本:</label>
-                    <span>1vvR0030310</span>
+                    <span class="DISPLAYUNITCOST">1vvR0030310</span>
                 </p>
                 <p class="item">
                     <label for="">当前余量:</label>
-                    <span>1vvR0030310</span>
+                    <span class="INVENTORY.CURBALTOTAL">1vvR0030310</span>
                 </p>
                 <p class="item">
                     <label for="">行成本:</label>
-                    <span>1vvR0030310</span>
+                    <span class="DISPLAYLINECOST">1vvR0030310</span>
                 </p>
                 <p class="item">
                     <label for="">原货柜：</label>
                     <i class="search"></i>
-                    <input type="text">
+                    <input type="text" class="INVUSELINE">
                 </p>
                 <div class="clearfix"></div>
             </div>
@@ -154,16 +130,16 @@
                 <p class="item">
                     <label for="">目标货柜:</label>
                     <i class="search"></i>
-                    <input type="text">
+                    <input type="text" class="TOBIN">
                 </p>
                 <p class="item">
                     <label for="">备注:</label>
-                    <span>1vvR0030310</span>
+                    <span class="REMARK">1vvR0030310</span>
                 </p>
                 <p class="item">
                     <label for="">目标库房:</label>
                     <select name="" id="" class="left">
-                        <option value="" selected="selected">GZ-APP</option>
+                        <option value="" selected="selected" class="TOSTORELOC">GZ-APP</option>
                         <option value="">w</option>
                         <option value="">3</option>
                         <option value="">4</option>
@@ -171,20 +147,20 @@
                 </p>
                 <p class="item">
                     <label for="">实际日期:</label>
-                    <input type="text" id="datetimepicker7">
+                    <input type="text" id="datetimepicker7" class="ACTUALDATE">
                 </p>
                 <p class="item">
                     <label for="">发放目标:</label>
-                    <span>1vvR0030310</span>
+                    <span class="ISSUETO">1vvR0030310</span>
                 </p>
                 <p class="item">
                     <label for="">输入人:</label>
-                    <span>1vvR0030310</span>
+                    <span class="ENTERBY">1vvR0030310</span>
                 </p>
                 <p class="item">
                     <label for="">目标地点</label>
                     <i class="search"></i>
-                    <input type="text">
+                    <input type="text" class="TOSITEID">
                 </p>
             </div>
         </div>
@@ -193,7 +169,8 @@
 </div>
 <script src="${ctx}/scripts/jquery-1.9.1.min.js"></script>
 <script src="${ctx}/scripts/jquery.datetimepicker.js"></script>
-<script src="${ctx}/js/invuse.js"></script>
+<%--<script src="${ctx}/js/invuse.js"></script>--%>
+<script src="${ctx}/js/initDetail.js"></script>
 <script>
     var logic = function( currentDateTime ){
         if( currentDateTime.getDay()==6 ){

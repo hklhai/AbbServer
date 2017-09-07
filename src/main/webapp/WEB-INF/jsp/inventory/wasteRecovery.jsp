@@ -17,6 +17,11 @@
     <link rel="stylesheet" type="text/css" href="${ctx}/css/detail.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/css/invuse.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/css/date/jquery.datetimepicker.css">
+    <script>
+        var _ctx = '${ctx}';
+        var _apptname = '${apptname}';
+        var _pkid = '${pkid}';
+    </script>
 </head>
 <body>
 <div class="borrow-detail">
@@ -25,20 +30,20 @@
         <p class="item" style="width: 40%;">
             <label for="">回收编码/描述:</label>
             <select name="" id="" class="left">
-                <option value="" selected="selected">GZ-APP</option>
+                <option value="" selected="selected" class="PONUM">GZ-APP</option>
                 <option value="">w</option>
                 <option value="">3</option>
                 <option value="">4</option>
             </select>
-            <input type="text" style="margin-left: 8px;">
+            <input type="text" style="margin-left: 8px;" class="DESCRIPTION">
         </p>
         <p class="item" style="width: 20%;">
             <label for="">服务站点:</label>
-            <span>GZ</span>
+            <span class="SITEID">GZ</span>
         </p>
         <p class="item" style="width: 20%;">
             <label for="">状态:</label>
-            <span>APE</span>
+            <span class="STATUS">APE</span>
         </p>
         <p class="item" style="width: 20%;">
             <label for="">附件:</label>
@@ -46,11 +51,11 @@
         </p>
         <p class="item" style="width: 40%;">
             <label class="left" for="">订购日期:</label>
-            <input type="text" id="datetimepicker7" style="width: 120px;">
+            <input type="text" id="datetimepicker7" style="width: 120px;" class="ORDERDATE">
         </p>
         <p class="item" style="width: 20%;" >
             <label for="">接收:</label>
-            <span>0.00</span>
+            <span class="RECEIPTS">0.00</span>
         </p>
         <p class="item" style="width: 40%;">
             <label class="left" for="">状态日期:</label>
@@ -66,46 +71,17 @@
         <table class="details">
             <thead>
             <tr>
-                <td style="padding-left: 10px;">行号</td>
-                <td>物资编码</td>
-                <td>描述</td>
-                <td>型号类别</td>
-                <td>数量</td>
-                <td>单位成本</td>
-                <td>行成本</td>
+                <td style="padding-left: 10px;" class="POLINENUM">行号</td>
+                <td class="ITEMNUM">物资编码</td>
+                <td class="ITEM.DESCRIPTION">描述</td>
+                <td class="ITEM.UDMODEL">型号类别</td>
+                <td class="ORDERQTY">数量</td>
+                <td class="UNITCOST">单位成本</td>
+                <td class="LINECOST">行成本</td>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>
-                    <i class="down-arrow"></i>
-                    <span>1</span>
-                </td>
-                <td>1vcr009</td>
-                <td>合闸闭锁电磁铁</td>
-                <td>APPL-RL1110 AC/DC</td>
-                <td>APPL-RL1110 AC/DC</td>
-                <td>APPL-RL1110 AC/DC</td>
-                <td>
-                    <span>1</span>
-                    <i class="del"></i>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <i class="left-arrow"></i>
-                    <span>1</span>
-                </td>
-                <td>1vcr009</td>
-                <td>合闸闭锁电磁铁</td>
-                <td>APPL-RL1110 AC/DC</td>
-                <td>APPL-RL1110 AC/DC</td>
-                <td>APPL-RL1110 AC/DC</td>
-                <td>
-                    <span>1</span>
-                    <i class="del"></i>
-                </td>
-            </tr>
+
             </tbody>
         </table>
         <div class="page">
@@ -121,26 +97,26 @@
             <div class="layout">
                 <p class="item">
                     <label for="">行:</label>
-                    <span>1vvR0030310</span>
+                    <span class="POLINENUM">1vvR0030310</span>
                 </p>
                 <p class="item">
                     <label for="">数量:</label>
-                    <span>1.00</span>
+                    <span class="ORDERQTY">1.00</span>
                 </p>
                 <p class="item">
                     <label for="">物资:</label>
                     <select name="" id="" class="left">
-                        <option value="" selected="selected">GZ-APP</option>
+                        <option value="" selected="selected" class="ITEMNUM">GZ-APP</option>
                         <option value="">w</option>
                         <option value="">3</option>
                         <option value="">4</option>
                     </select>
-                    <input type="text" class="left" style="margin-left: 7px;">
+                    <input type="text" class="ITEM.DESCRIPTION left" style="margin-left: 7px;" >
                 </p>
                 <p class="item">
                     <label for="">库房:</label>
                     <select name="" id="" class="left">
-                        <option value="" selected="selected">GZ-APP</option>
+                        <option value="" selected="selected" class="STORELOC">GZ-APP</option>
                         <option value="">w</option>
                         <option value="">3</option>
                         <option value="">4</option>
@@ -148,12 +124,12 @@
                 </p>
                 <p class="item">
                     <label for="">型号类别:</label>
-                    <span>1vvR0030310</span>
+                    <span class="ITEM.UDMODEL">1vvR0030310</span>
                 </p>
                 <p class="item">
                     <label for="">来源:</label>
                     <select name="" id="" class="left">
-                        <option value="" selected="selected">GZ-APP</option>
+                        <option value="" selected="selected" class="UDRESOURCE">GZ-APP</option>
                         <option value="">w</option>
                         <option value="">3</option>
                         <option value="">4</option>
@@ -167,23 +143,23 @@
             <div class="layout">
                 <p class="item">
                     <label for="">输入日期:</label>
-                    <span>2017-03-15 10:23:23</span>
+                    <span class="ENTERDATE">2017-03-15 10:23:23</span>
                 </p>
                 <p class="item">
                     <label for="">收货方:</label>
                     <i class="search"></i>
-                    <input type="text">
+                    <input type="text" class="SHIPTO">
                 </p>
                 <p class="item">
                     <label for="">请求者:</label>
                     <i class="search"></i>
-                    <input type="text">
-                    <input type="text"  style="margin-left: 8px;">
+                    <input type="text" class="REQUESTEDBY">
+                    <input type="text"  style="margin-left: 8px;" class="PERSON.DISPLAYNAME">
                 </p>
                 <p class="item">
                     <label for="">地点:</label>
                     <i class="search"></i>
-                    <input type="text">
+                    <input type="text" class="TOSITEID">
                 </p>
             </div>
         </div>
@@ -194,70 +170,31 @@
         <table>
             <thead>
             <tr>
-                <td width="20%">人员</td>
-                <td width="20%">名称</td>
-                <td width="20%">描述</td>
-                <td width="40%">过程</td>
+                <td width="20%" class="ASSIGNCODE">人员</td>
+                <td width="20%" class="PERSON.DISPLAYNAME">名称</td>
+                <td width="20%" class="DESCRIPTION">描述</td>
+                <td width="40%" class="PROCESSNAME">过程</td>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1323323</td>
-                <td>冯辉</td>
-                <td>请审批工具报告申请1020</td>
-                <td>WTODLAPPL</td>
-            </tr>
+
             </tbody>
         </table>
     </div>
     <div class="apply-record">
-        <h5>下一个审批人</h5>
+        <h5>审批记录</h5>
         <table>
             <thead>
             <tr>
-                <td width="20%">人员</td>
-                <td width="20%">名称</td>
-                <td width="20%">描述</td>
-                <td width="15%">交易日期</td>
-                <td width="25%">备忘录</td>
+                <td width="20%" class="PERSONID">人员</td>
+                <td width="20%" class="PERSON.DISPLAYNAME">名称</td>
+                <td width="20%" class="DESCRIPTION">描述</td>
+                <td width="15%" class="TRANSDATE">交易日期</td>
+                <td width="25%" class="MEMO">备忘录</td>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
+
             </tbody>
         </table>
     </div>
@@ -265,6 +202,7 @@
 <script src="${ctx}/scripts/jquery-1.9.1.min.js"></script>
 <script src="${ctx}/scripts/jquery.datetimepicker.js"></script>
 <script src="${ctx}/js/invuse.js"></script>
+<script src="${ctx}/js/initDetail.js"></script>
 <script>
     var logic = function( currentDateTime ){
         if( currentDateTime.getDay()==6 ){

@@ -17,6 +17,11 @@
     <link rel="stylesheet" type="text/css" href="${ctx}/css/detail.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/css/invuse.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/css/date/jquery.datetimepicker.css">
+    <script>
+        var _ctx = '${ctx}';
+        var _apptname = '${apptname}';
+        var _pkid = '${pkid}';
+    </script>
 </head>
 <body>
 <div class="borrow-detail">
@@ -24,9 +29,9 @@
     <div class="detail-info">
         <p class="item" style="width: 40%;">
             <label for="">交易编码/描述:</label>
-            <span>APE</span>
+            <span class="PONUM">APE</span>
             <select name="" id="" class="left">
-                <option value="" selected="selected">GZ-APP</option>
+                <option value="" selected="selected" class="DESCRIPTION">GZ-APP</option>
                 <option value="">w</option>
                 <option value="">3</option>
                 <option value="">4</option>
@@ -34,29 +39,29 @@
         </p>
         <p class="item" style="width: 20%;">
             <label for="">状态:</label>
-            <span>GZ</span>
+            <span class="STATUS">GZ</span>
         </p>
         <p class="item" style="width: 20%;">
             <label for="">合计金额:</label>
-            <span>APE</span>
+            <span class="UDTOTAL">APE</span>
         </p>
         <p class="item" style="width: 40%;">
             <label for="">仓库编码/描述:</label>
             <select name="" id="" class="left">
-                <option value="" selected="selected">GZ-APP</option>
+                <option value="" selected="selected" class="ORDERDATE">GZ-APP</option>
                 <option value="">w</option>
                 <option value="">3</option>
                 <option value="">4</option>
             </select>
-            <input type="text" style="margin-left: 8px;">
+            <input type="text" style="margin-left: 8px;" class="LOCATIONS.DESCRIPTION">
         </p>
         <p class="item" style="width: 20%;">
             <label for="">服务站点:</label>
-            <span>APE</span>
+            <span class="SITEID">APE</span>
         </p>
         <p class="item" style="width: 20%;" >
             <label for="">附加:</label>
-            <span>0.00</span>
+            <span class="">0.00</span>
         </p>
         <div class="clearfix"></div>
     </div>
@@ -68,46 +73,17 @@
         <table class="details">
             <thead>
             <tr>
-                <td style="padding-left: 10px;">行号</td>
-                <td>物资编码</td>
-                <td>描述</td>
-                <td>型号类别</td>
-                <td>数量</td>
-                <td>单位成本</td>
-                <td>行成本</td>
+                <td style="padding-left: 10px;" class="INVUSELINENUM">行号</td>
+                <td class="ITEMNUM">物资编码</td>
+                <td class="ITEM.DESCRIPTION">描述</td>
+                <td class="ITEM.UDMODEL">型号类别</td>
+                <td class="">数量</td>
+                <td class="DISPLAYUNITCOST">单位成本</td>
+                <td class="DISPLAYLINECOST">行成本</td>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>
-                    <i class="down-arrow"></i>
-                    <span>1</span>
-                </td>
-                <td>1vcr009</td>
-                <td>合闸闭锁电磁铁</td>
-                <td>APPL-RL1110 AC/DC</td>
-                <td>APPL-RL1110 AC/DC</td>
-                <td>APPL-RL1110 AC/DC</td>
-                <td>
-                    <span>1</span>
-                    <i class="del"></i>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <i class="left-arrow"></i>
-                    <span>1</span>
-                </td>
-                <td>1vcr009</td>
-                <td>合闸闭锁电磁铁</td>
-                <td>APPL-RL1110 AC/DC</td>
-                <td>APPL-RL1110 AC/DC</td>
-                <td>APPL-RL1110 AC/DC</td>
-                <td>
-                    <span>1</span>
-                    <i class="del"></i>
-                </td>
-            </tr>
+
             </tbody>
         </table>
         <div class="page">
@@ -123,45 +99,45 @@
             <div class="layout">
                 <p class="item">
                     <label for="">物资:</label>
-                    <span>1vvR0030310</span>
-                    <input type="text" class="left" style="margin-left: 7px;">
+                    <span class="ITEMNUM">1vvR0030310</span>
+                    <input type="text" class="ITEM.DESCRIPTION left" style="margin-left: 7px;">
                 </p>
                 <p class="item">
                     <label for="">交易数量:</label>
-                    <span>1.00</span>
+                    <span class="QUANTITY">1.00</span>
                 </p>
                 <p class="item">
                     <label for="">型号类别:</label>
-                    <span>1vvR0030310</span>
+                    <span class="ITEM.UDMODEL">1vvR0030310</span>
                 </p>
                 <p class="item">
                     <label for="">发放单位:</label>
-                    <span>1vvR0030310</span>
+                    <span class="ISSUEUNIT">1vvR0030310</span>
                 </p>
                 <p class="item">
                     <label for="">当前余量:</label>
-                    <span>1.00</span>
+                    <span class="CURBALTOTAL">1.00</span>
                 </p>
                 <p class="item">
                     <label for="">单位成本:</label>
-                    <span>1.00</span>
+                    <span class="DISPLAYUNITCOST">1.00</span>
                 </p>
                 <p class="item">
                     <label for="">接收人:</label>
-                    <span>1.00</span>
+                    <span class="STORELOC">1.00</span>
                 </p>
                 <p class="item">
                     <label for="">行成本:</label>
-                    <span>1.00</span>
+                    <span class="DISPLAYLINECOST">1.00</span>
                 </p>
                 <p class="item" style="width: 100%;">
                     <label for="" style="width: 80px;">使用情况类型:</label>
-                    <span>1.00</span>
+                    <span class="USETYPE">1.00</span>
                 </p>
                 <p class="item" style="width: 100%;">
                     <label for="">货柜:</label>
                     <i class="search"></i>
-                    <input type="text">
+                    <input type="text" class="FROMBIN">
                 </p>
                 <div class="clearfix"></div>
             </div>
@@ -171,7 +147,7 @@
             <div class="layout">
                 <p class="item">
                     <label for="">工单:</label>
-                    <select name="" id="">
+                    <select name="" id="" class="WONUM">
                         <option value="">1</option>
                         <option value="">2</option>
                         <option value="">3</option>
@@ -180,16 +156,16 @@
                 </p>
                 <p class="item">
                     <label for="">输入人:</label>
-                    <span>sdfdsf</span>
+                    <span class="ENTERBY">sdfdsf</span>
                 </p>
                 <p class="item">
                     <label for="">任务:</label>
                     <i class="search"></i>
-                    <input type="text">
+                    <input type="text" class="TASKID">
                 </p>
                 <p class="item">
                     <label for="">备注:</label>
-                    <span>sdfdsf</span>
+                    <span class="REMARK">sdfdsf</span>
                 </p>
             </div>
         </div>
@@ -200,70 +176,31 @@
         <table>
             <thead>
             <tr>
-                <td width="20%">人员</td>
-                <td width="20%">名称</td>
-                <td width="20%">描述</td>
-                <td width="40%">过程</td>
+                <td width="20%" class="ASSIGNCODE">人员</td>
+                <td width="20%" class="PERSON.DISPLAYNAME">名称</td>
+                <td width="20%" class="DESCRIPTION">描述</td>
+                <td width="40%" class="PROCESSNAME">过程</td>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1323323</td>
-                <td>冯辉</td>
-                <td>请审批工具报告申请1020</td>
-                <td>WTODLAPPL</td>
-            </tr>
+
             </tbody>
         </table>
     </div>
     <div class="apply-record">
-        <h5>下一个审批人</h5>
+        <h5>审批记录</h5>
         <table>
             <thead>
             <tr>
-                <td width="20%">人员</td>
-                <td width="20%">名称</td>
-                <td width="20%">描述</td>
-                <td width="15%">交易日期</td>
-                <td width="25%">备忘录</td>
+                <td width="20%" class="PERSONID">人员</td>
+                <td width="20%" class="PERSON.DISPLAYNAME">名称</td>
+                <td width="20%" class="DESCRIPTION">描述</td>
+                <td width="15%" class="TRANSDATE">交易日期</td>
+                <td width="25%" class="MEMO">备忘录</td>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
+
             </tbody>
         </table>
     </div>
@@ -271,6 +208,7 @@
 <script src="${ctx}/scripts/jquery-1.9.1.min.js"></script>
 <script src="${ctx}/scripts/jquery.datetimepicker.js"></script>
 <script src="${ctx}/js/invuse.js"></script>
+<script src="${ctx}/js/initDetail.js"></script>
 <script>
     var logic = function( currentDateTime ){
         if( currentDateTime.getDay()==6 ){

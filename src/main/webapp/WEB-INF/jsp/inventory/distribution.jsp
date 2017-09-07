@@ -108,7 +108,7 @@
         </table>
     </div>
     <div class="apply-record">
-        <h5>下一个审批人</h5>
+        <h5>审批记录</h5>
         <table>
             <thead>
             <tr>
