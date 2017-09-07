@@ -42,12 +42,12 @@
 </div>--%>
 <div id="mask"></div>
 <div class="equip-layout">
-    <div class="equip-nav" style="display: none;">
+    <div class="equip-nav" style="display: block;z-index:10000000;">
         <ul class="father-ul">
             <li class="father-ul-a" style="margin-top: 16px;"><a href="javascript:;" class="left-bag">现场及设备地图</a></li>
             <li class="father-ul-li">
                 <a href="javascript:;" class="left-down">设备及位置</a>
-                <ul class="child-ul" style="display: none;">
+                <ul class="child-ul" style="display: none;z-index: 1000000;background: #000;">
                     <c:forEach var="locationList" items="${abbLocationList}">
                         <li><a class="treeShow" id="${locationList.location}"><c:out
                                 value="${locationList.description}"/></a></li>
@@ -551,6 +551,7 @@
         });
         //一期迁移
         $("#equip",window.parent.document).click(function(){
+            alert("aaaaaaaa");
             $(".child-ul").toggle();
         });
 
