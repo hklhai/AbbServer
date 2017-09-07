@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="/WEB-INF/jsp/commons/taglibs.jsp" %>
+<%@ include file="/WEB-INF/jsp/commons/meta.jsp" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -16,7 +18,7 @@
 </head>
 <body>
 <div class="borrow-detail">
-    <h4>工具借还/1120</h4>
+    <h4>工具修丢弃/1120</h4>
     <div class="detail-info">
         <p class="item">
             <label for="">申请编号:</label>
