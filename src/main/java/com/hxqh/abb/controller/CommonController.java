@@ -6,12 +6,13 @@ import com.hxqh.abb.model.dto.action.DetailDto;
 import com.hxqh.abb.model.dto.action.ListDto;
 import com.hxqh.abb.model.dto.action.Message;
 import com.hxqh.abb.model.searchdto.Page;
-import com.hxqh.abb.service.UserService;
+import com.hxqh.abb.service.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,15 +24,37 @@ import java.util.Map;
 @Controller
 @RequestMapping("/common")
 @SessionAttributes(value = "sessionInfo")
-public class UserController {
-    @Autowired
-    private UserService userService;
+public class CommonController {
 
-    @RequestMapping(value = "/showRegionMap", method = RequestMethod.GET)
-    public String showRegionMap() {
-        Map<String, Object> result = new HashMap<>();
-        return "/login";
+    private static Map<String, String> map = new HashMap<>();
+
+    @Autowired
+    private CommonService commonService;
+
+    @PostConstruct
+    public Map<String, String> initUrlMap() {
+        map.put("WXAPPLY", "weixinApply/applyDetail");    //微信用户申请列表主键
+        map.put("WORKORDERMANAGEMENT", "exec/workOrder");    //工单信息主键
+        map.put("WASTERECOVERY", "inventory/wasteRecovery");    //废料回收列表主键
+        map.put("VEHICLEACCOUNT", "site/carAccount");    //车辆台账列表主键
+        map.put("VEHICLEACAPPLY", "site/carRequest");    //车辆申请信息主键
+        map.put("TOOLlEND", "tool/borrowDetail");    //工具借还列表主键
+        map.put("TOOLCHK", "tool/toolcheck");    //工具校准单列表主键
+        map.put("TOOLAPPLY", "tool/toolthrow");    //工具修丢废列表主键
+        map.put("TOOLACCOUNT", "一期系统");    //工具台账列表主键
+        map.put("PURCHASEODER", "inventory/purchase");    //采购清单列表主键
+        map.put("PORECEIVE", "inventory/accept");    //接收列表主键
+        map.put("OLDRECOVERY", "inventory/oldRecovery");    //旧料回收列表主键
+        map.put("INVENTORYREFUND", "inventory/refund");    //物资退库列表主键
+        map.put("INVENTORYGRANT", "inventory/distribution");    //物资发放列表主键
+        map.put("INVENTORYCHK", "inventory/stockTaking");    //库存盘点列表主键
+        map.put("INVENTORYALLOCATE", "inventory/allocation");    //备件调拨列表主键
+        map.put("BEDAPPLY", "site/bedRequest");    //住宿申请列表主键
+        map.put("BEDACCOUNT", "site/bedAccount");    //住宿台账列表主键
+
+        return map;
     }
+
 
     /**
      * List 公用
@@ -42,8 +65,8 @@ public class UserController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ModelAndView list(@RequestParam("apptname") String apptname) {
         Map<String, Object> result = new HashMap<>();
-        List<TbApp> titles = userService.getAppInfo(apptname);
-        String title = userService.getAppName(apptname).getAppchname().replaceAll("列表主键", "");
+        List<TbApp> titles = commonService.getAppInfo(apptname);
+        String title = commonService.getAppName(apptname).getAppchname().replaceAll("列表主键", "");
         result.put("titles", titles);
         result.put("title", title);
         result.put("apptname", apptname);
@@ -68,7 +91,7 @@ public class UserController {
                         @ModelAttribute("sessionInfo") SessionInfo sessionInfo) {
         ListDto listData = null;
         try {
-            listData = userService.vehicleListData(page, apptname, isFavorite, searchs, sessionInfo.getLoginId());
+            listData = commonService.vehicleListData(page, apptname, isFavorite, searchs, sessionInfo.getLoginId());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -79,27 +102,10 @@ public class UserController {
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public ModelAndView detail(@RequestParam("apptname") String apptname, @RequestParam("pkid") String pkid) {
         Map<String, Object> result = new HashMap<>();
-        String url = new String();
+        Map<String, String> urlMap = initUrlMap();
         result.put("apptname", apptname);
         result.put("pkid", pkid);
-        switch (apptname) {
-            case "BEDACCOUNT":
-                url = "site/bedAccount";
-                break;
-            case "BEDAPPLY":
-                url = "site/bedRequest";
-                break;
-            case "VEHICLEACCOUNT":
-                url = "site/carAccount";
-                break;
-            case "VEHICLEACAPPLY":
-                url = "site/carRequest";
-                break;
-            default:
-                System.out.println("打印默认值");
-                break;
-        }
-        return new ModelAndView(url, result);
+        return new ModelAndView(urlMap.get(apptname), result);
     }
 
 
@@ -115,7 +121,7 @@ public class UserController {
     public DetailDto detailData(@RequestParam("apptname") String apptname, @RequestParam("pkid") String pkid) {
         DetailDto data = null;
         try {
-            data = userService.detailData(apptname, pkid);
+            data = commonService.detailData(apptname, pkid);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -137,7 +143,7 @@ public class UserController {
         Message message = new Message(1, "Success", true);
 
         try {
-            userService.favorites(apptname, favorites, sessionInfo.getLoginId());
+            commonService.favorites(apptname, favorites, sessionInfo.getLoginId());
         } catch (Exception e) {
             e.printStackTrace();
             return new Message(0, "Fail", false);

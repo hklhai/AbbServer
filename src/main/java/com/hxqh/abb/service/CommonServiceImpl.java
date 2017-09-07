@@ -29,15 +29,15 @@ import java.util.*;
  * Created by lh on 2017/4/14.
  */
 @Transactional
-@Service("userService")
-public class UserServiceImpl implements UserService {
+@Service("commonService")
+public class CommonServiceImpl implements CommonService {
 
-    static Map<String, TbApp> appListMap = new HashMap<>();
-    static Map<String, TbApp> appDetailMap = new HashMap<>();
-    static Map<String, List<TbApp>> fieldsMap = new LinkedHashMap<>();
-    static Map<String, List<TbApp>> detailMap = new LinkedHashMap<>();
-    static Map<String, List<TbApp>> childMap = new LinkedHashMap<>();
-    static Map<String, List<Relation>> relativeMap = new LinkedHashMap<>();
+    private static Map<String, TbApp> appListMap = new HashMap<>();
+    private static Map<String, TbApp> appDetailMap = new HashMap<>();
+    private static Map<String, List<TbApp>> fieldsMap = new LinkedHashMap<>();
+    private static Map<String, List<TbApp>> detailMap = new LinkedHashMap<>();
+    private static Map<String, List<TbApp>> childMap = new LinkedHashMap<>();
+    private static Map<String, List<Relation>> relativeMap = new LinkedHashMap<>();
 
     @Autowired
     private UserDao userDao;

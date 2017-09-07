@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by lh on 2017/4/14.
  */
-public interface UserService {
+public interface CommonService {
 
     List<User> getUserList();
 

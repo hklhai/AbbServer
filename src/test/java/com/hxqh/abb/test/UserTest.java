@@ -4,12 +4,10 @@ import com.alibaba.fastjson.JSON;
 //import com.hxqh.abb.hello.GreetingInScala;
 import com.hxqh.abb.dao.UdtoolApplyDao;
 import com.hxqh.abb.dao.UdtoolLendDao;
-import com.hxqh.abb.model.UdtoolApply;
-import com.hxqh.abb.model.UdtoolLend;
 import com.hxqh.abb.model.User;
 import com.hxqh.abb.model.assist.InterfaceMessage;
 import com.hxqh.abb.service.ToolService;
-import com.hxqh.abb.service.UserService;
+import com.hxqh.abb.service.CommonService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,7 +32,7 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class UserTest {
     @Resource
-    private UserService userService;
+    private CommonService commonService;
     @Resource
     private UdtoolApplyDao udtoolapplydao;
     @Resource
@@ -112,7 +110,7 @@ public class UserTest {
 
     //@Test
     public void testGetTestBook() {
-        List<User> userList = userService.getUserList();
+        List<User> userList = commonService.getUserList();
         Assert.assertEquals(3, userList.size());
     }
 
