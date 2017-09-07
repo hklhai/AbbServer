@@ -31,7 +31,7 @@
             for(var key in data){
                 var className = "."+key;
                 if($(className)[0]){
-                    if($(className)[0].nodeName=='SPAN'){
+                    if($(className)[0].nodeName=='SPAN'||$(className)[0].nodeName=='OPTION'){
                         $(className).text(data[key]);
                     }else{
                         $(className).val(data[key]);
