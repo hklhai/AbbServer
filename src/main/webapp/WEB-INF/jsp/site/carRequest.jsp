@@ -130,14 +130,7 @@
                 <td width="40%">过程</td>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>1323323</td>
-                <td>冯辉</td>
-                <td>请审批工具报告申请1020</td>
-                <td>WTODLAPPL</td>
-            </tr>
-            </tbody>
+            <tbody></tbody>
         </table>
     </div>
     <div class="apply-record">
@@ -152,43 +145,7 @@
                 <td width="25%">备忘录</td>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            </tbody>
+            <tbody></tbody>
         </table>
     </div>
 </div>

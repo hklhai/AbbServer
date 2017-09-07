@@ -2,6 +2,7 @@
   width: 96%;
   padding-left: 2%;
   padding-right: 2%;
+  padding-bottom: 50px;
 }
 .borrow-detail h4{
   width: 100%;
@@ -96,7 +97,7 @@ table tbody tr td{
 }
 .apply-record table tbody{
     display:block;
-    height:220px;
+    max-height:220px;
     overflow-y:auto;
 }
 .next-apply,.apply-record{

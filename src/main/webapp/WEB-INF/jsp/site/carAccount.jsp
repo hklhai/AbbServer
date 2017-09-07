@@ -32,7 +32,7 @@
         <p class="item">
             <label for="">车牌号:</label>
             <span class="license">K888</span>
-            <input type="text" placeholder="描述" style="width: 190px;" class="desc">
+            <input type="text" placeholder="描述" style="width: 160px;" class="desc">
         </p>
         <p class="item">
             <label for="">状态:</label>
@@ -50,7 +50,7 @@
             <label for="">核定载客:</label>
             <span class="seats"></span>
         </p>
-        <p class="it em">
+        <p class="item">
             <label for="">所属站点:</label>
             <span class="siteid"></span>
         </p>
@@ -107,79 +107,35 @@
             <label for="">更改时间:</label>
             <span></span>
         </p>
-
         <div class="clearfix"></div>
     </div>
     <div class="next-apply">
         <h5>下一个审批人</h5>
         <table>
             <thead>
-            <tr>
-                <td width="20%">人员</td>
-                <td width="20%">名称</td>
-                <td width="20%">描述</td>
-                <td width="40%">过程</td>
-            </tr>
+                <tr>
+                    <td width="20%">人员</td>
+                    <td width="20%">名称</td>
+                    <td width="20%">描述</td>
+                    <td width="40%">过程</td>
+                </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>1323323</td>
-                <td>冯辉</td>
-                <td>请审批工具报告申请1020</td>
-                <td>WTODLAPPL</td>
-            </tr>
-            </tbody>
+            <tbody></tbody>
         </table>
     </div>
     <div class="apply-record">
         <h5>审批记录</h5>
         <table>
             <thead>
-            <tr>
-                <td width="20%">人员</td>
-                <td width="20%">名称</td>
-                <td width="20%">描述</td>
-                <td width="15%">交易日期</td>
-                <td width="25%">备忘录</td>
-            </tr>
+                <tr>
+                    <td width="20%">人员</td>
+                    <td width="20%">名称</td>
+                    <td width="20%">描述</td>
+                    <td width="15%">交易日期</td>
+                    <td width="25%">备忘录</td>
+                </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            </tbody>
+            <tbody></tbody>
         </table>
     </div>
 </div>
