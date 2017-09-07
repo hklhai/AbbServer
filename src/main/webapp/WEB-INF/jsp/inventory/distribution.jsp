@@ -176,7 +176,8 @@
 </div>
     <script src="${ctx}/scripts/jquery-1.9.1.min.js"></script>
     <script src="${ctx}/scripts/jquery.datetimepicker.js"></script>
-    <script src="${ctx}/js/invuse.js"></script>
+    <%--<script src="${ctx}/js/invuse.js"></script>--%>
+<script src="${ctx}/js/initDetail.js"></script>
     <script>
         var logic = function( currentDateTime ){
             if( currentDateTime.getDay()==6 ){

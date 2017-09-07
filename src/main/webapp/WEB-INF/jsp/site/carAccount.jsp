@@ -32,7 +32,7 @@
         <p class="item">
             <label for="">车牌号:</label>
             <span class="license">K888</span>
-            <input type="text" placeholder="描述" style="width: 160px;" class="desc">
+            <input type="text" placeholder="描述" style="width: 160px;" class="description">
         </p>
         <p class="item">
             <label for="">状态:</label>
