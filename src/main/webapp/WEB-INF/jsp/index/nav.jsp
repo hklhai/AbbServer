@@ -45,15 +45,15 @@
         <li style="margin-top: 30px;">
             <i class="home nav-icon"></i>
             <a href="${ctx}/index/index" target="menuFrame">首页</a>
-        <%--<li>
+        <li>
             <i class="equip nav-icon"></i>
             <a href="javascript:;">设备管理</a>
             <ul class="sec-ul">
-                <li><a href="http://www.baidu.com" target="menuFrame">现场及设备地图</a></li>
-                <li><a href="http://www.baidu.com" target="menuFrame">设备与位置</a>
+                <li><a href="${ctx}/location/location" target="menuFrame">现场及设备地图</a></li>
+                <li><a href="${ctx}/location/location" target="menuFrame" id="equip">设备与位置</a>
                 </li>
             </ul>
-        </li>--%>
+        </li>
         <li>
             <i class="stock nav-icon"></i>
             <a href="javascript:;">库存管理</a>
@@ -74,7 +74,7 @@
             <i class="tool nav-icon"></i>
             <a href="javascript:;">工具管理</a>
             <ul class="sec-ul">
-                <li><a href="${ctx}/common/list?apptname=TOOLACCOUNT" target="menuFrame">工具台账</a></li>
+                <li><a href="${ctx}/tool/list" target="menuFrame">工具台账</a></li>
                 <li><a href="${ctx}/common/list?apptname=TOOLCHK" target="menuFrame">工具校准单</a></li>
                 <li><a href="${ctx}/common/list?apptname=TOOLlEND" target="menuFrame">工具借还</a></li>
                 <li><a href="${ctx}/common/list?apptname=TOOLAPPLY" target="menuFrame">工具修丢弃</a></li>

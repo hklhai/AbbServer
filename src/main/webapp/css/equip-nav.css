@@ -97,7 +97,7 @@ ul.child-ul li:hover{
 }
 #right-content{
 	width:100%;
-	margin-left: 267px;
+	/*margin-left: 267px;*/
 	min-height: 828px;
 	height:100%;
 	position: relative;

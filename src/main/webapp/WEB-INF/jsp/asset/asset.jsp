@@ -42,7 +42,7 @@
 </div>--%>
 <div id="mask"></div>
 <div class="equip-layout">
-    <div class="equip-nav">
+    <div class="equip-nav" style="display: none;">
         <ul class="father-ul">
             <li class="father-ul-a" style="margin-top: 16px;"><a href="javascript:;" class="left-bag">现场及设备地图</a></li>
             <li class="father-ul-li">
@@ -532,9 +532,9 @@
     }
 
     $(function () {
-        var cWidth = $(window).width() - 267;
+        /*var cWidth = $(window).width() - 267;
         $("#right-content").width(cWidth);
-        $("#container").width(cWidth);
+        $("#container").width(cWidth);*/
 
         $(".close-icon").click(function () {
             window.location.href = "${ctx}/index/logout";
@@ -547,6 +547,10 @@
             $(".father-ul>li:first").addClass("father-ul-a");
         });
         $(".left-down").click(function () {
+            $(".child-ul").toggle();
+        });
+        //一期迁移
+        $("#equip",window.parent.document).click(function(){
             $(".child-ul").toggle();
         });
 
