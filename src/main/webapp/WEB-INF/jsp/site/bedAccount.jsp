@@ -121,6 +121,6 @@
 <script src="${ctx}/scripts/jquery-1.9.1.min.js"></script>
 <script src="${ctx}/scripts/jquery.datetimepicker.js"></script>
 <script src="${ctx}/js/date/jquerytime.js"></script>
-<script src="${ctx}/js/site/bedAccount.js"></script>
+<script src="${ctx}/js/initDetail.js"></script>
 </body>
 </html>
