@@ -12,10 +12,10 @@ Abb-EAM Project
 若不采用IDEA提交，可使用第三方SourceTree，SourceTree使用教程联系小豆苗。
   
 ---
-![image](https://github.com/hklhai/AbbServer/blob/master/screenshot/1.jpg)
+![image](https://github.com/hklhai/AbbServer/blob/master/screenshot/1.png)
 
 ---  
-![image](https://github.com/hklhai/AbbServer/blob/master/screenshot/2.jpg)
+![image](https://github.com/hklhai/AbbServer/blob/master/screenshot/2.png)
  
 ---
 > HK  
