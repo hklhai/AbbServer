@@ -12,11 +12,12 @@
 <html>
 <head>
     <meta charset='utf-8'>
-    <title>工具台账</title>
+    <title></title>
     <meta name="keywords" content="">
     <link rel="stylesheet" href="${ctx}/css/reset.css">
     <link rel="stylesheet" href="${ctx}/css/page.css">
     <link rel="stylesheet" href="${ctx}/css/new/tool/borrow.css">
+    <link rel="stylesheet" type="text/css" href="${ctx}/css/date/jquery.datetimepicker.css">
 </head>
 <script>
     var _ctx = "${ctx}";
@@ -26,9 +27,9 @@
 <body>
 <div class="borrow-body">
     <div class="layout">
-        <p id="timedis"></p>
-        <h6 id="mytitle">${title}</h6>
+        <h4 id="mytitle">${title}</h4>
         <div class="mylable">
+            <button type="button" class="btn statsreport" style="display: none;">运行表单</button>
             <button type="button" class="btn myform">创建表单</button>
             <button type="button" class="btn mycollect">我的收藏</button>
         </div>
@@ -63,8 +64,51 @@
         </div>
     </div>
 </div>
+<div class="distribution">
+    <h5>报表参数</h5>
+    <p class="item" style="margin-top: 10px;">
+        <label for="">仓库编码：</label>
+        <input type="text" class="SELECTIONLOCATIONS" id="carroom">
+        <i class="search"></i>
+    </p>
+    <p class="item">
+        <label for="">开始时间：</label>
+        <input type="text" class="dis_startdate datetimepicker7">
+    </p>
+    <p class="item">
+        <label for="">结束时间：</label>
+        <input type="text" class="dis_enddate datetimepicker7">
+    </p>
+    <button class="submit">确定</button>
+    <button class="cancel">取消</button>
+</div>
+<div class="udvc">
+    <h5>报表参数</h5>
+    <p class="item" style="margin-top: 10px;">
+        <label for="">&nbsp&nbsp&nbsp服务站：</label>
+        <input type="text" class="SELECTIONSITE" id="siteid">
+        <i class="search"></i>
+    </p>
+    <p class="item">
+        <label for="">开始时间：</label>
+        <input type="text" class="udvc_startdate datetimepicker7">
+    </p>
+    <p class="item">
+        <label for="">结束时间：</label>
+        <input type="text" class="udvc_enddate datetimepicker7">
+    </p>
+    <button class="submit">确定</button>
+    <button class="cancel">取消</button>
+</div>
+<%@include file="../commons/reportList.jsp"%>
+<%@include file="../commons/reportParamCover.jsp"%>
+<%@include file="../commons/dataMask.jsp"%>
 <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
-<script src="${ctx}/scripts/vue.js"></script>
 <script src="${ctx}/js/new/borrow.js"></script>
+<script src="${ctx}/js/util/report.js"></script>
+<script src="${ctx}/js/util/reportMask.js"></script>
+<script src="${ctx}/js/date/jquery.js"></script>
+<script src="${ctx}/js/date/jquery.datetimepicker.js"></script>
+<script src="${ctx}/js/date/jquerytime.js"></script>
 </body>
 </html>

@@ -1,12 +1,16 @@
 package com.hxqh.abb.model;
 
+import com.hxqh.abb.model.version2.Udtoolchkline;
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "UDTOOLCHK")
+@DynamicUpdate
 public class UdtoolChk implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -27,11 +31,11 @@ public class UdtoolChk implements Serializable {
 
     private String createby;
 
-    private Timestamp createdate;
+    private Date createdate;
 
     private String changeby;
 
-    private Timestamp changedate;
+    private Date changedate;
 
     private String tcnum;
 
@@ -43,9 +47,64 @@ public class UdtoolChk implements Serializable {
 
     private String sendcompany;
 
-    private Timestamp statusdate;
+    private Date statusdate;
 
     private String sendnum;
+
+    @Transient
+    private String persondisplayname;
+
+    @Transient
+    private String createdisplayname;
+
+    @Transient
+    private List<Udtoolchkline> udtoolchklineList;
+
+    @Transient
+    private String deletes;
+
+    @Transient
+    private String maintab;
+
+    public List<Udtoolchkline> getUdtoolchklineList() {
+        return udtoolchklineList;
+    }
+
+    public void setUdtoolchklineList(List<Udtoolchkline> udtoolchklineList) {
+        this.udtoolchklineList = udtoolchklineList;
+    }
+
+    public String getMaintab() {
+        return maintab;
+    }
+
+    public void setMaintab(String maintab) {
+        this.maintab = maintab;
+    }
+
+    public String getPersondisplayname() {
+        return persondisplayname;
+    }
+
+    public void setPersondisplayname(String persondisplayname) {
+        this.persondisplayname = persondisplayname;
+    }
+
+    public String getCreatedisplayname() {
+        return createdisplayname;
+    }
+
+    public void setCreatedisplayname(String createdisplayname) {
+        this.createdisplayname = createdisplayname;
+    }
+
+    public String getDeletes() {
+        return deletes;
+    }
+
+    public void setDeletes(String deletes) {
+        this.deletes = deletes;
+    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -107,11 +166,11 @@ public class UdtoolChk implements Serializable {
         this.createby = createby;
     }
 
-    public Timestamp getCreatedate() {
+    public Date getCreatedate() {
         return createdate;
     }
 
-    public void setCreatedate(Timestamp createdate) {
+    public void setCreatedate(Date createdate) {
         this.createdate = createdate;
     }
 
@@ -123,11 +182,11 @@ public class UdtoolChk implements Serializable {
         this.changeby = changeby;
     }
 
-    public Timestamp getChangedate() {
+    public Date getChangedate() {
         return changedate;
     }
 
-    public void setChangedate(Timestamp changedate) {
+    public void setChangedate(Date changedate) {
         this.changedate = changedate;
     }
 
@@ -171,11 +230,11 @@ public class UdtoolChk implements Serializable {
         this.sendcompany = sendcompany;
     }
 
-    public Timestamp getStatusdate() {
+    public Date getStatusdate() {
         return statusdate;
     }
 
-    public void setStatusdate(Timestamp statusdate) {
+    public void setStatusdate(Date statusdate) {
         this.statusdate = statusdate;
     }
 
@@ -187,7 +246,7 @@ public class UdtoolChk implements Serializable {
         this.sendnum = sendnum;
     }
 
-    public UdtoolChk(){
+    public UdtoolChk() {
 
     }
 

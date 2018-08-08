@@ -1,0 +1,117 @@
+.user{
+	width: 792px;
+	height: 535px;
+	background: #fff;
+	margin: 0 auto;
+	position: absolute;
+	top:50%;
+	left:50%;
+	margin-left:-396px;
+	margin-top:-268px;
+	z-index: 1002;
+	display: none;
+}
+.user input{
+	padding-left:5px;
+}
+
+.user input[type='file']{
+	display: block;
+	float: left;
+	padding-top: 100px;
+}
+.mask-nav{
+	width:100%;
+	height:100%;
+	background: #000;
+	filter:alpha(Opacity=60);-moz-opacity:0.6;opacity: 0.6;
+	position: absolute;
+	z-index: 1000;
+	display: none;
+}
+h3{
+	height:52px;
+	line-height: 52px;
+	font-size: 16px;
+	color: #000;
+	background: #ececec url('../../img/new/user.png') no-repeat;
+	background-size: 34px 34px;
+	background-position: 34px center;
+	padding-left:72px;
+	padding-right:20px;
+}
+i.user-close{
+	display: block;
+	float: right;
+	width: 30px;
+	height: 50px;
+	background: #ececec url(../../img/new/user-close.png) no-repeat;
+	background-size: 30px 30px;
+	background-position: 0px center;
+}
+p.item{
+	width: 45%;
+	float: left;
+	margin-bottom: 10px;
+	margin-left: 35px;
+}
+p.item input{
+	width: 204px;
+	height: 36px;
+	font-size: 12px;
+	border-radius: 10px;
+	border: 1px solid #000;
+}
+p.item label{
+	width: 100px;
+	height: 36px;
+	font-size: 12px;
+	text-align: center;
+	letter-spacing:20px;
+}
+.submit-btn{
+	width: 140px;
+	height: 40px;
+	line-height: 40px;
+	color: #fff;
+	background: #256595;
+	border: none;
+	display: block;
+	margin:0px auto;
+	margin-top: 200px;
+	cursor: pointer;
+}
+.user-img{
+	width: 100%;
+	height: 122px;
+	display: block;
+	clear: both;
+	margin-bottom: 40px;
+	margin-top: 30px;
+	padding-left: 35px;
+}
+.user-img button{
+	margin-top: 100px;
+	display: block;
+	float: left;
+}
+.user-img span{
+	display: block;
+	float: left;
+	margin-right: 20px;
+}
+.user-img img{
+	display: block;
+	float: left;
+	/*width: 122px;*/
+	height: 122px;
+}
+.user-img a{
+	display: block;
+	float: left;
+	margin-left: 20px;
+	margin-top: 105px;
+	padding-left: 20px;
+	background: url('../../img/new/img-edit.png') no-repeat;
+	background-size: 15px 15px;
+}

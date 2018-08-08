@@ -1,0 +1,13 @@
+package com.hxqh.abb.dao;
+
+import com.hxqh.abb.common.basedao.Dao;
+import com.hxqh.abb.model.paperless.Uddelegate;
+
+/**
+ *
+ * @author lh
+ *
+ */
+public interface UddelegateDao extends Dao<Uddelegate> {
+}
+

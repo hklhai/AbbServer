@@ -1,366 +1,539 @@
 package com.hxqh.abb.model.version2;
 
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 
 /**
  * The persistent class for the INVUSE database table.
- * 
  */
 @Entity
-@Table(name="Invuse")
+@Table(name = "Invuse")
+@DynamicUpdate
 public class Invuse implements Serializable {
-	private static final Long serialVersionUID = 1L;
+    private static final Long serialVersionUID = 1L;
 
-	@Id
-	@SequenceGenerator(name="INVUSE_INVUSEID_GENERATOR", sequenceName="INVUSESEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="INVUSE_INVUSEID_GENERATOR")
-	private Long invuseid;
+    @Id
+    @SequenceGenerator(name = "INVUSE_INVUSEID_GENERATOR", allocationSize = 1, sequenceName = "INVUSESEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "INVUSE_INVUSEID_GENERATOR")
+    private Long invuseid;
 
-	private Integer autocreated;
+    private Integer ismaint;
 
-	private String changeby;
+    private Integer autocreated;
 
-	private Date changedate;
+    private String changeby;
 
-	private String createdby;
+    private Date changedate;
 
-	private String currencycode;
+    private String createdby;
 
-	private String description;
+    private String currencycode;
 
-	@Temporal(TemporalType.DATE)
-	private Date exchangedate;
+    private String description;
 
-	private BigDecimal exchangerate;
+    @Temporal(TemporalType.DATE)
+    private Date exchangedate;
 
-	private BigDecimal exchangerate2;
+    private BigDecimal exchangerate;
 
-	private String fromstoreloc;
+    private BigDecimal exchangerate2;
 
-	private Integer hasld;
+    private String fromstoreloc;
 
-	private String invowner;
+    private Integer hasld;
 
-	private String invusenum;
+    private String invowner;
 
-	private Integer issite;
+    private String invusenum;
 
-	private String langcode;
+    private Integer issite;
 
-	private String orgid;
+    private String langcode;
 
-	private String receipts;
+    private String linenum;
 
-	private Long rowstamp;
+    private String orgid;
 
-	private String sendersysid;
+    private String pronum;
 
-	private Date shipmentdate;
+    private String receipts;
 
-	private String shiptoattn;
+    private String remark;
 
-	private String siteid;
+    private Long rowstamp;
 
-	@Column(name="\"STATUS\"")
-	private String status;
+    private String sapnumber;
 
-	private Date statusdate;
+    private String sendersysid;
 
-	private Integer statusiface;
+    private Date shipmentdate;
 
-	private String udapptype;
+    private String shiptoattn;
 
-	private String udareaman;
+    private String siteid;
 
-	private String udpmanager;
+    @Column(name = "\"STATUS\"")
+    private String status;
 
-	private String udprojectnum;
+    private Date statusdate;
 
-	private BigDecimal udtotal;
+    private Integer statusiface;
 
-	private String usetype;
+    private String udapptype;
 
-	private Integer warranty;
+    private String udareaman;
 
-	private Long workorderid;
+    private String udcontact;
 
-	public Invuse() {
-	}
+    private String udpmanager;
 
-	public Long getInvuseid() {
-		return this.invuseid;
-	}
+    private String udprojectnum;
 
-	public void setInvuseid(Long invuseid) {
-		this.invuseid = invuseid;
-	}
+    private String udreceipt;
 
-	public Integer getAutocreated() {
-		return this.autocreated;
-	}
+    private BigDecimal udtotal;
 
-	public void setAutocreated(Integer autocreated) {
-		this.autocreated = autocreated;
-	}
+    private String usetype;
 
-	public String getChangeby() {
-		return this.changeby;
-	}
+    private Integer warranty;
 
-	public void setChangeby(String changeby) {
-		this.changeby = changeby;
-	}
-
-	public Date getChangedate() {
-		return this.changedate;
-	}
-
-	public void setChangedate(Date changedate) {
-		this.changedate = changedate;
-	}
-
-	public String getCreatedby() {
-		return this.createdby;
-	}
-
-	public void setCreatedby(String createdby) {
-		this.createdby = createdby;
-	}
-
-	public String getCurrencycode() {
-		return this.currencycode;
-	}
-
-	public void setCurrencycode(String currencycode) {
-		this.currencycode = currencycode;
-	}
-
-	public String getDescription() {
-		return this.description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Date getExchangedate() {
-		return this.exchangedate;
-	}
-
-	public void setExchangedate(Date exchangedate) {
-		this.exchangedate = exchangedate;
-	}
-
-	public BigDecimal getExchangerate() {
-		return this.exchangerate;
-	}
-
-	public void setExchangerate(BigDecimal exchangerate) {
-		this.exchangerate = exchangerate;
-	}
-
-	public BigDecimal getExchangerate2() {
-		return this.exchangerate2;
-	}
-
-	public void setExchangerate2(BigDecimal exchangerate2) {
-		this.exchangerate2 = exchangerate2;
-	}
-
-	public String getFromstoreloc() {
-		return this.fromstoreloc;
-	}
-
-	public void setFromstoreloc(String fromstoreloc) {
-		this.fromstoreloc = fromstoreloc;
-	}
-
-	public Integer getHasld() {
-		return this.hasld;
-	}
-
-	public void setHasld(Integer hasld) {
-		this.hasld = hasld;
-	}
-
-	public String getInvowner() {
-		return this.invowner;
-	}
-
-	public void setInvowner(String invowner) {
-		this.invowner = invowner;
-	}
-
-	public String getInvusenum() {
-		return this.invusenum;
-	}
-
-	public void setInvusenum(String invusenum) {
-		this.invusenum = invusenum;
-	}
-
-	public Integer getIssite() {
-		return this.issite;
-	}
-
-	public void setIssite(Integer issite) {
-		this.issite = issite;
-	}
-
-	public String getLangcode() {
-		return this.langcode;
-	}
-
-	public void setLangcode(String langcode) {
-		this.langcode = langcode;
-	}
-
-	public String getOrgid() {
-		return this.orgid;
-	}
-
-	public void setOrgid(String orgid) {
-		this.orgid = orgid;
-	}
-
-	public String getReceipts() {
-		return this.receipts;
-	}
-
-	public void setReceipts(String receipts) {
-		this.receipts = receipts;
-	}
-
-	public Long getRowstamp() {
-		return this.rowstamp;
-	}
-
-	public void setRowstamp(Long rowstamp) {
-		this.rowstamp = rowstamp;
-	}
-
-	public String getSendersysid() {
-		return this.sendersysid;
-	}
-
-	public void setSendersysid(String sendersysid) {
-		this.sendersysid = sendersysid;
-	}
-
-	public Date getShipmentdate() {
-		return this.shipmentdate;
-	}
-
-	public void setShipmentdate(Date shipmentdate) {
-		this.shipmentdate = shipmentdate;
-	}
-
-	public String getShiptoattn() {
-		return this.shiptoattn;
-	}
-
-	public void setShiptoattn(String shiptoattn) {
-		this.shiptoattn = shiptoattn;
-	}
+    private Long workorderid;
 
-	public String getSiteid() {
-		return this.siteid;
-	}
+    @Transient
+    private String apptname;
 
-	public void setSiteid(String siteid) {
-		this.siteid = siteid;
-	}
+    @Transient
+    private String deletes;
 
-	public String getStatus() {
-		return this.status;
-	}
+    @Transient
+    private String maintab;
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    @Transient
+    private String locationsdescription;
 
-	public Date getStatusdate() {
-		return this.statusdate;
-	}
+    @Transient
+    private String personid;
 
-	public void setStatusdate(Date statusdate) {
-		this.statusdate = statusdate;
-	}
+    @Transient
+    private String persondisplayname;
 
-	public Integer getStatusiface() {
-		return this.statusiface;
-	}
+    @Transient
+    private List<Invuseline> invuselineList;
 
-	public void setStatusiface(Integer statusiface) {
-		this.statusiface = statusiface;
-	}
+    @Transient
+    private String orderdate;
 
-	public String getUdapptype() {
-		return this.udapptype;
-	}
 
-	public void setUdapptype(String udapptype) {
-		this.udapptype = udapptype;
-	}
+    @Transient
+    private String location;
 
-	public String getUdareaman() {
-		return this.udareaman;
-	}
+    public Invuse() {
+    }
 
-	public void setUdareaman(String udareaman) {
-		this.udareaman = udareaman;
-	}
+    public String getLocation() {
+        return location;
+    }
 
-	public String getUdpmanager() {
-		return this.udpmanager;
-	}
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-	public void setUdpmanager(String udpmanager) {
-		this.udpmanager = udpmanager;
-	}
+    public String getApptname() {
+        return apptname;
+    }
 
-	public String getUdprojectnum() {
-		return this.udprojectnum;
-	}
+    public void setApptname(String apptname) {
+        this.apptname = apptname;
+    }
 
-	public void setUdprojectnum(String udprojectnum) {
-		this.udprojectnum = udprojectnum;
-	}
+    public Long getInvuseid() {
+        return invuseid;
+    }
 
-	public BigDecimal getUdtotal() {
-		return this.udtotal;
-	}
+    public void setInvuseid(Long invuseid) {
+        this.invuseid = invuseid;
+    }
 
-	public void setUdtotal(BigDecimal udtotal) {
-		this.udtotal = udtotal;
-	}
+    public Integer getAutocreated() {
+        return autocreated;
+    }
 
-	public String getUsetype() {
-		return this.usetype;
-	}
+    public void setAutocreated(Integer autocreated) {
+        this.autocreated = autocreated;
+    }
 
-	public void setUsetype(String usetype) {
-		this.usetype = usetype;
-	}
+    public String getChangeby() {
+        return changeby;
+    }
 
-	public Integer getWarranty() {
-		return this.warranty;
-	}
+    public void setChangeby(String changeby) {
+        this.changeby = changeby;
+    }
 
-	public void setWarranty(Integer warranty) {
-		this.warranty = warranty;
-	}
+    public Date getChangedate() {
+        return changedate;
+    }
 
-	public Long getWorkorderid() {
-		return this.workorderid;
-	}
+    public void setChangedate(Date changedate) {
+        this.changedate = changedate;
+    }
 
-	public void setWorkorderid(Long workorderid) {
-		this.workorderid = workorderid;
-	}
+    public String getCreatedby() {
+        return createdby;
+    }
 
+    public void setCreatedby(String createdby) {
+        this.createdby = createdby;
+    }
+
+    public String getCurrencycode() {
+        return currencycode;
+    }
+
+    public void setCurrencycode(String currencycode) {
+        this.currencycode = currencycode;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getExchangedate() {
+        return exchangedate;
+    }
+
+    public void setExchangedate(Date exchangedate) {
+        this.exchangedate = exchangedate;
+    }
+
+    public BigDecimal getExchangerate() {
+        return exchangerate;
+    }
+
+    public void setExchangerate(BigDecimal exchangerate) {
+        this.exchangerate = exchangerate;
+    }
+
+    public BigDecimal getExchangerate2() {
+        return exchangerate2;
+    }
+
+    public void setExchangerate2(BigDecimal exchangerate2) {
+        this.exchangerate2 = exchangerate2;
+    }
+
+    public String getFromstoreloc() {
+        return fromstoreloc;
+    }
+
+    public void setFromstoreloc(String fromstoreloc) {
+        this.fromstoreloc = fromstoreloc;
+    }
+
+    public Integer getHasld() {
+        return hasld;
+    }
+
+    public void setHasld(Integer hasld) {
+        this.hasld = hasld;
+    }
+
+    public String getInvowner() {
+        return invowner;
+    }
+
+    public void setInvowner(String invowner) {
+        this.invowner = invowner;
+    }
+
+    public String getInvusenum() {
+        return invusenum;
+    }
+
+    public void setInvusenum(String invusenum) {
+        this.invusenum = invusenum;
+    }
+
+    public Integer getIssite() {
+        return issite;
+    }
+
+    public void setIssite(Integer issite) {
+        this.issite = issite;
+    }
+
+    public String getLangcode() {
+        return langcode;
+    }
+
+    public void setLangcode(String langcode) {
+        this.langcode = langcode;
+    }
+
+    public String getLinenum() {
+        return linenum;
+    }
+
+    public void setLinenum(String linenum) {
+        this.linenum = linenum;
+    }
+
+    public String getOrgid() {
+        return orgid;
+    }
+
+    public void setOrgid(String orgid) {
+        this.orgid = orgid;
+    }
+
+    public String getPronum() {
+        return pronum;
+    }
+
+    public void setPronum(String pronum) {
+        this.pronum = pronum;
+    }
+
+    public String getReceipts() {
+        return receipts;
+    }
+
+    public void setReceipts(String receipts) {
+        this.receipts = receipts;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public Long getRowstamp() {
+        return rowstamp;
+    }
+
+    public void setRowstamp(Long rowstamp) {
+        this.rowstamp = rowstamp;
+    }
+
+    public String getSapnumber() {
+        return sapnumber;
+    }
+
+    public void setSapnumber(String sapnumber) {
+        this.sapnumber = sapnumber;
+    }
+
+    public String getSendersysid() {
+        return sendersysid;
+    }
+
+    public void setSendersysid(String sendersysid) {
+        this.sendersysid = sendersysid;
+    }
+
+    public Date getShipmentdate() {
+        return shipmentdate;
+    }
+
+    public void setShipmentdate(Date shipmentdate) {
+        this.shipmentdate = shipmentdate;
+    }
+
+    public String getShiptoattn() {
+        return shiptoattn;
+    }
+
+    public void setShiptoattn(String shiptoattn) {
+        this.shiptoattn = shiptoattn;
+    }
+
+    public String getSiteid() {
+        return siteid;
+    }
+
+    public void setSiteid(String siteid) {
+        this.siteid = siteid;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Date getStatusdate() {
+        return statusdate;
+    }
+
+    public void setStatusdate(Date statusdate) {
+        this.statusdate = statusdate;
+    }
+
+    public Integer getStatusiface() {
+        return statusiface;
+    }
+
+    public void setStatusiface(Integer statusiface) {
+        this.statusiface = statusiface;
+    }
+
+    public String getUdapptype() {
+        return udapptype;
+    }
+
+    public void setUdapptype(String udapptype) {
+        this.udapptype = udapptype;
+    }
+
+    public String getUdareaman() {
+        return udareaman;
+    }
+
+    public void setUdareaman(String udareaman) {
+        this.udareaman = udareaman;
+    }
+
+    public String getUdcontact() {
+        return udcontact;
+    }
+
+    public void setUdcontact(String udcontact) {
+        this.udcontact = udcontact;
+    }
+
+    public String getUdpmanager() {
+        return udpmanager;
+    }
+
+    public void setUdpmanager(String udpmanager) {
+        this.udpmanager = udpmanager;
+    }
+
+    public String getUdprojectnum() {
+        return udprojectnum;
+    }
+
+    public void setUdprojectnum(String udprojectnum) {
+        this.udprojectnum = udprojectnum;
+    }
+
+    public String getUdreceipt() {
+        return udreceipt;
+    }
+
+    public void setUdreceipt(String udreceipt) {
+        this.udreceipt = udreceipt;
+    }
+
+    public BigDecimal getUdtotal() {
+        return udtotal;
+    }
+
+    public void setUdtotal(BigDecimal udtotal) {
+        this.udtotal = udtotal;
+    }
+
+    public String getUsetype() {
+        return usetype;
+    }
+
+    public void setUsetype(String usetype) {
+        this.usetype = usetype;
+    }
+
+    public Integer getWarranty() {
+        return warranty;
+    }
+
+    public void setWarranty(Integer warranty) {
+        this.warranty = warranty;
+    }
+
+    public Long getWorkorderid() {
+        return workorderid;
+    }
+
+    public void setWorkorderid(Long workorderid) {
+        this.workorderid = workorderid;
+    }
+
+    public String getDeletes() {
+        return deletes;
+    }
+
+    public void setDeletes(String deletes) {
+        this.deletes = deletes;
+    }
+
+    public String getMaintab() {
+        return maintab;
+    }
+
+    public void setMaintab(String maintab) {
+        this.maintab = maintab;
+    }
+
+    public String getLocationsdescription() {
+        return locationsdescription;
+    }
+
+    public void setLocationsdescription(String locationsdescription) {
+        this.locationsdescription = locationsdescription;
+    }
+
+    public String getPersonid() {
+        return personid;
+    }
+
+    public void setPersonid(String personid) {
+        this.personid = personid;
+    }
+
+    public String getPersondisplayname() {
+        return persondisplayname;
+    }
+
+    public void setPersondisplayname(String persondisplayname) {
+        this.persondisplayname = persondisplayname;
+    }
+
+    public List<Invuseline> getInvuselineList() {
+        return invuselineList;
+    }
+
+    public void setInvuselineList(List<Invuseline> invuselineList) {
+        this.invuselineList = invuselineList;
+    }
+
+    public String getOrderdate() {
+        return orderdate;
+    }
+
+    public void setOrderdate(String orderdate) {
+        this.orderdate = orderdate;
+    }
+
+    public Integer getIsmaint() {
+        return ismaint;
+    }
+
+    public void setIsmaint(Integer ismaint) {
+        this.ismaint = ismaint;
+    }
 }

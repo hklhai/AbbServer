@@ -6,6 +6,7 @@ import com.hxqh.abb.model.dto.action.AssetDto;
 import com.hxqh.abb.model.dto.action.IndexDto;
 import com.hxqh.abb.model.dto.action.LoginDto;
 import com.hxqh.abb.model.view.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -15,20 +16,20 @@ import java.util.List;
 public interface SystemService {
 
     /*============================测试开始===========================*/
-    public abstract List<Location> getLocationList();
+    List<Location> getLocationList();
 
-    public abstract long getAssetCount();
+    long getAssetCount();
 
 
     /*============================测试结束==========================*/
 
-    public abstract List<AbbLogin> getLoginUserList(LoginDto loginDto);
+    List<AbbLogin> getLoginUserList(LoginDto loginDto);
 
 
 
     /*============================首页管理开始========================*/
 
-    public abstract IndexDto getSystemMessage(SessionInfo sessionInfo) throws Exception;
+    IndexDto getSystemMessage(SessionInfo sessionInfo) throws Exception;
 
 
     /*============================首页管理结束 =======================*/
@@ -36,28 +37,34 @@ public interface SystemService {
 
     /*============================现场及设备地图开始===================*/
 
-    public abstract AssetDto getAssetData(String location,SessionInfo sessionInfo);
+    AssetDto getAssetData(String location, SessionInfo sessionInfo);
 
-    public abstract List<AbbAsset> getAssetByChild(String childname);
+    List<AbbAsset> getAssetByChild(String childname);
 
-    public abstract List<AbbAssetSpec> getAssetSpec(String classstructureid);
+    List<AbbAssetSpec> getAssetSpec(String classstructureid);
 
-    public abstract List<AbbAssetUdsparepart> getAssetUdspareparts(String classstructureid);
+    List<AbbAssetUdsparepart> getAssetUdspareparts(String classstructureid);
 
-    public abstract List<AbbAssetHisMrecord> getAssetHistoryExecution(String classstructureid);
+    List<AbbAssetHisMrecord> getAssetHistoryExecution(String classstructureid);
 
-    public abstract List<AbbAssetHisWorkorder> getAssetHistoryWork(String classstructureid);
+    List<AbbAssetHisWorkorder> getAssetHistoryWork(String classstructureid);
 
-    public abstract List<AbbAssetHisAssetmeter> getAssetHistoryMonitor(String classstructureid);
+    List<AbbAssetHisAssetmeter> getAssetHistoryMonitor(String classstructureid);
 
     /*============================现场及设备地图结束 ==================*/
 
 
     /*============================微信 ==================*/
 
-    public abstract String getWebsitPath();
+    String getWebsitPath();
 
-    public abstract AbbAsset getAssetById(long assetuid);
+    AbbAsset getAssetById(long assetuid);
+
+    VPerson personData(String personid);
+
+    void editPersonData(VPerson vPerson, SessionInfo sessionInfo);
+
+    void saveFile(MultipartFile files, SessionInfo sessionInfo, Long personuid);
 
     /*============================微信==================*/
 

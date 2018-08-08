@@ -35,29 +35,15 @@
                     sessionInfo:{},
                 },
                 methods:{
+                    detail:function(e){
+                        var  apptnames = $(e.currentTarget).parent().siblings("td").eq(0).text();
+                        var  dataId = $(e.currentTarget).parent().siblings("td").eq(1).text();
+                        window.location.href = "${ctx}/common/detail?apptname=" + apptnames + "&pkid=" + dataId + "&operate=details";
+                    },
                     apply: function(e){
-                        var applyId = $(e.currentTarget).text();
-                        $.ajax({
-                            url: "${ctx}/index/audit",
-                            method: "post",
-                            data: {
-                                wfassignmentid: applyId
-                            },
-                            dataType: "json",
-                            success: function(data){
-                                if(data.success){
-                                    if(data.code == "0"){
-                                        $("#tip").text(data.message);
-                                    }
-                                    if(data.code == "1"){
-                                        self.systemList = data.systemList;
-                                    }
-                                }
-                            },
-                            error: function(){
-
-                            }
-                        });
+                        var  apptnames = $(e.currentTarget).parent().siblings("td").eq(1).text();
+                        var  dataId = $(e.currentTarget).parent().siblings("td").eq(2).text();
+                        window.location.href = "${ctx}/common/detail?apptname=" + apptnames + "&pkid=" + dataId + "&operate=index";
                     },
                     close: function(){
                         window.location.href = "${ctx}/index/logout";
@@ -105,7 +91,7 @@
 <div id="index-data">
     <div class="index-content">
         <div class="index-layout">
-            <div class="index-content-tit"></div>
+            <%--<div class="index-content-tit"></div>--%>
             <div class="calendar index-div1">
                 <div class="zAccountInner zAccount2 clearfix">
                     <div class="zAccountPlanL span5 no-margin-left" style="position:absolute;left:0px;top:0px;width:100%;">
@@ -125,7 +111,7 @@
                     </div>
                 </div>
             </div>
-            <div class="work-task index-div2">
+            <div class="work-task index-div2" style="height: 265px;">
                 <div class="index-div2-layout">
                     <p>工作任务</p>
                     <table>
@@ -194,7 +180,11 @@
                         </thead>
                         <tbody>
                         <tr v-for="sys in systemList">
-                            <td style="padding-left:2%">{{sys.description}}</td>
+                            <td style="padding-left:2%">
+                                <a href="javascript:;" v-on:click="detail(event)" style="text-decoration:underline;">{{sys.description}}</a>
+                            </td>
+                            <td style="display: none;">{{sys.processname}}</td>
+                            <td style="display: none;">{{sys.ownerid}}</td>
                             <td>{{sys.startdate}}</td>
                             <td>{{sys.duedate}}</td>
                             <td>{{sys.priority}}</td>
@@ -208,7 +198,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="${ctx}/js/jquery-1.8.3.min.js"></script>
+<script src="${ctx}/scripts/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="${ctx}/js/DatePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="${ctx}/js/DatePicker/extraDate.js"></script>
 </body>

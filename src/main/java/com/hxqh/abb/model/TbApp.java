@@ -8,7 +8,7 @@ import javax.persistence.*;
  * The persistent class for the TB_APP database table.
  */
 @Entity
-@Table(name = "TB_APP")
+@Table(name = "V_APP")
 public class TbApp implements Serializable {
     private static final long serialVersionUID = 1L;
 

@@ -21,73 +21,113 @@
         var _ctx = '${ctx}';
         var _apptname = '${apptname}';
         var _pkid = '${pkid}';
+        var _operate='${operate}';
     </script>
 </head>
 <body>
 <div class="borrow-detail">
-    <h4>库存盘点/1119</h4>
+    <div class="tab-btn">
+        <button class="returnList">列表视图</button>
+        <button class="workOrder click">库存盘点</button>
+    </div>
+    <div class="mylable">
+        <button type="button" class="save-btn-main">保存</button>
+        <button class="apply-btn" style="margin-right: 5px;">审批</button>
+    </div>
     <div class="detail-info">
         <p class="item" style="width: 34%;">
             <label for="">盘点单/描述:</label>
-            <span class="INVCHECKNUM">1056</span>
-            <input type="text" style="margin-left: 8px;" class="DESCRIPTION">
+            <span class="invchecknum"></span>
+            <input type="text" style="margin-left: 8px;" class="description">
         </p>
         <p class="item" style="width: 22%;">
             <label for="">状态:</label>
-            <span class="STATUS">APE</span>
+            <span class="status"></span>
         </p>
         <p class="item" style="width: 22%;">
             <label for="">录入人:</label>
-            <span class="PERSON.DISPLAYNAME">APE</span>
+            <span class="persondisplayname"></span>
         </p>
         <p class="item" style="width: 22%;">
-            <label for="">服务站点:</label>
-            <span class="SITEID">GZ</span>
+            <label for="" style="min-width: 60px;">服务站点:</label>
+            <span class="siteid"></span>
         </p>
 
         <p class="item" style="width: 34%;">
-            <label for="">库存:</label>
-            <i class="search"></i>
-            <input type="text" class="">
+            <label for="">仓库:</label>
+            <input type="text" readonly="readonly" class="storeloc SELECTIONLOCATIONS">
+            <i class="search-dataMask"></i>
         </p>
         <p class="item" style="width: 22%;">
-            <label class="left" for="">盘点日期:</label>
-            <input type="text" id="datetimepicker7" style="width: 120px;" class="CHKDATE">
+            <label class="left" for="" style="min-width: 60px;">盘点日期:</label>
+            <input type="text" style="width: 120px;" class="chkdate datetimepicker7">
         </p>
         <p class="item" style="width: 22%;">
-            <label class="left" for="">录入时间:</label>
-            <input type="text" id="datetimepicker8" style="width: 120px;" class="ENTERDATE">
-        </p>
-        <p class="item" style="width: 22%;" >
-            <label for="">附件:</label>
-            <span class="">0.00</span>
+            <label class="left" for="" style="min-width: 55px;">录入时间:</label>
+            <span style="width: 120px;" class="enterdate"></span>
         </p>
         <div class="clearfix"></div>
     </div>
     <div class="row detail">
         <h5>
             <span>盘点清单</span>
-            <button class="new-row">添加盘点行</button>
+            <button class="addStock">添加盘点行</button>
         </h5>
-        <table class="details">
+        <table class="details hide-4td">
             <thead>
-            <tr>
-                <td style="padding-left: 10px;" class="ITEMNUM">物资编码</td>
-                <td class="ITEM.DESCRIPTION">描述</td>
-                <td class="ITEM.UDMODEL">型号类别</td>
-                <td class="BINNUM">货柜</td>
-                <td class="CHECKQTY">盘点余量</td>
-                <td class="CURBAL">当前余量</td>
-                <td class="DIFFQTY">盘点差异</td>
-                <td class="REASON">差异原因</td>
-            </tr>
+                <tr>
+                    <td style="padding-left: 10px;" >物资编码</td>
+                    <td >描述</td>
+                    <td >型号类别</td>
+                    <td >盘点余量</td>
+                    <td >当前余量</td>
+                    <td >盘点差异</td>
+                    <td >差异原因</td>
+                </tr>
             </thead>
-            <tbody>
-
-            </tbody>
+            <tbody></tbody>
         </table>
-        <div class="page">
-
+        <div class="page"></div>
+        <div class="row-info">
+            <p class="item bg" style="height: 34px;line-height: 34px;">
+                <span id="tit1" style="padding-left: 10px;font-size:14px;">行项</span>
+            </p>
+            <p class="item bg" style="height: 34px;line-height: 34px;">
+                <span id="tit2" style="padding-left: 0px;font-size:14px;"></span>
+            </p>
+            <div class="layout">
+                <p class="item" style="display: none;">
+                    <span id="key"></span>
+                    <span id="tableIndex"></span>
+                </p>
+                <p class="item">
+                    <label for="">物资编码:</label>
+                    <input type="text" readonly="readonly"  class="itemnum SELECTIONITEM">
+                    <i class="search-dataMask"></i>
+                    <input class="description" style="display: none;"/>
+                </p>
+                <p class="item">
+                    <label for="">型号类别:</label>
+                    <span class="itemudmodel"></span>
+                </p>
+                <p class="item">
+                    <label for="">盘点余量:</label>
+                    <input type="text"  class="checkqty isNumber">
+                </p>
+                <p class="item">
+                    <label for="">当前余量:</label>
+                    <span class="curbal"></span>
+                </p>
+                <p class="item">
+                    <label for="">盘点差值:</label>
+                    <input type="text"  class="diffqty isNumber">
+                </p>
+                <p class="item">
+                    <label for="">差异原因:</label>
+                    <input type="text"  class="reason">
+                </p>
+                <div class="clearfix"></div>
+            </div>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -95,40 +135,42 @@
         <h5>下一个审批人</h5>
         <table>
             <thead>
-            <tr>
-                <td width="20%" class="ASSIGNCODE">人员</td>
-                <td width="20%" class="PERSON.DISPLAYNAME">名称</td>
-                <td width="20%" class="DESCRIPTION">描述</td>
-                <td width="40%" class="PROCESSNAME">过程</td>
-            </tr>
+                <tr>
+                    <td>人员</td>
+                    <td>名称</td>
+                    <td>描述</td>
+                    <td>过程</td>
+                </tr>
             </thead>
-            <tbody>
-
-            </tbody>
+            <tbody></tbody>
         </table>
     </div>
     <div class="apply-record">
         <h5>审批记录</h5>
         <table>
             <thead>
-            <tr>
-                <td width="20%" class="PERSONID">人员</td>
-                <td width="20%" class="PERSON.DISPLAYNAME">名称</td>
-                <td width="20%" class="DESCRIPTION">描述</td>
-                <td width="15%" class="TRANSDATE">交易日期</td>
-                <td width="25%" class="MEMO">备忘录</td>
-            </tr>
+                <tr>
+                    <td>人员</td>
+                    <td>名称</td>
+                    <td>描述</td>
+                    <td>交易日期</td>
+                    <td>备忘录</td>
+                </tr>
             </thead>
-            <tbody>
-
-            </tbody>
+            <tbody></tbody>
         </table>
     </div>
 </div>
+<span class="showTip"></span>
+<div class="mask"></div>
+<%@include file="../commons/dataMask.jsp"%>
+<%@include file="../commons/audit.jsp"%>
 <script src="${ctx}/scripts/jquery-1.9.1.min.js"></script>
 <script src="${ctx}/scripts/jquery.datetimepicker.js"></script>
-<script src="${ctx}/js/invuse.js"></script>
+<script src="${ctx}/js/date/jquerytime.js"></script>
 <script src="${ctx}/js/initDetail.js"></script>
+<script src="${ctx}/js/util/dataMask.js"></script>
+<script src="${ctx}/js/util/formValidate.js"></script>
 <script>
     var logic = function( currentDateTime ){
         if( currentDateTime.getDay()==6 ){

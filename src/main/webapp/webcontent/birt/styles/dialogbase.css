@@ -1,0 +1,258 @@
+/* Copyright 1994-2006, Actuate Software Corp., All rights reserved. */
+
+@CHARSET "ISO-8859-1";
+hr {border-style: solid;
+	border-width: 1px;
+	border-color: #CCC;
+	border-bottom: 0px;
+}
+/* Border around dialog */
+.dialogBorder
+{
+	border-style: outset;
+	border-width: 0px;
+	border-color: #CCCCCC;
+	background-color: #FFF;
+	-webkit-box-shadow: 0 3px 9px rgba(0,0,0,0.5);
+	box-shadow: 0 3px 9px rgba(0,0,0,0.5);
+	background-clip: padding-box;
+}
+
+/* Title bar background area */
+.dialogTitleBar
+{
+	height: 40px;
+	background-color: #246495;
+	cursor: move;	
+}
+
+.dTitleBar
+{
+	padding-left: 7px;
+	padding-right: 10px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	position: relative;
+}
+
+/* Title text */
+.dialogTitleText
+{
+	font-size: 1.4em;
+	color: white;
+}
+
+.dTitleText
+{
+	vertical-align: middle; 
+	white-space: nowrap;
+	cursor: move;
+}
+
+.dTitleTextContainer
+{
+	float: left; 
+	position: relative;
+	height: 100%;	
+	width: 1px;
+}
+
+/* Close button - width should match those of .dialogCloseBtnContainer */
+.dialogCloseBtn
+{
+	width: 24px;
+	height: 24px;
+	font-size: 24px;
+	font-weight: bold;
+	color: #FFF;
+	font-family: Arial;
+	cursor: pointer;
+	opacity: 1;
+	filter: alpha(opacity=100);
+	background-image:url(../images/Close.gif);
+}
+.dialogCloseBtn:hover {
+	opacity: .6;
+	filter: alpha(opacity=60);}
+
+.dCloseBtn
+{
+	vertical-align: middle; 
+	background-repeat: no-repeat;
+	background-position: center right; 
+}
+
+/* Close button container - width should match those of .dialogCloseBtn */
+.dialogCloseBtnContainer
+{		
+	width: 24px;
+}
+
+.dCloseBtnContainer
+{
+	height: 100%;
+	float: right;
+	position: relative;
+}
+
+/* Background of dialog below title bar */
+.dialogBackground
+{
+	background-color: #FFF;
+}
+
+.dBackground
+{
+}
+
+/* Border style of content area for individual dialog content */
+.dialogContentContainer
+{margin: 0px auto;
+}
+
+/* Area from bottom of dialog content container to bottom border */
+.dialogBtnBarContainer
+{
+	position: relative;
+	text-align: center;
+	overflow: hidden;
+}
+
+/* Top divider line between dialog content area and button area */
+.dBtnBarDividerTop
+{
+	height: 1px;
+	background-color: #e4e9ee;
+	overflow: hidden;
+}
+
+/* Bottom divider line between dialog content area and button area */
+.dBtnBarDividerBottom
+{
+	height: 0px;
+	background-color: #fefefe;
+	overflow: hidden;	
+}
+
+
+/* Area that contains OK and CANCEL buttons - from bottom of divider bar to top of outer border */
+.dialogBtnBar
+{	
+	height: 56px;
+	text-align: right;
+	background-color:#eff3f8;
+	padding-top: 5px;
+	padding-right: 10px;
+}
+
+/* Area holding both OK and CANCEL buttons */
+.dialogBtnBarButtonContainer
+{
+	margin-left: auto; 
+	margin-right: 0px; 
+	margin-top: 6px; 
+	margin-bottom: 7px;
+	width: 166px; 
+	height:24px;
+}
+
+/* Space between OK and CANCEL */
+.dialogBtnBarDivider
+{
+	width: 6px;
+	height: 1px;
+	float: left;
+}
+
+.dialogBtnBarButtonEnabled
+{
+	float: right;
+	cursor: pointer;
+	width: 60px;
+	overflow: hidden;
+	color: black; /* Font color */ 
+	/*background-color: #9C9C9C;
+	background-repeat: repeat-x;
+	background-position: top left;*/
+}
+
+.dialogBtnBarButtonDisabled
+{
+	float: left;
+	cursor: default;
+	height: 24px;
+	width: 80px;
+	overflow: hidden;
+	color: #999999; /* Font color */
+	/*background-color: #9C9C9C;
+	background-repeat: repeat-x;
+	background-position: top left;*/
+}
+
+/* Left background image for OK and CANCEL buttons */
+.dialogBtnBarButtonLeftBackgroundEnabled
+{
+	background-color: #9C9C9C;
+	background-repeat: no-repeat;
+	background-position: top left;
+	position: relative;
+	width: 0px;
+	height: 24px;
+	float: left;
+}
+
+/* Left background image for OK and CANCEL buttons */
+.dialogBtnBarButtonLeftBackgroundDisabled
+{
+	background-color: #9C9C9C;
+	background-repeat: no-repeat;
+	background-position: top left;
+	position: relative;
+	width: 0px;
+	height: 24px;
+	float: left;
+}
+
+/* Right background image for OK and CANCEL buttons */
+.dialogBtnBarButtonRightBackgroundEnabled
+{
+	background-color: #9C9C9C;
+	background-repeat: no-repeat;
+	background-position: top right;
+	position: relative;
+	width: 0px;
+	height: 24px;
+	float: right;
+}
+
+/* Right background image for OK and CANCEL buttons */
+.dialogBtnBarButtonRightBackgroundDisabled
+{
+	background-color: #9C9C9C;
+	background-repeat: no-repeat;
+	background-position: top right;
+	position: relative;
+	width: 0px;
+	height: 24px;
+	float: right;
+}
+
+/* Text for OK and CANCEL buttons */
+/*.dialogBtnBarButtonText,.birtviewer_progressbar_button
+{	
+	text-align: center;
+	vertical-align: middle;
+	border-width: 4px;
+	font-size: 14px;
+	padding: 4px 9px;
+	background-color: #abbac3!important;
+	color: #FFF!important;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.25)!important;
+	border: 3px solid #abbac3;
+	-webkit-transition: all ease .15s;
+	transition: all ease .15s;
+}
+.dialogBtnBarButtonText:hover,.birtviewer_progressbar_button:hover {
+	background-color: #8b9aa3!important;
+	border-color: #abbac3;
+}*/

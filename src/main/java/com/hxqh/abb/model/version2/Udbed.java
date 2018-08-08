@@ -1,195 +1,208 @@
 package com.hxqh.abb.model.version2;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.*;
-import java.sql.Date;
 
 
 /**
  * The persistent class for the UDBED database table.
- * 
  */
 @Entity
-@Table(name="Udbed")
+@Table(name = "Udbed")
+@DynamicUpdate
 public class Udbed implements Serializable {
-	private static final Long serialVersionUID = 1L;
+    private static final Long serialVersionUID = 1L;
 
-	@Id
-	@SequenceGenerator(name="UDBED_UDBEDID_GENERATOR", sequenceName="UDBEDSEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="UDBED_UDBEDID_GENERATOR")
-	private Long udbedid;
+    @Id
+    @SequenceGenerator(name = "UDBED_UDBEDID_GENERATOR", allocationSize = 1, sequenceName = "UDBEDIDSEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UDBED_UDBEDID_GENERATOR")
+    private Long udbedid;
 
-	private String bednum;
+    private String bednum;
 
-	private String building;
+    private String building;
 
-	private String changeby;
+    private String changeby;
 
-	private Date changedate;
+    private Date changedate;
 
-	private String createdby;
+    private String createdby;
 
-	private Date createddate;
+    private Date createddate;
 
-	private String description;
+    private String description;
 
-	private String floor;
+    private String floor;
 
-	private Integer hasld;
+    private Integer hasld;
 
-	@Column(name="\"LOCATION\"")
-	private String location;
+    @Column(name = "\"LOCATION\"")
+    private String location;
 
-	private String orgid;
+    private String orgid;
 
-	private String room;
+    private String room;
 
-	private Long rowstamp;
+    private Long rowstamp;
 
-	private String siteid;
+    private String siteid;
 
-	@Column(name="\"STATUS\"")
-	private String status;
+    @Column(name = "\"STATUS\"")
+    private String status;
 
-	private Date statusdate;
+    private Date statusdate;
 
-	public Udbed() {
-	}
+    @Transient
+    private String maintab;
 
-	public Long getUdbedid() {
-		return this.udbedid;
-	}
+    public Udbed() {
+    }
 
-	public void setUdbedid(Long udbedid) {
-		this.udbedid = udbedid;
-	}
+    public String getMaintab() {
+        return maintab;
+    }
 
-	public String getBednum() {
-		return this.bednum;
-	}
+    public void setMaintab(String maintab) {
+        this.maintab = maintab;
+    }
 
-	public void setBednum(String bednum) {
-		this.bednum = bednum;
-	}
+    public Long getUdbedid() {
+        return this.udbedid;
+    }
 
-	public String getBuilding() {
-		return this.building;
-	}
+    public void setUdbedid(Long udbedid) {
+        this.udbedid = udbedid;
+    }
 
-	public void setBuilding(String building) {
-		this.building = building;
-	}
+    public String getBednum() {
+        return this.bednum;
+    }
 
-	public String getChangeby() {
-		return this.changeby;
-	}
+    public void setBednum(String bednum) {
+        this.bednum = bednum;
+    }
 
-	public void setChangeby(String changeby) {
-		this.changeby = changeby;
-	}
+    public String getBuilding() {
+        return this.building;
+    }
 
-	public Date getChangedate() {
-		return this.changedate;
-	}
+    public void setBuilding(String building) {
+        this.building = building;
+    }
 
-	public void setChangedate(Date changedate) {
-		this.changedate = changedate;
-	}
+    public String getChangeby() {
+        return this.changeby;
+    }
 
-	public String getCreatedby() {
-		return this.createdby;
-	}
+    public void setChangeby(String changeby) {
+        this.changeby = changeby;
+    }
 
-	public void setCreatedby(String createdby) {
-		this.createdby = createdby;
-	}
+    public Date getChangedate() {
+        return this.changedate;
+    }
 
-	public Date getCreateddate() {
-		return this.createddate;
-	}
+    public void setChangedate(Date changedate) {
+        this.changedate = changedate;
+    }
 
-	public void setCreateddate(Date createddate) {
-		this.createddate = createddate;
-	}
+    public String getCreatedby() {
+        return this.createdby;
+    }
 
-	public String getDescription() {
-		return this.description;
-	}
+    public void setCreatedby(String createdby) {
+        this.createdby = createdby;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public Date getCreateddate() {
+        return this.createddate;
+    }
 
-	public String getFloor() {
-		return this.floor;
-	}
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
 
-	public void setFloor(String floor) {
-		this.floor = floor;
-	}
+    public String getDescription() {
+        return this.description;
+    }
 
-	public Integer getHasld() {
-		return this.hasld;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setHasld(Integer hasld) {
-		this.hasld = hasld;
-	}
+    public String getFloor() {
+        return this.floor;
+    }
 
-	public String getLocation() {
-		return this.location;
-	}
+    public void setFloor(String floor) {
+        this.floor = floor;
+    }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    public Integer getHasld() {
+        return this.hasld;
+    }
 
-	public String getOrgid() {
-		return this.orgid;
-	}
+    public void setHasld(Integer hasld) {
+        this.hasld = hasld;
+    }
 
-	public void setOrgid(String orgid) {
-		this.orgid = orgid;
-	}
+    public String getLocation() {
+        return this.location;
+    }
 
-	public String getRoom() {
-		return this.room;
-	}
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-	public void setRoom(String room) {
-		this.room = room;
-	}
+    public String getOrgid() {
+        return this.orgid;
+    }
 
-	public Long getRowstamp() {
-		return this.rowstamp;
-	}
+    public void setOrgid(String orgid) {
+        this.orgid = orgid;
+    }
 
-	public void setRowstamp(Long rowstamp) {
-		this.rowstamp = rowstamp;
-	}
+    public String getRoom() {
+        return this.room;
+    }
 
-	public String getSiteid() {
-		return this.siteid;
-	}
+    public void setRoom(String room) {
+        this.room = room;
+    }
 
-	public void setSiteid(String siteid) {
-		this.siteid = siteid;
-	}
+    public Long getRowstamp() {
+        return this.rowstamp;
+    }
 
-	public String getStatus() {
-		return this.status;
-	}
+    public void setRowstamp(Long rowstamp) {
+        this.rowstamp = rowstamp;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public String getSiteid() {
+        return this.siteid;
+    }
 
-	public Date getStatusdate() {
-		return this.statusdate;
-	}
+    public void setSiteid(String siteid) {
+        this.siteid = siteid;
+    }
 
-	public void setStatusdate(Date statusdate) {
-		this.statusdate = statusdate;
-	}
+    public String getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Date getStatusdate() {
+        return this.statusdate;
+    }
+
+    public void setStatusdate(Date statusdate) {
+        this.statusdate = statusdate;
+    }
 
 }

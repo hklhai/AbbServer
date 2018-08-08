@@ -1,133 +1,147 @@
 package com.hxqh.abb.model.version2;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import java.io.Serializable;
 import javax.persistence.*;
 
 
 /**
  * The persistent class for the FAILUREREPORT database table.
- * 
  */
 @Entity
-@Table(name="Failurereport")
+@Table(name = "Failurereport")
+@DynamicUpdate
 public class Failurereport implements Serializable {
-	private static final Long serialVersionUID = 1L;
+    private static final Long serialVersionUID = 1L;
 
-	@Id
-	@SequenceGenerator(name="FAILUREREPORT_FAILUREREPORTID_GENERATOR", sequenceName="FAILUREREPORTSEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="FAILUREREPORT_FAILUREREPORTID_GENERATOR")
-	private Long failurereportid;
+    @Id
+    @SequenceGenerator(name = "FAILUREREPORT_FAILUREREPORTID_GENERATOR", allocationSize = 1, sequenceName = "FAILUREREPORTSEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FAILUREREPORT_FAILUREREPORTID_GENERATOR")
+    private Long failurereportid;
 
-	private String assetnum;
+    private String assetnum;
 
-	private String failurecode;
+    private String failurecode;
 
-	private Long linenum;
+    private Long linenum;
 
-	private String orgid;
+    private String orgid;
 
-	private Long rowstamp;
+    private Long rowstamp;
 
-	private String siteid;
+    private String siteid;
 
-	private String ticketclass;
+    private String ticketclass;
 
-	private String ticketid;
+    private String ticketid;
 
-	@Column(name="\"TYPE\"")
-	private String type;
+    @Column(name = "\"TYPE\"")
+    private String type;
 
-	private String wonum;
+    private String wonum;
 
-	public Failurereport() {
-	}
+    @Transient
+    private Long frontedid;
 
-	public Long getFailurereportid() {
-		return this.failurereportid;
-	}
+    public Failurereport() {
+    }
 
-	public void setFailurereportid(Long failurereportid) {
-		this.failurereportid = failurereportid;
-	}
 
-	public String getAssetnum() {
-		return this.assetnum;
-	}
+    public Long getFrontedid() {
+        return frontedid;
+    }
 
-	public void setAssetnum(String assetnum) {
-		this.assetnum = assetnum;
-	}
+    public void setFrontedid(Long frontedid) {
+        this.frontedid = frontedid;
+    }
 
-	public String getFailurecode() {
-		return this.failurecode;
-	}
+    public Long getFailurereportid() {
+        return this.failurereportid;
+    }
 
-	public void setFailurecode(String failurecode) {
-		this.failurecode = failurecode;
-	}
+    public void setFailurereportid(Long failurereportid) {
+        this.failurereportid = failurereportid;
+    }
 
-	public Long getLinenum() {
-		return this.linenum;
-	}
+    public String getAssetnum() {
+        return this.assetnum;
+    }
 
-	public void setLinenum(Long linenum) {
-		this.linenum = linenum;
-	}
+    public void setAssetnum(String assetnum) {
+        this.assetnum = assetnum;
+    }
 
-	public String getOrgid() {
-		return this.orgid;
-	}
+    public String getFailurecode() {
+        return this.failurecode;
+    }
 
-	public void setOrgid(String orgid) {
-		this.orgid = orgid;
-	}
+    public void setFailurecode(String failurecode) {
+        this.failurecode = failurecode;
+    }
 
-	public Long getRowstamp() {
-		return this.rowstamp;
-	}
+    public Long getLinenum() {
+        return this.linenum;
+    }
 
-	public void setRowstamp(Long rowstamp) {
-		this.rowstamp = rowstamp;
-	}
+    public void setLinenum(Long linenum) {
+        this.linenum = linenum;
+    }
 
-	public String getSiteid() {
-		return this.siteid;
-	}
+    public String getOrgid() {
+        return this.orgid;
+    }
 
-	public void setSiteid(String siteid) {
-		this.siteid = siteid;
-	}
+    public void setOrgid(String orgid) {
+        this.orgid = orgid;
+    }
 
-	public String getTicketclass() {
-		return this.ticketclass;
-	}
+    public Long getRowstamp() {
+        return this.rowstamp;
+    }
 
-	public void setTicketclass(String ticketclass) {
-		this.ticketclass = ticketclass;
-	}
+    public void setRowstamp(Long rowstamp) {
+        this.rowstamp = rowstamp;
+    }
 
-	public String getTicketid() {
-		return this.ticketid;
-	}
+    public String getSiteid() {
+        return this.siteid;
+    }
 
-	public void setTicketid(String ticketid) {
-		this.ticketid = ticketid;
-	}
+    public void setSiteid(String siteid) {
+        this.siteid = siteid;
+    }
 
-	public String getType() {
-		return this.type;
-	}
+    public String getTicketclass() {
+        return this.ticketclass;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setTicketclass(String ticketclass) {
+        this.ticketclass = ticketclass;
+    }
 
-	public String getWonum() {
-		return this.wonum;
-	}
+    public String getTicketid() {
+        return this.ticketid;
+    }
 
-	public void setWonum(String wonum) {
-		this.wonum = wonum;
-	}
+    public void setTicketid(String ticketid) {
+        this.ticketid = ticketid;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getWonum() {
+        return this.wonum;
+    }
+
+    public void setWonum(String wonum) {
+        this.wonum = wonum;
+    }
 
 }

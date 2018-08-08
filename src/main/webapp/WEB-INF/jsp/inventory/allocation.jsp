@@ -21,42 +21,48 @@
         var _ctx = '${ctx}';
         var _apptname = '${apptname}';
         var _pkid = '${pkid}';
+        var _operate='${operate}';
+        var attatchId;
     </script>
 </head>
 <body>
 <div class="borrow-detail">
-    <h4>备件调拨/1119</h4>
+    <div class="tab-btn">
+        <button class="returnList">列表视图</button>
+        <button class="workOrder click">备件调拨</button>
+    </div>
+    <div class="mylable" style="position: relative;">
+        <button class="attach" style="margin-left:5px;">附件</button>
+        <button class="save-btn-main">保存</button>
+        <button class="apply-btn" style="margin-right: 5px;">审批</button>
+        <ul class="attach-ul">
+            <li class="attachList">查看附件&nbsp&nbsp</li>
+            <li class="addFile">添加新文件&nbsp&nbsp</li>
+        </ul>
+    </div>
     <div class="detail-info">
         <p class="item" style="width: 50%;">
             <label for="">调拨编码/描述:</label>
-            <span class="INVUSENUM fixed-width">1020</span>
-            <input type="text" placeholder="描述" class="DESCRIPTION">
+            <input type="text" class="invusenum" readonly style="width: 80px;">
+            <input type="text" class="description" readonly style="width: 120px;margin-left: 10px;">
         </p>
         <p class="item" style="width: 25%;">
             <label for="">服务站点:</label>
-            <span class="SITEID">GZ</span>
+            <span class="siteid"></span>
         </p>
         <p class="item" style="width: 25%;">
             <label for="">状态:</label>
-            <span class="STATUS">APE</span>
+            <span class="status"></span>
         </p>
         <p class="item" style="width: 50%;">
-            <label class="left" for="">仓库编码/描述:</label>
-            <select name="" id="" class="left">
-                <option value="" selected="selected" class="FROMSTORELOC">GZ-APP</option>
-                <option value="">w</option>
-                <option value="">3</option>
-                <option value="">4</option>
-            </select>
-            <input type="text" placeholder="描述" class="LOCATIONS.DESCRIPTION left" style="margin-left: 7px;">
+            <label for="">仓库编码/描述:</label>
+            <input type="text"  class="fromstoreloc SELECTIONLOCATIONS" style="width: 80px;" readonly/>
+            <i class="search-dataMask"></i>
+            <input type="text" disabled="disabled" class="locationsdescription" style="width: 120px;" readonly/>
         </p>
         <p class="item" style="width: 25%;">
-            <label for="">是否跨站？</label>
-            <input type="checkbox" name="" class="ISSITE">
-        </p>
-        <p class="item" style="width: 25%;">
-            <label for="">附件:</label>
-            <span class="">标志</span>
+            <label for="" style="width: 60px;">是否跨站？</label>
+            <input type="checkbox" class="issite"/>
         </p>
         <div class="clearfix"></div>
     </div>
@@ -67,59 +73,63 @@
         </h5>
         <table class="details">
             <thead>
-            <tr>
-                <td style="padding-left: 10px;" class="">行号</td>
-                <td class="INVUSENUM">物资</td>
-                <td class="ITEM.DESCRIPTION">描述</td>
-                <td class="ITEM.UDMODEL">型号类别</td>
-                <td class="INVUSELINE">原货柜</td>
-                <td class="INVENTORY.CURBALTOTAL">当前数量</td>
-                <td class="QUANTITY">交易数量</td>
-            </tr>
+                <tr>
+                    <td style="padding-left: 10px;" class="">行号</td>
+                    <td>物资</td>
+                    <td>描述</td>
+                    <td>型号类别</td>
+                    <td>原货柜</td>
+                    <td>当前数量</td>
+                    <td>交易数量</td>
+                </tr>
             </thead>
-            <tbody>
-
-            </tbody>
+            <tbody></tbody>
         </table>
         <div class="page">
 
         </div>
         <div class="row-info">
-            <p class="item bg">
-                <span style="padding-left: 10px;font-size:14px;">行项</span>
+            <p class="item bg" style="height: 34px;line-height: 34px;">
+                <span id="tit1" style="padding-left: 10px;font-size:14px;">行项</span>
             </p>
-            <p class="item bg">
-                <span style="padding-left: 0px;font-size:14px;">数量和成本</span>
+            <p class="item bg" style="height: 34px;line-height: 34px;">
+                <span id="tit2" style="padding-left: 0px;font-size:14px;">数量和成本</span>
             </p>
             <div class="layout">
-                <p class="item">
-                    <label for="">物资:</label>
-                    <span class="INVUSENUM">1vvR0030310</span>
+                <p class="item" style="display: none;">
+                    <span id="key"></span>
+                    <span id="tableIndex"></span>
                 </p>
                 <p class="item">
-                    <label for="">交易成本:</label>
-                    <span class="">1vvR0030310</span>
+                    <label for="">物资:</label>
+                    <input type="text" readonly  class="invusenum SELECTIONINVENTORY">
+                    <i class="search-dataMask"></i>
+                    <input class="itemdescription" style="display: none;" readonly/>
+                </p>
+                <p class="item">
+                    <label for="">交易数量:</label>
+                    <input type="text"  class="quantity isNumber">
                 </p>
                 <p class="item">
                     <label for="">型号类别:</label>
-                    <span class="ITEM.UDMODEL">1vvR0030310</span>
+                    <span class="itemudmodel"></span>
                 </p>
                 <p class="item">
                     <label for="">单位成本:</label>
-                    <span class="DISPLAYUNITCOST">1vvR0030310</span>
+                    <span class=""></span>
                 </p>
                 <p class="item">
                     <label for="">当前余量:</label>
-                    <span class="INVENTORY.CURBALTOTAL">1vvR0030310</span>
+                    <span class=""></span>
                 </p>
                 <p class="item">
                     <label for="">行成本:</label>
-                    <span class="DISPLAYLINECOST">1vvR0030310</span>
+                    <span class=""></span>
                 </p>
                 <p class="item">
-                    <label for="">原货柜：</label>
-                    <i class="search"></i>
-                    <input type="text" class="INVUSELINE">
+                    <label for="">原货柜:</label>
+                    <input type="text" readonly class="formbin SELECTIONINVBALANCES">
+                    <%--<i class="search-dataMask"></i>--%>
                 </p>
                 <div class="clearfix"></div>
             </div>
@@ -129,48 +139,84 @@
             <div class="layout">
                 <p class="item">
                     <label for="">目标货柜:</label>
-                    <i class="search"></i>
-                    <input type="text" class="TOBIN">
+                    <input type="text" readonly class="tobin SELECTIONINVBALANCES">
+                    <%--<i class="search-dataMask"></i>--%>
                 </p>
                 <p class="item">
                     <label for="">备注:</label>
-                    <span class="REMARK">1vvR0030310</span>
+                    <input type="text" class="remark">
                 </p>
                 <p class="item">
                     <label for="">目标库房:</label>
-                    <select name="" id="" class="left">
-                        <option value="" selected="selected" class="TOSTORELOC">GZ-APP</option>
-                        <option value="">w</option>
-                        <option value="">3</option>
-                        <option value="">4</option>
-                    </select>
+                    <input type="text" readonly class="tostoreloc SELECTIONLOCATIONS">
+                    <i class="search-dataMask"></i>
                 </p>
                 <p class="item">
                     <label for="">实际日期:</label>
-                    <input type="text" id="datetimepicker7" class="ACTUALDATE">
+                    <input type="text" readonly class="actualdate datetimepicker7">
                 </p>
                 <p class="item">
                     <label for="">发放目标:</label>
-                    <span class="ISSUETO">1vvR0030310</span>
+                    <input type="text" readonly class="issueto SELECTIONPERSON">
+                    <i class="search-dataMask"></i>
                 </p>
                 <p class="item">
                     <label for="">输入人:</label>
-                    <span class="ENTERBY">1vvR0030310</span>
+                    <span class="enterby"></span>
+                    <span class="persondisplayname"></span>
                 </p>
                 <p class="item">
-                    <label for="">目标地点</label>
-                    <i class="search"></i>
-                    <input type="text" class="TOSITEID">
+                    <label for="">目标地点:</label>
+                    <input type="text" readonly class="tositeid SELECTIONSITE">
+                    <i class="search-dataMask"></i>
                 </p>
             </div>
         </div>
         <div class="clearfix"></div>
     </div>
+    <div class="next-apply">
+        <h5>下一个审批人</h5>
+        <table>
+            <thead>
+                <tr>
+                    <td>人员</td>
+                    <td>名称</td>
+                    <td>描述</td>
+                    <td>过程</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div class="apply-record">
+        <h5>审批记录</h5>
+        <table>
+            <thead>
+                <tr>
+                    <td>人员</td>
+                    <td>名称</td>
+                    <td>描述</td>
+                    <td>交易日期</td>
+                    <td>备忘录</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
 </div>
+<span class="showTip"></span>
+<%@include file="../commons/attachList.jsp"%>
+<%@include file="../commons/audit.jsp"%>
+<%@include file="../commons/addAttach.jsp"%>
+<%@include file="../commons/dataMask.jsp"%>
 <script src="${ctx}/scripts/jquery-1.9.1.min.js"></script>
 <script src="${ctx}/scripts/jquery.datetimepicker.js"></script>
-<%--<script src="${ctx}/js/invuse.js"></script>--%>
+<script src="${ctx}/js/date/jquerytime.js"></script>
 <script src="${ctx}/js/initDetail.js"></script>
+<script src="${ctx}/js/util/attachFile.js"></script>
+<script src="${ctx}/scripts/ajaxfileupload.js"></script>
+<script src="${ctx}/js/util/dataMask.js"></script>
+<script src="${ctx}/js/util/formValidate.js"></script>
 <script>
     var logic = function( currentDateTime ){
         if( currentDateTime.getDay()==6 ){

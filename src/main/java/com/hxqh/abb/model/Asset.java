@@ -1,5 +1,7 @@
 package com.hxqh.abb.model;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -13,6 +15,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name="Asset")
+@DynamicUpdate
 public class Asset  implements Serializable {
 	private static final long serialVersionUID = 1L;
 

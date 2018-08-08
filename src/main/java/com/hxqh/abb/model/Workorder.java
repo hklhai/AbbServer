@@ -1,9 +1,13 @@
 package com.hxqh.abb.model;
 
-import java.io.Serializable;
+import com.hxqh.abb.model.version2.*;
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -11,6 +15,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "Workorder")
+@DynamicUpdate
 public class Workorder implements Serializable {
     private static final Long serialVersionUID = 1L;
 
@@ -100,33 +105,13 @@ public class Workorder implements Serializable {
     @Column(name = "\"ENVIRONMENT\"")
     private String environment;
 
-    //private BigDecimal estatapprIntegerlabcost;
-
-    //private double estatapprIntegerlabhrs;
-
-    //private BigDecimal estatapprlabcost;
-
     private double estatapprlabhrs;
-
-//	private BigDecimal estatapprmatcost;
-//
-//	private BigDecimal estatapproutlabcost;
 
     private double estatapproutlabhrs;
 
-//	private BigDecimal estatapprservcost;
-//
-//	private BigDecimal estatapprtoolcost;
-
     private double estdur;
 
-    //private Double estIntegerlabcost;
-
-    //private double estIntegerlabhrs;
-
     private BigDecimal estlabcost;
-
-//	private double estlabhrs;
 
     private BigDecimal estmatcost;
 
@@ -260,6 +245,24 @@ public class Workorder implements Serializable {
 
     //private Date pluscoverduedate;
 
+    //private BigDecimal estatapprIntegerlabcost;
+
+    //private double estatapprIntegerlabhrs;
+
+    //private BigDecimal estatapprlabcost;
+
+    //	private BigDecimal estatapprmatcost;
+    //
+    //	private BigDecimal estatapproutlabcost;
+
+    //	private BigDecimal estatapprservcost;
+    //
+    //	private BigDecimal estatapprtoolcost;
+    //private Double estIntegerlabcost;
+
+    //private double estIntegerlabhrs;
+    //	private double estlabhrs;
+
     private String pluscphyloc;
 
     @Temporal(TemporalType.DATE)
@@ -285,7 +288,7 @@ public class Workorder implements Serializable {
 
     private String repfacsiteid;
 
-    //private Date reportdate;
+    private Date reportdate;
 
     private String reportedby;
 
@@ -318,7 +321,7 @@ public class Workorder implements Serializable {
     @Column(name = "\"STATUS\"")
     private String status;
 
-    //private Date statusdate;
+    private Date statusdate;
 
     private String storeroommtlstatus;
 
@@ -326,11 +329,11 @@ public class Workorder implements Serializable {
 
     private Integer suspendflow;
 
-    //private Date targcompdate;
+    private Date targcompdate;
 
     private String targetdesc;
 
-    //private Date targstartdate;
+//    private Date targstartdate;
 
     private Integer taskid;
 
@@ -466,7 +469,168 @@ public class Workorder implements Serializable {
 
     private Integer wosequence;
 
+    private String createby;
+
+    private Date targstartdate;
+
+    ///前端添加缺省字段
+    @Transient
+    private String reportedbydisplayname;
+    @Transient
+    private String locationsdescription;
+    @Transient
+    private String leaddisplayname;
+    @Transient
+    private String assetdescription;
+    @Transient
+    private String saddresscode;
+    @Transient
+    private String failurecodedescription;
+    @Transient
+    private String promanagerdisplayname;
+    @Transient
+    private String serviceaddressdescription;
+
+    @Transient
+    private String uddelegatecoding;
+    @Transient
+    private String uddelegatepromanager;
+    @Transient
+    private String uddelegatepronum;
+    @Transient
+    private String udprojectdescription;
+    @Transient
+    private String persondisplayname;
+
+    @Transient
+    private String deletes;
+
+    @Transient
+    private String maintab;
+
+    @Transient
+    private List<Udwoline> udwolineList;  // 设备信息
+    @Transient
+    private List<Udwoqualification> udwoqualificationList;  // 资质
+    @Transient
+    private List<Wplabor> wplaborList; // 计划标签页信息-员工 WPLABOR
+    @Transient
+    private List<Labtran> labtranList;  // 执行报告标签页-员工 LABTRANS
+    @Transient
+    private List<Matusetran> matusetranList; // 执行报告标签页-物料 MATUSETRANS
+    @Transient
+    private List<Failurereport> failurereportList; // 故障报告标签页
+    @Transient
+    private List<Relatedrecord> relatedrecordList; // 关联工单
+    @Transient
+    private List<Workorder> workorderList;
+
+
     public Workorder() {
+    }
+
+    public List<Workorder> getWorkorderList() {
+        return workorderList;
+    }
+
+    public void setWorkorderList(List<Workorder> workorderList) {
+        this.workorderList = workorderList;
+    }
+
+    public String getPersondisplayname() {
+        return persondisplayname;
+    }
+
+    public void setPersondisplayname(String persondisplayname) {
+        this.persondisplayname = persondisplayname;
+    }
+
+    public String getFailurecodedescription() {
+        return failurecodedescription;
+    }
+
+    public void setFailurecodedescription(String failurecodedescription) {
+        this.failurecodedescription = failurecodedescription;
+    }
+
+    public String getPromanagerdisplayname() {
+        return promanagerdisplayname;
+    }
+
+    public void setPromanagerdisplayname(String promanagerdisplayname) {
+        this.promanagerdisplayname = promanagerdisplayname;
+    }
+
+    public String getServiceaddressdescription() {
+        return serviceaddressdescription;
+    }
+
+    public void setServiceaddressdescription(String serviceaddressdescription) {
+        this.serviceaddressdescription = serviceaddressdescription;
+    }
+
+    public String getUddelegatecoding() {
+        return uddelegatecoding;
+    }
+
+    public void setUddelegatecoding(String uddelegatecoding) {
+        this.uddelegatecoding = uddelegatecoding;
+    }
+
+    public String getUddelegatepromanager() {
+        return uddelegatepromanager;
+    }
+
+    public void setUddelegatepromanager(String uddelegatepromanager) {
+        this.uddelegatepromanager = uddelegatepromanager;
+    }
+
+    public String getUddelegatepronum() {
+        return uddelegatepronum;
+    }
+
+    public void setUddelegatepronum(String uddelegatepronum) {
+        this.uddelegatepronum = uddelegatepronum;
+    }
+
+    public String getUdprojectdescription() {
+        return udprojectdescription;
+    }
+
+    public void setUdprojectdescription(String udprojectdescription) {
+        this.udprojectdescription = udprojectdescription;
+    }
+
+    public String getSaddresscode() {
+        return saddresscode;
+    }
+
+    public void setSaddresscode(String saddresscode) {
+        this.saddresscode = saddresscode;
+    }
+
+    public String getReportedbydisplayname() {
+        return reportedbydisplayname;
+    }
+
+    public void setReportedbydisplayname(String reportedbydisplayname) {
+        this.reportedbydisplayname = reportedbydisplayname;
+    }
+
+    public String getLocationsdescription() {
+        return locationsdescription;
+    }
+
+    public void setLocationsdescription(String locationsdescription) {
+        this.locationsdescription = locationsdescription;
+    }
+
+    public String getCreateby() {
+        return createby;
+    }
+
+    public void setCreateby(String createby) {
+        this.createby = createby;
     }
 
     public Long getWorkorderid() {
@@ -485,7 +649,14 @@ public class Workorder implements Serializable {
         this.actfinish = actfinish;
     }
 
-//	public BigDecimal getActIntegerlabcost() {
+    public Date getReportdate() {
+        return reportdate;
+    }
+
+    public void setReportdate(Date reportdate) {
+        this.reportdate = reportdate;
+    }
+    //	public BigDecimal getActIntegerlabcost() {
 //		return this.actIntegerlabcost;
 //	}
 //
@@ -911,6 +1082,14 @@ public class Workorder implements Serializable {
 
     public void setFaildate(Date faildate) {
         this.faildate = faildate;
+    }
+
+    public Date getStatusdate() {
+        return statusdate;
+    }
+
+    public void setStatusdate(Date statusdate) {
+        this.statusdate = statusdate;
     }
 
     public String getFailurecode() {
@@ -2048,4 +2227,110 @@ public class Workorder implements Serializable {
         this.wosequence = wosequence;
     }
 
+    public String getDeletes() {
+        return deletes;
+    }
+
+    public void setDeletes(String deletes) {
+        this.deletes = deletes;
+    }
+
+    public String getMaintab() {
+        return maintab;
+    }
+
+    public void setMaintab(String maintab) {
+        this.maintab = maintab;
+    }
+
+    public List<Udwoline> getUdwolineList() {
+        return udwolineList;
+    }
+
+    public void setUdwolineList(List<Udwoline> udwolineList) {
+        this.udwolineList = udwolineList;
+    }
+
+    public List<Udwoqualification> getUdwoqualificationList() {
+        return udwoqualificationList;
+    }
+
+    public void setUdwoqualificationList(List<Udwoqualification> udwoqualificationList) {
+        this.udwoqualificationList = udwoqualificationList;
+    }
+
+    public String getLeaddisplayname() {
+        return leaddisplayname;
+    }
+
+    public void setLeaddisplayname(String leaddisplayname) {
+        this.leaddisplayname = leaddisplayname;
+    }
+
+    public String getAssetdescription() {
+        return assetdescription;
+    }
+
+    public void setAssetdescription(String assetdescription) {
+        this.assetdescription = assetdescription;
+    }
+
+    public List<Wplabor> getWplaborList() {
+        return wplaborList;
+    }
+
+    public void setWplaborList(List<Wplabor> wplaborList) {
+        this.wplaborList = wplaborList;
+    }
+
+    public List<Labtran> getLabtranList() {
+        return labtranList;
+    }
+
+    public void setLabtranList(List<Labtran> labtranList) {
+        this.labtranList = labtranList;
+    }
+
+    public List<Matusetran> getMatusetranList() {
+        return matusetranList;
+    }
+
+    public void setMatusetranList(List<Matusetran> matusetranList) {
+        this.matusetranList = matusetranList;
+    }
+
+    public List<Failurereport> getFailurereportList() {
+        return failurereportList;
+    }
+
+    public void setFailurereportList(List<Failurereport> failurereportList) {
+        this.failurereportList = failurereportList;
+    }
+
+    public List<Relatedrecord> getRelatedrecordList() {
+        return relatedrecordList;
+    }
+
+    public void setRelatedrecordList(List<Relatedrecord> relatedrecordList) {
+        this.relatedrecordList = relatedrecordList;
+    }
+
+//前端添加字段
+
+
+    public Date getTargcompdate() {
+        return targcompdate;
+    }
+
+    public void setTargcompdate(Date targcompdate) {
+        this.targcompdate = targcompdate;
+    }
+
+    public Date getTargstartdate() {
+        return targstartdate;
+    }
+
+    public void setTargstartdate(Date targstartdate) {
+        this.targstartdate = targstartdate;
+    }
 }

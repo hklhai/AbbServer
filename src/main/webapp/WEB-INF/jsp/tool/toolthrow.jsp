@@ -15,88 +15,86 @@
     <link rel="stylesheet" type="text/css" href="${ctx}/css/reset.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/css/detail.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/css/date/jquery.datetimepicker.css"/>
+    <script>
+        var _ctx = '${ctx}';
+        var _apptname = '${apptname}';
+        var _pkid = '${pkid}';
+        var _operate='${operate}';
+    </script>
 </head>
 <body>
 <div class="borrow-detail">
-    <h4>工具修丢弃/1120</h4>
+    <div class="tab-btn" style=" width: 188px;">
+        <button class="returnList">列表视图</button>
+        <button class="workOrder click">工具修丢弃</button>
+    </div>
+    <%--<h4>工具修丢弃</h4>--%>
+    <div class="mylable">
+        <%--<button type="button" id="mycollect">打印</button>--%>
+        <button type="button" class="save-btn">保存</button>
+        <button class="apply-btn" style="margin-right: 5px;">审批</button>
+    </div>
     <div class="detail-info">
         <p class="item">
             <label for="">申请编号:</label>
-            <span>1020</span>
-            <input type="text" placeholder="描述">
-        </p>
-        <p class="item">
-            <label for="">申请人工号:</label>
-            <select name="" id="">
-                <option value="" selected="selected">2001202020</option>
-                <option value="">w</option>
-                <option value="">3</option>
-                <option value="">4</option>
-            </select>
-        </p>
-        <p class="item">
-            <label for="">状态时间:</label>
-            <input type="text" value="2014/03/15 05:06" class="datetimepicker7">
-        </p>
-        <p class="item">
-            <label for="">申请类型:</label>
-            <select name="" id="">
-                <option value="" selected="selected">报废</option>
-                <option value="">w</option>
-                <option value="">3</option>
-                <option value="">4</option>
-            </select>
+            <span class="applynum"></span>
+            <input type="text" class="description">
         </p>
         <p class="item">
             <label for="">申请人:</label>
-            <input type="text" placeholder="描述">
+            <input type="text"  class="applicant SELECTIONPERSON" readonly style="width: 80px;">
+            <i class="search-dataMask"></i>
+            <input type="text"  class="persondisplayname" readonly  style="width: 80px;">
         </p>
         <p class="item">
-            <label for="">创建人:</label>
-            <span>AM</span>
+            <label for="">状态时间:</label>
+            <span class="datetimepicker7" ></span>
         </p>
         <p class="item">
-            <label for="">工具编号:</label>
-            <select name="" id="">
-                <option value="" selected="selected">TESL001</option>
-                <option value="">w</option>
-                <option value="">3</option>
-                <option value="">4</option>
+            <label for="">申请类型:</label>
+            <select class="applytype">
+                <option value="丢失">丢失</option>
+                <option value="报废">报废</option>
+                <option value="维修">维修</option>
             </select>
         </p>
         <p class="item">
+            <label for="">创建人:</label>
+            <span></span>
+        </p>
+        <p class="item">
             <label for="">申请时间:</label>
-            <input type="text" value="2014/03/15 05:06" class="datetimepicker7">
+            <input type="text" value="2 " class="applydate datetimepicker7">
+        </p>
+        <p class="item">
+            <label for="">工具编号:</label>
+            <input type="text"  class="toolnum SELECTIONUDTOOL" readonly>
+            <i class="search-dataMask"></i>
+            <input type="text" class="udtooldescription" readonly>
         </p>
         <p class="item">
             <label for="">创建时间:</label>
-            <input type="text" value="2014/03/15 05:06" class="datetimepicker7">
-        </p>
-        <p class="item">
-            <label for=""></label>
-            <input type="text" placeholder="继电保护测试">
+            <span class=" datetimepicker7"></span>
         </p>
         <p class="item">
             <label for="">状态:</label>
-            <span>MAXADMIN</span>
+            <span class="status"></span>
         </p>
         <p class="item">
-            <label for="">地点：</label>
-            <span>MAX</span>
-        </p>
-        <p class="item textarea">
-            <label for="">申请原因:</label>
-            <textarea name="" id="" cols="72" rows="4">
-
-			    </textarea>
+            <label for="">地点:</label>
+            <span class="siteid"></span>
         </p>
         <p class="item">
             <label for="">组织:</label>
-            <input type="text" placeholder="描述">
+            <span class="orgid"></span>
+        </p>
+        <p class="item textarea">
+            <label for="">申请原因:</label>
+            <textarea cols="18" rows="4" class="reason"></textarea>
         </p>
         <p class="item">
-            <label for="">人为：</label>
-            <input type="checkbox" name="">
+            <label for="">人为?</label>
+            <input type="checkbox" name="" class="isperson">
         </p>
         <div class="clearfix"></div>
     </div>
@@ -104,77 +102,41 @@
         <h5>下一个审批人</h5>
         <table>
             <thead>
-            <tr>
-                <td width="20%">人员</td>
-                <td width="20%">名称</td>
-                <td width="20%">描述</td>
-                <td width="40%">过程</td>
-            </tr>
+                <tr>
+                    <td>人员</td>
+                    <td>名称</td>
+                    <td>描述</td>
+                    <td>过程</td>
+                </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>1323323</td>
-                <td>冯辉</td>
-                <td>请审批工具报告申请1020</td>
-                <td>WTODLAPPL</td>
-            </tr>
-            </tbody>
+            <tbody></tbody>
         </table>
     </div>
     <div class="apply-record">
         <h5>审批记录</h5>
         <table>
             <thead>
-            <tr>
-                <td width="20%">人员</td>
-                <td width="20%">名称</td>
-                <td width="20%">描述</td>
-                <td width="15%">交易日期</td>
-                <td width="25%">备忘录</td>
-            </tr>
+                <tr>
+                    <td>人员</td>
+                    <td>名称</td>
+                    <td>描述</td>
+                    <td>交易日期</td>
+                    <td>备忘录</td>
+                </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>MAXADIN</td>
-                <td>MAXADIN</td>
-                <td>确定操作</td>
-                <td>2012-02-39</td>
-                <td></td>
-            </tr>
-            </tbody>
+            <tbody></tbody>
         </table>
     </div>
 </div>
+<span class="showTip"></span>
+<div class="mask"></div>
+<%@include file="../commons/dataMask.jsp"%>
+<%@include file="../commons/audit.jsp"%>
 <script src="${ctx}/js/date/jquery.js"></script>
 <script src="${ctx}/js/date/jquery.datetimepicker.js"></script>
 <script src="${ctx}/js/date/jquerytime.js"></script>
+<script src="${ctx}/js/initDetail.js"></script>
+<script src="${ctx}/js/util/dataMask.js"></script>
+<script src="${ctx}/js/util/formValidate.js"></script>
 </body>
 </html>

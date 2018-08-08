@@ -1,13 +1,12 @@
 package com.hxqh.abb.test;
 
 import com.alibaba.fastjson.JSON;
-//import com.hxqh.abb.hello.GreetingInScala;
 import com.hxqh.abb.dao.UdtoolApplyDao;
 import com.hxqh.abb.dao.UdtoolLendDao;
 import com.hxqh.abb.model.User;
 import com.hxqh.abb.model.assist.InterfaceMessage;
-import com.hxqh.abb.service.ToolService;
 import com.hxqh.abb.service.CommonService;
+import com.hxqh.abb.service.ToolService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
@@ -54,7 +54,11 @@ public class UserTest {
 
 
     @Test
-    public void conNull() {
+    public void conNull() throws UnsupportedEncodingException {
+//        String t1 = URLDecoder.decode("2017-09-15+11%3A31%3A30", "utf-8");
+//        String t2 = URLDecoder.decode("2017-09-15+11%3A31%3A28", "utf-8");
+//        System.out.println(t1);
+//        System.out.println(t2);
     }
 
 
@@ -140,82 +144,7 @@ public class UserTest {
             e.printStackTrace();
         }
     }
-    /*****************************************************/
-    /**update by wkl
-     * 2017-8-16
-     * CRUD
-     **/
-//    @Test
-//    public void testShowUdtoolApply() {
-//        List<UdtoolApply> udtoolApplyList = udtoolapplydao.findAll(0, 15, null, null, " order by udtoolid desc");
-//        for (UdtoolApply u : udtoolApplyList) {
-//            System.out.println(u.toString());
-//        }
-//    }
-//
-//    @Test
-//    public void testAddUdtoolApply() {
-//        UdtoolApply udtoolApply = new UdtoolApply();
-//        udtoolApply.setDescription("sssssssssssssssssssss");
-//        udtoolApply.setHasld(0);
-//        udtoolApply.setRowstamp(123l);
-//        udtoolApply.setIsperson(1);
-//        toolService.addUdtoolApply(udtoolApply);
-//    }
-//
-//
-//    @Test
-//    public void testDelUdtoolApply() {
-//         toolService.delUdtoolApply(61l);
-//    }
-//
-//    @Test
-//    public void testUpadteUdtoolApply(){
-//        UdtoolApply udtoolApply = new UdtoolApply();
-//        udtoolApply.setUdtoolapplyid(60l);
-//        udtoolApply.setDescription("ssxxxxss");
-//        udtoolApply.setHasld(0);
-//        udtoolApply.setRowstamp(113l);
-//        udtoolApply.setIsperson(1);
-//        toolService.updateUdtoolApply(udtoolApply);
-//    }
-//
-//    @Test
-//    public void testShowUdtoolLend() {
-//        List<UdtoolLend> udtoolLendList = udtoolLendDao.findAll(0, 15, null, null, " order by udtoolid desc");
-//        for (UdtoolLend u : udtoolLendList) {
-//            System.out.println(u.toString());
-//        }
-//    }
-//
-//    @Test
-//    public void testAddUdtoolLend(){
-//        UdtoolLend udtoolLend=new UdtoolLend();
-//        udtoolLend.setDescription("qwer");
-//        udtoolLend.setHasld(0);
-//        udtoolLend.setRowstamp(111l);
-//        udtoolLend.setIsarea(1223);
-//        udtoolLend.setIssiteout(33321);
-//        toolService.addUdtoolLend(udtoolLend);
-//    }
-//
-//    @Test
-//    public void testUpdateUdtoolLend(){
-//        UdtoolLend udtoolLend=new UdtoolLend();
-//        udtoolLend.setUdtoollendid(199l);
-//        udtoolLend.setDescription("qwer");
-//        udtoolLend.setHasld(0);
-//        udtoolLend.setRowstamp(111l);
-//        udtoolLend.setIsarea(0);
-//        udtoolLend.setIssiteout(0);
-//        toolService.updateUdtoolLend(udtoolLend);
-//    }
-//
-//    @Test
-//    public void testDelUdtoolLend() {
-//        toolService.delUdtoolLend(198l);
-//    }
-//
+
 
 }
 

@@ -1,0 +1,90 @@
+.reportpramres{
+     padding-left: 10px;
+     padding-right: 10px;
+     min-width: 100px;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     background: #fff;
+ }
+.reportpramres h5{
+    font-size: 14px;
+    font-weight: bold;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 2px solid #0096df;
+}
+p.item{
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    width: 100%;
+}
+p.item lable{
+    display: block;
+    width: 100px;
+    text-align: right;
+    float: left;
+}
+p.item input{
+    width: 200px;
+    height: 18px;
+    line-height: 18px;
+}
+.cancle {
+    background: #EAEAEA;
+    color: #000;
+}
+.determine{
+    background: #0096e0;
+    color: #eaeaea;
+    margin-left: 10px;
+}
+.cancle {
+    background: #EAEAEA;
+    color: #000;
+}
+.reportpramres input{
+    width: 40%;
+    height: 22px;
+    border: 1px solid #dfdfdf;
+    margin-top: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.reportpramres label{
+    width: 25%;
+    padding-right: 8px;
+    text-align: right;
+}
+.reportpramres button {
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 23px;
+    margin-bottom: 23px;
+    float: right;
+    border: none;
+    cursor: pointer;
+
+}
+.reportpramres p{
+    line-height: 34px;
+    font-size: 12px;
+    color: #252525;
+    position: relative;
+}
+i.search{
+    display:inline-block;
+    width: 10px;
+    height: 10px;
+    background: url(../../img/new/search-dataMask.png) no-repeat center;
+    background-size: 10px 10px;
+    cursor: pointer;
+    margin-top: 13px;
+    cursor: pointer;
+    float: right;
+    margin-left: 10px;
+}

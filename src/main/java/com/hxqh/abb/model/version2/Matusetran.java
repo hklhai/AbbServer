@@ -1,876 +1,891 @@
 package com.hxqh.abb.model.version2;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 
 
 /**
  * The persistent class for the MATUSETRANS database table.
- * 
  */
 @Entity
-@Table(name="MATUSETRANS")
+@Table(name = "MATUSETRANS")
+@DynamicUpdate
 public class Matusetran implements Serializable {
-	private static final Long serialVersionUID = 1L;
+    private static final Long serialVersionUID = 1L;
 
-	@Id
-	@SequenceGenerator(name="MATUSETRANS_MATUSETRANSID_GENERATOR", sequenceName="MATUSETRANSSEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="MATUSETRANS_MATUSETRANSID_GENERATOR")
-	private Long matusetransid;
+    @Id
+    @SequenceGenerator(name = "MATUSETRANS_MATUSETRANSID_GENERATOR", allocationSize = 1, sequenceName = "MATUSETRANSSEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MATUSETRANS_MATUSETRANSID_GENERATOR")
+    private Long matusetransid;
 
-	private BigDecimal actualcost;
+    private BigDecimal actualcost;
 
-	private Date actualdate;
+    private Date actualdate;
 
-	private String assetnum;
+    private String assetnum;
 
-	private String binnum;
+    private String binnum;
 
-	private String commodity;
+    private String commodity;
 
-	private String commoditygroup;
+    private String commoditygroup;
 
-	private String conditioncode;
+    private String conditioncode;
 
-	private Integer condrate;
+    private Integer condrate;
 
-	private Integer consignment;
+    private Integer consignment;
 
-	private String consinvoicenum;
+    private String consinvoicenum;
 
-	private String consvendor;
+    private String consvendor;
 
-	private BigDecimal conversion;
+    private BigDecimal conversion;
 
-	private BigDecimal curbal;
+    private BigDecimal curbal;
 
-	private String currencycode;
+    private String currencycode;
 
-	private BigDecimal currencylinecost;
+    private BigDecimal currencylinecost;
 
-	private BigDecimal currencyunitcost;
+    private BigDecimal currencyunitcost;
 
-	private String description;
+    private String description;
 
-	private String enterby;
+    private String enterby;
 
-	private Integer enteredastask;
+    private Integer enteredastask;
 
-	private BigDecimal exchangerate;
+    private BigDecimal exchangerate;
 
-	private BigDecimal exchangerate2;
+    private BigDecimal exchangerate2;
 
-	private String externalrefid;
+    private String externalrefid;
 
-	private String financialperiod;
+    private String financialperiod;
 
-	private String fincntrlid;
+    private String fincntrlid;
 
-	private String glcreditacct;
+    private String glcreditacct;
 
-	private String gldebitacct;
+    private String gldebitacct;
 
-	private Integer hasld;
+    private Integer hasld;
 
-	private Long invuseid;
+    private Long invuseid;
 
-	private Long invuselineid;
+    private Long invuselineid;
 
-	private Long issueid;
+    private Long issueid;
 
-	private String issueto;
+    private String issueto;
 
-	private String issuetype;
+    private String issuetype;
 
-	private String it1;
+    private String it1;
 
-	private String it10;
+    private String it10;
 
-	private String it2;
+    private String it2;
 
-	private String it3;
+    private String it3;
 
-	private BigDecimal it4;
+    private BigDecimal it4;
 
-	private String it5;
+    private String it5;
 
-	private String it6;
+    private String it6;
 
-	private String it7;
+    private String it7;
 
-	private String it8;
+    private String it8;
 
-	private String it9;
+    private String it9;
 
-	private String itemnum;
+    private String itemnum;
 
-	private String itemsetid;
+    private String itemsetid;
 
-	private String itin1;
+    private String itin1;
 
-	private String itin2;
+    private String itin2;
 
-	private String itin3;
+    private String itin3;
 
-	private String itin4;
+    private String itin4;
 
-	private String itin5;
+    private String itin5;
 
-	private String itin6;
+    private String itin6;
 
-	private String itin7;
+    private String itin7;
 
-	private String langcode;
+    private String langcode;
 
-	private BigDecimal linecost;
+    private BigDecimal linecost;
 
-	private BigDecimal linecost2;
+    private BigDecimal linecost2;
 
-	private String linetype;
+    private String linetype;
 
-	@Column(name="\"LOCATION\"")
-	private String location;
+    @Column(name = "\"LOCATION\"")
+    private String location;
 
-	private String lotnum;
+    private String lotnum;
 
-	private Long matrectransid;
+    private Long matrectransid;
 
-	private String memo;
+    private String memo;
 
-	private Integer mrlinenum;
+    private Integer mrlinenum;
 
-	private String mrnum;
+    private String mrnum;
 
-	private String orgid;
+    private String orgid;
 
-	private Integer outside;
+    private Integer outside;
 
-	private String ownersysid;
+    private String ownersysid;
 
-	private String packingslipnum;
+    private String packingslipnum;
 
-	private BigDecimal physcnt;
+    private BigDecimal physcnt;
 
-	private Integer polinenum;
+    private Integer polinenum;
 
-	private String ponum;
+    private String ponum;
 
-	private Integer porevisionnum;
+    private Integer porevisionnum;
 
-	private BigDecimal qtyrequested;
+    private BigDecimal qtyrequested;
 
-	private BigDecimal qtyreturned;
+    private BigDecimal qtyreturned;
 
-	private BigDecimal quantity;
+    private BigDecimal quantity;
 
-	private String refwo;
+    private String refwo;
 
-	@Column(name="\"ROLLUP\"")
-	private Integer rollup;
+    @Column(name = "\"ROLLUP\"")
+    private Integer rollup;
 
-	private String rotassetnum;
+    private String rotassetnum;
 
-	private Long rowstamp;
+    private Long rowstamp;
 
-	private String sendersysid;
+    private String sendersysid;
 
-	private String siteid;
+    private String siteid;
 
-	private String sourcesysid;
+    private String sourcesysid;
 
-	private Integer sparepartadded;
+    private Integer sparepartadded;
 
-	private String storeloc;
+    private String storeloc;
 
-	private String tositeid;
+    private String tositeid;
 
-	private Date transdate;
+    private Date transdate;
 
-	private BigDecimal unitcost;
+    private BigDecimal unitcost;
 
-	public Matusetran() {
-	}
+    @Transient
+    private Long frontedid;
 
-	public Long getMatusetransid() {
-		return this.matusetransid;
-	}
+    public Matusetran() {
+    }
 
-	public void setMatusetransid(Long matusetransid) {
-		this.matusetransid = matusetransid;
-	}
 
-	public BigDecimal getActualcost() {
-		return this.actualcost;
-	}
 
-	public void setActualcost(BigDecimal actualcost) {
-		this.actualcost = actualcost;
-	}
+    public Long getFrontedid() {
+        return frontedid;
+    }
 
-	public Date getActualdate() {
-		return this.actualdate;
-	}
+    public void setFrontedid(Long frontedid) {
+        this.frontedid = frontedid;
+    }
 
-	public void setActualdate(Date actualdate) {
-		this.actualdate = actualdate;
-	}
+    public Long getMatusetransid() {
+        return this.matusetransid;
+    }
 
-	public String getAssetnum() {
-		return this.assetnum;
-	}
+    public void setMatusetransid(Long matusetransid) {
+        this.matusetransid = matusetransid;
+    }
 
-	public void setAssetnum(String assetnum) {
-		this.assetnum = assetnum;
-	}
+    public BigDecimal getActualcost() {
+        return this.actualcost;
+    }
 
-	public String getBinnum() {
-		return this.binnum;
-	}
+    public void setActualcost(BigDecimal actualcost) {
+        this.actualcost = actualcost;
+    }
 
-	public void setBinnum(String binnum) {
-		this.binnum = binnum;
-	}
+    public Date getActualdate() {
+        return this.actualdate;
+    }
 
-	public String getCommodity() {
-		return this.commodity;
-	}
+    public void setActualdate(Date actualdate) {
+        this.actualdate = actualdate;
+    }
 
-	public void setCommodity(String commodity) {
-		this.commodity = commodity;
-	}
+    public String getAssetnum() {
+        return this.assetnum;
+    }
 
-	public String getCommoditygroup() {
-		return this.commoditygroup;
-	}
+    public void setAssetnum(String assetnum) {
+        this.assetnum = assetnum;
+    }
 
-	public void setCommoditygroup(String commoditygroup) {
-		this.commoditygroup = commoditygroup;
-	}
+    public String getBinnum() {
+        return this.binnum;
+    }
 
-	public String getConditioncode() {
-		return this.conditioncode;
-	}
+    public void setBinnum(String binnum) {
+        this.binnum = binnum;
+    }
 
-	public void setConditioncode(String conditioncode) {
-		this.conditioncode = conditioncode;
-	}
+    public String getCommodity() {
+        return this.commodity;
+    }
 
-	public Integer getCondrate() {
-		return this.condrate;
-	}
+    public void setCommodity(String commodity) {
+        this.commodity = commodity;
+    }
 
-	public void setCondrate(Integer condrate) {
-		this.condrate = condrate;
-	}
+    public String getCommoditygroup() {
+        return this.commoditygroup;
+    }
 
-	public Integer getConsignment() {
-		return this.consignment;
-	}
+    public void setCommoditygroup(String commoditygroup) {
+        this.commoditygroup = commoditygroup;
+    }
 
-	public void setConsignment(Integer consignment) {
-		this.consignment = consignment;
-	}
+    public String getConditioncode() {
+        return this.conditioncode;
+    }
 
-	public String getConsinvoicenum() {
-		return this.consinvoicenum;
-	}
+    public void setConditioncode(String conditioncode) {
+        this.conditioncode = conditioncode;
+    }
 
-	public void setConsinvoicenum(String consinvoicenum) {
-		this.consinvoicenum = consinvoicenum;
-	}
+    public Integer getCondrate() {
+        return this.condrate;
+    }
 
-	public String getConsvendor() {
-		return this.consvendor;
-	}
+    public void setCondrate(Integer condrate) {
+        this.condrate = condrate;
+    }
 
-	public void setConsvendor(String consvendor) {
-		this.consvendor = consvendor;
-	}
+    public Integer getConsignment() {
+        return this.consignment;
+    }
 
-	public BigDecimal getConversion() {
-		return this.conversion;
-	}
+    public void setConsignment(Integer consignment) {
+        this.consignment = consignment;
+    }
 
-	public void setConversion(BigDecimal conversion) {
-		this.conversion = conversion;
-	}
+    public String getConsinvoicenum() {
+        return this.consinvoicenum;
+    }
 
-	public BigDecimal getCurbal() {
-		return this.curbal;
-	}
+    public void setConsinvoicenum(String consinvoicenum) {
+        this.consinvoicenum = consinvoicenum;
+    }
 
-	public void setCurbal(BigDecimal curbal) {
-		this.curbal = curbal;
-	}
+    public String getConsvendor() {
+        return this.consvendor;
+    }
 
-	public String getCurrencycode() {
-		return this.currencycode;
-	}
+    public void setConsvendor(String consvendor) {
+        this.consvendor = consvendor;
+    }
 
-	public void setCurrencycode(String currencycode) {
-		this.currencycode = currencycode;
-	}
+    public BigDecimal getConversion() {
+        return this.conversion;
+    }
 
-	public BigDecimal getCurrencylinecost() {
-		return this.currencylinecost;
-	}
+    public void setConversion(BigDecimal conversion) {
+        this.conversion = conversion;
+    }
 
-	public void setCurrencylinecost(BigDecimal currencylinecost) {
-		this.currencylinecost = currencylinecost;
-	}
+    public BigDecimal getCurbal() {
+        return this.curbal;
+    }
 
-	public BigDecimal getCurrencyunitcost() {
-		return this.currencyunitcost;
-	}
+    public void setCurbal(BigDecimal curbal) {
+        this.curbal = curbal;
+    }
 
-	public void setCurrencyunitcost(BigDecimal currencyunitcost) {
-		this.currencyunitcost = currencyunitcost;
-	}
+    public String getCurrencycode() {
+        return this.currencycode;
+    }
 
-	public String getDescription() {
-		return this.description;
-	}
+    public void setCurrencycode(String currencycode) {
+        this.currencycode = currencycode;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public BigDecimal getCurrencylinecost() {
+        return this.currencylinecost;
+    }
 
-	public String getEnterby() {
-		return this.enterby;
-	}
+    public void setCurrencylinecost(BigDecimal currencylinecost) {
+        this.currencylinecost = currencylinecost;
+    }
 
-	public void setEnterby(String enterby) {
-		this.enterby = enterby;
-	}
+    public BigDecimal getCurrencyunitcost() {
+        return this.currencyunitcost;
+    }
 
-	public Integer getEnteredastask() {
-		return this.enteredastask;
-	}
+    public void setCurrencyunitcost(BigDecimal currencyunitcost) {
+        this.currencyunitcost = currencyunitcost;
+    }
 
-	public void setEnteredastask(Integer enteredastask) {
-		this.enteredastask = enteredastask;
-	}
+    public String getDescription() {
+        return this.description;
+    }
 
-	public BigDecimal getExchangerate() {
-		return this.exchangerate;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setExchangerate(BigDecimal exchangerate) {
-		this.exchangerate = exchangerate;
-	}
+    public String getEnterby() {
+        return this.enterby;
+    }
 
-	public BigDecimal getExchangerate2() {
-		return this.exchangerate2;
-	}
+    public void setEnterby(String enterby) {
+        this.enterby = enterby;
+    }
 
-	public void setExchangerate2(BigDecimal exchangerate2) {
-		this.exchangerate2 = exchangerate2;
-	}
+    public Integer getEnteredastask() {
+        return this.enteredastask;
+    }
 
-	public String getExternalrefid() {
-		return this.externalrefid;
-	}
+    public void setEnteredastask(Integer enteredastask) {
+        this.enteredastask = enteredastask;
+    }
 
-	public void setExternalrefid(String externalrefid) {
-		this.externalrefid = externalrefid;
-	}
+    public BigDecimal getExchangerate() {
+        return this.exchangerate;
+    }
 
-	public String getFinancialperiod() {
-		return this.financialperiod;
-	}
+    public void setExchangerate(BigDecimal exchangerate) {
+        this.exchangerate = exchangerate;
+    }
 
-	public void setFinancialperiod(String financialperiod) {
-		this.financialperiod = financialperiod;
-	}
+    public BigDecimal getExchangerate2() {
+        return this.exchangerate2;
+    }
 
-	public String getFincntrlid() {
-		return this.fincntrlid;
-	}
+    public void setExchangerate2(BigDecimal exchangerate2) {
+        this.exchangerate2 = exchangerate2;
+    }
 
-	public void setFincntrlid(String fincntrlid) {
-		this.fincntrlid = fincntrlid;
-	}
+    public String getExternalrefid() {
+        return this.externalrefid;
+    }
 
-	public String getGlcreditacct() {
-		return this.glcreditacct;
-	}
+    public void setExternalrefid(String externalrefid) {
+        this.externalrefid = externalrefid;
+    }
 
-	public void setGlcreditacct(String glcreditacct) {
-		this.glcreditacct = glcreditacct;
-	}
+    public String getFinancialperiod() {
+        return this.financialperiod;
+    }
 
-	public String getGldebitacct() {
-		return this.gldebitacct;
-	}
+    public void setFinancialperiod(String financialperiod) {
+        this.financialperiod = financialperiod;
+    }
 
-	public void setGldebitacct(String gldebitacct) {
-		this.gldebitacct = gldebitacct;
-	}
+    public String getFincntrlid() {
+        return this.fincntrlid;
+    }
 
-	public Integer getHasld() {
-		return this.hasld;
-	}
+    public void setFincntrlid(String fincntrlid) {
+        this.fincntrlid = fincntrlid;
+    }
 
-	public void setHasld(Integer hasld) {
-		this.hasld = hasld;
-	}
+    public String getGlcreditacct() {
+        return this.glcreditacct;
+    }
 
-	public Long getInvuseid() {
-		return this.invuseid;
-	}
+    public void setGlcreditacct(String glcreditacct) {
+        this.glcreditacct = glcreditacct;
+    }
 
-	public void setInvuseid(Long invuseid) {
-		this.invuseid = invuseid;
-	}
+    public String getGldebitacct() {
+        return this.gldebitacct;
+    }
 
-	public Long getInvuselineid() {
-		return this.invuselineid;
-	}
+    public void setGldebitacct(String gldebitacct) {
+        this.gldebitacct = gldebitacct;
+    }
 
-	public void setInvuselineid(Long invuselineid) {
-		this.invuselineid = invuselineid;
-	}
+    public Integer getHasld() {
+        return this.hasld;
+    }
 
-	public Long getIssueid() {
-		return this.issueid;
-	}
+    public void setHasld(Integer hasld) {
+        this.hasld = hasld;
+    }
 
-	public void setIssueid(Long issueid) {
-		this.issueid = issueid;
-	}
+    public Long getInvuseid() {
+        return this.invuseid;
+    }
 
-	public String getIssueto() {
-		return this.issueto;
-	}
+    public void setInvuseid(Long invuseid) {
+        this.invuseid = invuseid;
+    }
 
-	public void setIssueto(String issueto) {
-		this.issueto = issueto;
-	}
+    public Long getInvuselineid() {
+        return this.invuselineid;
+    }
 
-	public String getIssuetype() {
-		return this.issuetype;
-	}
+    public void setInvuselineid(Long invuselineid) {
+        this.invuselineid = invuselineid;
+    }
 
-	public void setIssuetype(String issuetype) {
-		this.issuetype = issuetype;
-	}
+    public Long getIssueid() {
+        return this.issueid;
+    }
 
-	public String getIt1() {
-		return this.it1;
-	}
+    public void setIssueid(Long issueid) {
+        this.issueid = issueid;
+    }
 
-	public void setIt1(String it1) {
-		this.it1 = it1;
-	}
+    public String getIssueto() {
+        return this.issueto;
+    }
 
-	public String getIt10() {
-		return this.it10;
-	}
+    public void setIssueto(String issueto) {
+        this.issueto = issueto;
+    }
 
-	public void setIt10(String it10) {
-		this.it10 = it10;
-	}
+    public String getIssuetype() {
+        return this.issuetype;
+    }
 
-	public String getIt2() {
-		return this.it2;
-	}
+    public void setIssuetype(String issuetype) {
+        this.issuetype = issuetype;
+    }
 
-	public void setIt2(String it2) {
-		this.it2 = it2;
-	}
+    public String getIt1() {
+        return this.it1;
+    }
 
-	public String getIt3() {
-		return this.it3;
-	}
+    public void setIt1(String it1) {
+        this.it1 = it1;
+    }
 
-	public void setIt3(String it3) {
-		this.it3 = it3;
-	}
+    public String getIt10() {
+        return this.it10;
+    }
 
-	public BigDecimal getIt4() {
-		return this.it4;
-	}
+    public void setIt10(String it10) {
+        this.it10 = it10;
+    }
 
-	public void setIt4(BigDecimal it4) {
-		this.it4 = it4;
-	}
+    public String getIt2() {
+        return this.it2;
+    }
 
-	public String getIt5() {
-		return this.it5;
-	}
+    public void setIt2(String it2) {
+        this.it2 = it2;
+    }
 
-	public void setIt5(String it5) {
-		this.it5 = it5;
-	}
+    public String getIt3() {
+        return this.it3;
+    }
 
-	public String getIt6() {
-		return this.it6;
-	}
+    public void setIt3(String it3) {
+        this.it3 = it3;
+    }
 
-	public void setIt6(String it6) {
-		this.it6 = it6;
-	}
+    public BigDecimal getIt4() {
+        return this.it4;
+    }
 
-	public String getIt7() {
-		return this.it7;
-	}
+    public void setIt4(BigDecimal it4) {
+        this.it4 = it4;
+    }
 
-	public void setIt7(String it7) {
-		this.it7 = it7;
-	}
+    public String getIt5() {
+        return this.it5;
+    }
 
-	public String getIt8() {
-		return this.it8;
-	}
+    public void setIt5(String it5) {
+        this.it5 = it5;
+    }
 
-	public void setIt8(String it8) {
-		this.it8 = it8;
-	}
+    public String getIt6() {
+        return this.it6;
+    }
 
-	public String getIt9() {
-		return this.it9;
-	}
+    public void setIt6(String it6) {
+        this.it6 = it6;
+    }
 
-	public void setIt9(String it9) {
-		this.it9 = it9;
-	}
+    public String getIt7() {
+        return this.it7;
+    }
 
-	public String getItemnum() {
-		return this.itemnum;
-	}
+    public void setIt7(String it7) {
+        this.it7 = it7;
+    }
 
-	public void setItemnum(String itemnum) {
-		this.itemnum = itemnum;
-	}
+    public String getIt8() {
+        return this.it8;
+    }
 
-	public String getItemsetid() {
-		return this.itemsetid;
-	}
+    public void setIt8(String it8) {
+        this.it8 = it8;
+    }
 
-	public void setItemsetid(String itemsetid) {
-		this.itemsetid = itemsetid;
-	}
+    public String getIt9() {
+        return this.it9;
+    }
 
-	public String getItin1() {
-		return this.itin1;
-	}
+    public void setIt9(String it9) {
+        this.it9 = it9;
+    }
 
-	public void setItin1(String itin1) {
-		this.itin1 = itin1;
-	}
+    public String getItemnum() {
+        return this.itemnum;
+    }
 
-	public String getItin2() {
-		return this.itin2;
-	}
+    public void setItemnum(String itemnum) {
+        this.itemnum = itemnum;
+    }
 
-	public void setItin2(String itin2) {
-		this.itin2 = itin2;
-	}
+    public String getItemsetid() {
+        return this.itemsetid;
+    }
 
-	public String getItin3() {
-		return this.itin3;
-	}
+    public void setItemsetid(String itemsetid) {
+        this.itemsetid = itemsetid;
+    }
 
-	public void setItin3(String itin3) {
-		this.itin3 = itin3;
-	}
+    public String getItin1() {
+        return this.itin1;
+    }
 
-	public String getItin4() {
-		return this.itin4;
-	}
+    public void setItin1(String itin1) {
+        this.itin1 = itin1;
+    }
 
-	public void setItin4(String itin4) {
-		this.itin4 = itin4;
-	}
+    public String getItin2() {
+        return this.itin2;
+    }
 
-	public String getItin5() {
-		return this.itin5;
-	}
+    public void setItin2(String itin2) {
+        this.itin2 = itin2;
+    }
 
-	public void setItin5(String itin5) {
-		this.itin5 = itin5;
-	}
+    public String getItin3() {
+        return this.itin3;
+    }
 
-	public String getItin6() {
-		return this.itin6;
-	}
+    public void setItin3(String itin3) {
+        this.itin3 = itin3;
+    }
 
-	public void setItin6(String itin6) {
-		this.itin6 = itin6;
-	}
+    public String getItin4() {
+        return this.itin4;
+    }
 
-	public String getItin7() {
-		return this.itin7;
-	}
+    public void setItin4(String itin4) {
+        this.itin4 = itin4;
+    }
 
-	public void setItin7(String itin7) {
-		this.itin7 = itin7;
-	}
+    public String getItin5() {
+        return this.itin5;
+    }
 
-	public String getLangcode() {
-		return this.langcode;
-	}
+    public void setItin5(String itin5) {
+        this.itin5 = itin5;
+    }
 
-	public void setLangcode(String langcode) {
-		this.langcode = langcode;
-	}
+    public String getItin6() {
+        return this.itin6;
+    }
 
-	public BigDecimal getLinecost() {
-		return this.linecost;
-	}
+    public void setItin6(String itin6) {
+        this.itin6 = itin6;
+    }
 
-	public void setLinecost(BigDecimal linecost) {
-		this.linecost = linecost;
-	}
+    public String getItin7() {
+        return this.itin7;
+    }
 
-	public BigDecimal getLinecost2() {
-		return this.linecost2;
-	}
+    public void setItin7(String itin7) {
+        this.itin7 = itin7;
+    }
 
-	public void setLinecost2(BigDecimal linecost2) {
-		this.linecost2 = linecost2;
-	}
+    public String getLangcode() {
+        return this.langcode;
+    }
 
-	public String getLinetype() {
-		return this.linetype;
-	}
+    public void setLangcode(String langcode) {
+        this.langcode = langcode;
+    }
 
-	public void setLinetype(String linetype) {
-		this.linetype = linetype;
-	}
+    public BigDecimal getLinecost() {
+        return this.linecost;
+    }
 
-	public String getLocation() {
-		return this.location;
-	}
+    public void setLinecost(BigDecimal linecost) {
+        this.linecost = linecost;
+    }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    public BigDecimal getLinecost2() {
+        return this.linecost2;
+    }
 
-	public String getLotnum() {
-		return this.lotnum;
-	}
+    public void setLinecost2(BigDecimal linecost2) {
+        this.linecost2 = linecost2;
+    }
 
-	public void setLotnum(String lotnum) {
-		this.lotnum = lotnum;
-	}
+    public String getLinetype() {
+        return this.linetype;
+    }
 
-	public Long getMatrectransid() {
-		return this.matrectransid;
-	}
+    public void setLinetype(String linetype) {
+        this.linetype = linetype;
+    }
 
-	public void setMatrectransid(Long matrectransid) {
-		this.matrectransid = matrectransid;
-	}
+    public String getLocation() {
+        return this.location;
+    }
 
-	public String getMemo() {
-		return this.memo;
-	}
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-	public void setMemo(String memo) {
-		this.memo = memo;
-	}
+    public String getLotnum() {
+        return this.lotnum;
+    }
 
-	public Integer getMrlinenum() {
-		return this.mrlinenum;
-	}
+    public void setLotnum(String lotnum) {
+        this.lotnum = lotnum;
+    }
 
-	public void setMrlinenum(Integer mrlinenum) {
-		this.mrlinenum = mrlinenum;
-	}
+    public Long getMatrectransid() {
+        return this.matrectransid;
+    }
 
-	public String getMrnum() {
-		return this.mrnum;
-	}
+    public void setMatrectransid(Long matrectransid) {
+        this.matrectransid = matrectransid;
+    }
 
-	public void setMrnum(String mrnum) {
-		this.mrnum = mrnum;
-	}
+    public String getMemo() {
+        return this.memo;
+    }
 
-	public String getOrgid() {
-		return this.orgid;
-	}
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
 
-	public void setOrgid(String orgid) {
-		this.orgid = orgid;
-	}
+    public Integer getMrlinenum() {
+        return this.mrlinenum;
+    }
 
-	public Integer getOutside() {
-		return this.outside;
-	}
+    public void setMrlinenum(Integer mrlinenum) {
+        this.mrlinenum = mrlinenum;
+    }
 
-	public void setOutside(Integer outside) {
-		this.outside = outside;
-	}
+    public String getMrnum() {
+        return this.mrnum;
+    }
 
-	public String getOwnersysid() {
-		return this.ownersysid;
-	}
+    public void setMrnum(String mrnum) {
+        this.mrnum = mrnum;
+    }
 
-	public void setOwnersysid(String ownersysid) {
-		this.ownersysid = ownersysid;
-	}
+    public String getOrgid() {
+        return this.orgid;
+    }
 
-	public String getPackingslipnum() {
-		return this.packingslipnum;
-	}
+    public void setOrgid(String orgid) {
+        this.orgid = orgid;
+    }
 
-	public void setPackingslipnum(String packingslipnum) {
-		this.packingslipnum = packingslipnum;
-	}
+    public Integer getOutside() {
+        return this.outside;
+    }
 
-	public BigDecimal getPhyscnt() {
-		return this.physcnt;
-	}
+    public void setOutside(Integer outside) {
+        this.outside = outside;
+    }
 
-	public void setPhyscnt(BigDecimal physcnt) {
-		this.physcnt = physcnt;
-	}
+    public String getOwnersysid() {
+        return this.ownersysid;
+    }
 
-	public Integer getPolinenum() {
-		return this.polinenum;
-	}
+    public void setOwnersysid(String ownersysid) {
+        this.ownersysid = ownersysid;
+    }
 
-	public void setPolinenum(Integer polinenum) {
-		this.polinenum = polinenum;
-	}
+    public String getPackingslipnum() {
+        return this.packingslipnum;
+    }
 
-	public String getPonum() {
-		return this.ponum;
-	}
+    public void setPackingslipnum(String packingslipnum) {
+        this.packingslipnum = packingslipnum;
+    }
 
-	public void setPonum(String ponum) {
-		this.ponum = ponum;
-	}
+    public BigDecimal getPhyscnt() {
+        return this.physcnt;
+    }
 
-	public Integer getPorevisionnum() {
-		return this.porevisionnum;
-	}
+    public void setPhyscnt(BigDecimal physcnt) {
+        this.physcnt = physcnt;
+    }
 
-	public void setPorevisionnum(Integer porevisionnum) {
-		this.porevisionnum = porevisionnum;
-	}
+    public Integer getPolinenum() {
+        return this.polinenum;
+    }
 
-	public BigDecimal getQtyrequested() {
-		return this.qtyrequested;
-	}
+    public void setPolinenum(Integer polinenum) {
+        this.polinenum = polinenum;
+    }
 
-	public void setQtyrequested(BigDecimal qtyrequested) {
-		this.qtyrequested = qtyrequested;
-	}
+    public String getPonum() {
+        return this.ponum;
+    }
 
-	public BigDecimal getQtyreturned() {
-		return this.qtyreturned;
-	}
+    public void setPonum(String ponum) {
+        this.ponum = ponum;
+    }
 
-	public void setQtyreturned(BigDecimal qtyreturned) {
-		this.qtyreturned = qtyreturned;
-	}
+    public Integer getPorevisionnum() {
+        return this.porevisionnum;
+    }
 
-	public BigDecimal getQuantity() {
-		return this.quantity;
-	}
+    public void setPorevisionnum(Integer porevisionnum) {
+        this.porevisionnum = porevisionnum;
+    }
 
-	public void setQuantity(BigDecimal quantity) {
-		this.quantity = quantity;
-	}
+    public BigDecimal getQtyrequested() {
+        return this.qtyrequested;
+    }
 
-	public String getRefwo() {
-		return this.refwo;
-	}
+    public void setQtyrequested(BigDecimal qtyrequested) {
+        this.qtyrequested = qtyrequested;
+    }
 
-	public void setRefwo(String refwo) {
-		this.refwo = refwo;
-	}
+    public BigDecimal getQtyreturned() {
+        return this.qtyreturned;
+    }
 
-	public Integer getRollup() {
-		return this.rollup;
-	}
+    public void setQtyreturned(BigDecimal qtyreturned) {
+        this.qtyreturned = qtyreturned;
+    }
 
-	public void setRollup(Integer rollup) {
-		this.rollup = rollup;
-	}
+    public BigDecimal getQuantity() {
+        return this.quantity;
+    }
 
-	public String getRotassetnum() {
-		return this.rotassetnum;
-	}
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
+    }
 
-	public void setRotassetnum(String rotassetnum) {
-		this.rotassetnum = rotassetnum;
-	}
+    public String getRefwo() {
+        return this.refwo;
+    }
 
-	public Long getRowstamp() {
-		return this.rowstamp;
-	}
+    public void setRefwo(String refwo) {
+        this.refwo = refwo;
+    }
 
-	public void setRowstamp(Long rowstamp) {
-		this.rowstamp = rowstamp;
-	}
+    public Integer getRollup() {
+        return this.rollup;
+    }
 
-	public String getSendersysid() {
-		return this.sendersysid;
-	}
+    public void setRollup(Integer rollup) {
+        this.rollup = rollup;
+    }
 
-	public void setSendersysid(String sendersysid) {
-		this.sendersysid = sendersysid;
-	}
+    public String getRotassetnum() {
+        return this.rotassetnum;
+    }
 
-	public String getSiteid() {
-		return this.siteid;
-	}
+    public void setRotassetnum(String rotassetnum) {
+        this.rotassetnum = rotassetnum;
+    }
 
-	public void setSiteid(String siteid) {
-		this.siteid = siteid;
-	}
+    public Long getRowstamp() {
+        return this.rowstamp;
+    }
 
-	public String getSourcesysid() {
-		return this.sourcesysid;
-	}
+    public void setRowstamp(Long rowstamp) {
+        this.rowstamp = rowstamp;
+    }
 
-	public void setSourcesysid(String sourcesysid) {
-		this.sourcesysid = sourcesysid;
-	}
+    public String getSendersysid() {
+        return this.sendersysid;
+    }
 
-	public Integer getSparepartadded() {
-		return this.sparepartadded;
-	}
+    public void setSendersysid(String sendersysid) {
+        this.sendersysid = sendersysid;
+    }
 
-	public void setSparepartadded(Integer sparepartadded) {
-		this.sparepartadded = sparepartadded;
-	}
+    public String getSiteid() {
+        return this.siteid;
+    }
 
-	public String getStoreloc() {
-		return this.storeloc;
-	}
+    public void setSiteid(String siteid) {
+        this.siteid = siteid;
+    }
 
-	public void setStoreloc(String storeloc) {
-		this.storeloc = storeloc;
-	}
+    public String getSourcesysid() {
+        return this.sourcesysid;
+    }
 
-	public String getTositeid() {
-		return this.tositeid;
-	}
+    public void setSourcesysid(String sourcesysid) {
+        this.sourcesysid = sourcesysid;
+    }
 
-	public void setTositeid(String tositeid) {
-		this.tositeid = tositeid;
-	}
+    public Integer getSparepartadded() {
+        return this.sparepartadded;
+    }
 
-	public Date getTransdate() {
-		return this.transdate;
-	}
+    public void setSparepartadded(Integer sparepartadded) {
+        this.sparepartadded = sparepartadded;
+    }
 
-	public void setTransdate(Date transdate) {
-		this.transdate = transdate;
-	}
+    public String getStoreloc() {
+        return this.storeloc;
+    }
 
-	public BigDecimal getUnitcost() {
-		return this.unitcost;
-	}
+    public void setStoreloc(String storeloc) {
+        this.storeloc = storeloc;
+    }
 
-	public void setUnitcost(BigDecimal unitcost) {
-		this.unitcost = unitcost;
-	}
+    public String getTositeid() {
+        return this.tositeid;
+    }
+
+    public void setTositeid(String tositeid) {
+        this.tositeid = tositeid;
+    }
+
+    public Date getTransdate() {
+        return this.transdate;
+    }
+
+    public void setTransdate(Date transdate) {
+        this.transdate = transdate;
+    }
+
+    public BigDecimal getUnitcost() {
+        return this.unitcost;
+    }
+
+    public void setUnitcost(BigDecimal unitcost) {
+        this.unitcost = unitcost;
+    }
 
 }

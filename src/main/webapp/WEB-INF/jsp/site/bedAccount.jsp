@@ -20,107 +20,87 @@
         var _ctx = '${ctx}';
         var _apptname = '${apptname}';
         var _pkid = '${pkid}';
+        var _operate='${operate}';
     </script>
 </head>
 <body>
 <div class="borrow-detail">
-    <h4>床位台账/1014</h4>
+    <div class="tab-btn">
+        <button class="returnList">列表视图</button>
+        <button class="workOrder click">床位台账</button>
+    </div>
+    <%--<h4>床位台账</h4>--%>
     <div class="mylable">
-        <button type="button" id="mycollect">打印</button>
+        <%--<button type="button" id="mycollect" class="print">打印</button>--%>
+        <button type="button" class="save-btn">保存</button>
+        <button class="apply-btn" style="margin-right: 5px;">审批</button>
     </div>
     <div class="detail-info">
         <p class="item">
-            <label for="BEDNUM">住宿编号:</label>
-            <span class="BEDNUM">1014</span>
-            <input type="text" placeholder="描述" style="width: 190px;" class="DESCRIPTION">
+            <label for="bednum">住宿编号:</label>
+            <input type="text" style="width:80px;" class="bednum">
+            <input type="text" style="width:29%;margin-left: 10px;" class="description">
+        </p>
+        <p class="item">
+            <label for="status">状态:</label>
+            <span class="status"></span>
+        </p>
+        <p class="item">
+            <label for="createdby">创建人:</label>
+            <span class="createdby"></span>
+        </p>
+        <p class="item">
+            <label for="building">建筑:</label>
+            <input type="text" class="building">
+        </p>
+        <p class="item">
+            <label for="statusdate">状态时间:</label>
+            <span ></span>
+        </p>
+        <p class="item">
+            <label for="createddate">创建时间:</label>
+            <span class="createddate"></span>
         </p>
 
         <p class="item">
-            <label for="STATUS">状态:</label>
-            <span class="STATUS">APE</span>
+            <label for="floor">房号:</label>
+            <input type="text" class="floor">
         </p>
         <p class="item">
-            <label for="CREATEDBY">创建人:</label>
-            <span class="CREATEDBY">AADMIN</span>
+            <label for="orgid">组织:</label>
+            <span class="orgid"></span>
         </p>
         <p class="item">
-            <label for="BUILDING">建筑:</label>
-            <span class="BUILDING">AADMIN</span>
+            <label for="changeby">更改人:</label>
+            <span class="changeby"></span>
         </p>
         <p class="item">
-            <label for="STATUSDATE">状态时间:</label>
-            <span >2017-03-07 10:03 AM</span>
+            <label for="room">床号:</label>
+            <input type="text" class="room">
         </p>
         <p class="item">
-            <label for="CREATEDDATE">创建时间:</label>
-            <input type="text" value="2014/03/15 05:06" class="datetimepicker7"/><br><br>
-        </p>
-
-        <p class="item">
-            <label for="FLOOR">房号:</label>
-            <span class="FLOOR">503</span>
+            <label for="siteid">地点:</label>
+            <span class="siteid"></span>
         </p>
         <p class="item">
-            <label for="ORGID">组织:</label>
-            <span class="ORGID">MAX</span>
-        </p>
-        <p class="item">
-            <label for="CHANGEBY">更改人:</label>
-            <span class="CHANGEBY">wwwwww</span>
-        </p>
-        <p class="item">
-            <label for="ROOM">床号:</label>
-            <span class="ROOM">1</span>
-        </p>
-        <p class="item">
-            <label for="SITEID">地点:</label>
-            <span class="SITEID">M</span>
-        </p>
-        <p class="item">
-            <label for="CHANGEDATE">更改时间:</label>
-            <input type="text" class="datetimepicker7"/>
+            <label for="changedate">更改时间:</label>
+            <span class="changedate"></span>
         </p>
 
         <p class="item">
-            <label for="LOCATION">位置:</label>
-            <span class="LOCATION">wwwwww</span>
+            <label for="location">位置:</label>
+            <input type="text" class="location">
         </p>
 
         <div class="clearfix"></div>
     </div>
-    <div class="next-apply">
-        <h5>下一个审批人</h5>
-        <table>
-            <thead>
-                <tr>
-                    <td width="20%">人员</td>
-                    <td width="20%">名称</td>
-                    <td width="20%">描述</td>
-                    <td width="40%">过程</td>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    </div>
-    <div class="apply-record">
-        <h5>审批记录</h5>
-        <table>
-            <thead>
-                <tr>
-                    <td width="20%">人员</td>
-                    <td width="20%">名称</td>
-                    <td width="20%">描述</td>
-                    <td width="15%">交易日期</td>
-                    <td width="25%">备忘录</td>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    </div>
 </div>
+<span class="showTip"></span>
+<%@include file="../commons/audit.jsp"%>
 <script src="${ctx}/scripts/jquery-1.9.1.min.js"></script>
 <script src="${ctx}/scripts/jquery.datetimepicker.js"></script>
 <script src="${ctx}/js/date/jquerytime.js"></script>
 <script src="${ctx}/js/initDetail.js"></script>
+<script src="${ctx}/js/util/formValidate.js"></script>
 </body>
 </html>

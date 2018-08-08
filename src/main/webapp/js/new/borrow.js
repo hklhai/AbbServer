@@ -1,5 +1,5 @@
-$(function() {
-    function commonList(){
+$(function () {
+    function commonList() {
         this.names = [];
         //page的信息
         this.pageSize = 15;
@@ -10,12 +10,29 @@ $(function() {
         this.initAjax = {};
         this.isFirstLoad = true;
         this.favorite = "";
+        this.udapptype = {
+            UDPO: "UDPO",
+            RECEIPTS: "UDPO",
+            UDWM: "UDWM",
+            UDOM: "UDOM",
+            UDISSUE: "ISSUE",
+            UDTRANSFER: "TRANSFER",
+            UDRETURN: "RETURN"
+        }
     }
+
     commonList.prototype = {
         constructor: commonList,
-        initData: function(){
+        initData: function () {
             var self = this;
-            if(self.isFirstLoad){
+            if(apptnames=="RECEIPTS"){
+               $(".myform").remove();
+            }
+            //可以在列表页控制报表的按钮
+            if(apptnames=="UDISSUE"||apptnames=="UDVC"){
+                $(".statsreport").show();
+            }
+            if (self.isFirstLoad) {
                 self.initBind();
                 self.initNames();
             }
@@ -28,63 +45,84 @@ $(function() {
                 success: function (data) {
                     self.initDom(data.list);
                     self.initPage(data.page);
+                    if(apptnames=="RECEIPTS"){
+                        $("table.mytable tbody tr td:nth-child(1)").css("textDecoration","none");
+                        $("table.mytable tbody tr td:nth-child(2)").css("textDecoration","underline");
+                    }
+                    self.isFirstLoad = false;
                 },
                 error: function () {
 
                 }
             });
         },
-        initAjaxData:function(){
+        initAjaxData: function () {
             var self = this;
             self.initSearch();
-            self.initAjax =  {
-                apptname: apptnames,
-                searchs: self.search,
-                isFavorite: self.favorite,
-                pageSize: self.pageSize,
-                pageNumber: self.pageNumber
+            if (apptnames in self.udapptype) {
+                self.initAjax = {
+                    apptname: apptnames,
+                    searchs: self.search,
+                    isFavorite: self.favorite,
+                    pageSize: self.pageSize,
+                    pageNumber: self.pageNumber,
+                    udapptype: self.udapptype[apptnames]
+                }
+            } else {
+                self.initAjax = {
+                    apptname: apptnames,
+                    searchs: self.search,
+                    isFavorite: self.favorite,
+                    pageSize: self.pageSize,
+                    pageNumber: self.pageNumber,
+                }
             }
+
         },
-        initNames:function(){
+        initNames: function () {
             var self = this;
             var arr = [];
             var namesDom = $(".mytable tbody tr:nth-child(1)").find("td");
-            for(var i = 0;i<namesDom.length-1;i++){
+            for (var i = 0; i < namesDom.length - 1; i++) {
                 var val = namesDom.eq(i).find('input').first().attr("name").toLowerCase();
                 arr.push(val);
             }
             self.names = arr;
         },
-        initSearch:function(){
+        initSearch: function () {
             var self = this;
             var arr = [];
-            for(var i=0;i<self.names.length;i++){
-                 var tmpName = "."+self.names[i];
+            for (var i = 0; i < self.names.length; i++) {
+                var tmpName = "." + self.names[i];
                 arr.push($(tmpName).val());
             }
             self.search = arr.join(",");
         },
-        initDom:function(listData){
+        initDom: function (listData) {
             var self = this;
             var tmpHtml = "";
-            for(var i = 0;i<listData.length;i++){
+            for (var i = 0; i < listData.length; i++) {
                 var thisName;
-                tmpHtml +="<tr>";
-                for(var j=0;j<self.names.length;j++){
+                tmpHtml += "<tr>";
+                for (var j = 0; j < self.names.length; j++) {
                     thisName = self.names[j];
-                    tmpHtml+="<td>"+listData[i][thisName]+"</td>";
-                };
-                if(listData[i].rownumber==0){
-                    tmpHtml+="<td class='unimags'></td>";
-                }else{
-                    tmpHtml+="<td class='reimags'></td>";
+                    tmpHtml += "<td>" + listData[i][thisName] + "</td>";
                 }
-                tmpHtml+="</tr>";
+                if (listData[i].rownumber == 0) {
+                    tmpHtml += "<td class='unimags'></td>";
+                } else {
+                    tmpHtml += "<td class='reimags'></td>";
+                }
+                tmpHtml += "</tr>";
             }
             $(".mytable tbody tr").remove(":not(:first)");
             $(".mytable tbody").append(tmpHtml);
+            if(apptnames=="WXUSER"){
+                $(".mytable tr td:nth-last-child(2)").show();
+                $("table.mytable tr th:nth-last-child(1)").show();
+            }
         },
-        initPage:function(pageData){
+        initPage: function (pageData) {
             var self = this;
             $(".pageNo").text(pageData.pageNumber);
             $(".totalPage").text(pageData.totalPageNum);
@@ -92,32 +130,38 @@ $(function() {
             self.pageSize = pageData.pageSize;
             self.totalPageNum = pageData.totalPageNum;
         },
-        initBind:function(){
+        initBind: function () {
             var self = this;
             //搜索
-            $("table.mytable tbody tr:nth-child(1) td input").keyup(function(event){
-                if(event.keyCode ==13){
+            $("table.mytable tbody tr:nth-child(1) td input").keyup(function (event) {
+                if (event.keyCode == 13) {
                     self.favorite = "";
                     self.initData();
                 }
             });
-            $("table.mytable tbody tr:nth-child(1) td:last-child button").click(function(){
+            $("table.mytable tbody tr:nth-child(1) td:last-child button").click(function () {
                 self.initData();
             });
             //创建表单
-            $(".myform").click(function(){
-                window.location.href =  _ctx + "/common/detail?apptname="+apptnames+"pkid=";
+            $(".mylable button.myform").click(function () {
+                var dataId = 0;
+                window.location.href = _ctx + "/common/detail?apptname=" + apptnames + "&pkid=" + dataId + "&operate=add";
             });
             //收藏
-            $(".mycollect").click(function(){
+            $(".mylable button.mycollect").click(function () {
                 self.favorite = "favorite";
                 self.initData();
             });
             //单个数据收藏
-            $("table.mytable tbody").on("click","tr:not(:nth-child(1)) td:last-child",function(){
+            $("table.mytable tbody").on("click", "tr:not(:nth-child(1)) td:last-child", function (event) {
                 var _this = this;
                 var className = this.className;
-                var dataId = $(this).siblings().last().text();
+                var dataId = "";
+                if(apptnames=="WXUSER"){
+                    dataId = $(this).siblings().first().text();
+                }else{
+                    dataId = $(this).siblings().last().text();
+                }
                 $.ajax({
                     url: _ctx + "/common/favorites",
                     method: "post",
@@ -127,14 +171,17 @@ $(function() {
                     },
                     dataType: "json",
                     success: function (data) {
-                        if(data.success){
-                            if(className=='reimags'){
+                        if (data.success) {
+                            if (className == 'reimags') {
                                 $(_this).removeClass("reimags").addClass("unimags");
-                            }else{
+                                event.stopPropagation();
+                            } else {
                                 $(_this).removeClass("unimags").addClass("reimags");
+                                event.stopPropagation();
                             }
-                        }else{
+                        } else {
                             alert("操作失败！");
+                            event.stopPropagation();
                         }
                     },
                     error: function () {
@@ -143,12 +190,24 @@ $(function() {
                 });
             });
             //行点击详情页
-            $("table.mytable tbody").on("click","tr:not(:nth-child(1))",function(){
-                var dataId = $(this).find("td").last().prev().text();
-                window.location.href =  _ctx + "/common/detail?apptname="+apptnames+"&pkid="+dataId;
-            });
+            if(apptnames=="RECEIPTS"){
+                $("table.mytable tbody").on("click", "tr:not(:nth-child(1)) td:nth-child(2)", function () {
+                    var dataId = $(this).siblings("td").last().prev().text();
+                    window.location.href = _ctx + "/common/detail?apptname=" + apptnames + "&pkid=" + dataId + "&operate=details";
+                });
+            }else{
+                $("table.mytable tbody").on("click", "tr:not(:nth-child(1)) td:nth-child(1)", function () {
+                    var dataId = "";
+                    if(apptnames=="WXUSER"){
+                        dataId= $(this).siblings("td").first().prev().text();
+                    }else{
+                        dataId = $(this).siblings("td").last().prev().text();
+                    }
+                    window.location.href = _ctx + "/common/detail?apptname=" + apptnames + "&pkid=" + dataId + "&operate=details";
+                });
+            }
             //page按钮
-            $(".prePage").click(function(){
+            $(".borrow-body .prePage").click(function () {
                 var prepage = self.pageNumber - 1;
                 if (prepage < 1) {
                     alert("已是第一页！");
@@ -157,7 +216,7 @@ $(function() {
                     self.initData();
                 }
             });
-            $(".nextPage").click(function(){
+            $(".borrow-body .nextPage").on("click", function () {
                 var nextpage = self.pageNumber + 1;
                 var totalPage = self.totalPageNum;
                 if (nextpage > totalPage) {
@@ -167,10 +226,11 @@ $(function() {
                     self.initData();
                 }
             });
-            $(".gotoPage").click(function(){
+            $(".borrow-body .gotoPage").click(function () {
                 var totalPage = self.totalPageNum;
-                var gotoPage = $("#curPage").val();
-                if (gotoPage < 1 || gotoPage > totalPage) {
+                var gotoPage = $("#curPage").val().trim();
+                var reg = new RegExp("^[0-9]*$");
+                if (gotoPage < 1 || gotoPage >= totalPage || !reg.test(gotoPage)) {
                     alert("请输入正确的页数！")
                 } else {
                     self.pageNumber = gotoPage;
@@ -179,5 +239,6 @@ $(function() {
             });
         }
     }
+    window.commonList = commonList;
     new commonList().initData();
 });

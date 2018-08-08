@@ -1,9 +1,6 @@
 package com.hxqh.abb.common.util;
 
 
-import psdi.util.MXCipherX;
-import psdi.util.MXException;
-
 public class MXCipherXUtils {
     private static MXCipherX mxcipherx;
     private static MXCipherXUtils instance = new MXCipherXUtils();
@@ -15,7 +12,7 @@ public class MXCipherXUtils {
     private MXCipherXUtils() {
         try {
             mxcipherx = new MXCipherX(null, null, null, null, null);
-        } catch (MXException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -36,7 +33,7 @@ public class MXCipherXUtils {
      * 16进制加密
      * */
     public static String encodePwd(String password)
-            throws MXException {
+            throws Exception {
         String encryptedPassword = "";
         byte[] bytes = mxcipherx.encData(password);
         for (int i = 0; i < bytes.length; i++) {

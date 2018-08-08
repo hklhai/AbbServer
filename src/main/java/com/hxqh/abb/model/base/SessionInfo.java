@@ -18,6 +18,15 @@ public class SessionInfo {
 
     private String location;
 
+    private String site;
+
+    private String org;
+
+    private String create;
+
+    private String title;
+
+    private String country;
 
     public SessionInfo() {
     }
@@ -27,6 +36,46 @@ public class SessionInfo {
         this.siteid = siteid;
         this.orgid = orgid;
         this.displayname = displayname;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getSite() {
+        return site;
+    }
+
+    public void setSite(String site) {
+        this.site = site;
+    }
+
+    public String getOrg() {
+        return org;
+    }
+
+    public void setOrg(String org) {
+        this.org = org;
+    }
+
+    public String getCreate() {
+        return create;
+    }
+
+    public void setCreate(String create) {
+        this.create = create;
     }
 
     public String getLocation() {

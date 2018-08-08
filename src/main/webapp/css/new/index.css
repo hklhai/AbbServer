@@ -10,6 +10,15 @@ body{
 	scrollbar-base-color:#f8f8f8; /*滚动条的基本颜色*/
 	Cursor:pointer; /*自定义个性鼠标*/
 }
+html{
+	scrollbar-face-color: #DDEEFF;
+	scrollbar-highlight-color: #FFFFFF;
+	scrollbar-shadow-color: #99BBCC;
+	scrollbar-3dlight-color: #AACCDD;
+	scrollbar-arrow-color: #6688AA;
+	scrollbar-track-color: #EEEEEE;
+	scrollbar-darkshadow-color: #DDEEFF;
+}
 .header{
 	width: 100%;
 	height: 30px;
@@ -25,7 +34,7 @@ i.logo{
 	background: url('../../img/new/index/logo.png') no-repeat;
 }
 span.user-setting{
-	width: 130px;
+	/*width: 130px;*/
 	height: 30px;
 	line-height: 30px;
 	float: right;
@@ -36,10 +45,10 @@ span.user-setting{
 	display: block;
 	float: left;
 }
-i.user-icon{
-	width: 30px;
+img.user-icon{
 	height: 100%;
-	background: url('../../img/new/index/user-logo.png') no-repeat;
+	display: block;
+	float: left;
 }
 i.down-icon{
 	width: 8px;
@@ -47,13 +56,16 @@ i.down-icon{
 	background: url('../../img/new/index/down.png') no-repeat center;
 	cursor: pointer;
 	float: right;
+	margin-left: 20px;
 }
 .user-setting a{
-	width: 60px;
+	/*width: 60px;*/
 	text-align: center;
 	font-size: 12px;
 	font-family: "Arial";
 	color: rgb(250, 250, 250);
+	padding-left: 10px;
+	padding-right: 10px;
 }
 .header ul{
 	display: block;
@@ -89,7 +101,7 @@ i.down-icon{
 .left-nav>ul{
 	float: left;
 	width: 200px;
-	height: 550px;
+	height: 93%;
 	overflow-y: auto;
 	overflow-x: hidden;
 	background: #246495;
@@ -154,8 +166,8 @@ ul.sec-ul>li>a{
 	color: rgb(250, 250, 250);
 	height: 47px;
 	line-height: 47px;
-	padding-left: 90px;
-	background: url('../../img/new/index/sec-ul.png') no-repeat 54px 16px;
+	padding-left: 70px;
+	background: url(../../img/new/index/sec-ul.png) no-repeat 34px 16px;
 }
 ul.sec-ul>li:hover{
 	background: #1f5986;
@@ -190,13 +202,16 @@ i.done{
 	background: url('../../img/new/index/done.png') no-repeat center center;
 }
 i.site{
-	background: url('../../img/new/index/site.png') no-repeat center center;
+	background: url('../../img/new/index/car-icon.gif') no-repeat center center;
 }
 i.tool{
 	background: url('../../img/new/index/tool.png') no-repeat center center;
 }
 i.stock{
 	background: url('../../img/new/index/stock.png') no-repeat center center;
+}
+i.project {
+	background: url('../../img/new/index/project.png') no-repeat center center;
 }
 .content{
 	width: 1024px;
@@ -210,16 +225,135 @@ i.stock{
 	height: 100%;
 	overflow-x: hidden;
 }
-::-webkit-scrollbar{
-	width: 5px;
-	background-color: #F5F5F5;
+/*::-webkit-scrollbar{*/
+	/*width: 5px;*/
+	/*background-color: #F5F5F5;*/
+/*}*/
+/*::-webkit-scrollbar-thumb{*/
+	/*border-radius: 10px;*/
+	/*background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, #327979), color-stop(0.72, #26c1c1), color-stop(0.86, #3b7373));*/
+/*}*/
+/*::-webkit-scrollbar-track {*/
+	/*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+	/*background-color: #F5F5F5;*/
+	/*border-radius: 10px;*/
+/*}*/
+<!--设备及位置一期二期迁移-->
+.rootList li{
+	display: block;
 }
-::-webkit-scrollbar-thumb{
-	border-radius: 10px;
-	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, #327979), color-stop(0.72, #26c1c1), color-stop(0.86, #3b7373));
+.rootList li a{
+	display: block;
+	height: 47px;
+	line-height: 47px;
+	font-size: 14px;
+	color: #ffffff;
+	width: 120px;
+	padding-left: 120px;
+	background: url('../../img/new/index/sec-ul.png') no-repeat 86px 16px;
 }
-::-webkit-scrollbar-track {
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	background-color: #F5F5F5;
-	border-radius: 10px;
+.rootList li:hover{
+	background: #1f5986;
 }
+.equip-tree{
+	width: 210px;
+	height: 476px;
+	overflow: scroll;
+	position: absolute;
+	left: 210px;
+	top: 0;
+	background: #246495;
+}
+.equip-tree li a{
+	font-size: 12px;
+	color: #fff;
+	height: 36px;
+	line-height: 36px;
+	padding-left: 34px;
+	display: block;
+	background: url("../../img/asset/dian.gif") no-repeat 20px center;
+}
+.equip-tree li:hover{
+	background: #1C4E74;
+}
+
+/*scrollbar scrollbarbutton ,*/
+/*scrollbar gripper { visibility: collapse !important; }*/
+
+/*scrollbar ,*/
+/*scrollbar thumb { -moz-appearance: none !important; }*/
+
+/*scrollbar thumb{ opacity: 0 !important; }*/
+
+/*scrollbar[orient="vertical"]{*/
+    /*min-width: 8px !important;*/
+    /*max-width: 8px !important;*/
+    /*-moz-margin-start: -8px !important;*/
+    /*position: relative !important;*/
+    /*background-image: none !important;*/
+    /*background-color: transparent !important;*/
+/*}*/
+
+/*scrollbar[orient="vertical"]:active thumb ,*/
+/*scrollbar[orient="vertical"]:hover thumb {*/
+    /*background-color: #0071EA !important;*/
+    /*border-radius: 4px !important;*/
+    /*border: 0px !important;*/
+    /*min-width: 8px !important;*/
+    /*max-width: 8px !important;*/
+    /*opacity: 1 !important;*/
+/*}*/
+
+/*scrollbar thumb[orient="vertical"]:active,*/
+/*scrollbar thumb[orient="vertical"]:hover*/
+/*{*/
+    /*background-color: #0071EA !important;*/
+    /*border-radius: 4px !important;*/
+    /*border: 0px !important;*/
+    /*min-width: 8px !important;*/
+    /*max-width: 8px !important;*/
+    /*opacity: 1 !important;*/
+/*}*/
+
+/*scrollbar[orient="horizontal"]{*/
+    /*min-height: 8px !important;*/
+    /*max-height: 8px !important;*/
+    /*-moz-margin-start: -8px !important;*/
+    /*position: relative !important;*/
+    /*background-image: none !important;*/
+    /*background-color: transparent !important;*/
+/*}*/
+
+/*scrollbar[orient="horizontal"]:active thumb ,*/
+/*scrollbar[orient="horizontal"]:hover thumb {*/
+    /*background-color: #0071EA !important;*/
+    /*border-radius: 4px !important;*/
+    /*border: 0px !important;*/
+    /*min-height: 8px !important;*/
+    /*max-height: 8px !important;*/
+    /*opacity: 1 !important;*/
+/*}*/
+
+/*scrollbar thumb[orient="horizontal"]:active,*/
+/*scrollbar thumb[orient="horizontal"]:hover*/
+/*{*/
+    /*background-color: #0071EA !important;*/
+    /*border-radius: 4px !important;*/
+    /*border: 0px !important;*/
+    /*min-height: 8px !important;*/
+    /*max-height: 8px !important;*/
+    /*opacity: 1 !important;*/
+/*}*/
+
+/*@-moz-document url-prefix(http://), url-prefix(https://), url-prefix(file://) {*/
+    /*scrollbar[orient="vertical"]{*/
+        /*margin-top: 120px !important;*/
+        /*margin-bottom: 120px !important;*/
+    /*}*/
+
+    /*scrollbar[orient="horizontal"]{*/
+        /*margin-left: 150px !important;*/
+        /*margin-right: 150px !important;*/
+    /*}*/
+
+/*}*/

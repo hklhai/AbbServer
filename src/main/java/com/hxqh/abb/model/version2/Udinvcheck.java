@@ -1,165 +1,228 @@
 package com.hxqh.abb.model.version2;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 /**
  * The persistent class for the UDINVCHECK database table.
- * 
  */
 @Entity
-@Table(name="Udinvcheck")
+@Table(name = "Udinvcheck")
+@DynamicUpdate
 public class Udinvcheck implements Serializable {
-	private static final Long serialVersionUID = 1L;
+    private static final Long serialVersionUID = 1L;
 
-	@Id
-	@SequenceGenerator(name="UDINVCHECK_UDINVCHECKID_GENERATOR", sequenceName="UDINVCHECKSEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="UDINVCHECK_UDINVCHECKID_GENERATOR")
-	private Long udinvcheckid;
+    @Id
+    @SequenceGenerator(name = "UDINVCHECK_UDINVCHECKID_GENERATOR", allocationSize = 1, sequenceName = "UDINVCHECKIDSEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UDINVCHECK_UDINVCHECKID_GENERATOR")
+    private Long udinvcheckid;
 
-	@Temporal(TemporalType.DATE)
-	private Date chkdate;
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private Date chkdate;
 
-	private String description;
+    private String description;
 
-	private String enterby;
+    private String enterby;
 
-	private Date enterdate;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date enterdate;
 
-	private Integer hasld;
+    private Integer hasld;
 
-	private String invchecknum;
+    private String invchecknum;
 
-	private String orgid;
+    private String orgid;
 
-	private String remark;
+    private String remark;
 
-	private Long rowstamp;
+    private Long rowstamp;
 
-	private String siteid;
+    private String siteid;
 
-	@Column(name="\"STATUS\"")
-	private String status;
+    @Column(name = "\"STATUS\"")
+    private String status;
 
-	private Date statusdate;
+    private Date statusdate;
 
-	private String storeloc;
+    private String storeloc;
 
-	public Udinvcheck() {
-	}
+    @Transient
+    private String maintab;
 
-	public Long getUdinvcheckid() {
-		return this.udinvcheckid;
-	}
+    @Transient
+    private List<Udinvcheckline> udinvchecklineList;
 
-	public void setUdinvcheckid(Long udinvcheckid) {
-		this.udinvcheckid = udinvcheckid;
-	}
+    @Transient
+    private String apptname;
 
-	public Date getChkdate() {
-		return this.chkdate;
-	}
+    @Transient
+    private String persondisplayname;
 
-	public void setChkdate(Date chkdate) {
-		this.chkdate = chkdate;
-	}
+    @Transient
+    private String deletes;
 
-	public String getDescription() {
-		return this.description;
-	}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public Udinvcheck() {
+    }
 
-	public String getEnterby() {
-		return this.enterby;
-	}
+    public String getApptname() {
+        return apptname;
+    }
 
-	public void setEnterby(String enterby) {
-		this.enterby = enterby;
-	}
+    public void setApptname(String apptname) {
+        this.apptname = apptname;
+    }
 
-	public Date getEnterdate() {
-		return this.enterdate;
-	}
+    public String getPersondisplayname() {
+        return persondisplayname;
+    }
 
-	public void setEnterdate(Date enterdate) {
-		this.enterdate = enterdate;
-	}
+    public void setPersondisplayname(String persondisplayname) {
+        this.persondisplayname = persondisplayname;
+    }
 
-	public Integer getHasld() {
-		return this.hasld;
-	}
+    public String getMaintab() {
+        return maintab;
+    }
 
-	public void setHasld(Integer hasld) {
-		this.hasld = hasld;
-	}
+    public void setMaintab(String maintab) {
+        this.maintab = maintab;
+    }
 
-	public String getInvchecknum() {
-		return this.invchecknum;
-	}
+    public List<Udinvcheckline> getUdinvchecklineList() {
+        return udinvchecklineList;
+    }
 
-	public void setInvchecknum(String invchecknum) {
-		this.invchecknum = invchecknum;
-	}
+    public void setUdinvchecklineList(List<Udinvcheckline> udinvchecklineList) {
+        this.udinvchecklineList = udinvchecklineList;
+    }
 
-	public String getOrgid() {
-		return this.orgid;
-	}
+    public String getDeletes() {
+        return deletes;
+    }
 
-	public void setOrgid(String orgid) {
-		this.orgid = orgid;
-	}
+    public void setDeletes(String deletes) {
+        this.deletes = deletes;
+    }
 
-	public String getRemark() {
-		return this.remark;
-	}
+    public Long getUdinvcheckid() {
+        return this.udinvcheckid;
+    }
 
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
+    public void setUdinvcheckid(Long udinvcheckid) {
+        this.udinvcheckid = udinvcheckid;
+    }
 
-	public Long getRowstamp() {
-		return this.rowstamp;
-	}
+    @JsonFormat(pattern = "YYYY-MM-DD HH:MM:SS", timezone = "GMT+8")
+    public Date getChkdate() {
+        return this.chkdate;
+    }
 
-	public void setRowstamp(Long rowstamp) {
-		this.rowstamp = rowstamp;
-	}
+    public void setChkdate(Date chkdate) {
+        this.chkdate = chkdate;
+    }
 
-	public String getSiteid() {
-		return this.siteid;
-	}
+    public String getDescription() {
+        return this.description;
+    }
 
-	public void setSiteid(String siteid) {
-		this.siteid = siteid;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public String getStatus() {
-		return this.status;
-	}
+    public String getEnterby() {
+        return this.enterby;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public void setEnterby(String enterby) {
+        this.enterby = enterby;
+    }
 
-	public Date getStatusdate() {
-		return this.statusdate;
-	}
+    public Date getEnterdate() {
+        return this.enterdate;
+    }
 
-	public void setStatusdate(Date statusdate) {
-		this.statusdate = statusdate;
-	}
+    public void setEnterdate(Date enterdate) {
+        this.enterdate = enterdate;
+    }
 
-	public String getStoreloc() {
-		return this.storeloc;
-	}
+    public Integer getHasld() {
+        return this.hasld;
+    }
 
-	public void setStoreloc(String storeloc) {
-		this.storeloc = storeloc;
-	}
+    public void setHasld(Integer hasld) {
+        this.hasld = hasld;
+    }
+
+    public String getInvchecknum() {
+        return this.invchecknum;
+    }
+
+    public void setInvchecknum(String invchecknum) {
+        this.invchecknum = invchecknum;
+    }
+
+    public String getOrgid() {
+        return this.orgid;
+    }
+
+    public void setOrgid(String orgid) {
+        this.orgid = orgid;
+    }
+
+    public String getRemark() {
+        return this.remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public Long getRowstamp() {
+        return this.rowstamp;
+    }
+
+    public void setRowstamp(Long rowstamp) {
+        this.rowstamp = rowstamp;
+    }
+
+    public String getSiteid() {
+        return this.siteid;
+    }
+
+    public void setSiteid(String siteid) {
+        this.siteid = siteid;
+    }
+
+    public String getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Date getStatusdate() {
+        return this.statusdate;
+    }
+
+    public void setStatusdate(Date statusdate) {
+        this.statusdate = statusdate;
+    }
+
+    public String getStoreloc() {
+        return this.storeloc;
+    }
+
+    public void setStoreloc(String storeloc) {
+        this.storeloc = storeloc;
+    }
 
 }

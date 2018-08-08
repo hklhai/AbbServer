@@ -31,7 +31,17 @@ public class AbbLocation implements Serializable {
 
     private String dimension;
 
+    private String siteid;
+
     public AbbLocation() {
+    }
+
+    public String getSiteid() {
+        return siteid;
+    }
+
+    public void setSiteid(String siteid) {
+        this.siteid = siteid;
     }
 
     public String getType() {

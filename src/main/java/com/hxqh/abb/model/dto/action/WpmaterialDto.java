@@ -19,10 +19,17 @@ public class WpmaterialDto {
     private String issueto;
     private String requestby;
     @Id
-    private Long wplaboruid;
-
+    private Long wpitemid;
 
     public WpmaterialDto() {
+    }
+
+    public Long getWpitemid() {
+        return wpitemid;
+    }
+
+    public void setWpitemid(Long wpitemid) {
+        this.wpitemid = wpitemid;
     }
 
     public String getItemnum() {
@@ -97,11 +104,4 @@ public class WpmaterialDto {
         this.requestby = requestby;
     }
 
-    public Long getWplaboruid() {
-        return wplaboruid;
-    }
-
-    public void setWplaboruid(Long wplaboruid) {
-        this.wplaboruid = wplaboruid;
-    }
 }

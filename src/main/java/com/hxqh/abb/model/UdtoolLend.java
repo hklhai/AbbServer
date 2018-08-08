@@ -1,14 +1,15 @@
 package com.hxqh.abb.model;
 
-import com.hxqh.abb.model.assist.Time;
-import com.hxqh.abb.model.base.SessionInfo;
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "UDTOOLLEND")
+@DynamicUpdate
 public class UdtoolLend implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -23,7 +24,7 @@ public class UdtoolLend implements Serializable {
 
     private String status;
 
-    private Timestamp statusdate;
+    private Date statusdate;
 
     private Integer hasld;
 
@@ -32,10 +33,10 @@ public class UdtoolLend implements Serializable {
     private String enterby;
 
     private String lendby;
-
-    private Timestamp enterdate;
-
-    private Timestamp lenddate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date enterdate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date lenddate;
 
     private String lendnum;
 
@@ -53,12 +54,50 @@ public class UdtoolLend implements Serializable {
 
     private String udhandovwe;
 
-    public UdtoolLend(){
+    @Transient
+    private String persondisplayname;
+    @Transient
+    private String udtooldescription;
+    @Transient
+    private String inputpersondisplayname;
+
+    @Transient
+    private String orgid;
+
+    public UdtoolLend() {
 
     }
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
+    public String getInputpersondisplayname() {
+        return inputpersondisplayname;
+    }
+
+    public void setInputpersondisplayname(String inputpersondisplayname) {
+        this.inputpersondisplayname = inputpersondisplayname;
+    }
+
+    public String getUdtooldescription() {
+        return udtooldescription;
+    }
+
+    public void setUdtooldescription(String udtooldescription) {
+        this.udtooldescription = udtooldescription;
+    }
+
+    public String getOrgid() {
+        return orgid;
+    }
+
+    public void setOrgid(String orgid) {
+        this.orgid = orgid;
+    }
+
+    public String getPersondisplayname() {
+        return persondisplayname;
+    }
+
+    public void setPersondisplayname(String persondisplayname) {
+        this.persondisplayname = persondisplayname;
     }
 
     public Long getUdtoollendid() {
@@ -93,11 +132,11 @@ public class UdtoolLend implements Serializable {
         this.status = status;
     }
 
-    public Timestamp getStatusdate() {
+    public Date getStatusdate() {
         return statusdate;
     }
 
-    public void setStatusdate(Timestamp statusdate) {
+    public void setStatusdate(Date statusdate) {
         this.statusdate = statusdate;
     }
 
@@ -133,19 +172,19 @@ public class UdtoolLend implements Serializable {
         this.lendby = lendby;
     }
 
-    public Timestamp getEnterdate() {
+    public Date getEnterdate() {
         return enterdate;
     }
 
-    public void setEnterdate(Timestamp enterdate) {
+    public void setEnterdate(Date enterdate) {
         this.enterdate = enterdate;
     }
 
-    public Timestamp getLenddate() {
+    public Date getLenddate() {
         return lenddate;
     }
 
-    public void setLenddate(Timestamp lenddate) {
+    public void setLenddate(Date lenddate) {
         this.lenddate = lenddate;
     }
 
@@ -211,36 +250,5 @@ public class UdtoolLend implements Serializable {
 
     public void setUdhandovwe(String udhandovwe) {
         this.udhandovwe = udhandovwe;
-    }
-
-    @Override
-    public String toString() {
-        return "UdtoolLend{" +
-                "udtoollendid=" + udtoollendid +
-                ", description='" + description + '\'' +
-                ", siteid='" + siteid + '\'' +
-                ", status='" + status + '\'' +
-                ", statusdate=" + statusdate +
-                ", hasld=" + hasld +
-                ", assetnum='" + assetnum + '\'' +
-                ", enterby='" + enterby + '\'' +
-                ", lendby='" + lendby + '\'' +
-                ", enterdate=" + enterdate +
-                ", lenddate=" + lenddate +
-                ", lendnum='" + lendnum + '\'' +
-                ", lendtype='" + lendtype + '\'' +
-                ", remark='" + remark + '\'' +
-                ", toolnum='" + toolnum + '\'' +
-                ", rowstamp=" + rowstamp +
-                ", issiteout=" + issiteout +
-                ", isarea=" + isarea +
-                ", udhandovwe='" + udhandovwe + '\'' +
-                '}';
-    }
-
-    public void setSessionInfo(SessionInfo sessionInfo) {
-    }
-
-    public void setTime(Time time) {
     }
 }

@@ -1,22 +1,30 @@
 ## AbbServer
-Abb-EAM Project
+Abb-EAM 2nd Project
 
 ## Config
-涉及敏感配置，未上传，项目组员可联系作者
+本地域名解析
 
 ## Maven使用
-需要配置Nexus私服上传db2依赖，详见pom.xml，另需要增加Maximo中的businessobjects.jar
+已配置Nexus私服上传db2依赖，详见pom.xml，不需要额外增加Maximo中的businessobjects.jar
 
-## Tip
-建议使用IDEA开发，先建立task，然后创建branch，在branch下开发；测试无误后，切换至master后与branch比对，再次确认无误后merge，最后commit And Pull至master即可。
-若不采用IDEA提交，可使用第三方SourceTree，SourceTree使用教程联系小豆苗。
-  
----
-![image](https://github.com/hklhai/AbbServer/blob/master/screenshot/1.png)
+## Github 
+考虑公司代码控制，由HK、小豆苗完成从Github至Gitlab迁移；
+原始地址：https://github.com/hklhai/AbbServer.git
 
----  
-![image](https://github.com/hklhai/AbbServer/blob/master/screenshot/2.png)
- 
+## Tips
+请组内成员注意username和email的设置  
+设置全局Example   
+git config --global user.name "hklhai"  
+git config --global user.email "hkhai@outlook.com"  
+
+如有Github或其他项目，请进入项目.git文件夹中设置单独项目  
+设置Example  
+git config  user.name "hklhai"  
+git config  user.email "hkhai@outlook.com"  
+
+查看配置   
+git config --list  
+
 ---
 > HK  
 > linh@bjhxqh.com
@@ -28,3 +36,11 @@ Abb-EAM Project
 
 > silencu  
 > hanj@bjhxqh.com
+
+
+> fuyg  
+> fuyg@bjhxqh.com
+
+
+> mal  
+> mal@bjhxqh.com

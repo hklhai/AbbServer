@@ -11,142 +11,154 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>工具校准单详情</title>
+    <title></title>
     <link rel="stylesheet" type="text/css" href="${ctx}/css/reset.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/css/detail.css">
+    <link rel="stylesheet" type="text/css" href="${ctx}/css/invuse.css">
+    <link rel="stylesheet" type="text/css" href="${ctx}/css/new/selection.css">
+    <link rel="stylesheet" type="text/css" href="${ctx}/css/page.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/css/date/jquery.datetimepicker.css"/>
+    <script>
+        var _ctx = '${ctx}';
+        var _apptname = '${apptname}';
+        var _pkid = '${pkid}';
+        var _operate='${operate}';
+    </script>
 </head>
 <body>
 <div class="borrow-detail">
-    <h4>工具校准单/1033</h4>
+    <div class="tab-btn" style=" width: 188px;">
+        <button class="returnList">列表视图</button>
+        <button class="workOrder click">工具校准单</button>
+    </div>
+    <%--<h4>工具校准单</h4>--%>
+    <div class="mylable">
+        <button type="button" class="save-btn-main">保存</button>
+    </div>
     <div class="detail-info">
         <p class="item">
+            <%--页面的最后一个input便签存放新建保存的主键--%>
             <label for="">校准单:</label>
-            <span>1020</span>
-            <input type="text" placeholder="描述">
+            <span class="tcnum"></span>
+            <input type="text" class="description">
+            <input type="text" class="udtoolchkid" style="display: none;">
         </p>
         <p class="item">
             <label for="">保管人:</label>
-            <select name="" id="">
-                <option value="" selected="selected">2001202020</option>
-                <option value="">w</option>
-                <option value="">3</option>
-                <option value="">4</option>
-            </select>
+            <input type="text" class="keeper SELECTIONPERSON">
+            <i class="search-dataMask"></i>
+            <input type="text" class="persondisplayname" style="display: none;">
         </p>
         <p class="item">
             <label for="">创建人:</label>
-            <span>APE</span>
+            <input type="text" class="createdisplayname">
         </p>
         <p class="item">
             <label for="">工具种类:</label>
-            <select name="" id="">
-                <option value="" selected="selected">AA</option>
-                <option value="">w</option>
-                <option value="">3</option>
-                <option value="">4</option>
-            </select>
-        </p>
-        <p class="item">
-            <label for="">保管人:</label>
-            <input type="text" placeholder="描述">
+            <input type="text" class="tooltype SELECTIONUDTOOLTYPE">
+            <i class="search-dataMask"></i>
         </p>
         <p class="item">
             <label for="">创建时间:</label>
-            <input type="text" value="2014/03/15 05:06" class="datetimepicker7">
+            <span></span>
         </p>
         <p class="item">
             <label for="">邮寄公司:</label>
-            <input type="text" placeholder="描述">
+            <input type="text" class="sendcompany">
         </p>
         <p class="item">
-            <label for="">站点：</label>
-            <span>APE</span>
+            <label for="">站点:</label>
+            <span class="siteid"></span>
         </p>
         <p class="item">
-            <label for="">名称：</label>
-            <span>APE</span>
+            <label for="">名称:</label>
+            <span></span>
         </p>
         <p class="item">
             <label for="">邮寄单号:</label>
-            <input type="text" placeholder="描述">
+            <input type="text" class="sendnum">
         </p>
         <p class="item">
             <label for="">状态:</label>
-            <input type="text" placeholder="描述">
+            <span class="status"></span>
         </p>
         <p class="item">
             <label for="">变更时间:</label>
-            <input type="text" value="2014/03/15 05:06" class="datetimepicker7">
+            <span></span>
         </p>
-
         <div class="clearfix"></div>
     </div>
-    <div class="next-apply">
-        <h5>工具校准单</h5>
-        <table>
+    <div class="row detail">
+        <h5>
+            <span>工具校准单</span>
+            <button class="new-row">新建行</button>
+        </h5>
+        <table class="details">
             <thead>
-            <tr>
-                <td>工具单号</td>
-                <td>描述</td>
-                <td>校准结果</td>
-                <td>负责人</td>
-                <td>校准时间</td>
-                <td></td>
-            </tr>
+                <tr>
+                    <td>工具单号</td>
+                    <td>描述</td>
+                    <td>校准结果</td>
+                    <td>负责人</td>
+                    <td>校准时间</td>
+                    <td style="display: none;"></td>
+                </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>1323323</td>
-                <td>冯辉</td>
-                <td>请审批工具报告申请1020</td>
-                <td>WTODLAPPL</td>
-                <td><input type="text" value="2014/03/15 05:06" class="datetimepicker7"></td>
-                <td><a href="#"><img src="../imgs/delete.gif" alt="delete"/></a></td>
-            </tr>
-            </tbody>
+            <tbody></tbody>
         </table>
-        <p class="item">
-            <label for="">校准说明:</label>
-            <textarea name="" id="" cols="32" rows="7">
+        <div class="page">
 
-			    </textarea>
-        </p>
-        <p class="item">
-            <label for="">工具编号:</label>
-            <select name="" id="">
-                <option value="" selected="selected">AA</option>
-                <option value="">w</option>
-                <option value="">3</option>
-                <option value="">4</option>
-            </select>
-        </p>
-        <p class="item">
-            <label for="">负责人:</label>
-            <input type="text" placeholder="描述">
-        </p>
-        <p class="item">
-            <label for="">校准结果:</label>
-            <input type="text" placeholder="不合格" class="mysearch">
-        </p>
-        <p class="item">
-            <label for="">创建人：</label>
-            <span>APE</span>
-        </p>
-        <p class="item">
-            <label for="">校准时间:</label>
-            <input type="text" value="2014/03/15 05:06" class="datetimepicker7">
-        </p>
-        <p class="item">
-            <label for="">创建日期:</label>
-            <input type="text" value="2014/03/15 05:06" class="datetimepicker7">
-        </p>
+        </div>
+        <div class="row-info">
+            <p style="display: none;">
+                <span id="key"></span>
+                <span id="tableIndex"></span>
+            </p>
+            <p class="item" style="width: 30%;">
+                <label for="">校准说明:</label>
+                <textarea name="" id="" cols="24" rows="7" class="remark"></textarea>
+            </p>
+            <p class="item" style="width: 30%;">
+                <label for="">工具编号:</label>
+                <input type="text" class="toolnum SELECTIONUDTOOL">
+                <i class="search-dataMask"></i>
+                <input type="text" class="udtooldescription" style="display:none;">
+            </p>
+            <p class="item" style="width: 30%;">
+                <label for="">负责人:</label>
+                <input type="text" class="chkby SELECTIONPERSON">
+                <i class="search-dataMask"></i>
+                <input type="text" class="personid" style="display:none;">
+            </p>
+            <p class="item" style="width: 30%;">
+                <label for="">校准结果:</label>
+                <input type="text"  class="chkstatus SELECTIONUDLASTCHKRESULT">
+                <i class="search-dataMask"></i>
+            </p>
+            <p class="item" style="width: 30%;">
+                <label for="">创建人:</label>
+                <span></span>
+            </p>
+            <p class="item" style="width: 30%;">
+                <label for="">校准时间:</label>
+                <input type="text" value="" class="chkdate datetimepicker7">
+            </p>
+            <p class="item" style="width: 30%;">
+                <label for="">创建日期:</label>
+                <span></span>
+            </p>
+        </div>
         <div class="clearfix"></div>
     </div>
-
 </div>
+<span class="showTip"></span>
+<div class="mask"></div>
+<%@include file="../commons/dataMask.jsp"%>
 <script src="${ctx}/js/date/jquery.js"></script>
 <script src="${ctx}/js/date/jquery.datetimepicker.js"></script>
 <script src="${ctx}/js/date/jquerytime.js"></script>
+<script src="${ctx}/js/initDetail.js"></script>
+<script src="${ctx}/js/util/dataMask.js"></script>
+<script src="${ctx}/js/util/formValidate.js"></script>
 </body>
 </html>

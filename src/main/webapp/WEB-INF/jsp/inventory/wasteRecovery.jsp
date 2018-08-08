@@ -21,45 +21,50 @@
         var _ctx = '${ctx}';
         var _apptname = '${apptname}';
         var _pkid = '${pkid}';
+        var _operate='${operate}';
+        var attatchId;
     </script>
 </head>
 <body>
 <div class="borrow-detail">
-    <h4>废料回收/1119</h4>
+    <div class="tab-btn">
+        <button class="returnList">列表视图</button>
+        <button class="workOrder click">废料回收</button>
+    </div>
+    <div class="mylable" style="position: relative;">
+        <button class="attach" style="margin-left:5px;">附件</button>
+        <button class="save-btn-main">保存</button>
+        <button class="apply-btn" style="margin-right: 5px;">审批</button>
+        <ul class="attach-ul">
+            <li class="attachList">查看附件&nbsp&nbsp</li>
+            <li class="addFile">添加新文件&nbsp&nbsp</li>
+        </ul>
+    </div>
     <div class="detail-info">
         <p class="item" style="width: 40%;">
             <label for="">回收编码/描述:</label>
-            <select name="" id="" class="left">
-                <option value="" selected="selected" class="PONUM">GZ-APP</option>
-                <option value="">w</option>
-                <option value="">3</option>
-                <option value="">4</option>
-            </select>
-            <input type="text" style="margin-left: 8px;" class="DESCRIPTION">
+            <input type="text"  class="ponum">
+            <span class="description"></span>
         </p>
         <p class="item" style="width: 20%;">
-            <label for="">服务站点:</label>
-            <span class="SITEID">GZ</span>
+            <label for="" style="min-width: 60px;">服务站点:</label>
+            <span class="siteid"></span>
         </p>
         <p class="item" style="width: 20%;">
             <label for="">状态:</label>
-            <span class="STATUS">APE</span>
-        </p>
-        <p class="item" style="width: 20%;">
-            <label for="">附件:</label>
-            <span>标志</span>
+            <span class="status"></span>
         </p>
         <p class="item" style="width: 40%;">
             <label class="left" for="">订购日期:</label>
-            <input type="text" id="datetimepicker7" style="width: 120px;" class="ORDERDATE">
+            <input type="text" style="min-width: 140px;" class="orderdate datetimepicker7">
         </p>
         <p class="item" style="width: 20%;" >
             <label for="">接收:</label>
-            <span class="RECEIPTS">0.00</span>
+            <span class="receipts"></span>
         </p>
-        <p class="item" style="width: 40%;">
-            <label class="left" for="">状态日期:</label>
-            <input type="text" id="datetimepicker8" style="width: 120px;">
+        <p class="item" style="width: 20%;">
+            <label class="left" for="" style="min-width: 60px;">状态日期:</label>
+            <span style="min-width: 140px;"></span>
         </p>
         <div class="clearfix"></div>
     </div>
@@ -70,69 +75,68 @@
         </h5>
         <table class="details">
             <thead>
-            <tr>
-                <td style="padding-left: 10px;" class="POLINENUM">行号</td>
-                <td class="ITEMNUM">物资编码</td>
-                <td class="ITEM.DESCRIPTION">描述</td>
-                <td class="ITEM.UDMODEL">型号类别</td>
-                <td class="ORDERQTY">数量</td>
-                <td class="UNITCOST">单位成本</td>
-                <td class="LINECOST">行成本</td>
-            </tr>
+                <tr>
+                    <td style="padding-left: 10px;" >行号</td>
+                    <td >物资编码</td>
+                    <td >描述</td>
+                    <td >型号类别</td>
+                    <td >数量</td>
+                    <td >单位成本</td>
+                    <td >行成本</td>
+                </tr>
             </thead>
-            <tbody>
-
-            </tbody>
+            <tbody></tbody>
         </table>
         <div class="page">
 
         </div>
         <div class="row-info">
-            <p class="item bg">
-                <span style="padding-left: 10px;font-size:14px;">行项目</span>
-            </p>
-            <p class="item bg">
-                <span style="padding-left: 0px;font-size:14px;"></span>
-            </p>
+            <h5>行项目</h5>
             <div class="layout">
+                <p style="display: none;">
+                    <span id="key"></span>
+                    <span id="tableIndex"></span>
+                </p>
                 <p class="item">
                     <label for="">行:</label>
-                    <span class="POLINENUM">1vvR0030310</span>
+                    <span class="polinenum"></span>
                 </p>
                 <p class="item">
                     <label for="">数量:</label>
-                    <span class="ORDERQTY">1.00</span>
+                    <input type="text" class="orderqty isNumber">
+                </p>
+                <p class="item">
+                    <label for="">单位成本:</label>
+                    <input type="text" class="unitcost isNumber">
                 </p>
                 <p class="item">
                     <label for="">物资:</label>
-                    <select name="" id="" class="left">
-                        <option value="" selected="selected" class="ITEMNUM">GZ-APP</option>
-                        <option value="">w</option>
-                        <option value="">3</option>
-                        <option value="">4</option>
-                    </select>
-                    <input type="text" class="ITEM.DESCRIPTION left" style="margin-left: 7px;" >
+                    <input type="text"  class="itemnum SELECTIONINVENTORY">
+                    <i class="search-dataMask"></i>
+                    <span class="itemdescription"></span>
                 </p>
                 <p class="item">
                     <label for="">库房:</label>
-                    <select name="" id="" class="left">
-                        <option value="" selected="selected" class="STORELOC">GZ-APP</option>
-                        <option value="">w</option>
-                        <option value="">3</option>
-                        <option value="">4</option>
-                    </select>
+                    <input type="text"  class="storeloc SELECTIONLOCATIONS">
+                    <i class="search-dataMask"></i>
+                </p>
+                <p class="item">
+                    <label for="">行成本:</label>
+                    <span class="linecost"></span>
                 </p>
                 <p class="item">
                     <label for="">型号类别:</label>
-                    <span class="ITEM.UDMODEL">1vvR0030310</span>
+                    <span class="itemudmodel"></span>
                 </p>
                 <p class="item">
                     <label for="">来源:</label>
-                    <select name="" id="" class="left">
-                        <option value="" selected="selected" class="UDRESOURCE">GZ-APP</option>
-                        <option value="">w</option>
-                        <option value="">3</option>
-                        <option value="">4</option>
+                    <select class="udresource">
+                        <option value="APP">APP</option>
+                        <option value="ITS">ITS</option>
+                        <option value="SCT">SCT</option>
+                        <option value="SWG">SWG</option>
+                        <option value="THB">THB</option>
+                        <option value="XEC">XEC</option>
                     </select>
                 </p>
                 <div class="clearfix"></div>
@@ -143,23 +147,23 @@
             <div class="layout">
                 <p class="item">
                     <label for="">输入日期:</label>
-                    <span class="ENTERDATE">2017-03-15 10:23:23</span>
+                    <input type="text" class="enterdate datetimepicker7" ></input>
                 </p>
                 <p class="item">
                     <label for="">收货方:</label>
-                    <i class="search"></i>
-                    <input type="text" class="SHIPTO">
+                    <input type="text"  class="shipto SELECTIONBILLTOSHIPTO">
+                    <i class="search-dataMask"></i>
                 </p>
                 <p class="item">
                     <label for="">请求者:</label>
-                    <i class="search"></i>
-                    <input type="text" class="REQUESTEDBY">
-                    <input type="text"  style="margin-left: 8px;" class="PERSON.DISPLAYNAME">
+                    <input type="text" class="requestedby SELECTIONPERSON">
+                    <i class="search-dataMask"></i>
+                    <span class="persondisplayname"></span>
                 </p>
                 <p class="item">
                     <label for="">地点:</label>
-                    <i class="search"></i>
-                    <input type="text" class="TOSITEID">
+                    <input type="text" class="tositeid SELECTIONSITE">
+                    <i class="search-dataMask"></i>
                 </p>
             </div>
         </div>
@@ -169,40 +173,45 @@
         <h5>下一个审批人</h5>
         <table>
             <thead>
-            <tr>
-                <td width="20%" class="ASSIGNCODE">人员</td>
-                <td width="20%" class="PERSON.DISPLAYNAME">名称</td>
-                <td width="20%" class="DESCRIPTION">描述</td>
-                <td width="40%" class="PROCESSNAME">过程</td>
-            </tr>
+                <tr>
+                    <td>人员</td>
+                    <td>名称</td>
+                    <td>描述</td>
+                    <td>过程</td>
+                </tr>
             </thead>
-            <tbody>
-
-            </tbody>
+            <tbody></tbody>
         </table>
     </div>
     <div class="apply-record">
         <h5>审批记录</h5>
         <table>
             <thead>
-            <tr>
-                <td width="20%" class="PERSONID">人员</td>
-                <td width="20%" class="PERSON.DISPLAYNAME">名称</td>
-                <td width="20%" class="DESCRIPTION">描述</td>
-                <td width="15%" class="TRANSDATE">交易日期</td>
-                <td width="25%" class="MEMO">备忘录</td>
-            </tr>
+                <tr>
+                    <td>人员</td>
+                    <td>名称</td>
+                    <td>描述</td>
+                    <td>交易日期</td>
+                    <td>备忘录</td>
+                </tr>
             </thead>
-            <tbody>
-
-            </tbody>
+            <tbody></tbody>
         </table>
     </div>
 </div>
+<span class="showTip"></span>
+<%@include file="../commons/attachList.jsp"%>
+<%@include file="../commons/audit.jsp"%>
+<%@include file="../commons/addAttach.jsp"%>
+<%@include file="../commons/dataMask.jsp"%>
 <script src="${ctx}/scripts/jquery-1.9.1.min.js"></script>
 <script src="${ctx}/scripts/jquery.datetimepicker.js"></script>
-<script src="${ctx}/js/invuse.js"></script>
+<script src="${ctx}/js/date/jquerytime.js"></script>
 <script src="${ctx}/js/initDetail.js"></script>
+<script src="${ctx}/js/util/attachFile.js"></script>
+<script src="${ctx}/scripts/ajaxfileupload.js"></script>
+<script src="${ctx}/js/util/dataMask.js"></script>
+<script src="${ctx}/js/util/formValidate.js"></script>
 <script>
     var logic = function( currentDateTime ){
         if( currentDateTime.getDay()==6 ){

@@ -1,0 +1,123 @@
+.reportDiv{
+    padding-left: 10px;
+    padding-right: 10px;
+    min-width: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: #fff;
+    display: none;
+}
+.reportDiv h5{
+    font-size: 14px;
+    font-weight: bold;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 2px solid #0096df;
+}
+.reportDiv table{
+    border-collapse:collapse;
+}
+.reportDiv table tr{
+    border-bottom: 1px solid #dadada;
+}
+.reportDiv table td{
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 12px;
+    height: 32px;
+    line-height: 32px;
+    width: 90px;
+}
+.reportDiv button{
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 23px;
+    margin-bottom: 23px;
+    float: right;
+    border: none;
+    cursor: pointer;
+    color: #eaeaea;
+    background: #0096e0;
+}
+p.item{
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    width: 100%;
+}
+p.item lable{
+    display: block;
+    width: 100px;
+    text-align: right;
+    float: left;
+}
+p.item input{
+    width: 200px;
+    height: 18px;
+    line-height: 18px;
+}
+.reportDiv.btn-determine, .reportDiv.btn-cancel{
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 23px;
+    margin-bottom: 23px;
+    float: right;
+    border: none;
+    cursor: pointer;
+    border: 1px solid #eaeaea;
+    border-radius: 3px;
+}
+.cancle {
+    background: #EAEAEA;
+    color: #000;
+}
+.reportDiv input{
+    width: 40%;
+    height: 22px;
+    border: 1px solid #dfdfdf;
+    margin-top: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.reportDiv label{
+    width: 25%;
+    padding-right: 8px;
+    text-align: right;
+}
+.reportDiv p{
+line-height: 34px;
+font-size: 12px;
+color: #252525;
+position: relative;
+}
+/*i.search-dataMask {*/
+    /*display: inline-block;*/
+    /*width: 10px;*/
+    /*height: 10px;*/
+    /*background: url(../img/new/search-dataMask.png) no-repeat center;*/
+    /*background-size: 10px 10px;*/
+    /*cursor: pointer;*/
+    /*margin-top: 13px;*/
+    /*cursor: pointer;*/
+    /*!* float: left; *!*/
+    /*margin-left: 10px;*/
+/*}*/
+/*i.search-dataMask {*/
+    /*display: block;*/
+    /*width: 10px;*/
+    /*height: 10px;*/
+    /*background: url(../img/new/search-dataMask.png) no-repeat center;*/
+    /*background-size: 10px 10px;*/
+    /*cursor: pointer;*/
+    /*margin-top: 13px;*/
+    /*cursor: pointer;*/
+    /*float: left;*/
+    /*margin-left: 10px;*/
+/*}*/

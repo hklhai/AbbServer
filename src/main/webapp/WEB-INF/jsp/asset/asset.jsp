@@ -24,42 +24,8 @@
     <script src="${ctx}/scripts/vue.js"></script>
 </head>
 <body>
-<%--<div class="header">
-    <div class="header-layout">
-        <div class="logo"></div>
-        <ul>
-            <li class="li-item"><a href="${ctx}/index/toIndex" class="index-a"><span style="color:#242424; ">首</span><i
-                    class="icon-index"></i>首页<span style="color:#242424;">页</span></a></li>
-            <li class="li-item"><a href="${ctx}/location/location" class="index-a"><i class="icon-equip"></i>设备管理</a>
-            </li>
-            <li class="li-item"><a href="${ctx}/inventory/list" class="index-a"><i class="icon-stock"></i>库存管理</a></li>
-            <li class="li-item"><a href="${ctx}/tool/list" class="index-a"><i class="icon-tool"></i>工具管理</a></li>
-            <li class="li-last"><i class="close-icon"></i></li>
-            <li class="li-last"><i class="user-icon"></i><span class="username">${sessionInfo.displayname}</span></li>
-
-        </ul>
-    </div>
-</div>--%>
 <div id="mask"></div>
 <div class="equip-layout">
-    <div class="equip-nav" style="display: block;z-index:10000000;">
-        <ul class="father-ul">
-            <li class="father-ul-a" style="margin-top: 16px;"><a href="javascript:;" class="left-bag">现场及设备地图</a></li>
-            <li class="father-ul-li">
-                <a href="javascript:;" class="left-down">设备及位置</a>
-                <ul class="child-ul" style="display: none;z-index: 1000000;background: #000;">
-                    <c:forEach var="locationList" items="${abbLocationList}">
-                        <li><a class="treeShow" id="${locationList.location}"><c:out
-                                value="${locationList.description}"/></a></li>
-                    </c:forEach>
-                </ul>
-                <div class="equip-tree-ul equip-company">
-                    <ul class="equip-tree" style="display:none;z-index: 1000;">
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </div>
     <%--地图显示--%>
     <div id="right-content">
         <div id="container"></div>
@@ -82,7 +48,7 @@
                     <table>
                         <tr>
                             <td>位置编码：</td>
-                            <td class="data-location">AO</td>
+                            <td class="data-location"></td>
                         </tr>
                         <tr>
                             <td>位置描述：</td>
@@ -170,7 +136,6 @@
             </div>
         </div>
         <%--设备详情页--%>
-
         <div class="equip-detail-form" style="display: none;">
             <h4>南京-----南京供电公司----设备详情<span class="close"></span></h4>
             <div class="sel-Tab">
@@ -244,8 +209,9 @@
                     <div>
                         <button class="workOrder">工单记录</button>
                         <button class="execution">服务执行记录</button>
-                        <button class="monitor">设备检测记录</button>
-                        <button class="maintain">设备维护记录</button>
+                        <button class="monitor">设备监测记录</button>
+                        <%--<button class="">设备检测记录</button>--%>
+                        <%--<button class="maintain">设备维护记录</button>--%>
                     </div>
                     <table class="history-table  workOrder-table" style="display: none;">
                         <thead>
@@ -305,52 +271,58 @@
 <script type="text/javascript"
         src="http://webapi.amap.com/maps?v=1.3&key=e4eb9da6d97281e42a0357655570e3ae"></script>
 <script type="text/javascript">
-    //地图初始化时，在地图上添加一个marker标记,鼠标点击marker可弹出自定义的信息窗体
-    var locationCenter = [];
-    var centerD = "${sessionInfo.dimension}" || "116.397428";
-    var centerL = "${sessionInfo.longitude}" || "39.90923";
-    locationCenter.push(centerD);
-    locationCenter.push(centerL);
-    var map = new AMap.Map("container", {
-        resizeEnable: true,
-        center: locationCenter,
-        zoom: 7
-    });
+    var locationId = "${locationId}";
+    if(locationId!=""){
+        $(".equip-company").show();
+        $("#right-content").hide();
+        equipDetail(locationId);
+    }else{
+        //地图初始化时，在地图上添加一个marker标记,鼠标点击marker可弹出自定义的信息窗体
+        var locationCenter = [];
+        var centerD = "${sessionInfo.dimension}" || "116.397428";
+        var centerL = "${sessionInfo.longitude}" || "39.90923";
+        locationCenter.push(centerD);
+        locationCenter.push(centerL);
+        var map = new AMap.Map("container", {
+            resizeEnable: true,
+            center: locationCenter,
+            zoom: 7
+        });
 
-    map.setZoomAndCenter(7, locationCenter);
-    var tmpLnglats = [];
-    var tmpData = [];
-    var lStatus = [];
-    <c:forEach items="${mapData}" var="mapData">
-    var tmpObj = {};
-    tmpObj.description = '${mapData.description}';
-    tmpObj.location = '${mapData.location}';
-    tmpObj.locationsid = '${mapData.locationsid}';
-    tmpObj.loccount = '${mapData.loccount}';
-    tmpObj.longitude = '${mapData.longitude}';
-    tmpObj.orgid = '${mapData.orgid}';
-    tmpObj.saddresscode = '${mapData.saddresscode}';
-    tmpObj.status = '${mapData.status}';
-    tmpObj.alertcount = '${mapData.alertcount}';
-    tmpObj.parentdesc = '${mapData.parentdesc}';
+        map.setZoomAndCenter(7, locationCenter);
+        var tmpLnglats = [];
+        var tmpData = [];
+        var lStatus = [];
+        <c:forEach items="${mapData}" var="mapData">
+        var tmpObj = {};
+        tmpObj.description = '${mapData.description}';
+        tmpObj.location = '${mapData.location}';
+        tmpObj.locationsid = '${mapData.locationsid}';
+        tmpObj.loccount = '${mapData.loccount}';
+        tmpObj.longitude = '${mapData.longitude}';
+        tmpObj.orgid = '${mapData.orgid}';
+        tmpObj.saddresscode = '${mapData.saddresscode}';
+        tmpObj.status = '${mapData.status}';
+        tmpObj.alertcount = '${mapData.alertcount}';
+        tmpObj.parentdesc = '${mapData.parentdesc}';
 
-    tmpObj.voltage = '${mapData.voltage}';
-    tmpObj.avgasset = '${mapData.avgasset}';
+        tmpObj.voltage = '${mapData.voltage}';
+        tmpObj.avgasset = '${mapData.avgasset}';
 
-    tmpData.push(tmpObj);
-    lStatus.push('${mapData.status}');
-    var tmpLocation = [];
-    tmpLocation.push(${mapData.dimension});
-    tmpLocation.push(${mapData.longitude});
-    tmpLnglats.push(tmpLocation);
-    </c:forEach>
-    var lnglats = tmpLnglats;
-    //添加marker标记
-    for (var i = 0; i < lnglats.length; i++) {
-        addMarker();
-        console.log(tmpData[i]);
-
+        tmpData.push(tmpObj);
+        lStatus.push('${mapData.status}');
+        var tmpLocation = [];
+        tmpLocation.push(${mapData.dimension});
+        tmpLocation.push(${mapData.longitude});
+        tmpLnglats.push(tmpLocation);
+        </c:forEach>
+        var lnglats = tmpLnglats;
+        //添加marker标记
+        for (var i = 0; i < lnglats.length; i++) {
+            addMarker();
+        }
     }
+
     function addMarker() {
         if (lStatus[i] == "ACTIVE") {
             var marker = new AMap.Marker({
@@ -397,7 +369,6 @@
             closeInfoWindow();
         });
     }
-
 
     //构建自定义信息窗体
     function createInfoWindow(title, content) {
@@ -532,10 +503,6 @@
     }
 
     $(function () {
-        /*var cWidth = $(window).width() - 267;
-        $("#right-content").width(cWidth);
-        $("#container").width(cWidth);*/
-
         $(".close-icon").click(function () {
             window.location.href = "${ctx}/index/logout";
         });
@@ -548,59 +515,6 @@
         });
         $(".left-down").click(function () {
             $(".child-ul").toggle();
-        });
-        //一期迁移
-        $("#equip",window.parent.document).click(function(){
-            alert("aaaaaaaa");
-            $(".child-ul").toggle();
-        });
-
-        var mod_menu = $(".child-ul");//导航模块区
-        var menu = function () {
-            var menuItem = $(".child-ul li");//选择导航列表
-            menuItem.each(function () {
-                var _index = $(this).index();//获取当前选择菜单列表的索引
-                $(this).mouseenter(function () {
-                    var self = $(this);
-                    var location = self.find("a").attr("id");
-                    $.ajax({
-                        url: "${ctx}/location/child",
-                        method: "post",
-                        data: {
-                            location: location
-                        },
-                        dataType: "json",
-                        success: function (data) {
-                            if (data.length > 0) {
-                                var html = '';
-                                $("ul.equip-tree").html("");
-                                for (var i = 0; i < data.length; i++) {
-                                    html += '<li><a  id="' + data[i].location + '">' + data[i].description + '</a></li>';
-                                }
-                                $("ul.equip-tree").append(html);
-                                var y = self.position().top;//获取当前鼠标滑过的列表的顶部坐标
-                                $(".equip-tree-ul").show();
-                                self.addClass("child-ul-hover").siblings().removeClass("child-ul-hover");
-                                $(".equip-tree-ul>ul").show().css("top", y).siblings().hide();
-                            }
-                        },
-                        error: function () {
-                        }
-                    });
-                });
-            });
-            /*导航菜单菜单*/
-            $(".father-ul").mouseleave(function () {
-                $(".equip-tree-ul").hide();
-                menuItem.removeClass("child-ul-hover");
-            })
-        }//展开二级菜单
-        menu();//执行展开二级菜单函
-
-        //位置树点击事件
-        $("ul.equip-tree").delegate("li", "click", function () {
-            var location = $(this).find("a").attr("id");
-            equipDetail(location);
         });
 
         //子设备查看点击事件
@@ -946,5 +860,6 @@
     })(jQuery);
 </script>
 <script type="text/javascript" src="http://webapi.amap.com/demos/js/liteToolbar.js"></script>
+<script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
 </body>
 </html>

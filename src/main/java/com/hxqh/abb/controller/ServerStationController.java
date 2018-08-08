@@ -1,18 +1,15 @@
 package com.hxqh.abb.controller;
 
 import com.hxqh.abb.common.util.IConstants;
+import com.hxqh.abb.model.base.SessionInfo;
 import com.hxqh.abb.model.dto.action.Message;
 import com.hxqh.abb.model.version2.Udbed;
 import com.hxqh.abb.model.version2.Udbedapply;
 import com.hxqh.abb.model.version2.Udvehicle;
-import com.hxqh.abb.model.version2.Udvehicleapply;
 import com.hxqh.abb.service.ServerStationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Ocean lin on 2017/9/5.
@@ -25,17 +22,18 @@ public class ServerStationController {
     @Autowired
     private ServerStationService serverStationService;
 
+
     /**
      * addUdvehicle 业务接口
      *
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/addUdvehicle", method = RequestMethod.GET)
-    public Message addUdvehicle(Udvehicle udvehicle) {
+    @RequestMapping(value = "/addUdvehicle", method = RequestMethod.POST)
+    public Message addUdvehicle(@RequestBody Udvehicle udvehicle, @ModelAttribute("sessionInfo") SessionInfo sessionInfo) {
         Message message = null;
         try {
-            Long aLong = serverStationService.addUdvehicle(udvehicle);
+            Long aLong = serverStationService.addUdvehicle(udvehicle, sessionInfo);
             message = new Message(IConstants.SUCCESS, IConstants.ADDSUCCESS, aLong);
         } catch (Exception e) {
             message = new Message(IConstants.FAIL, IConstants.ADDFAIL);
@@ -47,15 +45,16 @@ public class ServerStationController {
 
     /**
      * editUdvehicle 业务接口
+     * 车辆台账
      *
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/editUdvehicle", method = RequestMethod.GET)
-    public Message editUdvehicle(Udvehicle udvehicle) {
+    @RequestMapping(value = "/editUdvehicle", method = RequestMethod.POST)
+    public Message editUdvehicle(@RequestBody Udvehicle udvehicle, @ModelAttribute("sessionInfo") SessionInfo sessionInfo) {
         Message message = null;
         try {
-            serverStationService.editUdvehicle(udvehicle);
+            serverStationService.editUdvehicle(udvehicle, sessionInfo);
             message = new Message(IConstants.SUCCESS, IConstants.EDITSUCCESS);
         } catch (Exception e) {
             message = new Message(IConstants.FAIL, IConstants.EDITFAIL);
@@ -64,62 +63,21 @@ public class ServerStationController {
             return message;
         }
     }
-
-
-    /**
-     * addUdvehicleapply 业务接口
-     *
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping(value = "/addUdvehicleapply", method = RequestMethod.GET)
-    public Message addUdvehicleapply(Udvehicleapply Udvehicleapply) {
-        Message message = null;
-        try {
-            Long aLong = serverStationService.addUdvehicleapply(Udvehicleapply);
-            message = new Message(IConstants.SUCCESS, IConstants.ADDSUCCESS,aLong);
-        } catch (Exception e) {
-            message = new Message(IConstants.FAIL, IConstants.ADDFAIL);
-            e.printStackTrace();
-        } finally {
-            return message;
-        }
-    }
-
-    /**
-     * editUdvehicleapply 业务接口
-     *
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping(value = "/editUdvehicleapply", method = RequestMethod.GET)
-    public Message editUdvehicleapply(Udvehicleapply Udvehicleapply) {
-        Message message = null;
-        try {
-            serverStationService.editUdvehicleapply(Udvehicleapply);
-            message = new Message(IConstants.SUCCESS, IConstants.EDITSUCCESS);
-        } catch (Exception e) {
-            message = new Message(IConstants.FAIL, IConstants.EDITFAIL);
-            e.printStackTrace();
-        } finally {
-            return message;
-        }
-    }
-
 
 
     /**
      * addUdbed 业务接口
+     * 住宿台账
      *
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/addUdbed", method = RequestMethod.GET)
-    public Message addUdbed(Udbed Udbed) {
+    @RequestMapping(value = "/addUdbed", method = RequestMethod.POST)
+    public Message addUdbed(@RequestBody Udbed Udbed, @ModelAttribute("sessionInfo") SessionInfo sessionInfo) {
         Message message = null;
         try {
-            Long aLong = serverStationService.addUdbed(Udbed);
-            message = new Message(IConstants.SUCCESS, IConstants.ADDSUCCESS,aLong);
+            Long aLong = serverStationService.addUdbed(Udbed, sessionInfo);
+            message = new Message(IConstants.SUCCESS, IConstants.ADDSUCCESS, aLong);
         } catch (Exception e) {
             message = new Message(IConstants.FAIL, IConstants.ADDFAIL);
             e.printStackTrace();
@@ -134,11 +92,11 @@ public class ServerStationController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/editUdbed", method = RequestMethod.GET)
-    public Message editUdbed(Udbed Udbed) {
+    @RequestMapping(value = "/editUdbed", method = RequestMethod.POST)
+    public Message editUdbed(@RequestBody Udbed Udbed, @ModelAttribute("sessionInfo") SessionInfo sessionInfo) {
         Message message = null;
         try {
-            serverStationService.editUdbed(Udbed);
+            serverStationService.editUdbed(Udbed, sessionInfo);
             message = new Message(IConstants.SUCCESS, IConstants.EDITSUCCESS);
         } catch (Exception e) {
             message = new Message(IConstants.FAIL, IConstants.EDITFAIL);
@@ -150,15 +108,21 @@ public class ServerStationController {
 
     /**
      * addUdbedapply 业务接口
+     * 住宿申请添加方法
+     * <p>
+     * 返回
      *
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/addUdbedapply", method = RequestMethod.GET)
-    public Message addUdbedapply(Udbedapply Udbedapply) {
-        Message message = null;
+    @RequestMapping(value = "/addUdbedapply", method = RequestMethod.POST)
+    public Message addUdbedapply(@RequestBody Udbedapply Udbedapply, @ModelAttribute("sessionInfo") SessionInfo sessionInfo) {
+
+        Message message = new Message(IConstants.OCCUPIED, IConstants.OCCUPIEDINFO);
         try {
-            serverStationService.addUdbedapply(Udbedapply);
+            Long aLong = serverStationService.addUdbedapply(Udbedapply, sessionInfo);
+            if (aLong == -3L)
+                return message;
             message = new Message(IConstants.SUCCESS, IConstants.ADDSUCCESS);
         } catch (Exception e) {
             message = new Message(IConstants.FAIL, IConstants.ADDFAIL);
@@ -170,15 +134,16 @@ public class ServerStationController {
 
     /**
      * editUdbedapply 业务接口
+     * 住宿申请详情保存
      *
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/editUdbedapply", method = RequestMethod.GET)
-    public Message editUdbedapply(Udbedapply Udbedapply) {
+    @RequestMapping(value = "/editUdbedapply", method = RequestMethod.POST)
+    public Message editUdbedapply(@RequestBody Udbedapply Udbedapply, @ModelAttribute("sessionInfo") SessionInfo sessionInfo) {
         Message message = null;
         try {
-            serverStationService.editUdbedapply(Udbedapply);
+            serverStationService.editUdbedapply(Udbedapply, sessionInfo);
             message = new Message(IConstants.SUCCESS, IConstants.EDITSUCCESS);
         } catch (Exception e) {
             message = new Message(IConstants.FAIL, IConstants.EDITFAIL);
@@ -187,7 +152,6 @@ public class ServerStationController {
             return message;
         }
     }
-
 
 
 }

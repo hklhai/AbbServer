@@ -9,7 +9,6 @@
 	</appender>
 
 	<appender name="rootFileAppender" class="org.apache.log4j.RollingFileAppender">
-		<param name="File" value="../isbn/root.log" />
 		<param name="Append" value="true" />
 		<param name="MaxFileSize" value="10MB" />
 		<param name="MaxBackupIndex" value="20" />
@@ -24,9 +23,7 @@
 	<logger name="org.springframework.data.mongodb.core.convert.CustomConversions">
 		<level value="ERROR" />
 	</logger>
-	<logger name="org.hibernate.type.descriptor.sql.BasicBinder">
-		<level value="TRACE" />
-	</logger>
+
 	<logger name="org.springframework">
 		<level value="WARN" />
 	</logger>
@@ -66,10 +63,30 @@
 	<logger name="com.alibaba.druid.pool.PreparedStatementPool">
 		<level value="WARN"/>
 	</logger>
-
+	<logger name="org.hibernate.type.descriptor.sql.BasicBinder">
+		<level value="WARN" />
+	</logger>
+	<logger name="org.springframework.web.servlet.mvc">
+		<level value="WARN" />
+	</logger>
 	<root>
-		<priority value="DEBUG" />
-		<!--<priority value="DEBUG"/> &lt;!&ndash;调试模式，显示SQL语句&ndash;&gt; ERROR -->
+		<priority value="ERROR" />
 		<appender-ref ref="ConsoleAppender" />
 	</root>
+
+
+	<!--<logger name="org.hibernate.type.descriptor.sql.BasicBinder">-->
+		<!--<level value="TRACE" />-->
+	<!--</logger>-->
+	<!--<logger name="org.springframework.web.servlet.mvc">-->
+		<!--<level value="DEBUG" />-->
+	<!--</logger>-->
+	<!--<root>-->
+		<!--<priority value="DEBUG" />-->
+		<!--&lt;!&ndash;<priority value="DEBUG"/> &lt;!&ndash;调试模式，显示SQL语句&ndash;&gt; ERROR &ndash;&gt;-->
+		<!--<appender-ref ref="ConsoleAppender" />-->
+	<!--</root>-->
+
+
+
 </log4j:configuration>

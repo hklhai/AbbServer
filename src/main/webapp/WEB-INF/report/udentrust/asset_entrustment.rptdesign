@@ -1,0 +1,1343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.22" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 3.7.0.v20110602 Build &lt;3.7.0.v20110607-1526></property>
+    <property name="units">in</property>
+    <method name="initialize"><![CDATA[importPackage(Packages.com.hxqh.report);
+importPackage(Packages.java.io);//引入包文件
+importPackage(Packages.java.text);
+importPackage(Packages.java.util);
+mxReportScriptContext = MXReportScriptContext.initialize(reportContext);
+mxReportScriptContext.setDefaultLogLevel("DEBUG");
+mxReportScriptContext.setDefaultLogFile("D:\\lzling.log");
+scriptLogger = mxReportScriptContext.getReportScriptLogger();]]></method>
+    <method name="afterFactory"><![CDATA[MXReportScriptContext.close();]]></method>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">MaximoSystemLibrary.rptlibrary</property>
+            <property name="namespace">MaximoSystemLibrary</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="where" id="89">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">1=1</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <script-data-source name="maximoDataSource" id="7" extends="MaximoSystemLibrary.maximoDataSource"/>
+    </data-sources>
+    <data-sets>
+        <script-data-set name="数据集" id="8">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">number</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">KH_COMPANY</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">description</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">xcyj</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">lxdh</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">ATTACHMENT</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">SWITCH</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">EFFECTIVETIME</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">APPROVE</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">hwsl</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">number</property>
+                </structure>
+                <structure>
+                    <property name="columnName">KH_COMPANY</property>
+                </structure>
+                <structure>
+                    <property name="columnName">description</property>
+                </structure>
+                <structure>
+                    <property name="columnName">xcyj</property>
+                </structure>
+                <structure>
+                    <property name="columnName">lxdh</property>
+                </structure>
+                <structure>
+                    <property name="columnName">ATTACHMENT</property>
+                </structure>
+                <structure>
+                    <property name="columnName">SWITCH</property>
+                </structure>
+                <structure>
+                    <property name="columnName">EFFECTIVETIME</property>
+                </structure>
+                <structure>
+                    <property name="columnName">APPROVE</property>
+                </structure>
+                <structure>
+                    <property name="columnName">hwsl</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">number</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">KH_COMPANY</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">description</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">xcyj</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">lxdh</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">ATTACHMENT</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">SWITCH</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">EFFECTIVETIME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">APPROVE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">hwsl</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">maximoDataSource</property>
+            <method name="open"><![CDATA[maximoDataSet=MXReportDataSetProvider.create(this.getDataSource().getName(), this.getName());
+maximoDataSet.open();
+
+var sqlText=new String();
+
+// Add query to sqlText variable.
+
+// Include the Maximo where clause
+
+sqlText = " select a.number,b.KH_COMPANY,b.description,(select displayname from person where personid=b.MDENGINEER)xcyj, "+
+          " (select phonenum from phone where personid=b.MDENGINEER)lxdh,a.ATTACHMENT,a.SWITCH,EFFECTIVETIME,APPROVE,"+
+          " (case when a.ATTACHMENT is null then 0 else a.ATTACHMENT end)+(case when a.SWITCH is null then 0 else a.SWITCH end)hwsl "+
+          " from UDENTRUSTOUT a,UDPROJECT b"+
+          " where a.pronum=b.pronum"+
+          " and a.number=(select number from UDENTRUSTOUT where "+params["where"] +")";
+
+//scriptLogger.info("sqlText==="+sqlText);
+maximoDataSet.setQuery(sqlText);]]></method>
+            <method name="fetch"><![CDATA[if (!maximoDataSet.fetch())
+	return (false);
+
+// Add a line for each output column
+// The specific get method should match the data type of the output column.
+row["number"] = maximoDataSet.getString("number");
+row["KH_COMPANY"] = maximoDataSet.getString("KH_COMPANY");
+row["description"] = maximoDataSet.getString("description");
+row["xcyj"] = maximoDataSet.getString("xcyj");
+row["lxdh"] = maximoDataSet.getString("lxdh");
+row["ATTACHMENT"] = maximoDataSet.getString("ATTACHMENT");
+row["SWITCH"] = maximoDataSet.getString("SWITCH");
+row["EFFECTIVETIME"] = maximoDataSet.getString("EFFECTIVETIME");
+row["APPROVE"] = maximoDataSet.getString("APPROVE");
+row["hwsl"] = maximoDataSet.getString("hwsl");
+
+return (true);]]></method>
+        </script-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">"Verdana"</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab-cell" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="type">a4</property>
+            <property name="orientation">portrait</property>
+            <property name="topMargin">0.25in</property>
+            <property name="leftMargin">0.3in</property>
+            <property name="bottomMargin">0.25in</property>
+            <property name="rightMargin">0.3in</property>
+            <property name="headerHeight">0.5in</property>
+            <property name="footerHeight">0.25in</property>
+            <page-header>
+                <grid id="9">
+                    <property name="fontFamily">"宋体"</property>
+                    <property name="verticalAlign">middle</property>
+                    <property name="width">7.552083333333333in</property>
+                    <column id="10">
+                        <property name="width">1.5416666666666667in</property>
+                    </column>
+                    <column id="11">
+                        <property name="width">6.010416666666667in</property>
+                    </column>
+                    <row id="1037">
+                        <cell id="1038">
+                            <property name="colSpan">1</property>
+                            <property name="rowSpan">1</property>
+                            <property name="textAlign">right</property>
+                            <property name="verticalAlign">middle</property>
+                            <image id="16">
+                                <property name="height">33px</property>
+                                <property name="width">87px</property>
+                                <property name="source">embed</property>
+                                <property name="imageName">ABB_Logo_Screen_RGB_33px_@1x.png</property>
+                            </image>
+                        </cell>
+                        <cell id="1039">
+                            <property name="verticalAlign">middle</property>
+                            <label id="17">
+                                <property name="fontSize">16pt</property>
+                                <property name="fontWeight">bold</property>
+                                <text-property name="text">              现场设备委托开箱函</text-property>
+                            </label>
+                        </cell>
+                    </row>
+                </grid>
+            </page-header>
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid id="1583">
+            <property name="fontFamily">"宋体"</property>
+            <property name="fontSize">12pt</property>
+            <property name="verticalAlign">middle</property>
+            <property name="dataSet">数据集</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">number</property>
+                    <text-property name="displayName">number</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["number"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">KH_COMPANY</property>
+                    <text-property name="displayName">KH_COMPANY</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["KH_COMPANY"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">description</property>
+                    <text-property name="displayName">description</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["description"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">xcyj</property>
+                    <text-property name="displayName">xcyj</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["xcyj"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">lxdh</property>
+                    <text-property name="displayName">lxdh</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["lxdh"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">ATTACHMENT</property>
+                    <text-property name="displayName">ATTACHMENT</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ATTACHMENT"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">SWITCH</property>
+                    <text-property name="displayName">SWITCH</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["SWITCH"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">EFFECTIVETIME</property>
+                    <text-property name="displayName">EFFECTIVETIME</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["EFFECTIVETIME"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">APPROVE</property>
+                    <text-property name="displayName">APPROVE</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["APPROVE"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">EFFECTIVETIME_1</property>
+                    <text-property name="displayName">EFFECTIVETIME</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["EFFECTIVETIME"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">hwsl</property>
+                    <text-property name="displayName">hwsl</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["hwsl"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="1584">
+                <property name="width">0.375in</property>
+            </column>
+            <column id="1585">
+                <property name="width">0.25in</property>
+            </column>
+            <column id="1586">
+                <property name="width">1.1770833333333333in</property>
+            </column>
+            <column id="1587">
+                <property name="width">0.3541666666666667in</property>
+            </column>
+            <column id="1588">
+                <property name="width">0.6458333333333334in</property>
+            </column>
+            <column id="1589">
+                <property name="width">0.6041666666666666in</property>
+            </column>
+            <column id="1590">
+                <property name="width">1.1770833333333333in</property>
+            </column>
+            <column id="1591">
+                <property name="width">0.8854166666666666in</property>
+            </column>
+            <column id="1592">
+                <property name="width">0.8020833333333334in</property>
+            </column>
+            <column id="1593">
+                <property name="width">1.4166666666666667in</property>
+            </column>
+            <row id="1594">
+                <property name="height">0.3541666666666667in</property>
+                <cell id="1595">
+                    <property name="colSpan">5</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                    <data id="1915">
+                        <property name="dataSet">数据集</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">KH_COMPANY</property>
+                                <text-property name="displayName">KH_COMPANY</text-property>
+                                <expression name="expression" type="javascript">"尊敬的"+dataSetRow["KH_COMPANY"]+"客户："</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">KH_COMPANY</property>
+                    </data>
+                </cell>
+                <cell id="1600">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1601">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1602">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1603">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1604">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+            </row>
+            <row id="1605">
+                <property name="height">0.3541666666666667in</property>
+                <cell id="1606">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1607">
+                    <property name="colSpan">9</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                    <label id="1916">
+                        <text-property name="text">感谢您选择ABB！</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="1616">
+                <property name="height">0.3541666666666667in</property>
+                <cell id="1617">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1618">
+                    <property name="colSpan">3</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                    <label id="1949">
+                        <text-property name="text">贵公司和我公司签订的</text-property>
+                    </label>
+                </cell>
+                <cell id="1964">
+                    <property name="colSpan">4</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                    <data id="1920">
+                        <property name="textAlign">center</property>
+                        <property name="dataSet">数据集</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">description</property>
+                                <text-property name="displayName">description</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["description"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">description</property>
+                    </data>
+                </cell>
+                <cell id="1968">
+                    <property name="colSpan">2</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                    <label id="1950">
+                        <text-property name="text">合同项目,现设备已发运至现</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="1627">
+                <property name="height">0.354in</property>
+                <cell id="1628">
+                    <property name="colSpan">10</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                    <label id="1931">
+                        <text-property name="text">场。对于贵公司提出设备暂不安装但须先行现场开箱验收的要求，我方已收悉并全权委托贵公司对现场</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="2084">
+                <property name="height">0.3541666666666667in</property>
+                <cell id="2085">
+                    <property name="colSpan">10</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                    <label id="2095">
+                        <text-property name="text">设备进行开箱及核对。</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="1649">
+                <property name="height">0.3541666666666667in</property>
+                <cell id="1650">
+                    <property name="colSpan">1</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1951">
+                    <property name="colSpan">9</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                    <label id="1953">
+                        <text-property name="text">开箱过程中如发现开关柜柜体外观或内部元件有损坏、数量有缺少的情况，请保留现场并立即致电</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="1660">
+                <property name="height">0.3541666666666667in</property>
+                <cell id="1661">
+                    <property name="colSpan">3</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                    <label id="1954">
+                        <text-property name="text">我公司（联系人姓名：</text-property>
+                    </label>
+                </cell>
+                <cell id="1957">
+                    <property name="colSpan">2</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                    <data id="1971">
+                        <property name="dataSet">数据集</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">xcyj</property>
+                                <text-property name="displayName">xcyj</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["xcyj"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">xcyj</property>
+                    </data>
+                </cell>
+                <cell id="1959">
+                    <property name="verticalAlign">middle</property>
+                    <label id="1967">
+                        <text-property name="text">电话：</text-property>
+                    </label>
+                </cell>
+                <cell id="1960">
+                    <property name="verticalAlign">middle</property>
+                    <data id="1972">
+                        <property name="dataSet">数据集</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">lxdh</property>
+                                <text-property name="displayName">lxdh</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["lxdh"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">lxdh</property>
+                    </data>
+                </cell>
+                <cell id="1961">
+                    <property name="colSpan">3</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                    <label id="1970">
+                        <text-property name="text">），由我公司负责协调解决。</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="1671">
+                <property name="height">0.3541666666666667in</property>
+                <cell id="1672">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1673">
+                    <property name="colSpan">3</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                    <label id="1973">
+                        <text-property name="text">本合同供货范围内共</text-property>
+                    </label>
+                </cell>
+                <cell id="1676">
+                    <property name="verticalAlign">middle</property>
+                    <data id="2068">
+                        <property name="resultSetColumn">hwsl</property>
+                    </data>
+                </cell>
+                <cell id="1677">
+                    <property name="colSpan">2</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                    <label id="1974">
+                        <property name="textAlign">center</property>
+                        <text-property name="text">箱货物，其中开关柜</text-property>
+                    </label>
+                </cell>
+                <cell id="1679">
+                    <property name="verticalAlign">middle</property>
+                    <data id="1976">
+                        <property name="textAlign">center</property>
+                        <property name="dataSet">数据集</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">SWITCH</property>
+                                <text-property name="displayName">SWITCH</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["SWITCH"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">SWITCH</property>
+                    </data>
+                </cell>
+                <cell id="1680">
+                    <property name="verticalAlign">middle</property>
+                    <label id="1975">
+                        <text-property name="text">箱，附件</text-property>
+                    </label>
+                </cell>
+                <cell id="1681">
+                    <property name="verticalAlign">middle</property>
+                    <data id="1977">
+                        <property name="textAlign">right</property>
+                        <property name="dataSet">数据集</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">ATTACHMENT</property>
+                                <text-property name="displayName">ATTACHMENT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ATTACHMENT"]+"    箱。"</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">ATTACHMENT</property>
+                    </data>
+                </cell>
+            </row>
+            <row id="1682">
+                <property name="height">0.3541666666666667in</property>
+                <cell id="1683">
+                    <property name="colSpan">10</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                    <label id="1979">
+                        <text-property name="text">贵公司开箱清点无误后，请立即填写《现场设备开箱单》并传真回我公司，谢谢贵公司的大力配合。</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="1693">
+                <property name="height">0.3541666666666667in</property>
+                <cell id="1694">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1695">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1696">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1697">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1698">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1699">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1700">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1701">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1702">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1703">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+            </row>
+            <row id="1704">
+                <property name="height">0.3541666666666667in</property>
+                <cell id="1705">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1706">
+                    <property name="colSpan">9</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                    <label id="1980">
+                        <text-property name="text">***建议：附件箱的开箱工作待设备安装时同我方现场服务工程师共同进行，以避免附件遗失。</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="1715">
+                <property name="height">0.3541666666666667in</property>
+                <cell id="1716">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1717">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1718">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1719">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1720">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1721">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1722">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1723">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1724">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1725">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+            </row>
+            <row id="1726">
+                <property name="height">0.3541666666666667in</property>
+                <cell id="1727">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1728">
+                    <property name="colSpan">2</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                    <label id="1981">
+                        <text-property name="text">谢谢合作！</text-property>
+                    </label>
+                </cell>
+                <cell id="1730">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1731">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1732">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1733">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1734">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1735">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1736">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+            </row>
+            <row id="1737">
+                <property name="height">0.3541666666666667in</property>
+                <cell id="1738">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1739">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1740">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1741">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1742">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1743">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1744">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1745">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1746">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1747">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+            </row>
+            <row id="2054">
+                <property name="height">0.3541666666666667in</property>
+                <cell id="2055">
+                    <property name="colSpan">10</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                    <grid id="1994">
+                        <column id="1995">
+                            <property name="width">0.84375in</property>
+                        </column>
+                        <column id="1996">
+                            <property name="width">0.4895833333333333in</property>
+                        </column>
+                        <column id="1997">
+                            <property name="width">2.46875in</property>
+                        </column>
+                        <column id="1998"/>
+                        <column id="1999">
+                            <property name="width">1.5833333333333333in</property>
+                        </column>
+                        <column id="2000">
+                            <property name="width">0.9583333333333334in</property>
+                        </column>
+                        <row id="2001">
+                            <property name="height">0.354in</property>
+                            <property name="verticalAlign">middle</property>
+                            <cell id="2002"/>
+                            <cell id="2003">
+                                <property name="colSpan">1</property>
+                                <property name="rowSpan">1</property>
+                                <property name="backgroundColor">#B4EE9D</property>
+                                <property name="borderBottomColor">#B4EE9D</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">1px</property>
+                                <property name="borderLeftColor">#000000</property>
+                                <property name="borderLeftStyle">dotted</property>
+                                <property name="borderLeftWidth">1px</property>
+                                <property name="borderRightColor">#B4EE9D</property>
+                                <property name="borderRightStyle">solid</property>
+                                <property name="borderRightWidth">1px</property>
+                                <property name="borderTopColor">#000000</property>
+                                <property name="borderTopStyle">dotted</property>
+                                <property name="borderTopWidth">1px</property>
+                            </cell>
+                            <cell id="2080">
+                                <property name="backgroundColor">#B4EE9D</property>
+                                <property name="borderBottomColor">#B4EE9D</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">1px</property>
+                                <property name="borderLeftColor">#000000</property>
+                                <property name="borderLeftStyle">dotted</property>
+                                <property name="borderLeftWidth">1px</property>
+                                <property name="borderRightColor">#B4EE9D</property>
+                                <property name="borderRightStyle">solid</property>
+                                <property name="borderRightWidth">1px</property>
+                                <property name="borderTopColor">#000000</property>
+                                <property name="borderTopStyle">dotted</property>
+                                <property name="borderTopWidth">1px</property>
+                                <label id="2072">
+                                    <property name="textAlign">left</property>
+                                    <text-property name="text">本开关柜委托开箱有限期限至：</text-property>
+                                </label>
+                            </cell>
+                            <cell id="2070">
+                                <property name="colSpan">2</property>
+                                <property name="rowSpan">1</property>
+                                <property name="backgroundColor">#B4EE9D</property>
+                                <property name="borderBottomColor">#B4EE9D</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">1px</property>
+                                <property name="borderLeftColor">#000000</property>
+                                <property name="borderLeftStyle">dotted</property>
+                                <property name="borderLeftWidth">1px</property>
+                                <property name="borderRightColor">#000000</property>
+                                <property name="borderRightStyle">dotted</property>
+                                <property name="borderRightWidth">1px</property>
+                                <property name="borderTopColor">#000000</property>
+                                <property name="borderTopStyle">dotted</property>
+                                <property name="borderTopWidth">1px</property>
+                                <data id="1983">
+                                    <structure name="dateTimeFormat">
+                                        <property name="category">Long Date</property>
+                                        <property name="pattern">Long Date</property>
+                                    </structure>
+                                    <property name="resultSetColumn">EFFECTIVETIME</property>
+                                </data>
+                            </cell>
+                            <cell id="2007"/>
+                        </row>
+                        <row id="2008">
+                            <property name="height">0.354in</property>
+                            <property name="verticalAlign">middle</property>
+                            <cell id="2009"/>
+                            <cell id="2010">
+                                <property name="colSpan">1</property>
+                                <property name="rowSpan">1</property>
+                                <property name="backgroundColor">#B4EE9D</property>
+                                <property name="borderBottomColor">#B4EE9D</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">1px</property>
+                                <property name="borderLeftColor">#000000</property>
+                                <property name="borderLeftStyle">dotted</property>
+                                <property name="borderLeftWidth">1px</property>
+                                <property name="borderRightColor">#B4EE9D</property>
+                                <property name="borderRightStyle">solid</property>
+                                <property name="borderRightWidth">1px</property>
+                                <property name="borderTopColor">#B4EE9D</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">1px</property>
+                            </cell>
+                            <cell id="2081">
+                                <property name="colSpan">3</property>
+                                <property name="rowSpan">1</property>
+                                <property name="backgroundColor">#B4EE9D</property>
+                                <property name="borderBottomColor">#B4EE9D</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">1px</property>
+                                <property name="borderLeftColor">#000000</property>
+                                <property name="borderLeftStyle">dotted</property>
+                                <property name="borderLeftWidth">1px</property>
+                                <property name="borderRightColor">#000000</property>
+                                <property name="borderRightStyle">dotted</property>
+                                <property name="borderRightWidth">1px</property>
+                                <property name="borderTopColor">#B4EE9D</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">1px</property>
+                                <label id="1984">
+                                    <text-property name="text">如超出有效委托期限我公司没有得到书面反馈，视为开箱清点无误。</text-property>
+                                </label>
+                            </cell>
+                            <cell id="2014"/>
+                        </row>
+                        <row id="2015">
+                            <property name="height">0.354in</property>
+                            <property name="verticalAlign">middle</property>
+                            <cell id="2016"/>
+                            <cell id="2017">
+                                <property name="colSpan">2</property>
+                                <property name="rowSpan">1</property>
+                                <property name="backgroundColor">#B4EE9D</property>
+                                <property name="borderBottomColor">#B4EE9D</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">1px</property>
+                                <property name="borderLeftColor">#000000</property>
+                                <property name="borderLeftStyle">dotted</property>
+                                <property name="borderLeftWidth">1px</property>
+                                <property name="borderRightColor">#B4EE9D</property>
+                                <property name="borderRightStyle">solid</property>
+                                <property name="borderRightWidth">1px</property>
+                                <property name="borderTopColor">#B4EE9D</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">1px</property>
+                            </cell>
+                            <cell id="2019">
+                                <property name="backgroundColor">#B4EE9D</property>
+                                <property name="borderBottomColor">#B4EE9D</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">1px</property>
+                                <property name="borderLeftColor">#B4EE9D</property>
+                                <property name="borderLeftStyle">solid</property>
+                                <property name="borderLeftWidth">1px</property>
+                                <property name="borderRightColor">#B4EE9D</property>
+                                <property name="borderRightStyle">solid</property>
+                                <property name="borderRightWidth">1px</property>
+                                <property name="borderTopColor">#B4EE9D</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">1px</property>
+                                <label id="1985">
+                                    <property name="textAlign">right</property>
+                                    <text-property name="text">现场经理：</text-property>
+                                </label>
+                            </cell>
+                            <cell id="2020">
+                                <property name="backgroundColor">#B4EE9D</property>
+                                <property name="borderBottomColor">#B4EE9D</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">1px</property>
+                                <property name="borderLeftColor">#B4EE9D</property>
+                                <property name="borderLeftStyle">solid</property>
+                                <property name="borderLeftWidth">1px</property>
+                                <property name="borderRightColor">#000000</property>
+                                <property name="borderRightStyle">dotted</property>
+                                <property name="borderRightWidth">1px</property>
+                                <property name="borderTopColor">#B4EE9D</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">1px</property>
+                                <data id="1987">
+                                    <property name="resultSetColumn">xcyj</property>
+                                </data>
+                            </cell>
+                            <cell id="2021"/>
+                        </row>
+                        <row id="2022">
+                            <property name="height">0.354in</property>
+                            <property name="verticalAlign">middle</property>
+                            <cell id="2023"/>
+                            <cell id="2024">
+                                <property name="colSpan">2</property>
+                                <property name="rowSpan">1</property>
+                                <property name="backgroundColor">#B4EE9D</property>
+                                <property name="borderBottomColor">#B4EE9D</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">1px</property>
+                                <property name="borderLeftColor">#000000</property>
+                                <property name="borderLeftStyle">dotted</property>
+                                <property name="borderLeftWidth">1px</property>
+                                <property name="borderRightColor">#B4EE9D</property>
+                                <property name="borderRightStyle">solid</property>
+                                <property name="borderRightWidth">1px</property>
+                                <property name="borderTopColor">#B4EE9D</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">1px</property>
+                            </cell>
+                            <cell id="2026">
+                                <property name="backgroundColor">#B4EE9D</property>
+                                <property name="borderBottomColor">#B4EE9D</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">1px</property>
+                                <property name="borderLeftColor">#B4EE9D</property>
+                                <property name="borderLeftStyle">solid</property>
+                                <property name="borderLeftWidth">1px</property>
+                                <property name="borderRightColor">#B4EE9D</property>
+                                <property name="borderRightStyle">solid</property>
+                                <property name="borderRightWidth">1px</property>
+                                <property name="borderTopColor">#B4EE9D</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">1px</property>
+                                <label id="1986">
+                                    <property name="textAlign">right</property>
+                                    <text-property name="text">批准人：</text-property>
+                                </label>
+                            </cell>
+                            <cell id="2027">
+                                <property name="backgroundColor">#B4EE9D</property>
+                                <property name="borderBottomColor">#B4EE9D</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">1px</property>
+                                <property name="borderLeftColor">#B4EE9D</property>
+                                <property name="borderLeftStyle">solid</property>
+                                <property name="borderLeftWidth">1px</property>
+                                <property name="borderRightColor">#000000</property>
+                                <property name="borderRightStyle">dotted</property>
+                                <property name="borderRightWidth">1px</property>
+                                <property name="borderTopColor">#B4EE9D</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">1px</property>
+                                <data id="1988">
+                                    <property name="resultSetColumn">APPROVE</property>
+                                </data>
+                            </cell>
+                            <cell id="2028"/>
+                        </row>
+                        <row id="2029">
+                            <property name="height">0.354in</property>
+                            <property name="verticalAlign">middle</property>
+                            <cell id="2030"/>
+                            <cell id="2031">
+                                <property name="colSpan">4</property>
+                                <property name="rowSpan">1</property>
+                                <property name="backgroundColor">#B4EE9D</property>
+                                <property name="borderBottomColor">#B4EE9D</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">1px</property>
+                                <property name="borderLeftColor">#000000</property>
+                                <property name="borderLeftStyle">dotted</property>
+                                <property name="borderLeftWidth">1px</property>
+                                <property name="borderRightColor">#000000</property>
+                                <property name="borderRightStyle">dotted</property>
+                                <property name="borderRightWidth">1px</property>
+                                <property name="borderTopColor">#B4EE9D</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">1px</property>
+                            </cell>
+                            <cell id="2035"/>
+                        </row>
+                        <row id="2036">
+                            <property name="height">0.354in</property>
+                            <property name="verticalAlign">middle</property>
+                            <cell id="2037"/>
+                            <cell id="2038">
+                                <property name="colSpan">4</property>
+                                <property name="rowSpan">1</property>
+                                <property name="backgroundColor">#B4EE9D</property>
+                                <property name="borderBottomColor">#000000</property>
+                                <property name="borderBottomStyle">dotted</property>
+                                <property name="borderBottomWidth">1px</property>
+                                <property name="borderLeftColor">#000000</property>
+                                <property name="borderLeftStyle">dotted</property>
+                                <property name="borderLeftWidth">1px</property>
+                                <property name="borderRightColor">#000000</property>
+                                <property name="borderRightStyle">dotted</property>
+                                <property name="borderRightWidth">1px</property>
+                                <property name="borderTopColor">#B4EE9D</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">1px</property>
+                            </cell>
+                            <cell id="2042"/>
+                        </row>
+                    </grid>
+                </cell>
+            </row>
+            <row id="1814">
+                <property name="height">0.354in</property>
+                <cell id="1815">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1816">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1817">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1818">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1819">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1820">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1821">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1822">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1823">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1824">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+            </row>
+            <row id="1825">
+                <property name="height">0.354in</property>
+                <cell id="1826">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1827">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1828">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1829">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1830">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1831">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1832">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1833">
+                    <property name="colSpan">3</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                    <label id="1989">
+                        <property name="textAlign">center</property>
+                        <text-property name="text">厦门ABB开关有限公司</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="1836">
+                <property name="height">0.354in</property>
+                <cell id="1837">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1838">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1839">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1840">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1841">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1842">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1843">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1844">
+                    <property name="colSpan">3</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                    <label id="1990">
+                        <property name="textAlign">center</property>
+                        <text-property name="text">现场服务部</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="1847">
+                <property name="height">0.354in</property>
+                <cell id="1848">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1849">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1850">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1851">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1852">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1853">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1854">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1855">
+                    <property name="colSpan">3</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                    <label id="1991">
+                        <property name="textAlign">center</property>
+                        <text-property name="text">电 话：(86592) 6026033</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="1858">
+                <property name="height">0.354in</property>
+                <cell id="1859">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1860">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1861">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1862">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1863">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1864">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1865">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1866">
+                    <property name="colSpan">3</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                    <label id="1992">
+                        <property name="textAlign">center</property>
+                        <text-property name="text">传 真：(86592) 6030505</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="1869">
+                <property name="height">0.354in</property>
+                <cell id="1870">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1871">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1872">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1873">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1874">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1875">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1876">
+                    <property name="verticalAlign">middle</property>
+                </cell>
+                <cell id="1877">
+                    <property name="colSpan">3</property>
+                    <property name="rowSpan">1</property>
+                    <property name="verticalAlign">middle</property>
+                    <label id="1993">
+                        <property name="textAlign">center</property>
+                        <text-property name="text">客户服务热线：400-820-9696 </text-property>
+                    </label>
+                </cell>
+            </row>
+        </grid>
+    </body>
+    <list-property name="images">
+        <structure>
+            <property name="name">ABB_Logo_Screen_RGB_33px_@1x.png</property>
+            <property name="type">image/png</property>
+            <property name="data">
+                iVBORw0KGgoAAAANSUhEUgAAAFcAAAAhCAYAAACsszewAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFn
+                ZVJlYWR5ccllPAAAAlVJREFUeNrsmu1twjAQhm2r/5tuABtkBDoB7gSBCSomaLtBmaDpBIQJ2hHYADZo
+                OgG1K0eCkOA7J76LFE6KIpyPJ7747uw3SIGwo7jfmJ0+bZPiV5r2Y+3UwrQ/iQBruFejtXB3ZlubY/kQ
+                WBLR6cTsfoBgaw/mWEns3NOOP/r4sVkK0W+N9JMWfJaa7csNCDYWxrlzJHQueM12+oWTJYGhOjG7fUDI
+                TM3xA0NaAKWn2CwVOcS14LcZFwvq3CwQlg3AuSkXSwFTQugDpu76URpk5C46Mp6Z+7jjYknAyLWFbNIh
+                2R/MOdNbQbuEp9ccC7SJuw+HvYcsZPpi+dJCXwUpY0oHb5ws6Rm5drmb9BAypTnvgTAtlG6OXXKy1BWw
+                9jkWYYm7H5UlbkmacrIU4fKVejmcEjq4kSW7pARkJQWlhggV3IarVa12nKyb9WyyZfRsoLoA4q1a84ro
+                EUZTZcu6sB2bpRo6l0QUXDSRxsqd8+dtBS12VedSyjQ1SzFM+NmUMhM1M0qWqjXYpW7sB5iNRSlTTKGj
+                x+hcqpDNxuBcWUsJe/wN0NOUyhq/r0WcHlk7kwRjs+5OflCL2pa3IuQdCOXHf5ZC5EG7AJD1rXqzDe35
+                wPLuJzVLufCAiOJbJMB3PqWIXgJedu8shSgwBTIXFw40hMK2xv5/og9W5dwFICWE5CvfC1kQdDY3z/5K
+                5NgzlgKK4ttAmO+62CJ6Tlg0L1gKKGgUITRgaoghqFjmyvCXBDOEVpYEiOLB/7V1xfLDE/5n36A6zj2/
+                XbTkEKfGZv0JMAAgWznbhIeHDgAAAABJRU5ErkJggg==
+            </property>
+        </structure>
+    </list-property>
+</report>

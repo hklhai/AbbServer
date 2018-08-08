@@ -1,10 +1,12 @@
 .left {
   display: block;
-  float: left; }
+  float: left;
+  width: 20%;
+}
 
 .fixed-width {
   display: block;
-  width: 94px; }
+  width: 10%; }
 
 .row {
   border: 1px solid #d3d3d3;
@@ -26,11 +28,11 @@
       font-size: 12px;
       height: 28px;
       border: 1px solid #dadada;
-      color: #fff;
+      color: #000;
       text-align: center;
       display: block;
       float: right;
-      background-image: url("../../imgs/details/save.png");
+      background-image: url("../img/detail/save.png");
       background-repeat: no-repeat;
       background-position: 6px center;
       padding-left: 25px;
@@ -55,7 +57,6 @@
     .row .row-info p.item {
       width: 50%;
       float: left;
-      height: 34px;
       line-height: 34px;
       font-size: 12px;
       color: #252525;
@@ -66,11 +67,13 @@
         line-height: 24px;
         border: 1px solid #dfdfdf;
         margin-top: 5px;
-        padding-left: 5px; }
+        padding-left: 5px;
+        float: left;
+      }
       .row .row-info p.item label {
         display: block;
         float: left;
-        width: 60px; }
+        width: 80px; }
       .row .row-info p.item select {
         width: 120px;
         height: 24px;
@@ -92,7 +95,7 @@
         width: 30px;
         height: 20px;
         cursor: pointer;
-        background-image: url("../../imgs/details/search.png");
+        background-image: url("../img/detail/search.png");
         background-repeat: no-repeat;
         background-position: center;
         position: absolute;
@@ -123,7 +126,7 @@
       float: right;
       width: 16px;
       height: 20px;
-      background-image: url("../../imgs/details/del.png");
+      background-image: url("../img/detail/del.png");
       background-repeat: no-repeat;
       background-position: center;
       margin-top: 10px;
@@ -135,11 +138,11 @@
       height: 43px;
       cursor: pointer; }
     .detail table tr td:nth-child(1) i.down-arrow {
-      background-image: url("../../imgs/details/arrow-down.png");
+      background-image: url("../img/detail/arrow-down.png");
       background-repeat: no-repeat;
       background-position: center; }
     .detail table tr td:nth-child(1) i.left-arrow {
-      background-image: url("../../imgs/details/arrow-left.png");
+      background-image: url("../img/detail/arrow-left.png");
       background-repeat: no-repeat;
       background-position: center; }
 
@@ -183,10 +186,9 @@
       line-height: 32px;
       font-size: 12px;
       color: #1d1d1e; }
-      .open-option table tr td:nth-child(1) {
-        width: 10%; }
-      .open-option table tr td:nth-child(2), .open-option table tr td:nth-child(3) {
-        width: 45%; }
+      .open-option table tr td{
+        padding-left:5px;
+        padding-right:5px; }
       .open-option table tr input[type='text'] {
         width: 190px;
         height: 26px;
@@ -210,3 +212,4 @@
     color: #eaeaea;
     background: #0096e0;
     margin-right: 23px; }
+

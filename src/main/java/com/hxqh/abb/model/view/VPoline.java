@@ -1,10 +1,12 @@
 package com.hxqh.abb.model.view;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.util.Date;
 
 
 /**
@@ -14,7 +16,6 @@ import java.sql.Timestamp;
 @Table(name = "V_POLINE")
 public class VPoline implements Serializable {
     private static final long serialVersionUID = 1L;
-
     private Date enterdate;
 
     private String itemdescription;

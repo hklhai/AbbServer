@@ -1,0 +1,84 @@
+.mask{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    background: #000;
+    width: 100%;
+    height: 100%;
+    filter:alpha(Opacity=60);-moz-opacity:0.6;opacity: 0.6;
+    display: none;
+}
+.fileList-add,.apply-add{
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: #fff;
+    display: none;
+    z-index: 1002;
+    margin-left:-260px;
+    margin-top:-109px;
+}
+.fileList-add h5,.apply-add h5{
+    font-size: 14px;
+    font-weight: bold;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 2px solid #0096df;
+}
+.addFile{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+p.tips{
+    font-size: 12px;
+    height: 14px;
+    line-height: 14px;
+    height: 50px;
+    margin-top: 10px;
+}
+p.item{
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    width: 100%;
+}
+p.item lable{
+    display: block;
+    width: 100px;
+    text-align: right;
+    float: left;
+}
+p.item input{
+    width: 200px;
+    height: 18px;
+    line-height: 18px;
+}
+.fileList-add button,.apply-add button{
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 23px;
+    margin-bottom: 23px;
+    float: right;
+    border: none;
+    cursor: pointer;
+    border: 1px solid #eaeaea;
+    border-radius: 3px;
+}
+.cancle{
+    background: #EAEAEA;
+    color: #000;
+}
+.save{
+    background: #0096e0;
+    color: #eaeaea;
+    margin-left: 10px;
+}
+.fileList-add select,.apply-add select{
+    width: 100px;
+}

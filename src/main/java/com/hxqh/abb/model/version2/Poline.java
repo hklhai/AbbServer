@@ -1,5 +1,8 @@
 package com.hxqh.abb.model.version2;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -11,11 +14,12 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "Poline")
+@DynamicUpdate
 public class Poline implements Serializable {
     private static final Long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name = "POLINE_POLINEID_GENERATOR", sequenceName = "POLINESEQ")
+    @SequenceGenerator(name = "POLINE_POLINEID_GENERATOR", allocationSize = 1, sequenceName = "POLINESEQ")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "POLINE_POLINEID_GENERATOR")
     private Long polineid;
 
@@ -51,6 +55,7 @@ public class Poline implements Serializable {
 
     private String enterby;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date enterdate;
 
     private Integer enteredastask;
@@ -68,6 +73,9 @@ public class Poline implements Serializable {
     private Integer isdistributed;
 
     private Integer issue;
+
+    @Transient
+    private String issueunit;
 
     private String itemnum;
 
@@ -170,11 +178,11 @@ public class Poline implements Serializable {
 
     private Integer receiptscomplete;
 
-    private double receipttolamt;
+    private Double receipttolamt;
 
     private BigDecimal receipttolerance;
 
-    private double receipttolqty;
+    private Double receipttolqty;
 
     private BigDecimal receivedqty;
 
@@ -254,7 +262,55 @@ public class Poline implements Serializable {
 
     private String vendorwarehouse;
 
+
+    @Transient
+    private String itemdescription;
+    @Transient
+    private String frontedid;
+    @Transient
+    private String itemudmodel;
+    @Transient
+    private String persondisplayname;
+
+
     public Poline() {
+    }
+
+
+    public static Long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getItemdescription() {
+        return itemdescription;
+    }
+
+    public void setItemdescription(String itemdescription) {
+        this.itemdescription = itemdescription;
+    }
+
+    public String getFrontedid() {
+        return frontedid;
+    }
+
+    public void setFrontedid(String frontedid) {
+        this.frontedid = frontedid;
+    }
+
+    public String getItemudmodel() {
+        return itemudmodel;
+    }
+
+    public void setItemudmodel(String itemudmodel) {
+        this.itemudmodel = itemudmodel;
+    }
+
+    public String getPersondisplayname() {
+        return persondisplayname;
+    }
+
+    public void setPersondisplayname(String persondisplayname) {
+        this.persondisplayname = persondisplayname;
     }
 
     public Long getPolineid() {
@@ -865,11 +921,11 @@ public class Poline implements Serializable {
         this.receiptscomplete = receiptscomplete;
     }
 
-    public double getReceipttolamt() {
+    public Double getReceipttolamt() {
         return this.receipttolamt;
     }
 
-    public void setReceipttolamt(double receipttolamt) {
+    public void setReceipttolamt(Double receipttolamt) {
         this.receipttolamt = receipttolamt;
     }
 
@@ -881,11 +937,11 @@ public class Poline implements Serializable {
         this.receipttolerance = receipttolerance;
     }
 
-    public double getReceipttolqty() {
+    public Double getReceipttolqty() {
         return this.receipttolqty;
     }
 
-    public void setReceipttolqty(double receipttolqty) {
+    public void setReceipttolqty(Double receipttolqty) {
         this.receipttolqty = receipttolqty;
     }
 
@@ -1193,4 +1249,11 @@ public class Poline implements Serializable {
         this.vendorwarehouse = vendorwarehouse;
     }
 
+    public String getIssueunit() {
+        return issueunit;
+    }
+
+    public void setIssueunit(String issueunit) {
+        this.issueunit = issueunit;
+    }
 }

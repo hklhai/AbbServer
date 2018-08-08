@@ -1,5 +1,7 @@
 package com.hxqh.abb.model.version2;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -7,167 +9,198 @@ import java.math.BigDecimal;
 
 /**
  * The persistent class for the UDINVCHECKLINE database table.
- * 
  */
 @Entity
-@Table(name="Udinvcheckline")
+@Table(name = "Udinvcheckline")
+@DynamicUpdate
 public class Udinvcheckline implements Serializable {
-	private static final Long serialVersionUID = 1L;
+    private static final Long serialVersionUID = 1L;
 
-	@Id
-	@SequenceGenerator(name="UDINVCHECKLINE_UDINVCHECKLINEID_GENERATOR", sequenceName="UDINVCHECKLINESEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="UDINVCHECKLINE_UDINVCHECKLINEID_GENERATOR")
-	private Long udinvchecklineid;
+    @Id
+    @SequenceGenerator(name = "UDINVCHECKLINE_UDINVCHECKLINEID_GENERATOR", allocationSize = 1, sequenceName = "UDINVCHECKLINEIDSEQ")
+    @GeneratedValue(strategy =  GenerationType.SEQUENCE, generator = "UDINVCHECKLINE_UDINVCHECKLINEID_GENERATOR")
+    private Long udinvchecklineid;
 
-	private String binnum;
+    private String binnum;
 
-	private BigDecimal checkqty;
+    private BigDecimal checkqty;
 
-	private BigDecimal curbal;
+    private BigDecimal curbal;
 
-	private String description;
+    private String description;
 
-	private BigDecimal diffqty;
+    private BigDecimal diffqty;
 
-	private Integer hasld;
+    private Integer hasld;
 
-	private String invchecknum;
+    private String invchecknum;
 
-	private String itemnum;
+    private String itemnum;
 
-	private String orgid;
+    private String orgid;
 
-	private String reason;
+    private String reason;
 
-	private String remark;
+    private String remark;
 
-	private Long rowstamp;
+    private Long rowstamp;
 
-	private String siteid;
+    private String siteid;
 
-	private String storeloc;
+    private String storeloc;
 
-	public Udinvcheckline() {
-	}
+    @Transient
+    private Long frontedid;
+    @Transient
+    private String itemdescription;
+    @Transient
+    private String itemudmodel;
 
-	public Long getUdinvchecklineid() {
-		return this.udinvchecklineid;
-	}
+    public Udinvcheckline() {
+    }
 
-	public void setUdinvchecklineid(Long udinvchecklineid) {
-		this.udinvchecklineid = udinvchecklineid;
-	}
+    public Long getFrontedid() {
+        return frontedid;
+    }
 
-	public String getBinnum() {
-		return this.binnum;
-	}
+    public void setFrontedid(Long frontedid) {
+        this.frontedid = frontedid;
+    }
 
-	public void setBinnum(String binnum) {
-		this.binnum = binnum;
-	}
+    public String getItemdescription() {
+        return itemdescription;
+    }
 
-	public BigDecimal getCheckqty() {
-		return this.checkqty;
-	}
+    public void setItemdescription(String itemdescription) {
+        this.itemdescription = itemdescription;
+    }
 
-	public void setCheckqty(BigDecimal checkqty) {
-		this.checkqty = checkqty;
-	}
+    public String getItemudmodel() {
+        return itemudmodel;
+    }
 
-	public BigDecimal getCurbal() {
-		return this.curbal;
-	}
+    public void setItemudmodel(String itemudmodel) {
+        this.itemudmodel = itemudmodel;
+    }
 
-	public void setCurbal(BigDecimal curbal) {
-		this.curbal = curbal;
-	}
+    public Long getUdinvchecklineid() {
+        return this.udinvchecklineid;
+    }
 
-	public String getDescription() {
-		return this.description;
-	}
+    public void setUdinvchecklineid(Long udinvchecklineid) {
+        this.udinvchecklineid = udinvchecklineid;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getBinnum() {
+        return this.binnum;
+    }
 
-	public BigDecimal getDiffqty() {
-		return this.diffqty;
-	}
+    public void setBinnum(String binnum) {
+        this.binnum = binnum;
+    }
 
-	public void setDiffqty(BigDecimal diffqty) {
-		this.diffqty = diffqty;
-	}
+    public BigDecimal getCheckqty() {
+        return this.checkqty;
+    }
 
-	public Integer getHasld() {
-		return this.hasld;
-	}
+    public void setCheckqty(BigDecimal checkqty) {
+        this.checkqty = checkqty;
+    }
 
-	public void setHasld(Integer hasld) {
-		this.hasld = hasld;
-	}
+    public BigDecimal getCurbal() {
+        return this.curbal;
+    }
 
-	public String getInvchecknum() {
-		return this.invchecknum;
-	}
+    public void setCurbal(BigDecimal curbal) {
+        this.curbal = curbal;
+    }
 
-	public void setInvchecknum(String invchecknum) {
-		this.invchecknum = invchecknum;
-	}
+    public String getDescription() {
+        return this.description;
+    }
 
-	public String getItemnum() {
-		return this.itemnum;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setItemnum(String itemnum) {
-		this.itemnum = itemnum;
-	}
+    public BigDecimal getDiffqty() {
+        return this.diffqty;
+    }
 
-	public String getOrgid() {
-		return this.orgid;
-	}
+    public void setDiffqty(BigDecimal diffqty) {
+        this.diffqty = diffqty;
+    }
 
-	public void setOrgid(String orgid) {
-		this.orgid = orgid;
-	}
+    public Integer getHasld() {
+        return this.hasld;
+    }
 
-	public String getReason() {
-		return this.reason;
-	}
+    public void setHasld(Integer hasld) {
+        this.hasld = hasld;
+    }
 
-	public void setReason(String reason) {
-		this.reason = reason;
-	}
+    public String getInvchecknum() {
+        return this.invchecknum;
+    }
 
-	public String getRemark() {
-		return this.remark;
-	}
+    public void setInvchecknum(String invchecknum) {
+        this.invchecknum = invchecknum;
+    }
 
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
+    public String getItemnum() {
+        return this.itemnum;
+    }
 
-	public Long getRowstamp() {
-		return this.rowstamp;
-	}
+    public void setItemnum(String itemnum) {
+        this.itemnum = itemnum;
+    }
 
-	public void setRowstamp(Long rowstamp) {
-		this.rowstamp = rowstamp;
-	}
+    public String getOrgid() {
+        return this.orgid;
+    }
 
-	public String getSiteid() {
-		return this.siteid;
-	}
+    public void setOrgid(String orgid) {
+        this.orgid = orgid;
+    }
 
-	public void setSiteid(String siteid) {
-		this.siteid = siteid;
-	}
+    public String getReason() {
+        return this.reason;
+    }
 
-	public String getStoreloc() {
-		return this.storeloc;
-	}
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
 
-	public void setStoreloc(String storeloc) {
-		this.storeloc = storeloc;
-	}
+    public String getRemark() {
+        return this.remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public Long getRowstamp() {
+        return this.rowstamp;
+    }
+
+    public void setRowstamp(Long rowstamp) {
+        this.rowstamp = rowstamp;
+    }
+
+    public String getSiteid() {
+        return this.siteid;
+    }
+
+    public void setSiteid(String siteid) {
+        this.siteid = siteid;
+    }
+
+    public String getStoreloc() {
+        return this.storeloc;
+    }
+
+    public void setStoreloc(String storeloc) {
+        this.storeloc = storeloc;
+    }
 
 }

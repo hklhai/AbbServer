@@ -1,871 +1,945 @@
 package com.hxqh.abb.model.version2;
 
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 
 /**
  * The persistent class for the PO database table.
- * 
  */
 @Entity
-@Table(name="Po")
+@Table(name = "PO")
+@DynamicUpdate
 public class Po implements Serializable {
-	private static final Long serialVersionUID = 1L;
+    private static final Long serialVersionUID = 1L;
 
-	@Id
-	@SequenceGenerator(name="PO_POID_GENERATOR", sequenceName="POSEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PO_POID_GENERATOR")
-	private Long poid;
+    @Id
+    @SequenceGenerator(name = "PO_POID_GENERATOR", allocationSize = 1, sequenceName = "POSEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PO_POID_GENERATOR")
+    private Long poid;
 
-	private String billto;
+    private String billto;
 
-	private String billtoattn;
+    private String billtoattn;
 
-	private Integer buyahead;
+    private Integer buyahead;
 
-	private String buyercompany;
+    private String buyercompany;
 
-	private String changeby;
+    private String changeby;
 
-	private Date changedate;
+    private Date changedate;
 
-	private String contact;
+    private String contact;
 
-	private Long contractrefid;
+    private Long contractrefid;
 
-	private String contractrefnum;
+    private String contractrefnum;
 
-	private Integer contractrefrev;
+    private Integer contractrefrev;
 
-	private Integer contreleaseseq;
+    private Integer contreleaseseq;
 
-	private String currencycode;
+    private String currencycode;
 
-	private String customernum;
+    private String customernum;
 
-	private String description;
+    private String description;
 
-	private Date ecomstatusdate;
+    private Date ecomstatusdate;
 
-	@Temporal(TemporalType.DATE)
-	private Date enddate;
+    @Temporal(TemporalType.DATE)
+    private Date enddate;
 
-	@Temporal(TemporalType.DATE)
-	private Date exchangedate;
+    @Temporal(TemporalType.DATE)
+    private Date exchangedate;
 
-	private BigDecimal exchangerate;
+    private BigDecimal exchangerate;
 
-	private BigDecimal exchangerate2;
+    private BigDecimal exchangerate2;
 
-	private String externalrefid;
+    private String externalrefid;
 
-	private String fob;
+    private String fob;
 
-	@Temporal(TemporalType.DATE)
-	private Date followupdate;
+    @Temporal(TemporalType.DATE)
+    private Date followupdate;
 
-	private String freightterms;
+    private String freightterms;
 
-	private Integer hasld;
+    private Integer hasld;
 
-	private Integer historyflag;
+    private Integer historyflag;
 
-	private Integer ignorecntrev;
+    private Integer ignorecntrev;
 
-	private Integer inclusive1;
+    private Integer inclusive1;
 
-	private Integer inclusive2;
+    private Integer inclusive2;
 
-	private Integer inclusive3;
+    private Integer inclusive3;
 
-	private Integer inclusive4;
+    private Integer inclusive4;
 
-	private Integer inclusive5;
+    private Integer inclusive5;
 
-	private Integer inspectionrequired;
+    private Integer inspectionrequired;
 
-	private Integer Integerernal;
+    private Integer internal;
 
-	private Integer Integerernalchange;
+    private Integer internalchange;
 
-	private String langcode;
+    private String langcode;
 
-	private String mnetsent;
+    private String mnetsent;
 
-	private Date orderdate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date orderdate;
 
-	private String orgid;
+    private String orgid;
 
-	private String originalponum;
+    private String originalponum;
 
-	private String ownersysid;
+    private String ownersysid;
 
-	private String paymentterms;
+    private String paymentterms;
 
-	private Integer payonreceipt;
+    private Integer payonreceipt;
 
-	private String po1;
+    private String po1;
 
-	private Integer po10;
+    private Integer po10;
 
-	private String po2;
+    private String po2;
 
-	private String po3;
+    private String po3;
 
-	private String po4;
+    private String po4;
 
-	private String po5;
+    private String po5;
 
-	private BigDecimal po6;
+    private BigDecimal po6;
 
-	private Date po7;
+    private Date po7;
 
-	private BigDecimal po8;
+    private BigDecimal po8;
 
-	private Integer po9;
+    private Integer po9;
 
-	private String ponum;
+    private String ponum;
 
-	private String potype;
+    private String potype;
 
-	@Column(name="\"PRIORITY\"")
-	private Integer priority;
+    @Column(name = "\"PRIORITY\"")
+    private Integer priority;
 
-	private String purchaseagent;
+    private String purchaseagent;
 
-	private String receipts;
+    private String receipts;
 
-	private Date requireddate;
+    private Date requireddate;
 
-	private String revcomments;
+    private String revcomments;
 
-	private Integer revisionnum;
+    private Integer revisionnum;
 
-	private Long rowstamp;
+    private Long rowstamp;
 
-	private String sendersysid;
+    private String sendersysid;
 
-	private String shipto;
+    private String shipto;
 
-	private String shiptoattn;
+    private String shiptoattn;
 
-	private String shipvia;
+    private String shipvia;
 
-	private String siteid;
+    private String siteid;
 
-	private String sourcesysid;
+    private String sourcesysid;
 
-	@Temporal(TemporalType.DATE)
-	private Date startdate;
+    @Temporal(TemporalType.DATE)
+    private Date startdate;
 
-	@Column(name="\"STATUS\"")
-	private String status;
+    @Column(name = "\"STATUS\"")
+    private String status;
 
-	private Date statusdate;
+    private Date statusdate;
 
-	private String storeloc;
+    private String storeloc;
 
-	private String storelocsiteid;
+    private String storelocsiteid;
 
-	private BigDecimal totalcost;
+    private BigDecimal totalcost;
 
-	private BigDecimal totaltax1;
+    private BigDecimal totaltax1;
 
-	private BigDecimal totaltax2;
+    private BigDecimal totaltax2;
 
-	private BigDecimal totaltax3;
+    private BigDecimal totaltax3;
 
-	private BigDecimal totaltax4;
+    private BigDecimal totaltax4;
 
-	private BigDecimal totaltax5;
+    private BigDecimal totaltax5;
 
-	private String udapptype;
+    private String udapptype;
 
-	private String udapptypedname;
+    private String udapptypedname;
 
-	private String udpronum;
+    private String udpronum;
 
-	@Temporal(TemporalType.DATE)
-	private Date vendeliverydate;
+    @Temporal(TemporalType.DATE)
+    private Date vendeliverydate;
 
-	private String vendor;
+    private String vendor;
 
-	public Po() {
-	}
+    @Transient
+    private String apptname;
 
-	public Long getPoid() {
-		return this.poid;
-	}
+    @Transient
+    private String deletes;
 
-	public void setPoid(Long poid) {
-		this.poid = poid;
-	}
+    @Transient
+    private String maintab;
 
-	public String getBillto() {
-		return this.billto;
-	}
+    @Transient
+    private List<Poline> polineList;
 
-	public void setBillto(String billto) {
-		this.billto = billto;
-	}
+    @Transient
+    private List<Matrectran> matrectranList;
 
-	public String getBilltoattn() {
-		return this.billtoattn;
-	}
 
-	public void setBilltoattn(String billtoattn) {
-		this.billtoattn = billtoattn;
-	}
+    @Transient
+    private String enterdate;
 
-	public Integer getBuyahead() {
-		return this.buyahead;
-	}
 
-	public void setBuyahead(Integer buyahead) {
-		this.buyahead = buyahead;
-	}
+    public Po() {
+    }
 
-	public String getBuyercompany() {
-		return this.buyercompany;
-	}
+    public String getApptname() {
+        return apptname;
+    }
 
-	public void setBuyercompany(String buyercompany) {
-		this.buyercompany = buyercompany;
-	}
+    public void setApptname(String apptname) {
+        this.apptname = apptname;
+    }
 
-	public String getChangeby() {
-		return this.changeby;
-	}
+    public String getEnterdate() {
+        return enterdate;
+    }
 
-	public void setChangeby(String changeby) {
-		this.changeby = changeby;
-	}
+    public void setEnterdate(String enterdate) {
+        this.enterdate = enterdate;
+    }
 
-	public Date getChangedate() {
-		return this.changedate;
-	}
 
-	public void setChangedate(Date changedate) {
-		this.changedate = changedate;
-	}
 
-	public String getContact() {
-		return this.contact;
-	}
+    public List<Matrectran> getMatrectranList() {
+        return matrectranList;
+    }
 
-	public void setContact(String contact) {
-		this.contact = contact;
-	}
+    public void setMatrectranList(List<Matrectran> matrectranList) {
+        this.matrectranList = matrectranList;
+    }
 
-	public Long getContractrefid() {
-		return this.contractrefid;
-	}
+    public List<Poline> getPolineList() {
+        return polineList;
+    }
 
-	public void setContractrefid(Long contractrefid) {
-		this.contractrefid = contractrefid;
-	}
+    public void setPolineList(List<Poline> polineList) {
+        this.polineList = polineList;
+    }
 
-	public String getContractrefnum() {
-		return this.contractrefnum;
-	}
+    public String getDeletes() {
+        return deletes;
+    }
 
-	public void setContractrefnum(String contractrefnum) {
-		this.contractrefnum = contractrefnum;
-	}
+    public void setDeletes(String deletes) {
+        this.deletes = deletes;
+    }
 
-	public Integer getContractrefrev() {
-		return this.contractrefrev;
-	}
+    public String getMaintab() {
+        return maintab;
+    }
 
-	public void setContractrefrev(Integer contractrefrev) {
-		this.contractrefrev = contractrefrev;
-	}
+    public void setMaintab(String maintab) {
+        this.maintab = maintab;
+    }
 
-	public Integer getContreleaseseq() {
-		return this.contreleaseseq;
-	}
+    public Long getPoid() {
+        return poid;
+    }
 
-	public void setContreleaseseq(Integer contreleaseseq) {
-		this.contreleaseseq = contreleaseseq;
-	}
+    public void setPoid(Long poid) {
+        this.poid = poid;
+    }
 
-	public String getCurrencycode() {
-		return this.currencycode;
-	}
+    public String getBillto() {
+        return billto;
+    }
 
-	public void setCurrencycode(String currencycode) {
-		this.currencycode = currencycode;
-	}
+    public void setBillto(String billto) {
+        this.billto = billto;
+    }
 
-	public String getCustomernum() {
-		return this.customernum;
-	}
+    public String getBilltoattn() {
+        return billtoattn;
+    }
 
-	public void setCustomernum(String customernum) {
-		this.customernum = customernum;
-	}
+    public void setBilltoattn(String billtoattn) {
+        this.billtoattn = billtoattn;
+    }
 
-	public String getDescription() {
-		return this.description;
-	}
+    public Integer getBuyahead() {
+        return buyahead;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setBuyahead(Integer buyahead) {
+        this.buyahead = buyahead;
+    }
 
-	public Date getEcomstatusdate() {
-		return this.ecomstatusdate;
-	}
+    public String getBuyercompany() {
+        return buyercompany;
+    }
 
-	public void setEcomstatusdate(Date ecomstatusdate) {
-		this.ecomstatusdate = ecomstatusdate;
-	}
+    public void setBuyercompany(String buyercompany) {
+        this.buyercompany = buyercompany;
+    }
 
-	public Date getEnddate() {
-		return this.enddate;
-	}
+    public String getChangeby() {
+        return changeby;
+    }
 
-	public void setEnddate(Date enddate) {
-		this.enddate = enddate;
-	}
+    public void setChangeby(String changeby) {
+        this.changeby = changeby;
+    }
 
-	public Date getExchangedate() {
-		return this.exchangedate;
-	}
+    public Date getChangedate() {
+        return changedate;
+    }
 
-	public void setExchangedate(Date exchangedate) {
-		this.exchangedate = exchangedate;
-	}
+    public void setChangedate(Date changedate) {
+        this.changedate = changedate;
+    }
 
-	public BigDecimal getExchangerate() {
-		return this.exchangerate;
-	}
+    public String getContact() {
+        return contact;
+    }
 
-	public void setExchangerate(BigDecimal exchangerate) {
-		this.exchangerate = exchangerate;
-	}
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
 
-	public BigDecimal getExchangerate2() {
-		return this.exchangerate2;
-	}
+    public Long getContractrefid() {
+        return contractrefid;
+    }
 
-	public void setExchangerate2(BigDecimal exchangerate2) {
-		this.exchangerate2 = exchangerate2;
-	}
+    public void setContractrefid(Long contractrefid) {
+        this.contractrefid = contractrefid;
+    }
 
-	public String getExternalrefid() {
-		return this.externalrefid;
-	}
+    public String getContractrefnum() {
+        return contractrefnum;
+    }
 
-	public void setExternalrefid(String externalrefid) {
-		this.externalrefid = externalrefid;
-	}
+    public void setContractrefnum(String contractrefnum) {
+        this.contractrefnum = contractrefnum;
+    }
 
-	public String getFob() {
-		return this.fob;
-	}
+    public Integer getContractrefrev() {
+        return contractrefrev;
+    }
 
-	public void setFob(String fob) {
-		this.fob = fob;
-	}
+    public void setContractrefrev(Integer contractrefrev) {
+        this.contractrefrev = contractrefrev;
+    }
 
-	public Date getFollowupdate() {
-		return this.followupdate;
-	}
+    public Integer getContreleaseseq() {
+        return contreleaseseq;
+    }
 
-	public void setFollowupdate(Date followupdate) {
-		this.followupdate = followupdate;
-	}
+    public void setContreleaseseq(Integer contreleaseseq) {
+        this.contreleaseseq = contreleaseseq;
+    }
 
-	public String getFreightterms() {
-		return this.freightterms;
-	}
+    public String getCurrencycode() {
+        return currencycode;
+    }
 
-	public void setFreightterms(String freightterms) {
-		this.freightterms = freightterms;
-	}
+    public void setCurrencycode(String currencycode) {
+        this.currencycode = currencycode;
+    }
 
-	public Integer getHasld() {
-		return this.hasld;
-	}
+    public String getCustomernum() {
+        return customernum;
+    }
 
-	public void setHasld(Integer hasld) {
-		this.hasld = hasld;
-	}
+    public void setCustomernum(String customernum) {
+        this.customernum = customernum;
+    }
 
-	public Integer getHistoryflag() {
-		return this.historyflag;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setHistoryflag(Integer historyflag) {
-		this.historyflag = historyflag;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public Integer getIgnorecntrev() {
-		return this.ignorecntrev;
-	}
+    public Date getEcomstatusdate() {
+        return ecomstatusdate;
+    }
 
-	public void setIgnorecntrev(Integer ignorecntrev) {
-		this.ignorecntrev = ignorecntrev;
-	}
+    public void setEcomstatusdate(Date ecomstatusdate) {
+        this.ecomstatusdate = ecomstatusdate;
+    }
 
-	public Integer getInclusive1() {
-		return this.inclusive1;
-	}
+    public Date getEnddate() {
+        return enddate;
+    }
 
-	public void setInclusive1(Integer inclusive1) {
-		this.inclusive1 = inclusive1;
-	}
+    public void setEnddate(Date enddate) {
+        this.enddate = enddate;
+    }
 
-	public Integer getInclusive2() {
-		return this.inclusive2;
-	}
+    public Date getExchangedate() {
+        return exchangedate;
+    }
 
-	public void setInclusive2(Integer inclusive2) {
-		this.inclusive2 = inclusive2;
-	}
+    public void setExchangedate(Date exchangedate) {
+        this.exchangedate = exchangedate;
+    }
 
-	public Integer getInclusive3() {
-		return this.inclusive3;
-	}
+    public BigDecimal getExchangerate() {
+        return exchangerate;
+    }
 
-	public void setInclusive3(Integer inclusive3) {
-		this.inclusive3 = inclusive3;
-	}
+    public void setExchangerate(BigDecimal exchangerate) {
+        this.exchangerate = exchangerate;
+    }
 
-	public Integer getInclusive4() {
-		return this.inclusive4;
-	}
+    public BigDecimal getExchangerate2() {
+        return exchangerate2;
+    }
 
-	public void setInclusive4(Integer inclusive4) {
-		this.inclusive4 = inclusive4;
-	}
+    public void setExchangerate2(BigDecimal exchangerate2) {
+        this.exchangerate2 = exchangerate2;
+    }
 
-	public Integer getInclusive5() {
-		return this.inclusive5;
-	}
+    public String getExternalrefid() {
+        return externalrefid;
+    }
 
-	public void setInclusive5(Integer inclusive5) {
-		this.inclusive5 = inclusive5;
-	}
+    public void setExternalrefid(String externalrefid) {
+        this.externalrefid = externalrefid;
+    }
 
-	public Integer getInspectionrequired() {
-		return this.inspectionrequired;
-	}
+    public String getFob() {
+        return fob;
+    }
 
-	public void setInspectionrequired(Integer inspectionrequired) {
-		this.inspectionrequired = inspectionrequired;
-	}
+    public void setFob(String fob) {
+        this.fob = fob;
+    }
 
-	public Integer getIntegerernal() {
-		return this.Integerernal;
-	}
+    public Date getFollowupdate() {
+        return followupdate;
+    }
 
-	public void setIntegerernal(Integer Integerernal) {
-		this.Integerernal = Integerernal;
-	}
+    public void setFollowupdate(Date followupdate) {
+        this.followupdate = followupdate;
+    }
 
-	public Integer getIntegerernalchange() {
-		return this.Integerernalchange;
-	}
+    public String getFreightterms() {
+        return freightterms;
+    }
 
-	public void setIntegerernalchange(Integer Integerernalchange) {
-		this.Integerernalchange = Integerernalchange;
-	}
+    public void setFreightterms(String freightterms) {
+        this.freightterms = freightterms;
+    }
 
-	public String getLangcode() {
-		return this.langcode;
-	}
+    public Integer getHasld() {
+        return hasld;
+    }
 
-	public void setLangcode(String langcode) {
-		this.langcode = langcode;
-	}
+    public void setHasld(Integer hasld) {
+        this.hasld = hasld;
+    }
 
-	public String getMnetsent() {
-		return this.mnetsent;
-	}
+    public Integer getHistoryflag() {
+        return historyflag;
+    }
 
-	public void setMnetsent(String mnetsent) {
-		this.mnetsent = mnetsent;
-	}
+    public void setHistoryflag(Integer historyflag) {
+        this.historyflag = historyflag;
+    }
 
-	public Date getOrderdate() {
-		return this.orderdate;
-	}
+    public Integer getIgnorecntrev() {
+        return ignorecntrev;
+    }
 
-	public void setOrderdate(Date orderdate) {
-		this.orderdate = orderdate;
-	}
+    public void setIgnorecntrev(Integer ignorecntrev) {
+        this.ignorecntrev = ignorecntrev;
+    }
 
-	public String getOrgid() {
-		return this.orgid;
-	}
+    public Integer getInclusive1() {
+        return inclusive1;
+    }
 
-	public void setOrgid(String orgid) {
-		this.orgid = orgid;
-	}
+    public void setInclusive1(Integer inclusive1) {
+        this.inclusive1 = inclusive1;
+    }
 
-	public String getOriginalponum() {
-		return this.originalponum;
-	}
+    public Integer getInclusive2() {
+        return inclusive2;
+    }
 
-	public void setOriginalponum(String originalponum) {
-		this.originalponum = originalponum;
-	}
+    public void setInclusive2(Integer inclusive2) {
+        this.inclusive2 = inclusive2;
+    }
 
-	public String getOwnersysid() {
-		return this.ownersysid;
-	}
+    public Integer getInclusive3() {
+        return inclusive3;
+    }
 
-	public void setOwnersysid(String ownersysid) {
-		this.ownersysid = ownersysid;
-	}
+    public void setInclusive3(Integer inclusive3) {
+        this.inclusive3 = inclusive3;
+    }
 
-	public String getPaymentterms() {
-		return this.paymentterms;
-	}
+    public Integer getInclusive4() {
+        return inclusive4;
+    }
 
-	public void setPaymentterms(String paymentterms) {
-		this.paymentterms = paymentterms;
-	}
+    public void setInclusive4(Integer inclusive4) {
+        this.inclusive4 = inclusive4;
+    }
 
-	public Integer getPayonreceipt() {
-		return this.payonreceipt;
-	}
+    public Integer getInclusive5() {
+        return inclusive5;
+    }
 
-	public void setPayonreceipt(Integer payonreceipt) {
-		this.payonreceipt = payonreceipt;
-	}
+    public void setInclusive5(Integer inclusive5) {
+        this.inclusive5 = inclusive5;
+    }
 
-	public String getPo1() {
-		return this.po1;
-	}
+    public Integer getInspectionrequired() {
+        return inspectionrequired;
+    }
 
-	public void setPo1(String po1) {
-		this.po1 = po1;
-	}
+    public void setInspectionrequired(Integer inspectionrequired) {
+        this.inspectionrequired = inspectionrequired;
+    }
 
-	public Integer getPo10() {
-		return this.po10;
-	}
+    public Integer getInternal() {
+        return internal;
+    }
 
-	public void setPo10(Integer po10) {
-		this.po10 = po10;
-	}
+    public void setInternal(Integer internal) {
+        this.internal = internal;
+    }
 
-	public String getPo2() {
-		return this.po2;
-	}
+    public Integer getInternalchange() {
+        return internalchange;
+    }
 
-	public void setPo2(String po2) {
-		this.po2 = po2;
-	}
+    public void setInternalchange(Integer internalchange) {
+        this.internalchange = internalchange;
+    }
 
-	public String getPo3() {
-		return this.po3;
-	}
+    public String getLangcode() {
+        return langcode;
+    }
 
-	public void setPo3(String po3) {
-		this.po3 = po3;
-	}
+    public void setLangcode(String langcode) {
+        this.langcode = langcode;
+    }
 
-	public String getPo4() {
-		return this.po4;
-	}
+    public String getMnetsent() {
+        return mnetsent;
+    }
 
-	public void setPo4(String po4) {
-		this.po4 = po4;
-	}
+    public void setMnetsent(String mnetsent) {
+        this.mnetsent = mnetsent;
+    }
 
-	public String getPo5() {
-		return this.po5;
-	}
+    public Date getOrderdate() {
+        return orderdate;
+    }
 
-	public void setPo5(String po5) {
-		this.po5 = po5;
-	}
+    public void setOrderdate(Date orderdate) {
+        this.orderdate = orderdate;
+    }
 
-	public BigDecimal getPo6() {
-		return this.po6;
-	}
+    public String getOrgid() {
+        return orgid;
+    }
 
-	public void setPo6(BigDecimal po6) {
-		this.po6 = po6;
-	}
+    public void setOrgid(String orgid) {
+        this.orgid = orgid;
+    }
 
-	public Date getPo7() {
-		return this.po7;
-	}
+    public String getOriginalponum() {
+        return originalponum;
+    }
 
-	public void setPo7(Date po7) {
-		this.po7 = po7;
-	}
+    public void setOriginalponum(String originalponum) {
+        this.originalponum = originalponum;
+    }
 
-	public BigDecimal getPo8() {
-		return this.po8;
-	}
+    public String getOwnersysid() {
+        return ownersysid;
+    }
 
-	public void setPo8(BigDecimal po8) {
-		this.po8 = po8;
-	}
+    public void setOwnersysid(String ownersysid) {
+        this.ownersysid = ownersysid;
+    }
 
-	public Integer getPo9() {
-		return this.po9;
-	}
+    public String getPaymentterms() {
+        return paymentterms;
+    }
 
-	public void setPo9(Integer po9) {
-		this.po9 = po9;
-	}
+    public void setPaymentterms(String paymentterms) {
+        this.paymentterms = paymentterms;
+    }
 
-	public String getPonum() {
-		return this.ponum;
-	}
+    public Integer getPayonreceipt() {
+        return payonreceipt;
+    }
 
-	public void setPonum(String ponum) {
-		this.ponum = ponum;
-	}
+    public void setPayonreceipt(Integer payonreceipt) {
+        this.payonreceipt = payonreceipt;
+    }
 
-	public String getPotype() {
-		return this.potype;
-	}
+    public String getPo1() {
+        return po1;
+    }
 
-	public void setPotype(String potype) {
-		this.potype = potype;
-	}
+    public void setPo1(String po1) {
+        this.po1 = po1;
+    }
 
-	public Integer getPriority() {
-		return this.priority;
-	}
+    public Integer getPo10() {
+        return po10;
+    }
 
-	public void setPriority(Integer priority) {
-		this.priority = priority;
-	}
+    public void setPo10(Integer po10) {
+        this.po10 = po10;
+    }
 
-	public String getPurchaseagent() {
-		return this.purchaseagent;
-	}
+    public String getPo2() {
+        return po2;
+    }
 
-	public void setPurchaseagent(String purchaseagent) {
-		this.purchaseagent = purchaseagent;
-	}
+    public void setPo2(String po2) {
+        this.po2 = po2;
+    }
 
-	public String getReceipts() {
-		return this.receipts;
-	}
+    public String getPo3() {
+        return po3;
+    }
 
-	public void setReceipts(String receipts) {
-		this.receipts = receipts;
-	}
+    public void setPo3(String po3) {
+        this.po3 = po3;
+    }
 
-	public Date getRequireddate() {
-		return this.requireddate;
-	}
+    public String getPo4() {
+        return po4;
+    }
 
-	public void setRequireddate(Date requireddate) {
-		this.requireddate = requireddate;
-	}
+    public void setPo4(String po4) {
+        this.po4 = po4;
+    }
 
-	public String getRevcomments() {
-		return this.revcomments;
-	}
+    public String getPo5() {
+        return po5;
+    }
 
-	public void setRevcomments(String revcomments) {
-		this.revcomments = revcomments;
-	}
+    public void setPo5(String po5) {
+        this.po5 = po5;
+    }
 
-	public Integer getRevisionnum() {
-		return this.revisionnum;
-	}
+    public BigDecimal getPo6() {
+        return po6;
+    }
 
-	public void setRevisionnum(Integer revisionnum) {
-		this.revisionnum = revisionnum;
-	}
+    public void setPo6(BigDecimal po6) {
+        this.po6 = po6;
+    }
 
-	public Long getRowstamp() {
-		return this.rowstamp;
-	}
+    public Date getPo7() {
+        return po7;
+    }
 
-	public void setRowstamp(Long rowstamp) {
-		this.rowstamp = rowstamp;
-	}
+    public void setPo7(Date po7) {
+        this.po7 = po7;
+    }
 
-	public String getSendersysid() {
-		return this.sendersysid;
-	}
+    public BigDecimal getPo8() {
+        return po8;
+    }
 
-	public void setSendersysid(String sendersysid) {
-		this.sendersysid = sendersysid;
-	}
+    public void setPo8(BigDecimal po8) {
+        this.po8 = po8;
+    }
 
-	public String getShipto() {
-		return this.shipto;
-	}
+    public Integer getPo9() {
+        return po9;
+    }
 
-	public void setShipto(String shipto) {
-		this.shipto = shipto;
-	}
+    public void setPo9(Integer po9) {
+        this.po9 = po9;
+    }
 
-	public String getShiptoattn() {
-		return this.shiptoattn;
-	}
+    public String getPonum() {
+        return ponum;
+    }
 
-	public void setShiptoattn(String shiptoattn) {
-		this.shiptoattn = shiptoattn;
-	}
+    public void setPonum(String ponum) {
+        this.ponum = ponum;
+    }
 
-	public String getShipvia() {
-		return this.shipvia;
-	}
+    public String getPotype() {
+        return potype;
+    }
 
-	public void setShipvia(String shipvia) {
-		this.shipvia = shipvia;
-	}
+    public void setPotype(String potype) {
+        this.potype = potype;
+    }
 
-	public String getSiteid() {
-		return this.siteid;
-	}
+    public Integer getPriority() {
+        return priority;
+    }
 
-	public void setSiteid(String siteid) {
-		this.siteid = siteid;
-	}
+    public void setPriority(Integer priority) {
+        this.priority = priority;
+    }
 
-	public String getSourcesysid() {
-		return this.sourcesysid;
-	}
+    public String getPurchaseagent() {
+        return purchaseagent;
+    }
 
-	public void setSourcesysid(String sourcesysid) {
-		this.sourcesysid = sourcesysid;
-	}
+    public void setPurchaseagent(String purchaseagent) {
+        this.purchaseagent = purchaseagent;
+    }
 
-	public Date getStartdate() {
-		return this.startdate;
-	}
+    public String getReceipts() {
+        return receipts;
+    }
 
-	public void setStartdate(Date startdate) {
-		this.startdate = startdate;
-	}
+    public void setReceipts(String receipts) {
+        this.receipts = receipts;
+    }
 
-	public String getStatus() {
-		return this.status;
-	}
+    public Date getRequireddate() {
+        return requireddate;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public void setRequireddate(Date requireddate) {
+        this.requireddate = requireddate;
+    }
 
-	public Date getStatusdate() {
-		return this.statusdate;
-	}
+    public String getRevcomments() {
+        return revcomments;
+    }
 
-	public void setStatusdate(Date statusdate) {
-		this.statusdate = statusdate;
-	}
+    public void setRevcomments(String revcomments) {
+        this.revcomments = revcomments;
+    }
 
-	public String getStoreloc() {
-		return this.storeloc;
-	}
+    public Integer getRevisionnum() {
+        return revisionnum;
+    }
 
-	public void setStoreloc(String storeloc) {
-		this.storeloc = storeloc;
-	}
+    public void setRevisionnum(Integer revisionnum) {
+        this.revisionnum = revisionnum;
+    }
 
-	public String getStorelocsiteid() {
-		return this.storelocsiteid;
-	}
+    public Long getRowstamp() {
+        return rowstamp;
+    }
 
-	public void setStorelocsiteid(String storelocsiteid) {
-		this.storelocsiteid = storelocsiteid;
-	}
+    public void setRowstamp(Long rowstamp) {
+        this.rowstamp = rowstamp;
+    }
 
-	public BigDecimal getTotalcost() {
-		return this.totalcost;
-	}
+    public String getSendersysid() {
+        return sendersysid;
+    }
 
-	public void setTotalcost(BigDecimal totalcost) {
-		this.totalcost = totalcost;
-	}
+    public void setSendersysid(String sendersysid) {
+        this.sendersysid = sendersysid;
+    }
 
-	public BigDecimal getTotaltax1() {
-		return this.totaltax1;
-	}
+    public String getShipto() {
+        return shipto;
+    }
 
-	public void setTotaltax1(BigDecimal totaltax1) {
-		this.totaltax1 = totaltax1;
-	}
+    public void setShipto(String shipto) {
+        this.shipto = shipto;
+    }
 
-	public BigDecimal getTotaltax2() {
-		return this.totaltax2;
-	}
+    public String getShiptoattn() {
+        return shiptoattn;
+    }
 
-	public void setTotaltax2(BigDecimal totaltax2) {
-		this.totaltax2 = totaltax2;
-	}
+    public void setShiptoattn(String shiptoattn) {
+        this.shiptoattn = shiptoattn;
+    }
 
-	public BigDecimal getTotaltax3() {
-		return this.totaltax3;
-	}
+    public String getShipvia() {
+        return shipvia;
+    }
 
-	public void setTotaltax3(BigDecimal totaltax3) {
-		this.totaltax3 = totaltax3;
-	}
+    public void setShipvia(String shipvia) {
+        this.shipvia = shipvia;
+    }
 
-	public BigDecimal getTotaltax4() {
-		return this.totaltax4;
-	}
+    public String getSiteid() {
+        return siteid;
+    }
 
-	public void setTotaltax4(BigDecimal totaltax4) {
-		this.totaltax4 = totaltax4;
-	}
+    public void setSiteid(String siteid) {
+        this.siteid = siteid;
+    }
 
-	public BigDecimal getTotaltax5() {
-		return this.totaltax5;
-	}
+    public String getSourcesysid() {
+        return sourcesysid;
+    }
 
-	public void setTotaltax5(BigDecimal totaltax5) {
-		this.totaltax5 = totaltax5;
-	}
+    public void setSourcesysid(String sourcesysid) {
+        this.sourcesysid = sourcesysid;
+    }
 
-	public String getUdapptype() {
-		return this.udapptype;
-	}
+    public Date getStartdate() {
+        return startdate;
+    }
 
-	public void setUdapptype(String udapptype) {
-		this.udapptype = udapptype;
-	}
+    public void setStartdate(Date startdate) {
+        this.startdate = startdate;
+    }
 
-	public String getUdapptypedname() {
-		return this.udapptypedname;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public void setUdapptypedname(String udapptypedname) {
-		this.udapptypedname = udapptypedname;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public String getUdpronum() {
-		return this.udpronum;
-	}
+    public Date getStatusdate() {
+        return statusdate;
+    }
 
-	public void setUdpronum(String udpronum) {
-		this.udpronum = udpronum;
-	}
+    public void setStatusdate(Date statusdate) {
+        this.statusdate = statusdate;
+    }
 
-	public Date getVendeliverydate() {
-		return this.vendeliverydate;
-	}
+    public String getStoreloc() {
+        return storeloc;
+    }
 
-	public void setVendeliverydate(Date vendeliverydate) {
-		this.vendeliverydate = vendeliverydate;
-	}
+    public void setStoreloc(String storeloc) {
+        this.storeloc = storeloc;
+    }
 
-	public String getVendor() {
-		return this.vendor;
-	}
+    public String getStorelocsiteid() {
+        return storelocsiteid;
+    }
 
-	public void setVendor(String vendor) {
-		this.vendor = vendor;
-	}
+    public void setStorelocsiteid(String storelocsiteid) {
+        this.storelocsiteid = storelocsiteid;
+    }
 
+    public BigDecimal getTotalcost() {
+        return totalcost;
+    }
+
+    public void setTotalcost(BigDecimal totalcost) {
+        this.totalcost = totalcost;
+    }
+
+    public BigDecimal getTotaltax1() {
+        return totaltax1;
+    }
+
+    public void setTotaltax1(BigDecimal totaltax1) {
+        this.totaltax1 = totaltax1;
+    }
+
+    public BigDecimal getTotaltax2() {
+        return totaltax2;
+    }
+
+    public void setTotaltax2(BigDecimal totaltax2) {
+        this.totaltax2 = totaltax2;
+    }
+
+    public BigDecimal getTotaltax3() {
+        return totaltax3;
+    }
+
+    public void setTotaltax3(BigDecimal totaltax3) {
+        this.totaltax3 = totaltax3;
+    }
+
+    public BigDecimal getTotaltax4() {
+        return totaltax4;
+    }
+
+    public void setTotaltax4(BigDecimal totaltax4) {
+        this.totaltax4 = totaltax4;
+    }
+
+    public BigDecimal getTotaltax5() {
+        return totaltax5;
+    }
+
+    public void setTotaltax5(BigDecimal totaltax5) {
+        this.totaltax5 = totaltax5;
+    }
+
+    public String getUdapptype() {
+        return udapptype;
+    }
+
+    public void setUdapptype(String udapptype) {
+        this.udapptype = udapptype;
+    }
+
+    public String getUdapptypedname() {
+        return udapptypedname;
+    }
+
+    public void setUdapptypedname(String udapptypedname) {
+        this.udapptypedname = udapptypedname;
+    }
+
+    public String getUdpronum() {
+        return udpronum;
+    }
+
+    public void setUdpronum(String udpronum) {
+        this.udpronum = udpronum;
+    }
+
+    public Date getVendeliverydate() {
+        return vendeliverydate;
+    }
+
+    public void setVendeliverydate(Date vendeliverydate) {
+        this.vendeliverydate = vendeliverydate;
+    }
+
+    public String getVendor() {
+        return vendor;
+    }
+
+    public void setVendor(String vendor) {
+        this.vendor = vendor;
+    }
 }

@@ -1,8 +1,9 @@
 .equip-layout{
 	width: 100%;
-	min-width: 1280px;
+	min-width: 1080px;
 	min-height: 828px;
 	height:100%;
+	margin-bottom: 30px;
 }
 .equip-nav{
 	width: 267px;

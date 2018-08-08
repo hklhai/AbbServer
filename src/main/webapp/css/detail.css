@@ -12,38 +12,52 @@
   font-family: "SimSun";
   color: rgb(37, 37, 37);
 }
-.detail-info,.next-apply,.apply-record{
+.borrow-detail .mylable{
+  width:100%;
+  height: 25px;
+  margin-bottom: 3px;
+}
+.borrow-detail .mylable button{
+  float: right;
+}
+
+.borrow-detail .mylable .save-btn{
+  margin-left: 11px;
+}
+/*无纸化项目管理*/
+.detail-info,.next-apply,.apply-record,.service-contact,.scene-notice,.safe-plan,.safe-check,.safe-work,.service-contact{
    border: 1px solid #d3d3d3;
    padding-left: 2%;
    padding-right: 2%;
    margin-bottom: 10px;
+   padding-bottom: 10px;
 }
 .detail-info p.item{
   width: 33%;
   float: left;
 }
-.detail-info p.item label,span,input{
+.detail-info p.item label,.detail-info p.item span,.detail-info p.item input{
   display: block;
   float: left;
   font-size: 12px;
   color: rgb(37, 37, 37);
 }
-.detail-info p.item label,span{
+.detail-info p.item label,.detail-info p.item  span{
   height: 38px;
   line-height: 38px;
   padding-left: 6px;
   padding-right: 6px;
 }
 .detail-info p.item label{
-  width: 98px;
+  width: 25%;
   padding-right: 8px;
   text-align: right;
 }
 .detail-info p.item input[type='text'].date{
-  width:130px;
+    width: 40%;
 }
 .detail-info p.item input[type='text']{
-  width: 214px;
+  width: 40%;
   height: 22px;
   border: 1px solid #dfdfdf;
   margin-top: 7px;
@@ -51,10 +65,10 @@
   padding-right: 10px;
 }
 .detail-info p.item input[type='checkbox']{
-  width: 21px;
-  height: 21px;
+  width: 15px;
+  height: 15px;
   border: 1px solid #dfdfdf;
-  margin-top: 7px;
+  margin-top: 13px;
 }
 .detail-info p.item select{
   padding-left: 6px;
@@ -62,30 +76,33 @@
   height: 22px;
   border: 1px solid #dfdfdf;
   margin-top: 7px;
-  min-width: 100px;
+  min-width: 95px;
 }
 .detail-info p.item textarea{
   margin-top: 7px;
   border: 1px solid #dfdfdf;
 }
-
-.next-apply h5,.apply-record h5{
+/*添加无纸化*/
+.next-apply h5,.apply-record h5,.service-contact h5,.scene-notice h5,.safe-plan h5,.safe-check h5,.safe-work h5,.service-contact h5{
   font-size: 16px;
   color: rgb(37, 37, 37);
   height: 45px;
   line-height: 45px;
 }
-.next-apply table,.apply-record table{
+.next-apply table,.apply-record table,.service-contact table,.scene-notice table,.safe-plan table,.safe-check table,.safe-work table,.service-contact table{
   width: 100%;
   table-layout: fixed;
 }
-.next-apply table thead tr,.apply-record table thead tr{
+.next-apply table thead tr,.apply-record table thead tr,.service-contact table thead tr,.scene-notice table thead tr,.safe-plan table thead tr,.safe-check table thead tr,.safe-work table thead tr,.service-contact table thead tr{
   font-weight: bold;
 }
-table tbody tr td{
-  width: 20%;
+/*table tbody tr td{*/
+  /*width: 20%;*/
+/*}*/
+table.details tbody tr td:last-child{
+  display: none;
 }
-.next-apply table tr,.apply-record table tr{
+.next-apply table tr,.apply-record table tr,.service-contact table tr,.scene-notice table tr,.safe-plan table tr,.safe-check table tr,.safe-work table tr,.service-contact table tr{
   height: 43px;
   line-height: 43px;
   border-bottom: 1px solid #dadada;
@@ -100,7 +117,7 @@ table tbody tr td{
     max-height:220px;
     overflow-y:auto;
 }
-.next-apply,.apply-record{
+.next-apply,.apply-record,.service-contact,.scene-notice,.safe-plan,.safe-check,.safe-work,.service-contact{
   padding-bottom: 15px;
 } 
 
@@ -109,13 +126,13 @@ table tbody tr td{
   width: 33%;
   float: left;
 }
-.next-apply p.item label,span,input{
+.next-apply p.item label,.detail-info p.item  span,.detail-info p.item  input{
   display: block;
   float: left;
   font-size: 12px;
   color: rgb(37, 37, 37);
 }
-.next-apply p.item label,span{
+.next-apply p.item label,.next-apply p.item  span{
   height: 38px;
   line-height: 38px;
   padding-left: 6px;
@@ -151,4 +168,191 @@ table tbody tr td{
 .next-apply p.item textarea{
   margin-top: 7px;
   border: 1px solid #dfdfdf;
+}
+i.search-dataMask{
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: url(../img/new/search-dataMask.png) no-repeat center;
+  background-size: 10px 10px;
+  cursor: pointer;
+  margin-top: 13px;
+  cursor: pointer;
+  float: left;
+  margin-left: 10px;
+}
+.attach{
+  /*width:82px;*/
+  /*height:23px;*/
+  /*line-height:23px;*/
+  /*border:1px solid #a1a1a1;*/
+  /*background: #e9e9e9;*/
+  /*font-size: 12px;*/
+  /*color: #000;*/
+  /*text-align: center;*/
+  margin-left:5px;
+}
+.attach-ul{
+  position: absolute;
+  right: 0px;
+  top: 23px;
+  width: 131px;
+  border: 1px solid #cbcbcb;
+  background: #fff;
+  display: none;
+  z-index: 12;
+}
+.attach-ul li{
+  height:32px;
+  line-height:32px;
+  font-size: 12px;
+  background: #fff;
+  text-align: right;
+  cursor: pointer;
+}
+.attach-ul li:hover{
+  background: #ebebeb;
+}
+/*无纸化项目管理模块的tab切换*/
+.tab-header{
+  border-bottom:1px solid #e5e5e5;
+  /*padding: 5px 10px 0px 10px;*/
+  height:30px;
+  width:100%;
+}
+
+.tab-header ul li{
+  background-color: #efefef;
+  list-style-type: none;
+  float: left;
+  width: 6%;
+  line-height: 27px;
+  text-align:center;
+  cursor: pointer;
+}
+.tab-header ul li span{
+  font-size:13px;
+  /*padding: 5px 10px 0px 10px;*/
+}
+.content{
+  margin-top:10px;
+}
+.first-li{
+  border:1px  solid #e1e1e1;
+
+}
+.second-li{
+  border:1px  solid #e1e1e1;
+  border-left: none;
+
+}
+
+
+
+.first-content{
+  color: #00c679;
+}
+
+
+/*控制列表选项卡活动状态时的背景颜色*/
+.tab-header .active{
+  border-top:2px solid #246495;
+  background-color: #fff;
+}
+
+/*控制列表切换内容的显示与隐藏*/
+.first-content, .second-content{
+  display: none;
+}
+.first-content.active, .second-content.active {
+  display: block;
+}
+/*新建行删除样式和正常样式*/
+.del-line{
+  text-decoration: line-through;
+}
+
+/*详情和返回按钮*/
+.tab-btn{
+  width: 100%;
+  height: 25px;
+  margin-top: 10px;
+}
+.tab-btn button{
+  font-size: 16px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height:26px;
+  line-height:26px;
+  background: #e8e8e8;
+  border: 1px solid #d3d3d3;
+  color: #000;
+  cursor: pointer;
+  display: block;
+  float: left;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.tab-btn button:nth-child(1){
+  margin-left: 0px;
+}
+.tab-btn button.click{
+  background: #fff;
+  border-top: 3px solid #246495;
+  border-bottom: none;
+  height:27px;
+}
+.tipImg{
+  margin-top:10px;
+  margin-left:5px;
+}
+.showTip{
+  background: #d45252;
+  border-radius: 3px 3px 3px 3px;
+  color: white;
+  margin-left: 8px;
+  padding: 1px 6px;
+  z-index: 999;
+  position: absolute;
+  display: none;
+}
+.showTip::before{
+  content: "\25C0";
+  color: #d45252;
+  position: absolute;
+  top: 1px;
+  left: -6px;
+}
+
+table.hide-4td tr td:nth-child(5){
+  display: none;
+}
+.tab-btn{
+  border-bottom: 1px solid #ccc;
+  height: 26px;
+  width: 174px;
+}
+button.returnList{
+  color: #fff;
+  border: none;
+  background: #246495 url(../img/new/back.png) no-repeat 5px center;
+  background-size: 15px 15px;
+  padding-left: 20px;
+}
+/*button.returnList:before{*/
+  /*display:block;*/
+  /*content:"";*/
+  /*border-width:8px 8px 8px 8px;*/
+  /*border-style:solid;*/
+  /*border-color:transparent #246495  transparent transparent;*/
+  /*position: absolute;*/
+  /*left:9px;*/
+  /*top:15px;*/
+/*}*/
+table.details tr td{
+  word-break: keep-all;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

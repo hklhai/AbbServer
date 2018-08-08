@@ -1,10 +1,12 @@
 package com.hxqh.abb.model;
 
 
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Timestamp;
-import java.util.List;
+import java.util.Date;
 
 
 /**
@@ -12,6 +14,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "UDTOOLAPPLY")
+@DynamicUpdate
 public class UdtoolApply implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -28,7 +31,8 @@ public class UdtoolApply implements Serializable {
 
     private String applicant;
 
-    private Timestamp applydate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date applydate;
 
     private String applynum;
 
@@ -38,15 +42,15 @@ public class UdtoolApply implements Serializable {
 
     private String status;
 
-    private Timestamp statusdate;
+    private Date statusdate;
 
     private Integer hasld;
 
     private String changeby;
 
-    private Timestamp changedate;
+    private Date changedate;
 
-    private Timestamp createddate;
+    private Date createddate;
 
     private String orgid;
 
@@ -55,9 +59,40 @@ public class UdtoolApply implements Serializable {
     private Long rowstamp;
 
     private Integer isperson;
+    @Transient
+    private String persondisplayname;
+    @Transient
+    private String udtooldescription;
+    @Transient
+    private String inputpersondisplayname;
+
 
     public UdtoolApply() {
 
+    }
+
+    public String getPersondisplayname() {
+        return persondisplayname;
+    }
+
+    public void setPersondisplayname(String persondisplayname) {
+        this.persondisplayname = persondisplayname;
+    }
+
+    public String getUdtooldescription() {
+        return udtooldescription;
+    }
+
+    public void setUdtooldescription(String udtooldescription) {
+        this.udtooldescription = udtooldescription;
+    }
+
+    public String getInputpersondisplayname() {
+        return inputpersondisplayname;
+    }
+
+    public void setInputpersondisplayname(String inputpersondisplayname) {
+        this.inputpersondisplayname = inputpersondisplayname;
     }
 
     public static long getSerialVersionUID() {
@@ -105,11 +140,11 @@ public class UdtoolApply implements Serializable {
         this.applicant = applicant;
     }
 
-    public Timestamp getApplydate() {
+    public Date getApplydate() {
         return applydate;
     }
 
-    public void setApplydate(Timestamp applydate) {
+    public void setApplydate(Date applydate) {
         this.applydate = applydate;
     }
 
@@ -145,11 +180,11 @@ public class UdtoolApply implements Serializable {
         this.status = status;
     }
 
-    public Timestamp getStatusdate() {
+    public Date getStatusdate() {
         return statusdate;
     }
 
-    public void setStatusdate(Timestamp statusdate) {
+    public void setStatusdate(Date statusdate) {
         this.statusdate = statusdate;
     }
 
@@ -169,19 +204,19 @@ public class UdtoolApply implements Serializable {
         this.changeby = changeby;
     }
 
-    public Timestamp getChangedate() {
+    public Date getChangedate() {
         return changedate;
     }
 
-    public void setChangedate(Timestamp changedate) {
+    public void setChangedate(Date changedate) {
         this.changedate = changedate;
     }
 
-    public Timestamp getCreateddate() {
+    public Date getCreateddate() {
         return createddate;
     }
 
-    public void setCreateddate(Timestamp createddate) {
+    public void setCreateddate(Date createddate) {
         this.createddate = createddate;
     }
 

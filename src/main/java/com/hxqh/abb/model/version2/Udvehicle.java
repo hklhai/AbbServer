@@ -1,8 +1,11 @@
 package com.hxqh.abb.model.version2;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
-import java.math.BigDecimal;
+import java.io.Serializable;
 import java.util.Date;
 
 
@@ -11,11 +14,12 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "Udvehicle")
+@DynamicUpdate
 public class Udvehicle implements Serializable {
     private static final Long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name = "UDVEHICLE_UDVEHICLEID_GENERATOR",allocationSize = 1, sequenceName = "UDVEHICLEIDSEQ")
+    @SequenceGenerator(name = "UDVEHICLE_UDVEHICLEID_GENERATOR", allocationSize = 1, sequenceName = "UDVEHICLEIDSEQ1")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UDVEHICLE_UDVEHICLEID_GENERATOR")
     private Long udvehicleid;
 
@@ -33,12 +37,9 @@ public class Udvehicle implements Serializable {
 
     private String description;
 
-    private BigDecimal displacement;
+    private Double displacement;
 
     private String factory;
-
-    @Temporal(TemporalType.DATE)
-    private Date factorydate;
 
     private String fueltype;
 
@@ -50,8 +51,9 @@ public class Udvehicle implements Serializable {
 
     private String orgid;
 
-    @Temporal(TemporalType.DATE)
     private Date registerdate;
+
+    private Date factorydate;
 
     private Long rowstamp;
 
@@ -66,9 +68,18 @@ public class Udvehicle implements Serializable {
 
     private String vcnum;
 
-    private BigDecimal weight;
+    private Double weight;
 
     public Udvehicle() {
+    }
+
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    public Date getFactorydate() {
+        return factorydate;
+    }
+
+    public void setFactorydate(Date factorydate) {
+        this.factorydate = factorydate;
     }
 
     public Long getUdvehicleid() {
@@ -135,14 +146,6 @@ public class Udvehicle implements Serializable {
         this.description = description;
     }
 
-    public BigDecimal getDisplacement() {
-        return this.displacement;
-    }
-
-    public void setDisplacement(BigDecimal displacement) {
-        this.displacement = displacement;
-    }
-
     public String getFactory() {
         return this.factory;
     }
@@ -151,13 +154,13 @@ public class Udvehicle implements Serializable {
         this.factory = factory;
     }
 
-    public Date getFactorydate() {
-        return this.factorydate;
-    }
-
-    public void setFactorydate(Date factorydate) {
-        this.factorydate = factorydate;
-    }
+//    public Date getFactorydate() {
+//        return this.factorydate;
+//    }
+//
+//    public void setFactorydate(Date factorydate) {
+//        this.factorydate = factorydate;
+//    }
 
     public String getFueltype() {
         return this.fueltype;
@@ -199,6 +202,7 @@ public class Udvehicle implements Serializable {
         this.orgid = orgid;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     public Date getRegisterdate() {
         return this.registerdate;
     }
@@ -255,12 +259,19 @@ public class Udvehicle implements Serializable {
         this.vcnum = vcnum;
     }
 
-    public BigDecimal getWeight() {
-        return this.weight;
+    public Double getDisplacement() {
+        return displacement;
     }
 
-    public void setWeight(BigDecimal weight) {
+    public void setDisplacement(Double displacement) {
+        this.displacement = displacement;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
-
 }

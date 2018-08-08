@@ -50,19 +50,23 @@ setTimeout(function(){
 	} })
 	//日历自适应大小
 	function changeSize(){
-		/*var ww=$("#div1").width()
+		var ww=$("#div1").width();
+
+        var hh=$("#div1").height()+$("#div1").height()*0.5;
 		$('iframe').css({"width":ww+'px'})
-		$(iframe).contents().find('.WdateDiv').css({"width":ww+'px'})*/
+		$('iframe').css({"height":hh+'px'})
+		$(iframe).contents().find('.WdateDiv').css({"width":ww+'px'})
+		$(iframe).contents().find('.WdateDiv').css({"height":hh+'px'})
 
 		//宽度和高度都自适应
-		var ww=$("#div1").width();
-		var hh=$(".zAccountInner").height();
-		var tableH=hh-100;
-		$('iframe').css({"width":ww+'px'});
-		$('iframe').css({"height":hh+'px'});
-		$('.WdayTable').css({"height":tableH+'px'});
-		$(iframe).contents().find('.WdateDiv').css({"width":ww+'px'});
-		$(iframe).contents().find('.WdayTable').css({"height":hh+'px'});
+		// var ww=$("#div1").width();
+		// var hh=$(".zAccountInner").height();
+		// var tableH=hh-150;
+		// $('iframe').css({"width":ww+'px'});
+		// $('iframe').css({"height":hh+'px'});
+		// $('.WdayTable').css({"height":hh+'px'});
+		// $(iframe).contents().find('.WdateDiv').css({"width":ww+'px'});
+		// $(iframe).contents().find('.WdayTable').css({"height":hh+'px'});
 	}
 	$(window).resize(function(){
 		changeSize();
@@ -76,7 +80,7 @@ setTimeout(function(){
 		var monthNow=parseInt(today.getMonth())+1;
 		var dayNow=today.getDate();//日期
 		//$(iframe).contents().find(".WdateDiv").append('<div id="todayss" onclick="day_Click(2016,9,21);">1234</div>')
-		$(iframe).contents().find(".WdateDiv").append('<div id="todayss" onclick="day_Click('+y+','+monthNow+','+dayNow+');">&nbsp;</div>')
+		// $(iframe).contents().find(".WdateDiv").append('<div id="todayss" onclick="day_Click('+y+','+monthNow+','+dayNow+');">&nbsp;</div>')
 	},200)
 	function hasdate(obj,d){
 		var dates='';
@@ -146,9 +150,8 @@ setTimeout(function(){
 		})
 
 	}
-	//初始化日历  根据时间判断 是否日期在还款或已还款数组中  标记颜色
+	//初始化日历  根据时间判断 是否日期在还款或已还款数组中 标记颜色
 	function initDate(){
-
 		$(iframe).contents().find('.WdateDiv').find('td').each(function(){
 			var dates='';
 			if($(this).attr('onclick')){
@@ -188,7 +191,7 @@ setTimeout(function(){
 	}
 },500);
 
-//向 日历表格中添加弹出层信息
+//向日历表格中添加弹出层信息
 function createElements(obj,tops,bots){
 	var topY=obj.offsetTop;//206
 	var leftX=obj.offsetLeft;
@@ -235,5 +238,4 @@ function createElements(obj,tops,bots){
 	obj.appendChild(spans);
 	obj.appendChild(ems);
 	obj.appendChild(txts);
-
 }

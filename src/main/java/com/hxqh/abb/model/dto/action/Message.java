@@ -16,6 +16,7 @@ public class Message {
     public Message(int code, String message) {
         this.code = code;
         this.message = message;
+        this.success = true;
     }
 
     public Message(int code, String message, boolean success) {

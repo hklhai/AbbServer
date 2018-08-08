@@ -1,11 +1,5 @@
 package com.hxqh.abb.model;
 
-import com.thoughtworks.xstream.XStream;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.io.Serializable;
 
 //@Entity

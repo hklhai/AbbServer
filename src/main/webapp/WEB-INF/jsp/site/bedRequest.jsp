@@ -20,19 +20,25 @@
         var _ctx = '${ctx}';
         var _apptname = '${apptname}';
         var _pkid = '${pkid}';
+        var _operate='${operate}';
     </script>
 </head>
 <body>
 <div class="borrow-detail">
-    <h4>床位申请/1100</h4>
-    <div class="mylable">
-        <button type="button" id="mycollect">打印</button>
+    <div class="tab-btn">
+        <button class="returnList">列表视图</button>
+        <button class="workOrder click">床位申请</button>
     </div>
-    <div class="detail-info">
+    <%--<h4>床位申请</h4>--%>
+    <div class="mylable">
+        <button type="button" class="save-btn">保存</button>
+        <button class="apply-btn" style="margin-right: 5px;">审批</button>
+    </div>
+    <div class="detail-info"">
         <p class="item" style="width: 40%;">
             <label for="">申请编号:</label>
-            <span class="applynum">1100</span>
-            <input type="text" placeholder="描述" class="description">
+            <input type="text" class="applynum" readonly="readonly" style="width:80px;"/>
+            <input type="text" class="description" style="width:29%;margin-left: 10px;">
         </p>
         <p class="item" style="width: 30%;">
             <label for="">状态:</label>
@@ -40,25 +46,24 @@
         </p>
         <p class="item" style="width: 30%;">
             <label for="">创建人:</label>
-            <span></span>
+            <span class="createdby"></span>
         </p>
         <p class="item" style="width: 40%;">
             <label for="">申请人:</label>
-            <span>MIN</span>
-            <input type="text" placeholder="描述">
+            <span></span>
+            <span></span>
         </p>
-
         <p class="item" style="width: 30%;">
             <label for="">状态日期:</label>
             <span></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">创建时间:</label>
-            <input type="text" value="2014/03/15 05:06" class="datetimepicker7 date"/><br><br>
+            <span class="createddate" style="width: 140px;"></span>
         </p>
         <p class="item" style="width: 40%;">
             <label for="">申请时间:</label>
-            <input type="text" class="datetimepicker7 date"/>
+            <span class="date" style="width: 140px;"></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">组织:</label>
@@ -66,55 +71,50 @@
         </p>
         <p class="item" style="width: 30%;">
             <label for="">更改人:</label>
-            <span></span>
+            <span class="changeby"></span>
         </p>
-
         <p class="item" style="width: 40%;">
             <label for="">申请原因:</label>
-            <span class="reason"></span>
+            <input type="text" class="reason">
         </p>
         <p class="item" style="width: 30%;">
             <label for="">地点:</label>
-            <span></span>
+            <span class="siteid"></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">更改时间:</label>
-            <input type="text" class="datetimepicker7 date"/>
+            <span class="changedate" style="width: 140px;"></span>
         </p>
-
         <p class="item" style="width: 40%;">
             <label for="">站长:</label>
-            <input type="text" placeholder="搜索" class="mysearch" style="width: 100px;" class="stationhead">
-            <input type="text" placeholder="描述" style="width: 140px;margin-left: 7px;" class="displayname">
+            <input type="text" readonly="readonly" class="stationhead SELECTIONPERSON" style="width: 120px;">
+            <i class="search-dataMask"></i>
+            <input type="text" readonly="readonly" class="persondisplayname" style="width: 120px;">
         </p>
         <p class="item" style="width: 30%;">
             <label for="">开始时间:</label>
-            <input type="text" class="datetimepicker7 date" class="starttime"/>
+            <input type="text" class="starttime datetimepicker7 date" style="width: 140px;"/>
         </p>
         <p class="item back-up" style="width: 30%;">
             <label for="">备注:</label>
-            <!--  <span>12346</span> -->
-            <textarea>这里写内容</textarea>
+            <textarea></textarea>
         </p>
         <p class="item up" style="width: 40%;">
             <label for="">床位编号:</label>
-            <select name="" id="" class="bednum">
-                <option value="" selected="selected">A</option>
-                <option value="">B</option>
-                <option value="">C</option>
-            </select>
+            <input type="text"  class="bednum SELECTIONUDBED" readonly="readonly">
+            <i class="search-dataMask"></i>
         </p>
         <p class="item right-up" style="width: 30%;">
             <label for="">结束时间:</label>
-            <input type="text" class="datetimepicker7 date" class="endtime"/>
+            <input type="text" class="endtime datetimepicker7 date" style="width: 140px;" />
         </p>
-        <p class="item" style="width: 30%;">
-            <label for="">主要电话号码:</label>
-            <span class="primaryphone"></span>
+        <p class="item" style="width: 30%;margin-right: 4.9%;margin-left: 2.6%;">
+            <label for="" style="min-width: 100px">主要电话号码:</label>
+            <span class="personprimaryphone isPhoneNum"></span>
         </p>
         <p class="item left-down" style="width: 40%;">
             <label for="">主要电子邮件:</label>
-            <span class="primaryemail"></span>
+            <span class="personprimaryemail isEmail"></span>
         </p>
 
         <div class="clearfix"></div>
@@ -149,9 +149,14 @@
         </table>
     </div>
 </div>
+<span class="showTip"></span>
+<%@include file="../commons/dataMask.jsp"%>
+<%@include file="../commons/audit.jsp"%>
 <script src="${ctx}/scripts/jquery-1.9.1.min.js"></script>
 <script src="${ctx}/scripts/jquery.datetimepicker.js"></script>
 <script src="${ctx}/js/date/jquerytime.js"></script>
 <script src="${ctx}/js/initDetail.js"></script>
+<script src="${ctx}/js/util/dataMask.js"></script>
+<script src="${ctx}/js/util/formValidate.js"></script>
 </body>
 </html>

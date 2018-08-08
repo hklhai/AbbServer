@@ -1,8 +1,9 @@
 package com.hxqh.abb.model.view;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
-import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.Date;
 
 
@@ -31,7 +32,17 @@ public class VUdtoolchkline implements Serializable {
 
     private String udtooldescription;
 
+    private String personid;
+
     public VUdtoolchkline() {
+    }
+
+    public String getPersonid() {
+        return personid;
+    }
+
+    public void setPersonid(String personid) {
+        this.personid = personid;
     }
 
     public String getChkby() {

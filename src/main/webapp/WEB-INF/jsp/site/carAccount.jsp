@@ -20,19 +20,26 @@
         var _ctx = '${ctx}';
         var _apptname = '${apptname}';
         var _pkid = '${pkid}';
+        var _operate = '${operate}';
     </script>
 </head>
 <body>
 <div class="borrow-detail">
-    <h4>车辆台账/K888</h4>
+    <div class="tab-btn">
+        <button class="returnList">列表视图</button>
+        <button class="workOrder click">车辆台账</button>
+    </div>
+    <%--<h4>车辆台账</h4>--%>
     <div class="mylable">
-        <button type="button" id="mycollect">打印</button>
+        <%--<button type="button" id="mycollect" class="print">打印</button>--%>
+        <button type="button" class="save-btn">保存</button>
+        <button class="apply-btn" style="margin-right: 5px;">审批</button>
     </div>
     <div class="detail-info">
         <p class="item">
             <label for="">车牌号:</label>
-            <span class="license">K888</span>
-            <input type="text" placeholder="描述" style="width: 160px;" class="description">
+            <input type="text" class="license" style="width: 120px;">
+            <input type="text" style="width: 25%;margin-left: 5px;" class="description">
         </p>
         <p class="item">
             <label for="">状态:</label>
@@ -44,11 +51,11 @@
         </p>
         <p class="item">
             <label for="">车辆型号:</label>
-            <span class="model"></span>
+            <input type="text" class="model">
         </p>
         <p class="item">
             <label for="">核定载客:</label>
-            <span class="seats"></span>
+            <input type="text" class="seats">
         </p>
         <p class="item">
             <label for="">所属站点:</label>
@@ -56,92 +63,62 @@
         </p>
         <p class="item">
             <label for="">厂牌型号:</label>
-            <span></span>
+            <input type="text" class="factory">
         </p>
         <p class="item">
             <label for="">登记日期:</label>
-            <input type="text" class="datetimepicker7" class="registerDate"/>
+            <input type="text" class="registerdate datetimepicker7"/>
         </p>
         <p class="item">
             <label for="">创建人:</label>
-            <span></span>
+            <span class="createdby"></span>
         </p>
         <p class="item">
             <label for="">车属部门:</label>
-            <span class="department"></span>
+            <input type="text" class="department">
         </p>
         <p class="item">
             <label for="">出厂日期:</label>
-            <input type="text" class="datetimepicker7" class="factoryDate"/>
+            <input type="text" class="factorydate datetimepicker7"/>
         </p>
         <p class="item">
             <label for="">创建时间:</label>
-            <span></span>
+            <span class="createddate"></span>
         </p>
 
         <p class="item">
             <label for="">车辆颜色:</label>
-            <span class="color"></span>
+            <input type="text" class="color">
         </p>
         <p class="item">
             <label for="">重量（KG）:</label>
-            <span class="weight"></span>
+            <input type="text" class="weight isNumber">
         </p>
         <p class="item">
             <label for="">更改人:</label>
-            <span></span>
+            <span class="changeby"></span>
         </p>
         <p class="item">
             <label for="">排量（ML）:</label>
-            <span class="displacement"></span>
+            <input type="text" class="displacement isNumber">
         </p>
         <p class="item">
             <label for="">燃油类型:</label>
-            <select name="" id="" class="fueltype">
-                <option value="" selected="selected">汽油</option>
-                <option value="">柴油</option>
-                <option value="">机油</option>
-            </select>
+            <input type="text" class="fueltype">
         </p>
         <p class="item">
             <label for="">更改时间:</label>
-            <span></span>
+            <span class="changedate"></span>
         </p>
         <div class="clearfix"></div>
     </div>
-    <div class="next-apply">
-        <h5>下一个审批人</h5>
-        <table>
-            <thead>
-                <tr>
-                    <td width="20%">人员</td>
-                    <td width="20%">名称</td>
-                    <td width="20%">描述</td>
-                    <td width="40%">过程</td>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    </div>
-    <div class="apply-record">
-        <h5>审批记录</h5>
-        <table>
-            <thead>
-                <tr>
-                    <td width="20%">人员</td>
-                    <td width="20%">名称</td>
-                    <td width="20%">描述</td>
-                    <td width="15%">交易日期</td>
-                    <td width="25%">备忘录</td>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    </div>
 </div>
+<span class="showTip"></span>
+<%@include file="../commons/audit.jsp"%>
 <script src="${ctx}/scripts/jquery-1.9.1.min.js"></script>
 <script src="${ctx}/scripts/jquery.datetimepicker.js"></script>
 <script src="${ctx}/js/date/jquerytime.js"></script>
 <script src="${ctx}/js/initDetail.js"></script>
+<script src="${ctx}/js/util/formValidate.js"></script>
 </body>
 </html>

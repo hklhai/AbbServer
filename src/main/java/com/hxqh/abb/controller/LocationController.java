@@ -59,10 +59,10 @@ public class LocationController {
      * @return
      */
     @RequestMapping(value = "/location", method = RequestMethod.GET)
-    public ModelAndView location(@ModelAttribute("sessionInfo") SessionInfo sessionInfo) {
+    public ModelAndView location(@ModelAttribute("sessionInfo") SessionInfo sessionInfo, @RequestParam("locationId") String locationId) {
         Map<String, Object> result = new HashMap<>();
         List<AbbMap> mapData = abbMapDao.findAll();
-        List<AbbLocation> abbLocationList = locationService.getRootList();
+        List<AbbLocation> abbLocationList = locationService.getRootList(sessionInfo);
         //处理location
         for (AbbLocation location : abbLocationList) {
             location.setDescription(location.getDescription().substring(0, 2));
@@ -74,9 +74,27 @@ public class LocationController {
 
         result.put("abbLocationList", abbLocationList);
         result.put("mapData", mapData);
-        result.put("sessionInfo",sessionInfo);
+        result.put("sessionInfo", sessionInfo);
+        result.put("locationId", locationId);
         return new ModelAndView("asset/asset", result);
     }
 
+
+    /**
+     * 二期增加，配合二期迁移
+     * rootLocationList 返回顶级Location信息
+     *
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/rootLocationList", method = RequestMethod.GET)
+    public List<AbbLocation> rootLocationList(@ModelAttribute("sessionInfo") SessionInfo sessionInfo) {
+        List<AbbLocation> abbLocationList = locationService.getRootList(sessionInfo);
+        //处理location
+        for (AbbLocation location : abbLocationList) {
+            location.setDescription(location.getDescription().substring(0, 2));
+        }
+        return abbLocationList;
+    }
 
 }

@@ -1,5 +1,7 @@
 package com.hxqh.abb.model;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
@@ -11,6 +13,7 @@ import java.sql.Date;
  */
 @Entity
 @Table(name="Wfassignment")
+@DynamicUpdate
 public class Wfassignment implements Serializable {
 	private static final long serialVersionUID = 1L;
 

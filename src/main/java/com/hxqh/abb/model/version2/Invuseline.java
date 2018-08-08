@@ -1,707 +1,840 @@
 package com.hxqh.abb.model.version2;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 
 
 /**
  * The persistent class for the INVUSELINE database table.
- * 
  */
 @Entity
-@Table(name="Invuseline")
+@Table(name = "Invuseline")
+@DynamicUpdate
 public class Invuseline implements Serializable {
-	private static final Long serialVersionUID = 1L;
+    private static final Long serialVersionUID = 1L;
 
-	@Id
-	@SequenceGenerator(name="INVUSELINE_INVUSELINEID_GENERATOR", sequenceName="INVUSELINESEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="INVUSELINE_INVUSELINEID_GENERATOR")
-	private Long invuselineid;
+    @Id
+    @SequenceGenerator(name = "INVUSELINE_INVUSELINEID_GENERATOR", allocationSize = 1, sequenceName = "INVUSELINESEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "INVUSELINE_INVUSELINEID_GENERATOR")
+    private Long invuselineid;
 
-	private Date actualdate;
 
-	private String assetnum;
+    private Date actualdate;
 
-	private String commodity;
+    private String assetnum;
 
-	private String commoditygroup;
+    private String commodity;
 
-	private BigDecimal conversion;
+    private String commoditygroup;
 
-	private String description;
+    private BigDecimal conversion;
 
-	private String enterby;
+    private String description;
 
-	private Integer enteredastask;
+    private String enterby;
 
-	private String financialperiod;
+    private Integer enteredastask;
 
-	private String frombin;
+    private String financialperiod;
 
-	private String fromconditioncode;
+    private String frombin;
 
-	private String fromlot;
+    private String fromconditioncode;
 
-	private String fromstoreloc;
+    private String fromlot;
 
-	private String glcreditacct;
+    private String fromstoreloc;
 
-	private String gldebitacct;
+    private String glcreditacct;
 
-	private Integer hasld;
+    private String gldebitacct;
 
-	private Integer inspectionrequired;
+    private Integer hasld;
 
-	private Integer invuselinenum;
+    private Integer inspectionrequired;
 
-	private String invusenum;
+    private Integer invuselinenum;
 
-	private Long issueid;
+    private String invusenum;
 
-	private String issueto;
+    private Long issueid;
 
-	private String itemnum;
+    private String issueto;
 
-	private String itemsetid;
+    private String itemnum;
 
-	private String langcode;
+    private String itemsetid;
 
-	private BigDecimal linecost;
+    private String langcode;
 
-	private String linenum;
+    private BigDecimal linecost;
 
-	private String linetype;
+    private String linenum;
 
-	@Column(name="\"LOCATION\"")
-	private String location;
+    private String linetype;
 
-	private Integer mrlinenum;
+    @Column(name = "\"LOCATION\"")
+    private String location;
 
-	private String mrnum;
+    private Integer mrlinenum;
 
-	private String newassetnum;
+    private String mrnum;
 
-	private String orgid;
+    private String newassetnum;
 
-	private BigDecimal physcnt;
+    private String orgid;
 
-	private Date physcntdate;
+    private BigDecimal physcnt;
 
-	private Integer polinenum;
+    private Date physcntdate;
 
-	private String ponum;
+    private Integer polinenum;
 
-	private Integer porevisionnum;
+    private String ponum;
 
-	private String positeid;
+    private Integer porevisionnum;
 
-	private String prsiteid;
+    private String positeid;
 
-	private BigDecimal quantity;
+    private String prsiteid;
 
-	private Integer receiptscomplete;
+    private BigDecimal quantity;
 
-	private BigDecimal receivedqty;
+    private Integer receiptscomplete;
 
-	private String refwo;
+    private BigDecimal receivedqty;
 
-	private String remark;
+    private String refwo;
 
-	private String requestnum;
+    private String remark;
 
-	private Integer returnagainstissue;
+    private String requestnum;
 
-	private BigDecimal returnedqty;
+    private Integer returnagainstissue;
 
-	private String rotassetnum;
+    private BigDecimal returnedqty;
 
-	private Long rowstamp;
+    private String rotassetnum;
 
-	private String sendersysid;
+    private Long rowstamp;
 
-	private String siteid;
+    private String sendersysid;
 
-	@Column(name="\"SPLIT\"")
-	private Integer split;
+    private String siteid;
 
-	private String tobin;
+    @Column(name = "\"SPLIT\"")
+    private Integer split;
 
-	private String toconditioncode;
+    private String tobin;
 
-	private String tolot;
+    private String toconditioncode;
 
-	private String toorgid;
+    private String tolot;
 
-	private String tositeid;
+    private String toorgid;
 
-	private String tostoreloc;
+    private String tositeid;
 
-	private String udcontact;
+    private String tostoreloc;
 
-	private String udprojectnum;
+    private String udcontact;
 
-	private String udreceipt;
+    private String udprojectnum;
 
-	private String udrecipient;
+    private String udreceipt;
 
-	private String udsapnum;
+    private String udrecipient;
 
-	private String udwonum2;
+    private String udsapnum;
 
-	private BigDecimal unitcost;
+    private String udwonum2;
 
-	private String usetype;
+    private BigDecimal unitcost;
 
-	@Column(name="\"VALIDATED\"")
-	private Integer validated;
+    private String usetype;
 
-	public Invuseline() {
-	}
+    @Column(name = "\"VALIDATED\"")
+    private Integer validated;
 
-	public Long getInvuselineid() {
-		return this.invuselineid;
-	}
+    @Transient
+    private Long frontedid;
 
-	public void setInvuselineid(Long invuselineid) {
-		this.invuselineid = invuselineid;
-	}
+    @Transient
+    private String itemdescription;
 
-	public Date getActualdate() {
-		return this.actualdate;
-	}
+    @Transient
+    private String itemudmodel;
 
-	public void setActualdate(Date actualdate) {
-		this.actualdate = actualdate;
-	}
+    @Transient
+    private String invbalancescurbal;
 
-	public String getAssetnum() {
-		return this.assetnum;
-	}
+    @Transient
+    private String persondisplayname;
 
-	public void setAssetnum(String assetnum) {
-		this.assetnum = assetnum;
-	}
+    @Transient
+    private String invuseline;
 
-	public String getCommodity() {
-		return this.commodity;
-	}
+    @Transient
+    private String udmodel;
+    // TODO: 2017/11/13  添加的可忽略的字段
+    @Transient
+    private String wonum;
+    @Transient
+    private String taskid;
 
-	public void setCommodity(String commodity) {
-		this.commodity = commodity;
-	}
+    @Transient
+    private BigDecimal curbal;
+    @Transient
+    private String locationsdescription;
+    @Transient
+    private String formbin;
 
-	public String getCommoditygroup() {
-		return this.commoditygroup;
-	}
 
-	public void setCommoditygroup(String commoditygroup) {
-		this.commoditygroup = commoditygroup;
-	}
+    public Invuseline() {
+    }
 
-	public BigDecimal getConversion() {
-		return this.conversion;
-	}
+    public String getFormbin() {
+        return formbin;
+    }
 
-	public void setConversion(BigDecimal conversion) {
-		this.conversion = conversion;
-	}
+    public void setFormbin(String formbin) {
+        this.formbin = formbin;
+    }
 
-	public String getDescription() {
-		return this.description;
-	}
+    public String getLocationsdescription() {
+        return locationsdescription;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setLocationsdescription(String locationsdescription) {
+        this.locationsdescription = locationsdescription;
+    }
 
-	public String getEnterby() {
-		return this.enterby;
-	}
+    public BigDecimal getCurbal() {
+        return curbal;
+    }
 
-	public void setEnterby(String enterby) {
-		this.enterby = enterby;
-	}
+    public void setCurbal(BigDecimal curbal) {
+        this.curbal = curbal;
+    }
 
-	public Integer getEnteredastask() {
-		return this.enteredastask;
-	}
+    public String getTaskid() {
+        return taskid;
+    }
 
-	public void setEnteredastask(Integer enteredastask) {
-		this.enteredastask = enteredastask;
-	}
+    public void setTaskid(String taskid) {
+        this.taskid = taskid;
+    }
 
-	public String getFinancialperiod() {
-		return this.financialperiod;
-	}
+    public String getWonum() {
+        return wonum;
+    }
 
-	public void setFinancialperiod(String financialperiod) {
-		this.financialperiod = financialperiod;
-	}
+    public void setWonum(String wonum) {
+        this.wonum = wonum;
+    }
 
-	public String getFrombin() {
-		return this.frombin;
-	}
+    public String getPersondisplayname() {
+        return persondisplayname;
+    }
 
-	public void setFrombin(String frombin) {
-		this.frombin = frombin;
-	}
+    public void setPersondisplayname(String persondisplayname) {
+        this.persondisplayname = persondisplayname;
+    }
 
-	public String getFromconditioncode() {
-		return this.fromconditioncode;
-	}
+    public String getInvbalancescurbal() {
+        return invbalancescurbal;
+    }
 
-	public void setFromconditioncode(String fromconditioncode) {
-		this.fromconditioncode = fromconditioncode;
-	}
+    public void setInvbalancescurbal(String invbalancescurbal) {
+        this.invbalancescurbal = invbalancescurbal;
+    }
 
-	public String getFromlot() {
-		return this.fromlot;
-	}
+    public String getUdmodel() {
+        return udmodel;
+    }
 
-	public void setFromlot(String fromlot) {
-		this.fromlot = fromlot;
-	}
+    public void setUdmodel(String udmodel) {
+        this.udmodel = udmodel;
+    }
 
-	public String getFromstoreloc() {
-		return this.fromstoreloc;
-	}
+    public String getInvuseline() {
+        return invuseline;
+    }
 
-	public void setFromstoreloc(String fromstoreloc) {
-		this.fromstoreloc = fromstoreloc;
-	}
+    public void setInvuseline(String invuseline) {
+        this.invuseline = invuseline;
+    }
 
-	public String getGlcreditacct() {
-		return this.glcreditacct;
-	}
 
-	public void setGlcreditacct(String glcreditacct) {
-		this.glcreditacct = glcreditacct;
-	}
+    public String getItemdescription() {
+        return itemdescription;
+    }
 
-	public String getGldebitacct() {
-		return this.gldebitacct;
-	}
+    public void setItemdescription(String itemdescription) {
+        this.itemdescription = itemdescription;
+    }
 
-	public void setGldebitacct(String gldebitacct) {
-		this.gldebitacct = gldebitacct;
-	}
+    public String getItemudmodel() {
+        return itemudmodel;
+    }
 
-	public Integer getHasld() {
-		return this.hasld;
-	}
+    public void setItemudmodel(String itemudmodel) {
+        this.itemudmodel = itemudmodel;
+    }
 
-	public void setHasld(Integer hasld) {
-		this.hasld = hasld;
-	}
+    public Long getInvuselineid() {
+        return invuselineid;
+    }
 
-	public Integer getInspectionrequired() {
-		return this.inspectionrequired;
-	}
+    public void setInvuselineid(Long invuselineid) {
+        this.invuselineid = invuselineid;
+    }
 
-	public void setInspectionrequired(Integer inspectionrequired) {
-		this.inspectionrequired = inspectionrequired;
-	}
+    public Date getActualdate() {
+        return actualdate;
+    }
 
-	public Integer getInvuselinenum() {
-		return this.invuselinenum;
-	}
+    public void setActualdate(Date actualdate) {
+        this.actualdate = actualdate;
+    }
 
-	public void setInvuselinenum(Integer invuselinenum) {
-		this.invuselinenum = invuselinenum;
-	}
+    public String getAssetnum() {
+        return assetnum;
+    }
 
-	public String getInvusenum() {
-		return this.invusenum;
-	}
+    public void setAssetnum(String assetnum) {
+        this.assetnum = assetnum;
+    }
 
-	public void setInvusenum(String invusenum) {
-		this.invusenum = invusenum;
-	}
+    public String getCommodity() {
+        return commodity;
+    }
 
-	public Long getIssueid() {
-		return this.issueid;
-	}
+    public void setCommodity(String commodity) {
+        this.commodity = commodity;
+    }
 
-	public void setIssueid(Long issueid) {
-		this.issueid = issueid;
-	}
+    public String getCommoditygroup() {
+        return commoditygroup;
+    }
 
-	public String getIssueto() {
-		return this.issueto;
-	}
+    public void setCommoditygroup(String commoditygroup) {
+        this.commoditygroup = commoditygroup;
+    }
 
-	public void setIssueto(String issueto) {
-		this.issueto = issueto;
-	}
+    public BigDecimal getConversion() {
+        return conversion;
+    }
 
-	public String getItemnum() {
-		return this.itemnum;
-	}
+    public void setConversion(BigDecimal conversion) {
+        this.conversion = conversion;
+    }
 
-	public void setItemnum(String itemnum) {
-		this.itemnum = itemnum;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public String getItemsetid() {
-		return this.itemsetid;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setItemsetid(String itemsetid) {
-		this.itemsetid = itemsetid;
-	}
+    public String getEnterby() {
+        return enterby;
+    }
 
-	public String getLangcode() {
-		return this.langcode;
-	}
+    public void setEnterby(String enterby) {
+        this.enterby = enterby;
+    }
 
-	public void setLangcode(String langcode) {
-		this.langcode = langcode;
-	}
+    public Integer getEnteredastask() {
+        return enteredastask;
+    }
 
-	public BigDecimal getLinecost() {
-		return this.linecost;
-	}
+    public void setEnteredastask(Integer enteredastask) {
+        this.enteredastask = enteredastask;
+    }
 
-	public void setLinecost(BigDecimal linecost) {
-		this.linecost = linecost;
-	}
+    public String getFinancialperiod() {
+        return financialperiod;
+    }
 
-	public String getLinenum() {
-		return this.linenum;
-	}
+    public void setFinancialperiod(String financialperiod) {
+        this.financialperiod = financialperiod;
+    }
 
-	public void setLinenum(String linenum) {
-		this.linenum = linenum;
-	}
+    public String getFrombin() {
+        return frombin;
+    }
 
-	public String getLinetype() {
-		return this.linetype;
-	}
+    public void setFrombin(String frombin) {
+        this.frombin = frombin;
+    }
 
-	public void setLinetype(String linetype) {
-		this.linetype = linetype;
-	}
+    public String getFromconditioncode() {
+        return fromconditioncode;
+    }
 
-	public String getLocation() {
-		return this.location;
-	}
+    public void setFromconditioncode(String fromconditioncode) {
+        this.fromconditioncode = fromconditioncode;
+    }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    public String getFromlot() {
+        return fromlot;
+    }
 
-	public Integer getMrlinenum() {
-		return this.mrlinenum;
-	}
+    public void setFromlot(String fromlot) {
+        this.fromlot = fromlot;
+    }
 
-	public void setMrlinenum(Integer mrlinenum) {
-		this.mrlinenum = mrlinenum;
-	}
+    public String getFromstoreloc() {
+        return fromstoreloc;
+    }
 
-	public String getMrnum() {
-		return this.mrnum;
-	}
+    public void setFromstoreloc(String fromstoreloc) {
+        this.fromstoreloc = fromstoreloc;
+    }
 
-	public void setMrnum(String mrnum) {
-		this.mrnum = mrnum;
-	}
+    public String getGlcreditacct() {
+        return glcreditacct;
+    }
 
-	public String getNewassetnum() {
-		return this.newassetnum;
-	}
+    public void setGlcreditacct(String glcreditacct) {
+        this.glcreditacct = glcreditacct;
+    }
 
-	public void setNewassetnum(String newassetnum) {
-		this.newassetnum = newassetnum;
-	}
+    public String getGldebitacct() {
+        return gldebitacct;
+    }
 
-	public String getOrgid() {
-		return this.orgid;
-	}
+    public void setGldebitacct(String gldebitacct) {
+        this.gldebitacct = gldebitacct;
+    }
 
-	public void setOrgid(String orgid) {
-		this.orgid = orgid;
-	}
+    public Integer getHasld() {
+        return hasld;
+    }
 
-	public BigDecimal getPhyscnt() {
-		return this.physcnt;
-	}
+    public void setHasld(Integer hasld) {
+        this.hasld = hasld;
+    }
 
-	public void setPhyscnt(BigDecimal physcnt) {
-		this.physcnt = physcnt;
-	}
+    public Integer getInspectionrequired() {
+        return inspectionrequired;
+    }
 
-	public Date getPhyscntdate() {
-		return this.physcntdate;
-	}
+    public void setInspectionrequired(Integer inspectionrequired) {
+        this.inspectionrequired = inspectionrequired;
+    }
 
-	public void setPhyscntdate(Date physcntdate) {
-		this.physcntdate = physcntdate;
-	}
+    public Integer getInvuselinenum() {
+        return invuselinenum;
+    }
 
-	public Integer getPolinenum() {
-		return this.polinenum;
-	}
+    public void setInvuselinenum(Integer invuselinenum) {
+        this.invuselinenum = invuselinenum;
+    }
 
-	public void setPolinenum(Integer polinenum) {
-		this.polinenum = polinenum;
-	}
+    public String getInvusenum() {
+        return invusenum;
+    }
 
-	public String getPonum() {
-		return this.ponum;
-	}
+    public void setInvusenum(String invusenum) {
+        this.invusenum = invusenum;
+    }
 
-	public void setPonum(String ponum) {
-		this.ponum = ponum;
-	}
+    public Long getIssueid() {
+        return issueid;
+    }
 
-	public Integer getPorevisionnum() {
-		return this.porevisionnum;
-	}
+    public void setIssueid(Long issueid) {
+        this.issueid = issueid;
+    }
 
-	public void setPorevisionnum(Integer porevisionnum) {
-		this.porevisionnum = porevisionnum;
-	}
+    public String getIssueto() {
+        return issueto;
+    }
 
-	public String getPositeid() {
-		return this.positeid;
-	}
+    public void setIssueto(String issueto) {
+        this.issueto = issueto;
+    }
 
-	public void setPositeid(String positeid) {
-		this.positeid = positeid;
-	}
+    public String getItemnum() {
+        return itemnum;
+    }
 
-	public String getPrsiteid() {
-		return this.prsiteid;
-	}
+    public void setItemnum(String itemnum) {
+        this.itemnum = itemnum;
+    }
 
-	public void setPrsiteid(String prsiteid) {
-		this.prsiteid = prsiteid;
-	}
+    public String getItemsetid() {
+        return itemsetid;
+    }
 
-	public BigDecimal getQuantity() {
-		return this.quantity;
-	}
+    public void setItemsetid(String itemsetid) {
+        this.itemsetid = itemsetid;
+    }
 
-	public void setQuantity(BigDecimal quantity) {
-		this.quantity = quantity;
-	}
+    public String getLangcode() {
+        return langcode;
+    }
 
-	public Integer getReceiptscomplete() {
-		return this.receiptscomplete;
-	}
+    public void setLangcode(String langcode) {
+        this.langcode = langcode;
+    }
 
-	public void setReceiptscomplete(Integer receiptscomplete) {
-		this.receiptscomplete = receiptscomplete;
-	}
+    public BigDecimal getLinecost() {
+        return linecost;
+    }
 
-	public BigDecimal getReceivedqty() {
-		return this.receivedqty;
-	}
+    public void setLinecost(BigDecimal linecost) {
+        this.linecost = linecost;
+    }
 
-	public void setReceivedqty(BigDecimal receivedqty) {
-		this.receivedqty = receivedqty;
-	}
+    public String getLinenum() {
+        return linenum;
+    }
 
-	public String getRefwo() {
-		return this.refwo;
-	}
+    public void setLinenum(String linenum) {
+        this.linenum = linenum;
+    }
 
-	public void setRefwo(String refwo) {
-		this.refwo = refwo;
-	}
+    public String getLinetype() {
+        return linetype;
+    }
 
-	public String getRemark() {
-		return this.remark;
-	}
+    public void setLinetype(String linetype) {
+        this.linetype = linetype;
+    }
 
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
+    public String getLocation() {
+        return location;
+    }
 
-	public String getRequestnum() {
-		return this.requestnum;
-	}
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-	public void setRequestnum(String requestnum) {
-		this.requestnum = requestnum;
-	}
+    public Integer getMrlinenum() {
+        return mrlinenum;
+    }
 
-	public Integer getReturnagainstissue() {
-		return this.returnagainstissue;
-	}
+    public void setMrlinenum(Integer mrlinenum) {
+        this.mrlinenum = mrlinenum;
+    }
 
-	public void setReturnagainstissue(Integer returnagainstissue) {
-		this.returnagainstissue = returnagainstissue;
-	}
+    public String getMrnum() {
+        return mrnum;
+    }
 
-	public BigDecimal getReturnedqty() {
-		return this.returnedqty;
-	}
+    public void setMrnum(String mrnum) {
+        this.mrnum = mrnum;
+    }
 
-	public void setReturnedqty(BigDecimal returnedqty) {
-		this.returnedqty = returnedqty;
-	}
+    public String getNewassetnum() {
+        return newassetnum;
+    }
 
-	public String getRotassetnum() {
-		return this.rotassetnum;
-	}
+    public void setNewassetnum(String newassetnum) {
+        this.newassetnum = newassetnum;
+    }
 
-	public void setRotassetnum(String rotassetnum) {
-		this.rotassetnum = rotassetnum;
-	}
+    public String getOrgid() {
+        return orgid;
+    }
 
-	public Long getRowstamp() {
-		return this.rowstamp;
-	}
+    public void setOrgid(String orgid) {
+        this.orgid = orgid;
+    }
 
-	public void setRowstamp(Long rowstamp) {
-		this.rowstamp = rowstamp;
-	}
+    public BigDecimal getPhyscnt() {
+        return physcnt;
+    }
 
-	public String getSendersysid() {
-		return this.sendersysid;
-	}
+    public void setPhyscnt(BigDecimal physcnt) {
+        this.physcnt = physcnt;
+    }
 
-	public void setSendersysid(String sendersysid) {
-		this.sendersysid = sendersysid;
-	}
+    public Date getPhyscntdate() {
+        return physcntdate;
+    }
 
-	public String getSiteid() {
-		return this.siteid;
-	}
+    public void setPhyscntdate(Date physcntdate) {
+        this.physcntdate = physcntdate;
+    }
 
-	public void setSiteid(String siteid) {
-		this.siteid = siteid;
-	}
+    public Integer getPolinenum() {
+        return polinenum;
+    }
 
-	public Integer getSplit() {
-		return this.split;
-	}
+    public void setPolinenum(Integer polinenum) {
+        this.polinenum = polinenum;
+    }
 
-	public void setSplit(Integer split) {
-		this.split = split;
-	}
+    public String getPonum() {
+        return ponum;
+    }
 
-	public String getTobin() {
-		return this.tobin;
-	}
+    public void setPonum(String ponum) {
+        this.ponum = ponum;
+    }
 
-	public void setTobin(String tobin) {
-		this.tobin = tobin;
-	}
+    public Integer getPorevisionnum() {
+        return porevisionnum;
+    }
 
-	public String getToconditioncode() {
-		return this.toconditioncode;
-	}
+    public void setPorevisionnum(Integer porevisionnum) {
+        this.porevisionnum = porevisionnum;
+    }
 
-	public void setToconditioncode(String toconditioncode) {
-		this.toconditioncode = toconditioncode;
-	}
+    public String getPositeid() {
+        return positeid;
+    }
 
-	public String getTolot() {
-		return this.tolot;
-	}
+    public void setPositeid(String positeid) {
+        this.positeid = positeid;
+    }
 
-	public void setTolot(String tolot) {
-		this.tolot = tolot;
-	}
+    public String getPrsiteid() {
+        return prsiteid;
+    }
 
-	public String getToorgid() {
-		return this.toorgid;
-	}
+    public void setPrsiteid(String prsiteid) {
+        this.prsiteid = prsiteid;
+    }
 
-	public void setToorgid(String toorgid) {
-		this.toorgid = toorgid;
-	}
+    public BigDecimal getQuantity() {
+        return quantity;
+    }
 
-	public String getTositeid() {
-		return this.tositeid;
-	}
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
+    }
 
-	public void setTositeid(String tositeid) {
-		this.tositeid = tositeid;
-	}
+    public Integer getReceiptscomplete() {
+        return receiptscomplete;
+    }
 
-	public String getTostoreloc() {
-		return this.tostoreloc;
-	}
+    public void setReceiptscomplete(Integer receiptscomplete) {
+        this.receiptscomplete = receiptscomplete;
+    }
 
-	public void setTostoreloc(String tostoreloc) {
-		this.tostoreloc = tostoreloc;
-	}
+    public BigDecimal getReceivedqty() {
+        return receivedqty;
+    }
 
-	public String getUdcontact() {
-		return this.udcontact;
-	}
+    public void setReceivedqty(BigDecimal receivedqty) {
+        this.receivedqty = receivedqty;
+    }
 
-	public void setUdcontact(String udcontact) {
-		this.udcontact = udcontact;
-	}
+    public String getRefwo() {
+        return refwo;
+    }
 
-	public String getUdprojectnum() {
-		return this.udprojectnum;
-	}
+    public void setRefwo(String refwo) {
+        this.refwo = refwo;
+    }
 
-	public void setUdprojectnum(String udprojectnum) {
-		this.udprojectnum = udprojectnum;
-	}
+    public String getRemark() {
+        return remark;
+    }
 
-	public String getUdreceipt() {
-		return this.udreceipt;
-	}
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
 
-	public void setUdreceipt(String udreceipt) {
-		this.udreceipt = udreceipt;
-	}
+    public String getRequestnum() {
+        return requestnum;
+    }
 
-	public String getUdrecipient() {
-		return this.udrecipient;
-	}
+    public void setRequestnum(String requestnum) {
+        this.requestnum = requestnum;
+    }
 
-	public void setUdrecipient(String udrecipient) {
-		this.udrecipient = udrecipient;
-	}
+    public Integer getReturnagainstissue() {
+        return returnagainstissue;
+    }
 
-	public String getUdsapnum() {
-		return this.udsapnum;
-	}
+    public void setReturnagainstissue(Integer returnagainstissue) {
+        this.returnagainstissue = returnagainstissue;
+    }
 
-	public void setUdsapnum(String udsapnum) {
-		this.udsapnum = udsapnum;
-	}
+    public BigDecimal getReturnedqty() {
+        return returnedqty;
+    }
 
-	public String getUdwonum2() {
-		return this.udwonum2;
-	}
+    public void setReturnedqty(BigDecimal returnedqty) {
+        this.returnedqty = returnedqty;
+    }
 
-	public void setUdwonum2(String udwonum2) {
-		this.udwonum2 = udwonum2;
-	}
+    public String getRotassetnum() {
+        return rotassetnum;
+    }
 
-	public BigDecimal getUnitcost() {
-		return this.unitcost;
-	}
+    public void setRotassetnum(String rotassetnum) {
+        this.rotassetnum = rotassetnum;
+    }
 
-	public void setUnitcost(BigDecimal unitcost) {
-		this.unitcost = unitcost;
-	}
+    public Long getRowstamp() {
+        return rowstamp;
+    }
 
-	public String getUsetype() {
-		return this.usetype;
-	}
+    public void setRowstamp(Long rowstamp) {
+        this.rowstamp = rowstamp;
+    }
 
-	public void setUsetype(String usetype) {
-		this.usetype = usetype;
-	}
+    public String getSendersysid() {
+        return sendersysid;
+    }
 
-	public Integer getValidated() {
-		return this.validated;
-	}
+    public void setSendersysid(String sendersysid) {
+        this.sendersysid = sendersysid;
+    }
 
-	public void setValidated(Integer validated) {
-		this.validated = validated;
-	}
+    public String getSiteid() {
+        return siteid;
+    }
 
+    public void setSiteid(String siteid) {
+        this.siteid = siteid;
+    }
+
+    public Integer getSplit() {
+        return split;
+    }
+
+    public void setSplit(Integer split) {
+        this.split = split;
+    }
+
+    public String getTobin() {
+        return tobin;
+    }
+
+    public void setTobin(String tobin) {
+        this.tobin = tobin;
+    }
+
+    public String getToconditioncode() {
+        return toconditioncode;
+    }
+
+    public void setToconditioncode(String toconditioncode) {
+        this.toconditioncode = toconditioncode;
+    }
+
+    public String getTolot() {
+        return tolot;
+    }
+
+    public void setTolot(String tolot) {
+        this.tolot = tolot;
+    }
+
+    public String getToorgid() {
+        return toorgid;
+    }
+
+    public void setToorgid(String toorgid) {
+        this.toorgid = toorgid;
+    }
+
+    public String getTositeid() {
+        return tositeid;
+    }
+
+    public void setTositeid(String tositeid) {
+        this.tositeid = tositeid;
+    }
+
+    public String getTostoreloc() {
+        return tostoreloc;
+    }
+
+    public void setTostoreloc(String tostoreloc) {
+        this.tostoreloc = tostoreloc;
+    }
+
+    public String getUdcontact() {
+        return udcontact;
+    }
+
+    public void setUdcontact(String udcontact) {
+        this.udcontact = udcontact;
+    }
+
+    public String getUdprojectnum() {
+        return udprojectnum;
+    }
+
+    public void setUdprojectnum(String udprojectnum) {
+        this.udprojectnum = udprojectnum;
+    }
+
+    public String getUdreceipt() {
+        return udreceipt;
+    }
+
+    public void setUdreceipt(String udreceipt) {
+        this.udreceipt = udreceipt;
+    }
+
+    public String getUdrecipient() {
+        return udrecipient;
+    }
+
+    public void setUdrecipient(String udrecipient) {
+        this.udrecipient = udrecipient;
+    }
+
+    public String getUdsapnum() {
+        return udsapnum;
+    }
+
+    public void setUdsapnum(String udsapnum) {
+        this.udsapnum = udsapnum;
+    }
+
+    public String getUdwonum2() {
+        return udwonum2;
+    }
+
+    public void setUdwonum2(String udwonum2) {
+        this.udwonum2 = udwonum2;
+    }
+
+    public BigDecimal getUnitcost() {
+        return unitcost;
+    }
+
+    public void setUnitcost(BigDecimal unitcost) {
+        this.unitcost = unitcost;
+    }
+
+    public String getUsetype() {
+        return usetype;
+    }
+
+    public void setUsetype(String usetype) {
+        this.usetype = usetype;
+    }
+
+    public Integer getValidated() {
+        return validated;
+    }
+
+    public void setValidated(Integer validated) {
+        this.validated = validated;
+    }
+
+    public Long getFrontedid() {
+        return frontedid;
+    }
+
+    public void setFrontedid(Long frontedid) {
+        this.frontedid = frontedid;
+    }
 }

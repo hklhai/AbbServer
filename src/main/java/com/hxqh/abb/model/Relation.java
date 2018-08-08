@@ -8,7 +8,7 @@ import javax.persistence.*;
  * The persistent class for the TB_RELATION database table.
  */
 @Entity
-@Table(name = "TB_RELATION")
+@Table(name = "V_RELATION")
 public class Relation implements Serializable {
     private static final long serialVersionUID = 1L;
 

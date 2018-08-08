@@ -20,23 +20,29 @@
         var _ctx = '${ctx}';
         var _apptname = '${apptname}';
         var _pkid = '${pkid}';
+        var _operate='${operate}';
     </script>
 </head>
 <body>
 <div class="borrow-detail">
-    <h4>车辆申请/1102</h4>
+    <div class="tab-btn">
+        <button class="returnList">列表视图</button>
+        <button class="workOrder click">车辆申请</button>
+    </div>
     <div class="mylable">
-        <button type="button" id="mycollect">打印</button>
+        <%--<button type="button" id="mycollect" class="print">打印</button>--%>
+        <button type="button" class="save-btn">保存</button>
+        <button class="apply-btn" style="margin-right: 5px;">审批</button>
     </div>
     <div class="detail-info">
         <p class="item" style="width: 40%;">
             <label for="">申请单:</label>
-            <span class="applynum">1102</span>
-            <input type="text" placeholder="" class="description">
+            <input type="text" class="applynum" readonly="readonly" style="width:120px;"/>
+            <input type="text"  class="description" style="width:29%;margin-left: 10px;">
         </p>
         <p class="item" style="width: 30%;">
             <label for="">创建人:</label>
-            <span></span>
+            <span class="createdby"></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">状  态:</label>
@@ -44,12 +50,12 @@
         </p>
         <p class="item" style="width: 40%;">
             <label for="">申请人:</label>
-            <span>sss</span>
-            <input type="text" placeholder="">
+            <span></span>
+            <span></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">创建时间:</label>
-            <input type="text"  class="datetimepicker7"  style="width: 120px;"/>
+            <span  class="createddate datetimepicker7"  style="width: 140px;"></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">状态日期:</label>
@@ -57,65 +63,86 @@
         </p>
         <p class="item" style="width: 40%;">
             <label for="">申请时间:</label>
-            <span></span>
+            <span style="width: 140px;" class="createddate"></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">更改人:</label>
-            <span></span>
+            <span class="changeby"></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">组织:</label>
-            <span></span>
+            <span class="orgid"></span>
         </p>
         <p class="item" style="width: 40%;">
             <label for="">申请理由:</label>
-            <span></span>
+            <input type="text" class="reason">
         </p>
         <p class="item" style="width: 30%;">
             <label for="">更改时间:</label>
-            <input type="text" class="datetimepicker7"  style="width: 120px;"/>
+            <span style="width: 140px;" class="chengdate"></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">地点:</label>
-            <span>M</span>
+            <span class="siteid"></span>
         </p>
         <p class="item" style="width: 40%;">
             <label for="">站长:</label>
-            <input type="text" placeholder="搜索" class="mysearch"  style="width: 120px;" class="stationhead">
-            <input type="text" placeholder="描述" style="width: 170px;margin-left: 8px;" class="displayname">
+            <input type="text" readonly="readonly" class="stationhead SELECTIONPERSON" style="width: 80px;">
+            <i class="search-dataMask"></i>
+            <input type="text" readonly="readonly" class="persondisplayname" style="width: 80px;">
         </p>
         <p class="item" style="width: 30%;">
             <label for="">车牌号:</label>
-            <select name="" id="" class="licence">
-                <option value="" selected="selected">AAA</option>
-                <option value="">BBB</option>
-                <option value="">CCC</option>
-                <option value="">DDD</option>
-            </select>
+            <input type="text" class="license SELECTIONUDVEHICLE" readonly="readonly">
+            <i class="search-dataMask"></i>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">开始时间:</label>
-            <input type="text" class="datetimepicker7"  style="width: 120px;" class="starttime"/>
+            <input type="text" class="starttime datetimepicker7"  style="width:140px;" />
         </p>
         <p class="item" style="width: 40%;">
             <label for="">主要电话号码:</label>
-            <span class="primaryphone"></span>
+            <span class="personprimaryphone"></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">出发地:</label>
-            <span class="origin"></span>
+            <input type="text" class="origin"  style="width: 120px;" />
         </p>
         <p class="item" style="width: 30%;">
             <label for="">结束时间:</label>
-            <input type="text" class="datetimepicker7"  style="width: 120px;" class="endtime"/>
+            <input type="text" class="endtime datetimepicker7"  style="width:140px;" />
         </p>
         <p class="item" style="width: 40%;">
             <label for="">主要电子邮件:</label>
-            <span class="primaryemail"></span>
+            <span class="personprimaryemail"></span>
         </p>
         <p class="item" style="width: 30%;">
             <label for="">目的地:</label>
-            <span class="destination"></span>
+            <input type="text" class="destination"  style="width: 120px;" />
+        </p>
+        <p class="item" style="width: 30%;">
+            <label for="">开始里程:</label>
+            <input type="text" class="startlc" />
+        </p>
+        <p class="item" style="width: 40%;">
+            <label for="">结束里程:</label>
+            <input type="text" class="endlc" />
+        </p>
+        <p class="item" style="width: 30%;">
+            <label for="">是否加油:</label>
+            <input type="checkbox" class="sfjy" />
+        </p>
+        <p class="item" style="width: 30%;">
+            <label for="">加邮费:</label>
+            <input type="text" class="jyf" />
+        </p>
+        <p class="item" style="width: 40%;">
+            <label for="">合同编号:</label>
+            <input type="text" class="pronum isRequired" />
+        </p>
+        <p class="item" style="width: 30%;">
+            <label for="">里程数:</label>
+            <input type="text" class="lcs" />
         </p>
         <div class="clearfix"></div>
     </div>
@@ -123,12 +150,12 @@
         <h5>下一个审批人</h5>
         <table>
             <thead>
-            <tr>
-                <td width="20%">人员</td>
-                <td width="20%">名称</td>
-                <td width="20%">描述</td>
-                <td width="40%">过程</td>
-            </tr>
+                <tr>
+                    <td width="20%">人员</td>
+                    <td width="20%">名称</td>
+                    <td width="20%">描述</td>
+                    <td width="40%">过程</td>
+                </tr>
             </thead>
             <tbody></tbody>
         </table>
@@ -137,21 +164,27 @@
         <h5>审批记录</h5>
         <table>
             <thead>
-            <tr>
-                <td width="20%">人员</td>
-                <td width="20%">名称</td>
-                <td width="20%">描述</td>
-                <td width="15%">交易日期</td>
-                <td width="25%">备忘录</td>
-            </tr>
+                <tr>
+                    <td width="20%">人员</td>
+                    <td width="20%">名称</td>
+                    <td width="20%">描述</td>
+                    <td width="15%">交易日期</td>
+                    <td width="25%">备忘录</td>
+                </tr>
             </thead>
             <tbody></tbody>
         </table>
     </div>
 </div>
+<span class="showTip"></span>
+<div class="mask"></div>
+<%@include file="../commons/dataMask.jsp"%>
+<%@include file="../commons/audit.jsp"%>
 <script src="${ctx}/scripts/jquery-1.9.1.min.js"></script>
 <script src="${ctx}/scripts/jquery.datetimepicker.js"></script>
 <script src="${ctx}/js/date/jquerytime.js"></script>
 <script src="${ctx}/js/initDetail.js"></script>
+<script src="${ctx}/js/util/dataMask.js"></script>
+<script src="${ctx}/js/util/formValidate.js"></script>
 </body>
 </html>

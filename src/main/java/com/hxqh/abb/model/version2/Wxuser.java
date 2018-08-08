@@ -1,177 +1,190 @@
 package com.hxqh.abb.model.version2;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import java.io.Serializable;
 import javax.persistence.*;
 
 
 /**
  * The persistent class for the WXUSER database table.
- * 
  */
 @Entity
-@Table(name="Wxuser")
+@Table(name = "Wxuser")
+@DynamicUpdate
 public class Wxuser implements Serializable {
-	private static final Long serialVersionUID = 1L;
+    private static final Long serialVersionUID = 1L;
 
-	@Id
-	@SequenceGenerator(name="WXUSER_WXUSERID_GENERATOR", sequenceName="WXUSERSEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="WXUSER_WXUSERID_GENERATOR")
-	private Long wxuserid;
+    @Id
+    @SequenceGenerator(name = "WXUSER_WXUSERID_GENERATOR", allocationSize = 1, sequenceName = "WXUSERIDSEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WXUSER_WXUSERID_GENERATOR")
+    private Long wxuserid;
 
-	@Column(name="\"ADDRESS\"")
-	private String address;
+    @Column(name = "\"ADDRESS\"")
+    private String address;
 
-	private String company;
+    private String company;
 
-	private String description;
+    private String description;
 
-	private String displayname;
+    private String displayname;
 
-	private Integer hasld;
+    private Integer hasld;
 
-	@Column(name="\"LOCATION\"")
-	private String location;
+    @Column(name = "\"LOCATION\"")
+    private String location;
 
-	private String mail;
+    private String mail;
 
-	@Column(name="\"PASSWORD\"")
-	private String password;
+    @Column(name = "\"PASSWORD\"")
+    private String password;
 
-	private String phone;
+    private String phone;
 
-	private Long rowstamp;
+    private Long rowstamp;
 
-	private String siteid;
+    private String siteid;
 
-	@Column(name="\"STATUS\"")
-	private String status;
+    @Column(name = "\"STATUS\"")
+    private String status;
 
-	@Column(name="\"USERID\"")
-	private String userid;
+    @Column(name = "\"USERID\"")
+    private String userid;
 
-	private String usernum;
+    private String usernum;
 
-	public Wxuser() {
-	}
+    @Transient
+    private String sitedescription;
 
-	public Long getWxuserid() {
-		return this.wxuserid;
-	}
+    public Wxuser() {
+    }
 
-	public void setWxuserid(Long wxuserid) {
-		this.wxuserid = wxuserid;
-	}
+    public String getSitedescription() {
+        return sitedescription;
+    }
 
-	public String getAddress() {
-		return this.address;
-	}
+    public void setSitedescription(String sitedescription) {
+        this.sitedescription = sitedescription;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public Long getWxuserid() {
+        return this.wxuserid;
+    }
 
-	public String getCompany() {
-		return this.company;
-	}
+    public void setWxuserid(Long wxuserid) {
+        this.wxuserid = wxuserid;
+    }
 
-	public void setCompany(String company) {
-		this.company = company;
-	}
+    public String getAddress() {
+        return this.address;
+    }
 
-	public String getDescription() {
-		return this.description;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getCompany() {
+        return this.company;
+    }
 
-	public String getDisplayname() {
-		return this.displayname;
-	}
+    public void setCompany(String company) {
+        this.company = company;
+    }
 
-	public void setDisplayname(String displayname) {
-		this.displayname = displayname;
-	}
+    public String getDescription() {
+        return this.description;
+    }
 
-	public Integer getHasld() {
-		return this.hasld;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setHasld(Integer hasld) {
-		this.hasld = hasld;
-	}
+    public String getDisplayname() {
+        return this.displayname;
+    }
 
-	public String getLocation() {
-		return this.location;
-	}
+    public void setDisplayname(String displayname) {
+        this.displayname = displayname;
+    }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    public Integer getHasld() {
+        return this.hasld;
+    }
 
-	public String getMail() {
-		return this.mail;
-	}
+    public void setHasld(Integer hasld) {
+        this.hasld = hasld;
+    }
 
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
+    public String getLocation() {
+        return this.location;
+    }
 
-	public String getPassword() {
-		return this.password;
-	}
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getMail() {
+        return this.mail;
+    }
 
-	public String getPhone() {
-		return this.phone;
-	}
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public String getPassword() {
+        return this.password;
+    }
 
-	public Long getRowstamp() {
-		return this.rowstamp;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setRowstamp(Long rowstamp) {
-		this.rowstamp = rowstamp;
-	}
+    public String getPhone() {
+        return this.phone;
+    }
 
-	public String getSiteid() {
-		return this.siteid;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public void setSiteid(String siteid) {
-		this.siteid = siteid;
-	}
+    public Long getRowstamp() {
+        return this.rowstamp;
+    }
 
-	public String getStatus() {
-		return this.status;
-	}
+    public void setRowstamp(Long rowstamp) {
+        this.rowstamp = rowstamp;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public String getSiteid() {
+        return this.siteid;
+    }
 
-	public String getUserid() {
-		return this.userid;
-	}
+    public void setSiteid(String siteid) {
+        this.siteid = siteid;
+    }
 
-	public void setUserid(String userid) {
-		this.userid = userid;
-	}
+    public String getStatus() {
+        return this.status;
+    }
 
-	public String getUsernum() {
-		return this.usernum;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public void setUsernum(String usernum) {
-		this.usernum = usernum;
-	}
+    public String getUserid() {
+        return this.userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+    public String getUsernum() {
+        return this.usernum;
+    }
+
+    public void setUsernum(String usernum) {
+        this.usernum = usernum;
+    }
 
 }

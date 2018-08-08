@@ -159,8 +159,37 @@ public class Person implements Serializable {
 
 	private String favorites;
 
+	private String servicesite;
+
+	private String suoxie;
+
+	private String ccio;
 
 	public Person() {
+	}
+
+	public String getServicesite() {
+		return servicesite;
+	}
+
+	public void setServicesite(String servicesite) {
+		this.servicesite = servicesite;
+	}
+
+	public String getSuoxie() {
+		return suoxie;
+	}
+
+	public void setSuoxie(String suoxie) {
+		this.suoxie = suoxie;
+	}
+
+	public String getCcio() {
+		return ccio;
+	}
+
+	public void setCcio(String ccio) {
+		this.ccio = ccio;
 	}
 
 	public long getPersonuid() {
